@@ -1,5 +1,10 @@
-http://rednuht.org/genetic_walkers/
+Introduction to A*
+http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html
 
+Exemplos
+
+Pathfinding for Tower Defense
+http://www.redblobgames.com/pathfinding/tower-defense/
 
 Youtube
 
@@ -12,8 +17,6 @@ https://www.youtube.com/watch?v=Ny63E6iLkpc
 Pathfinding with simple genetic algorithms 
 https://www.youtube.com/watch?v=k2JchX4SShE
 
-Introduction to A*
-http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html
 
-Pathfinding for Tower Defense
-http://www.redblobgames.com/pathfinding/tower-defense/
+
+
