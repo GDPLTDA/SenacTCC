@@ -1,0 +1,23 @@
+https://github.com/alessandrofrancesconi/carwin
+http://rednuht.org/genetic_walkers/
+
+
+Youtube
+
+#1 Car AI - Unity 3D Tutorial - Intro 
+https://www.youtube.com/watch?v=HeQ89e27ehc
+
+Path Finding Algorithms (A*, Dijkstra, Bi-Directional BFS) 
+https://www.youtube.com/watch?v=DINCL5cd_w0
+
+Neural Network Demo Car
+https://www.youtube.com/watch?v=0Str0Rdkxxo
+
+[Unity3d] A* Pathfinding algorithm visualization 
+https://www.youtube.com/watch?v=Ny63E6iLkpc
+
+Neuroevolution - Car learns to drive
+https://www.youtube.com/watch?v=5lJuEW-5vr8
+
+Pathfinding with simple genetic algorithms 
+https://www.youtube.com/watch?v=k2JchX4SShE
