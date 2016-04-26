@@ -21,3 +21,10 @@ https://www.youtube.com/watch?v=5lJuEW-5vr8
 
 Pathfinding with simple genetic algorithms 
 https://www.youtube.com/watch?v=k2JchX4SShE
+
+
+Introduction to A*
+http://theory.stanford.edu/~amitp/GameProgramming/AStarComparison.html
+
+Pathfinding for Tower Defense
+http://www.redblobgames.com/pathfinding/tower-defense/
