@@ -1,0 +1,20 @@
+
+
+Temos como proposta fazer um estudo e comparação em algoritmos de pathfinding, em especifico A* e BFS (Best-First Search), 
+e versões hibridas de ambos com  Algoritmos Genéticos, o GAMMA[1] e o PPGA[2].
+
+O GAMMA é uma versão hibrida do A* com Algoritmos Genéticos, o artigo[1] demonstrou que ele teve um desempenho relativamente melhor que
+sua versão mais simples.  
+
+O PPGA da mesma forma, baseado em BFS junto com AG[2], também demonstrou melhores resultados.
+
+Gostaríamos de fazer um estudo em cima desses algoritmos, analisar seus respectivos desempenhos, e criar uma simulação interactiva, 
+nessa ideia:
+demonstração - https://www.youtube.com/watch?v=DINCL5cd_w0
+simulação - http://qiao.github.io/PathFinding.js/visual/
+
+
+[1] https://github.com/GDPLTDA/SenacTCC/blob/master/Artigos/Ingles/10.1.1.666.4409.pdf
+[2] https://github.com/GDPLTDA/SenacTCC/blob/master/Artigos/Ingles/comp-full_09.pdf
+
+:3
