@@ -1,20 +1,12 @@
+Objetivo/Proposta
 
+O Objetivo é propor um modelo de pathfinding do algoritmo A* com IA em uma arquitetura paralela , A* tem a utilização muito popular em jogos eletrônicos, e existe uma necessidade na melhoria do desempenho destes algoritmos nesse meio, cada mudança de estado pode resultar em ter que realizar novamente a busca de um caminho.
+A primeira parte do modelo que queremos propor, trata-se da utilização de inteligência artificial, em especifico, algoritmos genéticos. A arquitetura híbrida é demonstrada no artigo "Using a Genetic Algorithm to Explore A*-like Pathfinding
+Algorithms" [1], indicando sucesso na melhoria de desempenho.
+Utilizar algoritmos genéticos de forma paralela é demonstrada no artigo "Parallel Genetic Algorithm for Shortest Path Routing Problem with Collaborative Neighbors" [2], a implementação da arquitetura mostra uma grande melhoria de desempenho conforme  o numero de threads é aumentado,
+Para a utilização em jogos eletrônicos é preciso que o modelo execute em tempo real, recalculando trajeto a cada iteração gráfica, tentando a partir daí, encontrar a uma solução mais próxima da ótima. Uma forma em tempo real do A* utilizando algoritmos genéticos foi demonstrada no artigo "Real Time Pathfinding with Genetic Algorithm [3], mostrando que é possível a utilização.
+Em resumo o objetivo é criar e implementar um modelo de A* com algoritmos genéticos em uma arquitetura paralela para execução em tempo real.
 
-Temos como proposta fazer um estudo e comparação em algoritmos de pathfinding, em especifico A* e BFS (Best-First Search), 
-e versões hibridas de ambos com  Algoritmos Genéticos, o GAMMA[1] e o PPGA[2].
-
-O GAMMA é uma versão hibrida do A* com Algoritmos Genéticos, o artigo[1] demonstrou que ele teve um desempenho relativamente melhor que
-sua versão mais simples.  
-
-O PPGA da mesma forma, baseado em BFS junto com AG[2], também demonstrou melhores resultados.
-
-Gostaríamos de fazer um estudo em cima desses algoritmos, analisar seus respectivos desempenhos, e criar uma simulação interactiva, 
-nessa ideia:
-demonstração - https://www.youtube.com/watch?v=DINCL5cd_w0
-simulação - http://qiao.github.io/PathFinding.js/visual/
-
-
-[1] https://github.com/GDPLTDA/SenacTCC/blob/master/Artigos/Ingles/10.1.1.666.4409.pdf
-[2] https://github.com/GDPLTDA/SenacTCC/blob/master/Artigos/Ingles/comp-full_09.pdf
-
-:3
+[1] 10.1.1.666.4409.pdf (2007)
+[2] 20790-97711-1-PB.pdf (2015)
+[3] Real Time Pathfinding with Genetic Algorithm.pdf (2011)
