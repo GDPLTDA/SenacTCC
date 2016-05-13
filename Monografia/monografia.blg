@@ -1,0 +1,104 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: monografia.aux
+The style file: abntex2-alf.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Database file #1: abntex2-options.bib
+Database file #2: mono.bib
+You're missing a field part---line 23 of file mono.bib
+ : 
+ : }
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for "Heinz"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2091 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2091 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2091 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2091 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2091 of file abntex2-alf.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2146 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2146 of file abntex2-alf.bst
+Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
+while executing---line 2146 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2146 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2146 of file abntex2-alf.bst
+Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
+while executing---line 2146 of file abntex2-alf.bst
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.5           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 4 entries,
+            6714 wiz_defined-function locations,
+            1215 strings with 9745 characters,
+and the built_in function-call counts, 2769 in all, are:
+= -- 303
+> -- 62
+< -- 3
++ -- 69
+- -- 20
+* -- 154
+:= -- 440
+add.period$ -- 9
+call.type$ -- 4
+change.case$ -- 28
+chr.to.int$ -- 4
+cite$ -- 3
+duplicate$ -- 115
+empty$ -- 190
+format.name$ -- 93
+if$ -- 635
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 62
+newline$ -- 23
+num.names$ -- 15
+pop$ -- 102
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 188
+stack$ -- 1
+substring$ -- 111
+swap$ -- 45
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 23
+width$ -- 0
+write$ -- 50
+(There were 17 error messages)
