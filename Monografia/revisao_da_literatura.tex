@@ -5,6 +5,40 @@
 
 \section{Busca de caminhos}
 
+\subsection{O Algortimo A*}
+
+O algoritimo A* é um dos mais populares soluções no ramo de busca de caminhos, o algoritmo garante achar o menor caminho entre dois pontos \cite{PEHart}, porem gera uma grande arvore de busca nos precessos, consumindo muito tempo e memoria, é comum haver modicações no algoritimo para explorar uma arvore de busca menor, diminuindo o tempo para achar um caminho scrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
+
+O algoritmo A* em sua forma tradicional, utiliza a formula heurística f(n) = g(n) + h(n), onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este cálculo pode ser realizado pela distância Manhattan. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A). Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algoritimo retorna o caminho encontrado, assim podemos encontrar a solução ideal .
+
+Podemos aplicar o algortitmo A* em um Grafo direcionado ponderado facilmente (Figura 1)
+
+
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth]{
+        \includegraphics[keepaspectratio=true,scale=1]{ibagens/figura1.png}}
+    \captionof{figure}{Grafo para busca \cite{PEHart}}
+\end{minipage}
+
+
+\begin{description}
+    \item[Figura 1] Consiste em um nó inicial s e mais tres outros nós (n1,n2,n3). As arestras contem a direção e o custo do trajeto. Se partirmos do algoritimo A* para produzir um subgrafo do melhor caminho, partindo de s podemos ir para n1 e n2, os valores de g(n1) e g(n2) são respectivamente 3 e 7. Supondo que A* expanda n1, sucedindo por n2 e n3, nesse ponto g(n3)=3+2=5,o valor de g(n2) é diminuido pois um caminho de menor custo foi encontrado  3+3=6, o valor de g(n1) continua sendo 3. 
+    
+\end{description}
+
+A heurística fornece uma expansão considerável dos nós, que são mantidos na memoria durante todo o processamento. (Figura 2)
+
+
+
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth]{
+        \includegraphics[keepaspectratio=true,scale=1]{ibagens/figura2.png}}
+    \captionof{figure}{Exemplo de A* \cite{Ulysses} }
+\end{minipage}
+
+
 \section{Algorítimos genéticos}
 
 \section{Algoritmos paralelos e Distribuídos}
