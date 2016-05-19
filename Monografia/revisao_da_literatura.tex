@@ -5,7 +5,7 @@
 
 \section{Busca de caminhos}
 
-\subsection{O Algortimo A*}
+\subsection{O Algoritmo A*}
 
 O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos, o algoritmo garante achar o menor caminho entre dois pontos \cite{PEHart}, porem gera uma grande arvore de busca nos processos, consumindo muito tempo e memoria, é comum haver modificações no algorítimo para explorar uma arvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
 
@@ -53,7 +53,6 @@ As Imagens das pistas são modificadas para serem mapas de detecção de colisã
 Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas hibridas, levando os algoritmos genéticos analisarem todo o percusso,ajudando o algoritmo de busca em momentos que a próxima ação é incerta.
 
 Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um modulo para calcular os sub caminhos ao longo do processo de busca, cada vez que o modulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O modulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}.
-Um outro método, utiliza o algoritmo de busca A* (\textit{AStar})
 
 \section{Algorítimos genéticos paralelos ou distribuídos para busca de caminhos}
 
