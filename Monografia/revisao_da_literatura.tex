@@ -52,7 +52,7 @@ Os resultados da primeira modificação conseguiu economizar ciclos de CPU, redu
 Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas hibridas, levando os algoritmos genéticos analisarem todo o percusso,ajudando o algoritmo de busca em momentos que a próxima ação é incerta.
 
 Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um modulo para calcular os sub caminhos ao longo do processo de busca, cada vez que o modulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O modulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}.
-
+O modelo GAMMA(\textit{Genetic Algoritmo Manufactured Maneuvering Algorithm}), consiste em uma modificação do A* de forma que o caminho total é separado em caminhos mais curto. O algoritmo prepara o primeiro caminho e calcula o caminho mais curto entre eles, a posição final do resultado é usada como inicial para o próximo calculo, com isso, permitindo que o modelo GAMMA procure caminhos em tempo real por que se o caminho for alterado a sua leitura é parcial do caminho completo.\cite{Ryan}
 
 
 \begin{minipage}{\linewidth}
