@@ -5,16 +5,13 @@
 
 \section{Busca de caminhos}
 
-Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas híbridas, onde utilizam inteligência artificial para analisar todo o percusso e ajudar o algoritmo de busca a decidir em momentos que a próxima ação é incerta.
+Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos geneticos, paralelismo ou uma união de todas ao mesmo tempo.
 
 \subsection{O Algoritmo A*}
 
 O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos, o algoritmo garante achar o menor caminho entre dois pontos \cite{PEHart}, porém gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
-
 O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
-
-f(n) = g(n) + h(n)
-
+\[f(n) = g(n) + h(n)\]
 Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart}
 
 Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura 1.
@@ -27,11 +24,11 @@ Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da 
 \end{minipage}
 
 
-\begin{description}
+%\begin{description}
     O grafo consiste em um nó inicial s e mais três outros nós (n1, n2, n3). As arestas contem a direção e o custo do trajeto. Se partirmos do algoritmo A* para produzir um subgrafo do melhor caminho, partindo de s podemos ir para n1 e n2, os valores de g(n1) e g(n2) são respectivamente 3 e 7. Supondo que A* expanda n1, sucedido por n2 e n3, nesse ponto g(n3)=3+2=5,o valor de g(n2) é diminuído pois um caminho de menor custo foi encontrado  3+3=6, o valor de g(n1) continua sendo 3.
     
     O próximo passo seria estimar o h(n), podem essa função vai depender muito do domínio do problema, muitos problemas de encontrar o menor caminho entre dois pontos de um grafo possuem alguma "informação física" que pode ser usada de alguma forma para estimar o h(n), podemos em nosso exemplo, se definirmos como cidades ligadas por estradas, h(n) poderia ser a distancia aérea da cidade n até a cidade objetivo, essa distancia seria menor do que qualquer estrada da cidade n até o objetivo \cite{PEHart}. Em jogos digitais e buscas em tempo real é muito comum trabalhar em cima de mapas em forma de matrizes bidimensionais, esse será o foco dos algoritmos que trataremos, nesses casos fica simples tratarmos o h(n) com a distância Euclideana ou Manhattan entre n e o destino. \cite{Yngvi}
-\end{description}
+%\end{description}
 
 Quando definimos o mapa de busca em uma matriz bidimensional NxM, situação comum em jogos digitais e problemas de busca em tempo real \cite{Ross_Graham} \cite{Ulysses}, precisamos definir os custos de movimentação entre os vizinhos do ponto n, e a função heurística h(n). O custo de movimentação na grade pode variar basicamente em dois tipos, levando as diagonais em consideração ou não.
 
@@ -72,7 +69,9 @@ Existem vários aplicações para os algoritmo geneticos, por serem uma intelige
 
 O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação de algoritmos geneticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
 O Modelo é definido como um grafo G=(V U W, E) não direcionado, onde V U W compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
-V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V0. O m-PRC atribui o conjunto de m rotas de veículos com as restrições: Todas as m rotas de veículos começam e terminam na base V0, Tem exatamente m rotas, Cada vértice de V pertence a no máximo uma rota, Cada vértice de T pertence a exatamente uma rota, com exceção a base, Cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R.
+V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V0. 
+
+O m-PRC atribui o conjunto de m rotas de veículos com as restrições: Todas as m rotas de veículos começam e terminam na base V0, Tem exatamente m rotas, Cada vértice de V pertence a no máximo uma rota, Cada vértice de T pertence a exatamente uma rota, com exceção a base, Cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -80,11 +79,15 @@ V são todos os vértices que podem ser visitados e é composto pelo subconjunto
 	\captionof{figure}{Exemplo de gráfo não direcionado para V U W. \cite{Washington} }
 \end{minipage}
 
+Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solucão. E o AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
 
+Pode-se concluir que a utilização de algoritmos geneticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
 \section{Algoritmos de busca paralelo}
 
 \section{Algorítimos genéticos para busca de caminhos}
+
+Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas híbridas, onde utilizam inteligência artificial para analisar todo o percusso e ajudar o algoritmo de busca a decidir em momentos que a próxima ação é incerta.
 
 Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um módulo para calcular os sub-caminhos ao longo do processo de busca, cada vez que o módulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O módulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. A Figura 4 mostra uma fluxograma do funcionamento do modelo.
 
