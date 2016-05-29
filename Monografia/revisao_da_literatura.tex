@@ -72,7 +72,7 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 
 \textbf{inicialização}: criar uma população de possíveis respostas para um problema. 
 
-\textbf{avaliação}: avalia-se a aptidão das soluções, os indivíduos da população s é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
+\textbf{avaliação}: avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
 
 \textbf{seleção}: indivíduos são selecionados para a reprodução. A probabilidade de uma dada solução a ser selecionada é proporcional a sua aptidão.
 
@@ -90,6 +90,27 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
 \end{minipage}
 
+Um componente fundamental dos AG, são os indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tradado e partir de sua manipulação no processo evolutivo, a partir dai que são encontradas as respostas.
+
+Umas das partes mais importantes é a representação dos indivíduos, visto que sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genotipo}.
+
+Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver tabela 1.
+
+
+	
+\begin{table}[h]
+	\centering
+\vspace{1.0cm}
+	\begin{tabular}{lp{3.0cm}lp{10.0cm}|}
+		Genótipo & Fenótipo & Problema \\
+		\hline                               
+		0010101001110101 & 10869  & otimização numérica \\
+		CGDEHABF & comece pela cidade C, depois passe pelas cidades G, D, E, H, A, B e termine em F  & caixeiro viajante \\
+		C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)  & regras de aprendizado para agentes \\
+	\end{tabular}
+		\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
+		
+\end{table}	
 
 
 
