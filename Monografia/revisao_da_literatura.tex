@@ -63,26 +63,44 @@ Os resultados da primeira modificação conseguiu economizar ciclos de CPU, redu
 
 \section{Algoritmos genéticos}
 
+AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do principio de seleção natural para abordar uma  ampla serie de problemas, geralmente de adaptação.
+
 \subsection{Funcionamento}
-
-AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do principio de seleção natural para abordar uma  ampla serie de problemas, geralmente de adaptação. 
-
-Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver figura 4.
+ 
+Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver figura 4. \cite{DiogoCLucas}
 
 
-\textbf{inicialização}: criar uma população de possíveis respostas para um problema. 
+\textbf{Inicialização}: criar uma população de possíveis respostas para um problema. 
+É comum fazer uso de funções aleatórias para gerar os indivíduos, sendo este um recurso simples que visa fornecer maior diversidade.
 
-\textbf{avaliação}: avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
+\textbf{Avaliação}: avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
+A função de avaliação também pode ser chamada de função objetivo. 
 
-\textbf{seleção}: indivíduos são selecionados para a reprodução. A probabilidade de uma dada solução a ser selecionada é proporcional a sua aptidão.
+Ela pode variar de acordo com problema,  
+Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das caracteristicas do individuo, operando apenas sobre uma amostragem destas.
 
-\textbf{cruzamento}: características das soluções escolhidas são recombinadas, gerando novos indivíduos.
 
-\textbf{mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+\textbf{Seleção}: Ela é a responsável pela perpetuação de boas caracteristicas na espécie. 
+Neste estagio que os indivíduos são escolhidos para posterior cruzamento. Fazendo uso do grau de adaptação de cada um é realizado um sorteio onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
+O Grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
 
-\textbf{atualização}: os indivíduos criados nesta geração são inseridos na população.
 
-\textbf{finalização}: é verificado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+\textbf{Cruzamento}: características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
+
+
+\textbf{Mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+A mutação opera sobre os indivíduos resultantes do processo de cruzamento e com uma probabilidade pré-determinada efetua algum tipo de alteração em sua  estrutura. A importância desta operação é o fato de que uma vez bem escolhido seu modo de atuar, é garantido que diversas alternativas serão exploradas.
+ 
+\textbf{Atualização}: os indivíduos criados no processo de reprodução e mutação são inseridos na população.
+
+Na forma mais tradicional deste a população mantém um tamanho fixo e os indivíduos são criados em mesmo número que seus antecessores e os substituem por completo. 
+
+Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser menor ou o tamanho da população pode sofrer variações e o critério de inserção pode variar, por exemplo, nos casos em que os filhos substituem os pais, ou em que estes só são inseridos se possuírem maior aptidão que o cromossomo que sera substituído, ou o manter sempre o conjunto dos n melhores indivíduos. 
+
+
+\textbf{Finalização}: é testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+
+Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -141,6 +159,7 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 
 \textbf{Elite:} São os indivíduos mais bem adaptados da população. Uma técnica comum nos AG é p \textit{elitismo}, onde são selecionados k melhores indivíduos que serão mantidos a cada geração.
  
+
 
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
