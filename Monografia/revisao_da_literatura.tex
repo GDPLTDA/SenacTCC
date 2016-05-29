@@ -63,11 +63,40 @@ Os resultados da primeira modificação conseguiu economizar ciclos de CPU, redu
 
 \section{Algoritmos genéticos}
 
+\subsection{Funcionamento}
+
+AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do principio de seleção natural para abordar uma  ampla serie de problemas, geralmente de adaptação. 
+
+Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver figura 4.
+
+
+\textbf{inicialização}: criar uma população de possíveis respostas para um problema. 
+
+\textbf{avaliação}: avalia-se a aptidão das soluções, os indivíduos da população s é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
+
+\textbf{seleção}: indivíduos são selecionados para a reprodução. A probabilidade de uma dada solução a ser selecionada é proporcional a sua aptidão.
+
+\textbf{cruzamento}: características das soluções escolhidas são recombinadas, gerando novos indivíduos.
+
+\textbf{mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+
+\textbf{atualização}: os indivíduos criados nesta geração são inseridos na população.
+
+\textbf{finalização}: é verificado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/genetico1.png}}
+	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
+\end{minipage}
+
+
+
 
 \subsection{Aplicações}
-Existem vários aplicações para os algoritmo geneticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
+Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
-O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação de algoritmos geneticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
+O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
 O Modelo é definido como um grafo G=(V U W, E) não direcionado, onde V U W compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
 V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V0. 
 
