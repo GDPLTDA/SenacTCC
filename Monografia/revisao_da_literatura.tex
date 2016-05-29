@@ -79,27 +79,26 @@ A função de avaliação também pode ser chamada de função objetivo.
 Ela pode variar de acordo com problema,  
 Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das caracteristicas do individuo, operando apenas sobre uma amostragem destas.
 
-
 \textbf{Seleção}: Ela é a responsável pela perpetuação de boas caracteristicas na espécie. 
 Neste estagio que os indivíduos são escolhidos para posterior cruzamento. Fazendo uso do grau de adaptação de cada um é realizado um sorteio onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
 O Grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
 
 
-\textbf{Cruzamento}: características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
+\textbf{Cruzamento}: Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
 
 
 
 \textbf{Mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
 A mutação opera sobre os indivíduos resultantes do processo de cruzamento e com uma probabilidade pré-determinada efetua algum tipo de alteração em sua  estrutura. A importância desta operação é o fato de que uma vez bem escolhido seu modo de atuar, é garantido que diversas alternativas serão exploradas.
  
-\textbf{Atualização}: os indivíduos criados no processo de reprodução e mutação são inseridos na população.
+\textbf{Atualização}: Os indivíduos criados no processo de reprodução e mutação são inseridos na população.
 
 Na forma mais tradicional deste a população mantém um tamanho fixo e os indivíduos são criados em mesmo número que seus antecessores e os substituem por completo. 
 
 Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser menor ou o tamanho da população pode sofrer variações e o critério de inserção pode variar, por exemplo, nos casos em que os filhos substituem os pais, ou em que estes só são inseridos se possuírem maior aptidão que o cromossomo que sera substituído, ou o manter sempre o conjunto dos n melhores indivíduos. 
 
 
-\textbf{Finalização}: é testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+\textbf{Finalização}: É testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
 
 Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
 
@@ -113,10 +112,8 @@ Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em q
 
 Esses indivíduos precisam de uma representação, essa sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genótipo}.
 
-Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver tabela 1.
+Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver Tabela 1.
 
-
-	
 \begin{table}[h]
 	\centering
 \vspace{1.0cm}
@@ -128,7 +125,6 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 		C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)  & regras de aprendizado para agentes \\
 	\end{tabular}
 		\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
-		
 \end{table}	
 
 Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como:
@@ -141,7 +137,7 @@ Também é calculado o grau de adaptação do individuo relativo aos outros memb
 
  Sendo n o tamanho da população.
  
- A dinâmica populacional é a responsável pela evolução, ao propagar caracteristicas desejáveis a gerações subsequentes no processo de cruzamento, enquanto novas são testadas no processo de mutação.
+ A dinâmica populacional é a responsável pela evolução, ao propagar características desejáveis a gerações subsequentes no processo de cruzamento, enquanto novas são testadas no processo de mutação.
  
  Algumas definições importantes relativo as populações de um AG são:
  
@@ -151,7 +147,6 @@ Também é calculado o grau de adaptação do individuo relativo aos outros memb
 
 \[ M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n} \]
 
-
 \textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
 Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma media de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
 
@@ -159,8 +154,6 @@ Um estado negativo que pode ocorrer relativo a esta medida é a \textit{converg�
 Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura}.
 
 \textbf{Elite:} São os indivíduos mais bem adaptados da população. Uma técnica comum nos AG é p \textit{elitismo}, onde são selecionados k melhores indivíduos que serão mantidos a cada geração.
- 
-
 
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
