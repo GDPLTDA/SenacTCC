@@ -70,19 +70,19 @@ AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenient
 Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver figura 4.
 
 
-\textbf{inicialização}: criar uma população de possíveis respostas para um problema. 
+\textbf{Inicialização}: Criar uma população de possíveis respostas para um problema. 
 
-\textbf{avaliação}: avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
+\textbf{Avaliação}: Avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
 
-\textbf{seleção}: indivíduos são selecionados para a reprodução. A probabilidade de uma dada solução a ser selecionada é proporcional a sua aptidão.
+\textbf{Seleção}: Indivíduos são selecionados para a reprodução. A probabilidade de uma dada solução a ser selecionada é proporcional a sua aptidão.
 
-\textbf{cruzamento}: características das soluções escolhidas são recombinadas, gerando novos indivíduos.
+\textbf{Cruzamento}: Características das soluções escolhidas são recombinadas, gerando novos indivíduos.
 
-\textbf{mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+\textbf{Mutação}: Características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
 
-\textbf{atualização}: os indivíduos criados nesta geração são inseridos na população.
+\textbf{Atualização}: Os indivíduos criados nesta geração são inseridos na população.
 
-\textbf{finalização}: é verificado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+\textbf{Finalização}: É verificado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -94,10 +94,8 @@ Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em q
 
 Esses indivíduos precisam de uma representação, essa sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genótipo}.
 
-Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver tabela 1.
+Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver Tabela 1.
 
-
-	
 \begin{table}[h]
 	\centering
 \vspace{1.0cm}
@@ -109,7 +107,6 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 		C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)  & regras de aprendizado para agentes \\
 	\end{tabular}
 		\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
-		
 \end{table}	
 
 Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como:
@@ -122,7 +119,7 @@ Também é calculado o grau de adaptação do individuo relativo aos outros memb
 
  Sendo n o tamanho da população.
  
- A dinâmica populacional é a responsável pela evolução, ao propagar caracteristicas desejáveis a gerações subsequentes no processo de cruzamento, enquanto novas são testadas no processo de mutação.
+ A dinâmica populacional é a responsável pela evolução, ao propagar características desejáveis a gerações subsequentes no processo de cruzamento, enquanto novas são testadas no processo de mutação.
  
  Algumas definições importantes relativo as populações de um AG são:
  
@@ -131,7 +128,6 @@ Também é calculado o grau de adaptação do individuo relativo aos outros memb
 \textbf{Média de adaptação:} 
 
 \[ M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n} \]
-
 
 \textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
 Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma media de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
