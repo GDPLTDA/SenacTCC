@@ -90,9 +90,9 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
 \end{minipage}
 
-Um componente fundamental dos AG, são os indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tradado e partir de sua manipulação no processo evolutivo, a partir dai que são encontradas as respostas.
+Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tradado e partir de sua manipulação no processo evolutivo, a partir dai que são encontradas as respostas.
 
-Umas das partes mais importantes é a representação dos indivíduos, visto que sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genotipo}.
+Esses indivíduos precisam de uma representação, essa sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genótipo}.
 
 Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver tabela 1.
 
@@ -112,7 +112,35 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 		
 \end{table}	
 
+Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como:
+\[f_O(x)\]  
+Este vai representar o quão bem a resposta apresentada pelo individuo soluciona o problema proposto.
 
+Também é calculado o grau de adaptação do individuo relativo aos outros membros da população a qual ele pertence, esse é chamado de grau de aptidão, para um individuo $x$ temos seu grau de aptidão denotado pela formula:
+
+\[f_A(x) = \frac{f_O(x)}{ \sum_{i=1}^{n}  f_O(i)  }  \]
+
+ Sendo n o tamanho da população.
+ 
+ A dinâmica populacional é a responsável pela evolução, ao propagar caracteristicas desejáveis a gerações subsequentes no processo de cruzamento, enquanto novas são testadas no processo de mutação.
+ 
+ Algumas definições importantes relativo as populações de um AG são:
+ 
+ \textbf{Geração:} É o numero de vezes em que a população passou pelo processo de seleção, reprodução, mutação e atualização.
+
+\textbf{Média de adaptação:} 
+
+\[ M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n} \]
+
+
+\textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
+Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma media de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
+
+\textbf{Diversidade:} Mede o grau de variação entre os genótipos da população. Ela é fundamental para o tamanho da busca.
+Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura}.
+
+\textbf{Elite:} São os indivíduos mais bem adaptados da população. Uma técnica comum nos AG é p \textit{elitismo}, onde são selecionados k melhores indivíduos que serão mantidos a cada geração.
+ 
 
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
