@@ -3,19 +3,19 @@
 %\addcontentsline{toc}{chapter}{Revisão de Literatura}
 % ----------------------------------------------------------
 
+Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos geneticos, paralelismo ou uma união de todas ao mesmo tempo.
+
 \section{Busca de caminhos}
 
-Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos geneticos, paralelismo ou uma união de todas ao mesmo tempo.
 
 \subsection{O Algoritmo A*}
 
-O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos, o algoritmo garante achar o menor caminho entre dois pontos \cite{PEHart}, porém gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
+O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
 O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
 \[f(n) = g(n) + h(n)\]
 Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart}
 
 Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura 1.
-
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
@@ -30,7 +30,7 @@ Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da 
     O próximo passo seria estimar o h(n), podem essa função vai depender muito do domínio do problema, muitos problemas de encontrar o menor caminho entre dois pontos de um grafo possuem alguma "informação física" que pode ser usada de alguma forma para estimar o h(n), podemos em nosso exemplo, se definirmos como cidades ligadas por estradas, h(n) poderia ser a distancia aérea da cidade n até a cidade objetivo, essa distancia seria menor do que qualquer estrada da cidade n até o objetivo \cite{PEHart}. Em jogos digitais e buscas em tempo real é muito comum trabalhar em cima de mapas em forma de matrizes bidimensionais, esse será o foco dos algoritmos que trataremos, nesses casos fica simples tratarmos o h(n) com a distância Euclideana ou Manhattan entre n e o destino. \cite{Yngvi}
 %\end{description}
 
-Quando definimos o mapa de busca em uma matriz bidimensional NxM, situação comum em jogos digitais e problemas de busca em tempo real \cite{Ross_Graham} \cite{Ulysses}, precisamos definir os custos de movimentação entre os vizinhos do ponto n, e a função heurística h(n). O custo de movimentação na grade pode variar basicamente em dois tipos, levando as diagonais em consideração ou não.
+Quando definimos o mapa de busca em uma matriz bidimensional NxM, situação comum em jogos digitais e problemas de busca em tempo real \cite{Ross_Graham} \cite{Ulysses} \cite{Ulysses2}, precisamos definir os custos de movimentação entre os vizinhos do ponto n, e a função heurística h(n). O custo de movimentação na grade pode variar basicamente em dois tipos, levando as diagonais em consideração ou não.
 
 O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro direções ortogonais com custo 1, e \textit{octile}, onde o agente pode ainda mover-se na diagonal com custo equivalente ao valor da hipotenusa de um triângulo retângulo com catetos igual a 1, sendo assim  $ \sqrt{2}  \approx 1.4 $. É comum para fim de simplificar os cálculos multiplicar os valores de custo por 10 ou 100 como pode ser visto na figura 2.
 
@@ -67,27 +67,29 @@ AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenient
 
 \subsection{Funcionamento}
  
-Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver figura 4. \cite{DiogoCLucas}
+Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura 4. \cite{DiogoCLucas}
 
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/genetico1.png}}
+	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
+\end{minipage}
 
-\textbf{Inicialização}: criar uma população de possíveis respostas para um problema. 
+\textbf{Inicialização}: Criar uma população de possíveis respostas para um problema. 
 É comum fazer uso de funções aleatórias para gerar os indivíduos, sendo este um recurso simples que visa fornecer maior diversidade.
 
-\textbf{Avaliação}: avalia-se a aptidão das soluções, os indivíduos da população, é feita uma analise para que se estabeleça quão bem elas respondem ao problema proposto.
-A função de avaliação também pode ser chamada de função objetivo. 
+\textbf{Avaliação}: Avalia-se a aptidão das soluções, os indivíduos da população, então é feita uma análise para que se estabeleça quão bem elas respondem ao problema proposto.
 
-Ela pode variar de acordo com problema,  
-Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das caracteristicas do individuo, operando apenas sobre uma amostragem destas.
+A função de avaliação também pode ser chamada de função objetivo. Ela pode variar de acordo com problema,  
+Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das características do individuo, operando apenas sobre uma amostragem destas.
 
-\textbf{Seleção}: Ela é a responsável pela perpetuação de boas caracteristicas na espécie. 
-Neste estagio que os indivíduos são escolhidos para posterior cruzamento. Fazendo uso do grau de adaptação de cada um é realizado um sorteio onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
+\textbf{Seleção}: Ela é a responsável pela perpetuação de boas características na espécie. 
+Neste estagio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
 O Grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
-
 
 \textbf{Cruzamento}: Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
 
-
-\textbf{Mutação}: características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+\textbf{Mutação}: Características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
 A mutação opera sobre os indivíduos resultantes do processo de cruzamento e com uma probabilidade pré-determinada efetua algum tipo de alteração em sua  estrutura. A importância desta operação é o fato de que uma vez bem escolhido seu modo de atuar, é garantido que diversas alternativas serão exploradas.
  
 \textbf{Atualização}: Os indivíduos criados no processo de reprodução e mutação são inseridos na população.
@@ -96,32 +98,32 @@ Na forma mais tradicional deste a população mantém um tamanho fixo e os indiv
 
 Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser menor ou o tamanho da população pode sofrer variações e o critério de inserção pode variar, por exemplo, nos casos em que os filhos substituem os pais, ou em que estes só são inseridos se possuírem maior aptidão que o cromossomo que sera substituído, ou o manter sempre o conjunto dos n melhores indivíduos. 
 
-
 \textbf{Finalização}: É testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
 
 Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
 
-\begin{minipage}{\linewidth}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/genetico1.png}}
-	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
-\end{minipage}
 
-Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tradado e partir de sua manipulação no processo evolutivo, a partir dai que são encontradas as respostas.
+Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tradado e partir de sua manipulação no processo evolutivo, a partir daí que são encontradas as respostas.
 
-Esses indivíduos precisam de uma representação, essa sera o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um individuo pelos genes que possui, ou seja seu \textit{genótipo}.
+Esses indivíduos precisam de uma representação, essa será o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um indivíduo pelos genes que possui, ou seja seu \textit{genótipo}.
 
 Apesar de toda representação por parte do algoritmo ser baseada única e exclusivamente em seu genótipo, toda avaliação é baseada em seu fenótipo, o conjunto de características observáveis no objeto resultante do processo de decodificação dos genes do individuo, ver Tabela 1.
 
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \begin{table}[h]
 	\centering
-\vspace{1.0cm}
-	\begin{tabular}{lp{3.0cm}lp{10.0cm}|}
-		Genótipo & Fenótipo & Problema \\
-		\hline                               
-		0010101001110101 & 10869  & otimização numérica \\
-		CGDEHABF & comece pela cidade C, depois passe pelas cidades G, D, E, H, A, B e termine em F  & caixeiro viajante \\
-		C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)  & regras de aprendizado para agentes \\
+\vspace{0.5cm}
+\renewcommand{\arraystretch}{2.0}
+	\begin{tabular}{|C{4cm}|C{3.5cm}|C{7cm}|}
+		\hline
+		\textbf{Problema} & \textbf{Genótipo} & \textbf{ Fenótipo} \\
+		\hline                  
+		Otimização numérica & 0010101001110101 & 10869 \\
+		\hline
+		Caixeiro viajante & CGDEHABF & Comece pela cidade C, depois passe pelas cidades G, D, E, H, A, B e termine em F \\
+		\hline
+		Regras de aprendizado para agentes & C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & Se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)\\
+		\hline
 	\end{tabular}
 		\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
 \end{table}	
@@ -158,10 +160,10 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
 O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
-O Modelo é definido como um grafo G=(V U W, E) não direcionado, onde V U W compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
-V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V0. 
+O Modelo é definido como um grafo não direcionado: \[G=(V\cup W, E)\] Onde \[V\cup W\] compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
+V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V$_0$. 
 
-O m-PRC atribui o conjunto de m rotas de veículos com as restrições: Todas as m rotas de veículos começam e terminam na base V0, Tem exatamente m rotas, Cada vértice de V pertence a no máximo uma rota, Cada vértice de T pertence a exatamente uma rota, com exceção a base, Cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R.
+O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as m rotas de veículos começam e terminam na base V$_0$, Tem exatamente m rotas, cada vértice de V pertence a no máximo uma rota, cada vértice de T pertence a exatamente uma rota, com exceção a base, cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -187,7 +189,7 @@ Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvi
 	\captionof{figure}{Fluxograma do PPGA \cite{Ulysses} }
 \end{minipage}
 
-O modelo GAMMA(\textit{Genetic Algoritmo Manufactured Maneuvering Algorithm}), consiste em uma modificação do A* de forma que o caminho total é separado em caminhos mais curto. O algoritmo prepara o primeiro caminho e calcula o caminho mais curto entre eles, a posição final do resultado é usada como inicial para o próximo calculo, com isso, permitindo que o modelo GAMMA procure caminhos em tempo real por que se o caminho for alterado a sua leitura é parcial do caminho completo.\cite{Ryan}
+%\O modelo GAMMA(\textit{Genetic Algoritmo Manufactured Maneuvering Algorithm}), consiste em uma modificação do A* de forma que o caminho total é separado em caminhos mais curto. O algoritmo prepara o primeiro caminho e calcula o caminho mais curto entre eles, a posição final do resultado é usada como inicial para o próximo calculo, com isso, permitindo que o modelo GAMMA procure caminhos em tempo real por que se o caminho for alterado a sua leitura é parcial do caminho completo.\cite{Ryan}
 
 
 
