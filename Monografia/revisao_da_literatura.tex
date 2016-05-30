@@ -40,6 +40,30 @@ O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro di
     \captionof{figure}{Custo de movimentação}
 \end{minipage}
 
+Uma heuristica famosa e muito utilizada é conhecida como distancia manhatam, usada principalmente em ambientes de grades, ela estima a distancia real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, igonorando qualquer obstaculo.
+A distância manhattan garante a solução com mais baixo custo, pois cada nó deve caminhar pelo menos, a sua distância manhattan, e o movimento é dado de um nó por vez \cite{Korf2000}.
+
+Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto incial e o vetor de objetivo, resultando em um caminho "reto" entre dois nós. \cite{GameProgrammingHeuristics}.
+
+Ainda pode ser realizada uma alteração no algoritimo de distancia manhatam para levar em conta as diagonais, este fica chamado de "distancia diagonal", adiconando um custo de movimentação diagnal diferente ao de movimentação adjacente.
+
+Tambem pode ser utilizada como função heuristica a distancia euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h. Ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda tera os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
+
+Podemos verificar na imagem 4, exemplos de distancia manhatam comparado com a distancia euclideana.
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth]{
+        \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/manhatam.png}}
+    \captionof{figure}{Ilustração de diferença entre distancia Manhatam e euclideana  }
+\end{minipage}
+
+\begin{description}
+    \item[Figura 4] As linhas de cor vermelho, verde e amarelo tem o mesmo tamanho (12), e representam a distancia manhatam, a amarela leva em consideração o produuto vetorial.
+    A linha azul represanda a distancia euclideana $\sqrt{72} \approx 8.485$
+\end{description}
+
+
+
 Uma limitação do A*, é o fato que ele requer uma grande quantidade de recursos da CPU, caso haja muitos nós a pesquisar como é o caso em grandes mapas que são populares em jogos recentes, isso  pode causar pequenos atrasos.
 Esse atraso pode ser agravado caso haja múltiplos agentes de inteligência artificial ou quando o agente tem que se mover de um lado do mapa para o outro 
 
@@ -53,6 +77,11 @@ Pelo motivo do alto custo, a heurística fornece uma expansão considerável dos
     \captionof{figure}{Exemplo de A* \cite{Ulysses} }
 \end{minipage}
 
+É comum no meio dos jogos digitais termos mais de um agente rodando ao mesmo tempo, um otimização para esse problema, proposta por Ko- Hsin, Cindy Wang e Adi Botea, examina o planejamento de caminhos multi-agente. Eles propõem um algoritmo chamado de FAR (\textit{Flow Annotation Replanning}) para combater os problemas técnicos envolvidos em pesquisas globais por várias entidades.
+FAR implementa restrições de fluxo para evitar colisões frontais, para assim reduzir o espaço de busca que uma entidade deve considerar quando planejar a sua rota. Esse método tem a possibilidade de entrrar em \textit{deadlock}, um estado de bloqueio, porem o algoritmo é capaz de contornar esse problema \cite{Ko-hsin}.
+
+A arte de busca de caminhos está longe de um trabalho perfeito e muito ainda precisa ser feito \cite{Pontevia}.
+
 \subsection{Aplicações}
 Aplicações para os algoritmos de busca podem ser diversos, como por exemplo, em um simulador de carro corrida \cite{JungTing}. Utilizando o algoritmo do A* com duas modificações para encontrar o melhor caminho enquanto evita os obstáculos entre o ponto de inicio e o ponto de destino. 
 A primeira modificação consiste em utilizar o teorema de Pitagoras, onde primeira calcula a distância entre dois pontos(1 e 2), verifica se existe algum obstáculo dentre eles, se existir, utiliza o terceiro ponto para calcular a Hipotenusa e verifica se existe obstáculo entre a hipotenusa, se não existir, remove o ponto 2 e começa a considerar o caminho do ponto 1 para o ponto 3. A segunda modificação consiste em somente ir para frente, isso significa, procura somente os pontos a frente do carro, direita, esquerda e frente, simulando um controle de carro.
@@ -60,6 +89,17 @@ A primeira modificação consiste em utilizar o teorema de Pitagoras, onde prime
 O projeto utiliza 3 pistas reais de corrida da Formula 1, Peru, Itália e Hungria, sendo cada pista, uma imagem de escala 1280x782 pixels retiradas do site oficial da Formula 1. O Carro é implementado em Microsoft XNA Game Studio, plataforma usada para desenvolver jogos para Windows Phone, Xbox e Windows. As Imagens das pistas são modificadas para serem mapas de detecção de colisão, a pista é pintada de preto, indicando onde o carro pode andar e o resto pintado de branco indicando os o carro não pode andar. O carro tem o tamanho de 18x12 pixels e uma movimentação de 2 pixels por segundo. Como o XNA trabalha com uma taxa de quadros de 60 quadros por segundo, o carro se movimenta a 120 pixels por segundo.
 
 Os resultados da primeira modificação conseguiu economizar ciclos de CPU, reduzindo o numero de pontos indicadores da pista em 97\%. A segunda modificação tem a vantagem de obter o tempo de volta mais curto, por que reduz o numero de nós do algoritmo A* de 4 para 3 nós]. A desvantagem é que o carro pode balançar em curvas acentuadas. Em geral, as modificações garantiram uma melhoria em performance, economizando o numero de ciclos de CPU.
+
+
+\section{Algorítimos de busca paralelo}
+
+O problema de busca de caminho pode ser facilmente quebrado em duas maneiras \cite{WilliamMiller}.
+
+A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, tambem conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas nao escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e nao seria capaz de executar em um ambiente que nao ofereça no minimo essa estrutura. \cite{Janie_Chang}.
+
+A segunda abordagem seria tratar cada busca de caminho como uma unidade individual e distribuir cada uma para um núcleo.
+Esta abordagem funciona facilmente com qualquer número de núcleos e é possivelmente a forma mais eficaz de distribuição de grandes conjuntos de dados \cite{Jad} \cite{WilliamMiller}.
+
 
 \section{Algoritmos genéticos}
 
@@ -174,8 +214,6 @@ O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as
 Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solucão. E o AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
 
 Pode-se concluir que a utilização de algoritmos geneticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
-
-\section{Algoritmos de busca paralelo}
 
 \section{Algorítimos genéticos para busca de caminhos}
 
