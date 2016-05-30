@@ -40,16 +40,16 @@ O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro di
     \captionof{figure}{Custo de movimentação}
 \end{minipage}
 
-Uma heuristica famosa e muito utilizada é conhecida como distancia manhatam, usada principalmente em ambientes de grades, ela estima a distancia real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, igonorando qualquer obstaculo.
+Uma heurística famosa e muito utilizada é conhecida como distancia manhatam, usada principalmente em ambientes de grades, ela estima a distancia real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstaculo.
 A distância manhattan garante a solução com mais baixo custo, pois cada nó deve caminhar pelo menos, a sua distância manhattan, e o movimento é dado de um nó por vez \cite{Korf2000}.
 
-Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto incial e o vetor de objetivo, resultando em um caminho "reto" entre dois nós. \cite{GameProgrammingHeuristics}.
+Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto inicial e o vetor de objetivo, resultando em um caminho "reto" entre dois nós. \cite{GameProgrammingHeuristics}.
 
-Ainda pode ser realizada uma alteração no algoritimo de distancia manhatam para levar em conta as diagonais, este fica chamado de "distancia diagonal", adiconando um custo de movimentação diagnal diferente ao de movimentação adjacente.
+Ainda pode ser realizada uma alteração no algoritmo de distancia manhatam para levar em conta as diagonais, este fica chamado de "distancia diagonal", adicionando um custo de movimentação diagonal diferente ao de movimentação adjacente.
 
-Tambem pode ser utilizada como função heuristica a distancia euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h. Ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda tera os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
+Também pode ser utilizada como função heurística a distancia euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h. Ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda terá os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
 
-Podemos verificar na imagem 4, exemplos de distancia manhatam comparado com a distancia euclideana.
+Podemos verificar na imagem 4, exemplos de distancia manhattan comparado com a distancia euclideana.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
@@ -58,11 +58,9 @@ Podemos verificar na imagem 4, exemplos de distancia manhatam comparado com a di
 \end{minipage}
 
 \begin{description}
-    \item[Figura 4] As linhas de cor vermelho, verde e amarelo tem o mesmo tamanho (12), e representam a distancia manhatam, a amarela leva em consideração o produuto vetorial.
-    A linha azul represanda a distancia euclideana $\sqrt{72} \approx 8.485$
+    \item[Figura 4] As linhas de cor vermelho, verde e amarelo tem o mesmo tamanho (12), e representam a distancia manhattan, a amarela leva em consideração o produto vetorial.
+    A linha azul representa a distancia euclideana $\sqrt{72} \approx 8.485$
 \end{description}
-
-
 
 Uma limitação do A*, é o fato que ele requer uma grande quantidade de recursos da CPU, caso haja muitos nós a pesquisar como é o caso em grandes mapas que são populares em jogos recentes, isso  pode causar pequenos atrasos.
 Esse atraso pode ser agravado caso haja múltiplos agentes de inteligência artificial ou quando o agente tem que se mover de um lado do mapa para o outro 
@@ -107,7 +105,7 @@ AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenient
 
 \subsection{Funcionamento}
  
-Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura 4. \cite{DiogoCLucas}
+Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura 5. \cite{DiogoCLucas}
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -219,7 +217,7 @@ Pode-se concluir que a utilização de algoritmos geneticos para a resolução d
 
 Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas híbridas, onde utilizam inteligência artificial para analisar todo o percusso e ajudar o algoritmo de busca a decidir em momentos que a próxima ação é incerta.
 
-Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um módulo para calcular os sub-caminhos ao longo do processo de busca, cada vez que o módulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O módulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. A Figura 4 mostra uma fluxograma do funcionamento do modelo.
+Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um módulo para calcular os sub-caminhos ao longo do processo de busca, cada vez que o módulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O módulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. A Figura 7 mostra uma fluxograma do funcionamento do modelo.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
