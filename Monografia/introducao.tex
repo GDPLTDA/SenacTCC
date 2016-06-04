@@ -13,25 +13,24 @@ O valor de entretenimento do jogo pode ser drasticamente reduzido, quando os per
 
 Ainda é comum, em jogos digitais, termos mais de um agente de busca de caminho ao mesmo tempo no mesmo cenário, podendo ser muitas vezes muito custoso computacionalmente falando. Por isso vários desenvolvedores de jogos têm juntado esforços para desenvolver soluções de busca de caminho em ambientes de recursos escassos. \cite{Pontevia}
 
-Este cenário é a principal motivação deste trabalho que consiste em propor, implementar e mensurar resultados de uma solução para busca de melhor caminho entre dois pontos.
-
-\section{Justificativa}
+%\section{Justificativa}
 
 Muitas abordagens para melhorar o desempenho ou diminuir o custo de métodos de busca de caminho tem sido desenvolvidos \cite{Ulysses}  \cite{Pollack} \cite{Timothy} \cite{WilliamMiller}. 
 
-Porém ainda temos problemas de alto custo computacional, que para serem minimizados em alguns casos acabamos sacrificando a certeza de melhor caminho por um melhor desempenho\cite{Botea}. Por isso iremos fazer uma análise e propor um modelo para otimizar alguma limitação do modelo, visando em principal o âmbito dos jogos digitais.
+Ainda temos problemas de alto custo computacional, que para serem minimizados em alguns casos, acabamos sacrificando a certeza de melhor caminho por um melhor desempenho\cite{Botea}. Por isso iremos fazer uma análise e propor um modelo para otimizar alguma limitação do modelo, visando em principal o âmbito dos jogos digitais.
+
+Este cenário é a principal motivação deste trabalho que consiste em propor, implementar e mensurar resultados de uma solução para busca de melhor caminho entre dois pontos.
 
 \section{Objetivos}
 
-O objetivo deste trabalho é propor um modelo de busca de caminho do algoritmo A* com IA em uma arquitetura paralela. O A* tem sua utilização muito popular no ramo de jogos eletrônicos e existe uma necessidade na melhoria do desempenho destes algoritmos nesse meio. \cite{Ross_Graham}
+Este trabalho tem como objetivo verificar a aplicabilidade de paralelismo de AG para melhoria de precisão em busca heurística de caminhos. O ponto central é a definição de uma estrutura capaz de explorar as vantagens demonstradas no uso de AG com computação paralela e aplica-las em um modelo de busca heurística de caminho que use AG para redução de custo de memória e processamento, para isto, estes tendem a sacrificar a precisão de encontrar a menor rota. 
 
-A primeira parte do modelo que iremos propor, trata-se da utilização de inteligência artificial, em especifico, algoritmos genéticos. Uma arquitetura híbrida foi demonstrada indicando sucesso na melhoria de desempenho. \cite{Ryan}
+Implementar o modelo de busca heurística com AG e mensurar os resultados. 
 
-Utilizar algoritmos genéticos de forma paralela mostra uma grande melhoria de desempenho conforme o numero de \textit{threads} é aumentado. \cite{Reza}
+Aplicar um modelo de paralelização de AG. 
 
-Para a utilização em jogos eletrônicos é preciso que o modelo execute em tempo real, recalculando trajeto a cada iteração gráfica, tentando a partir daí, encontrar a uma solução mais próxima da ótima. Uma forma em tempo real do A* utilizando algoritmos genéticos teve resultados positivos. \cite{Ulysses2}
+Combinar o modelo paralelo com o de busca e mensurar os resultados.
 
-O objetivo é desenvolver e implementar um modelo do A* com algoritmos genéticos em uma arquitetura paralela para execução em tempo real. 
 
 \section{Método de trabalho}
 
