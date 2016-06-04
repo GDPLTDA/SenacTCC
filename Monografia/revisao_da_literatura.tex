@@ -15,29 +15,28 @@ O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
 \[f(n) = g(n) + h(n)\]
 Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart}
 
-Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura 1.
+Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura \ref{fig:GrafoBusca}.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/figura1.png}}
     \captionof{figure}{Grafo para busca \cite{PEHart}}
+    \label{fig:GrafoBusca}
 \end{minipage}
 
+O grafo consiste em um nó inicial s e mais três outros nós (n1, n2, n3). As arestas contem a direção e o custo do trajeto. Se partirmos do algoritmo A* para produzir um subgrafo do melhor caminho, partindo de s podemos ir para n1 e n2, os valores de g(n1) e g(n2) são respectivamente 3 e 7. Supondo que A* expanda n1, sucedido por n2 e n3, nesse ponto g(n3)=3+2=5,o valor de g(n2) é diminuído pois um caminho de menor custo foi encontrado  3+3=6, o valor de g(n1) continua sendo 3.
 
-%\begin{description}
-    O grafo consiste em um nó inicial s e mais três outros nós (n1, n2, n3). As arestas contem a direção e o custo do trajeto. Se partirmos do algoritmo A* para produzir um subgrafo do melhor caminho, partindo de s podemos ir para n1 e n2, os valores de g(n1) e g(n2) são respectivamente 3 e 7. Supondo que A* expanda n1, sucedido por n2 e n3, nesse ponto g(n3)=3+2=5,o valor de g(n2) é diminuído pois um caminho de menor custo foi encontrado  3+3=6, o valor de g(n1) continua sendo 3.
-    
-    O próximo passo seria estimar o h(n), podem essa função vai depender muito do domínio do problema, muitos problemas de encontrar o menor caminho entre dois pontos de um grafo possuem alguma "informação física" que pode ser usada de alguma forma para estimar o h(n), podemos em nosso exemplo, se definirmos como cidades ligadas por estradas, h(n) poderia ser a distancia aérea da cidade n até a cidade objetivo, essa distancia seria menor do que qualquer estrada da cidade n até o objetivo \cite{PEHart}. Em jogos digitais e buscas em tempo real é muito comum trabalhar em cima de mapas em forma de matrizes bidimensionais, esse será o foco dos algoritmos que trataremos, nesses casos fica simples tratarmos o h(n) com a distância Euclideana ou Manhattan entre n e o destino. \cite{Yngvi}
-%\end{description}
+O próximo passo seria estimar o h(n), podem essa função vai depender muito do domínio do problema, muitos problemas de encontrar o menor caminho entre dois pontos de um grafo possuem alguma "informação física" que pode ser usada de alguma forma para estimar o h(n), podemos em nosso exemplo, se definirmos como cidades ligadas por estradas, h(n) poderia ser a distancia aérea da cidade n até a cidade objetivo, essa distancia seria menor do que qualquer estrada da cidade n até o objetivo \cite{PEHart}. Em jogos digitais e buscas em tempo real é muito comum trabalhar em cima de mapas em forma de matrizes bidimensionais, esse será o foco dos algoritmos que trataremos, nesses casos fica simples tratarmos o h(n) com a distância Euclideana ou Manhattan entre n e o destino. \cite{Yngvi}
 
 Quando definimos o mapa de busca em uma matriz bidimensional NxM, situação comum em jogos digitais e problemas de busca em tempo real \cite{Ross_Graham} \cite{Ulysses} \cite{Ulysses2}, precisamos definir os custos de movimentação entre os vizinhos do ponto n, e a função heurística h(n). O custo de movimentação na grade pode variar basicamente em dois tipos, levando as diagonais em consideração ou não.
 
-O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro direções ortogonais com custo 1, e \textit{octile}, onde o agente pode ainda mover-se na diagonal com custo equivalente ao valor da hipotenusa de um triângulo retângulo com catetos igual a 1, sendo assim  $ \sqrt{2}  \approx 1.4 $. É comum para fim de simplificar os cálculos multiplicar os valores de custo por 10 ou 100 como pode ser visto na figura 2.
+O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro direções ortogonais com custo 1, e \textit{octile}, onde o agente pode ainda mover-se na diagonal com custo equivalente ao valor da hipotenusa de um triângulo retângulo com catetos igual a 1, sendo assim  $ \sqrt{2}  \approx 1.4 $. É comum para fim de simplificar os cálculos multiplicar os valores de custo por 10 ou 100 como pode ser visto na Figura \ref{fig:CustoMovimento}.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=1.5]{ibagens/mov_cost.png}}
     \captionof{figure}{Custo de movimentação}
+    \label{fig:CustoMovimento}
 \end{minipage}
 
 Uma heurística famosa e muito utilizada é conhecida como distancia manhatam, usada principalmente em ambientes de grades, ela estima a distancia real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstaculo.
@@ -49,12 +48,13 @@ Ainda pode ser realizada uma alteração no algoritmo de distancia manhatam para
 
 Também pode ser utilizada como função heurística a distancia euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h. Ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda terá os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
 
-Podemos verificar na imagem 4, exemplos de distancia manhattan comparado com a distancia euclideana.
+Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distancia manhattan comparado com a distancia euclideana.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/manhatam.png}}
-    \captionof{figure}{Ilustração de diferença entre distancia Manhatam e euclideana  }
+    \captionof{figure}{Ilustração de diferença entre distancia Manhatam e euclideana}
+    \label{fig:Manhattan}
 \end{minipage}
 
 \begin{description}
@@ -67,16 +67,17 @@ Esse atraso pode ser agravado caso haja múltiplos agentes de inteligência arti
 
 Este alto custo de recursos da CPU pode fazer com que o jogo congele até que o caminho ideal seja encontrado. Game designers tentam superar esses problemas realizando ajustes nos jogos, de forma a tentar evitar estas situações \cite{Timothy}.
 
-Pelo motivo do alto custo, a heurística fornece uma expansão considerável dos nós, que são mantidos na memória durante todo o processamento. A Figura 3 mostra a expansão da heurística.
+Pelo motivo do alto custo, a heurística fornece uma expansão considerável dos nós, que são mantidos na memória durante todo o processamento. A Figura \ref{fig:ExemploAStar} mostra a expansão da heurística.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=1]{ibagens/figura2.png}}
     \captionof{figure}{Exemplo de A* \cite{Ulysses} }
+    \label{fig:ExemploAStar}
 \end{minipage}
 
 É comum no meio dos jogos digitais termos mais de um agente rodando ao mesmo tempo, um otimização para esse problema, proposta por Ko- Hsin, Cindy Wang e Adi Botea, examina o planejamento de caminhos multi-agente. Eles propõem um algoritmo chamado de FAR (\textit{Flow Annotation Replanning}) para combater os problemas técnicos envolvidos em pesquisas globais por várias entidades.
-FAR implementa restrições de fluxo para evitar colisões frontais, para assim reduzir o espaço de busca que uma entidade deve considerar quando planejar a sua rota. Esse método tem a possibilidade de entrrar em \textit{deadlock}, um estado de bloqueio, porem o algoritmo é capaz de contornar esse problema \cite{Ko-hsin}.
+FAR implementa restrições de fluxo para evitar colisões frontais, para assim reduzir o espaço de busca que uma entidade deve considerar quando planejar a sua rota. Esse método tem a possibilidade de entrar em \textit{deadlock}, um estado de bloqueio, porem o algoritmo é capaz de contornar esse problema \cite{Ko-hsin}.
 
 A arte de busca de caminhos está longe de um trabalho perfeito e muito ainda precisa ser feito \cite{Pontevia}.
 
@@ -93,7 +94,7 @@ Os resultados da primeira modificação conseguiu economizar ciclos de CPU, redu
 
 O problema de busca de caminho pode ser facilmente quebrado em duas maneiras \cite{WilliamMiller}.
 
-A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, tambem conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas nao escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e nao seria capaz de executar em um ambiente que nao ofereça no minimo essa estrutura. \cite{Janie_Chang}.
+A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, também conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas não escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e não seria capaz de executar em um ambiente que não ofereça no minimo essa estrutura. \cite{Janie_Chang}.
 
 A segunda abordagem seria tratar cada busca de caminho como uma unidade individual e distribuir cada uma para um núcleo.
 Esta abordagem funciona facilmente com qualquer número de núcleos e é possivelmente a forma mais eficaz de distribuição de grandes conjuntos de dados \cite{Jad} \cite{WilliamMiller}.
@@ -105,12 +106,13 @@ AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenient
 
 \subsection{Funcionamento}
  
-Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura 5. \cite{DiogoCLucas}
+Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura \ref{fig:EstruturaAG}. \cite{DiogoCLucas}
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/genetico1.png}}
 	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
+	\label{fig:EstruturaAG}
 \end{minipage}
 
 \textbf{Inicialização}: Criar uma população de possíveis respostas para um problema. 
@@ -201,12 +203,13 @@ O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação 
 O Modelo é definido como um grafo não direcionado: \[G=(V\cup W, E)\] Onde \[V\cup W\] compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
 V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V$_0$. 
 
-O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as m rotas de veículos começam e terminam na base V$_0$, Tem exatamente m rotas, cada vértice de V pertence a no máximo uma rota, cada vértice de T pertence a exatamente uma rota, com exceção a base, cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R.
+O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as m rotas de veículos começam e terminam na base V$_0$, Tem exatamente m rotas, cada vértice de V pertence a no máximo uma rota, cada vértice de T pertence a exatamente uma rota, com exceção a base, cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R. A Figura \ref{fig:GrafoVUW} mostra o grafo da relação de V com W.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/grafoMPRC.png}}
 	\captionof{figure}{Exemplo de gráfo não direcionado para V U W. \cite{Washington} }
+	\label{fig:GrafoVUW}
 \end{minipage}
 
 Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solucão. E o AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
@@ -217,13 +220,55 @@ Pode-se concluir que a utilização de algoritmos geneticos para a resolução d
 
 Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas híbridas, onde utilizam inteligência artificial para analisar todo o percusso e ajudar o algoritmo de busca a decidir em momentos que a próxima ação é incerta.
 
-Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um módulo para calcular os sub-caminhos ao longo do processo de busca, cada vez que o módulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O módulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. Os resultados da analise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. A Figura 7 mostra uma fluxograma do funcionamento do modelo.
+Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvido o modelo PPGA (\textit{Patterned based Pathfinding with Genetic Algorithm}). O modelo utiliza algoritmos genéticos como um módulo para calcular os sub-caminhos ao longo do processo de busca, cada vez que o módulo é chamado, herda informações da chamada anterior, tendo um ganha considerado de desempenho. O módulo é chamado, quando nenhum dos valores dados pelo BFS são melhores que o valor atual. A Figura \ref{fig:Fluxograma}  mostra uma fluxograma do funcionamento do modelo.
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/Fluxograma.png}}
 	\captionof{figure}{Fluxograma do PPGA \cite{Ulysses} }
+	\label{fig:Fluxograma}
 \end{minipage}
+
+\begin{enumerate}
+	\item \textbf{Best-First-Seach} - Seleciona o nó atual e seleciona o menor valor na lista de nós abertos.
+	\item \textbf{Existe um padrão?} - No modulo de AG existe uma contagem de proporção de vezes que sub-caminho são utilizados pelas tentativas de utilização, se essa proporção for baixa, é definido que não existe um padrão na busca, então, não utiliza o modulo de AG.
+	\item \textbf{É um bom movimento?} - Verifica se o nó encontrado tem o valor menor que o atual, isto é, se aproxima mais do destino.
+	\item \textbf{Movimento} - Adiciona o nó atual para a lista fechada.
+	\item \textbf{Critério de parada?} - Se o ó atual é o nó de destino, o algoritmo termina, se não, continua para a próxima iteração.
+	\item \textbf{Algoritmo genético} - É obtida apenas uma geração com os seguintes critérios:
+	\begin{enumerate}
+		\item A população inicial tem 4 indivíduos.
+		\item Gera os primeiros descendentes utilizando com 4 primeiros indivíduos com um critério de 50\%.
+		\item Gera os próximos descendentes utilizando, pela mutação da população inicial com um critério de 25\%.
+		\item É calculado a aptidão para 12 indivíduos. O elemento utilizado na ultima geração recebe o valor valor.
+	\end{enumerate}
+	\item \textbf{Existem indivíduos?} - Verifica se existem indivíduos para serem avaliados na população. Se nenhum dos indivíduos forem validos, o algoritmo continua a manutenção do nó atual.
+	\item \textbf{Validação e adaptação} - Ajuda a garantir ageração e adaptação de bons indivíduos.
+	\item \textbf{Existe um bom sub-caminho?} - Os indivíduos gerados são testados, um em cada iteração, se não for um bom elemento, 'removido da lista da população.
+	\item \textbf{Movimento para o sub-caminho} - O elemento será usado como um sub-caminho composto pelos nós que serão adicionados à lista fechada. O nó real se tornar o último nó do sub-caminho. Este elemento será inserido para a próxima geração do GA.
+\end{enumerate}
+
+A Figura \ref{fig:CaminhoBFS} mostra o resultado de caminho percorrido pelo BFS em um ambiente simulado. Na Figura \ref{fig:CaminhoPPGA} mostra o caminho do PPGA esta utilizando o mesmo ambiente da Figura \ref{fig:CaminhoBFS}.
+
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/BFS.png}}
+	\captionof{figure}{Caminho criado pelo BFS \cite{Ulysses} }
+	\label{fig:CaminhoBFS}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/PPGA.png}}
+	\captionof{figure}{Caminho criado pelo PPGA \cite{Ulysses} }
+	\label{fig:CaminhoPPGA}
+\end{minipage}
+
+Os resultados da análise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. 
+
+
+
+
 
 %\O modelo GAMMA(\textit{Genetic Algoritmo Manufactured Maneuvering Algorithm}), consiste em uma modificação do A* de forma que o caminho total é separado em caminhos mais curto. O algoritmo prepara o primeiro caminho e calcula o caminho mais curto entre eles, a posição final do resultado é usada como inicial para o próximo calculo, com isso, permitindo que o modelo GAMMA procure caminhos em tempo real por que se o caminho for alterado a sua leitura é parcial do caminho completo.\cite{Ryan}
 
@@ -246,3 +291,12 @@ Podemos partir do ponto que cada indivíduo é o responsável por encontrar e re
 Podemos observar alguns problemas nos modelos apresentados \cite{Vilson}, no modelo de \cite{Jason} existe problema em explorar o paralelismo no cálculo de verificação dos indivíduos não explorando para a reprodução e mutação. No modelo de \cite{Heinz}, tem a possibilidade de utilizar vários métodos de busca de indivíduos da mesma população, sendo úteis em casos que a eficiência dos métodos de busca se mostram dependentes da instancia do problema. O modelo \cite{Alaoui}, por todos os escravos devem enviar para o nó mestre, demanda uma grande capacidade de processamento no nó mestre, e proporciona a divisão das populações em pequenas ou de médio porte.
 
  \cite{Vilson} desenvolveu seu próprio modelo, utilizando o modelo de \cite{Alaoui} como inspiração. O modelo segue o conceito mestre-escravo, o mestre crias as populações e distribui a cada uma delas, os conjuntos de genes e parâmetros iniciais. O mestre é utilizado para a troca de indivíduos entre as populações, mantendo um indivíduo de cada população até serem substituídos por um melhor e envia esses indivíduos para as populações que não seja a sua de origem. As populações são independentes, gerando seus indivíduos iniciais com base nos genes enviados pelo mestre, aplicando seus próprios operadores de evolução e a população que determina os parceiros dos indivíduos.
+ A Figura \ref{fig:AGParallel} mostra o desenho do modelo.
+ 
+ \begin{minipage}{\linewidth}
+ 	\makebox[\linewidth]{
+ 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/AGParallel.png}}
+ 	\captionof{figure}{Protótipo de \cite{Vilson} }
+ 	\label{fig:AGParallel}
+ \end{minipage}
+ 
