@@ -34,6 +34,19 @@ Combinar o modelo paralelo com o de busca e mensurar os resultados.
 
 \section{Método de trabalho}
 
+Primeiramente desenvolveremos uma bateria de testes de caminhos, com intuito de terem diferentes tamanhos, mapas com padrões de repetição e sem padrões de repetição, o mesmos serão modelados de forma bidimensional em arquivos de texto com caracteres para definir o ponto inicial (S), final (E), obstáculos (\#) e caminho livre (.).
+
+Será implementada a busca heuristica A* utilizando a linguagem C\# .NET, levando em consideração os arquivos de teste desenvolvidos como entrada, retornando se existe um caminho entre o ponto inicial e final, quanto tempo levou para encontrar o caminho e consumo de memoria para chegar na solução. 
+
+Também será implementado um AG para utilizar em conjunto ao A*, também utilizando a linguagem C\# .NET, utilizando o mesmo método proposto por Ulysses O. Santos \cite{Ulysses}. A implementação receberá os arquivos de testes para entrada, os mesmo utilizado para testar a implementação do A* sozinho, retornando o tempo e consumo de memoria para encontrar a solução.
+Os parâmetros utilizados para o AG será uma população inicial de 4 indivíduos, com o critério de geração de descendentes em 50\%, com o critério de mutação em 25\% e será calculada a aptidão para 12 indivíduos.
+
+Por ultimo, será implementado uma modificação do AG, como proposto por \cite{Alaoui}. Será utilizadas \textit{threads} para a separação das populações, que recebe os mesmo arquivos de testes utilizados nas implementações anteriores, retornando informações de tempo e consumo de memória.
+
+Nas 3 implementações todos os testes serão executados 100 vezes e será calcula a média do tempo e consumo de memoria de cada um. Todos os dados coletados serão comparados em forma de tabelas e gráficos, para demostrar em quais testes cada implementações teve um desempenho melhor.
+
+
+
 
 \section{Organização do trabalho}
 
