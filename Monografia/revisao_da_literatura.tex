@@ -5,15 +5,24 @@
 
 Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos geneticos, paralelismo ou uma união de todas ao mesmo tempo.
 
-\section{Busca de caminhos}
+\section{Busca Heuristica}
 
+Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas atraves de mecanismos de tentativa e erro. Um problema busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida.
+
+\subsection{\textit{Best-first search}}
+
+É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que gerada, e uma lista fechada dos nos que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados. 
+
+A lista aberta contem apenas o nó inicial e o algoritimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
+
+Existem muitas implementações do BFS, tais como \textit{Dijkstra's} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
 
 \subsection{O Algoritmo A*}
 
-O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
+O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos, um desses motivos é que sempre garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
 O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
 \[f(n) = g(n) + h(n)\]
-Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart}
+Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino, ou seja nunca pode ser super-estimado. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart} 
 
 Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura \ref{fig:GrafoBusca}.
 
