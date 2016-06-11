@@ -7,13 +7,13 @@ Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de u
 
 \section{Busca Heuristica}
 
-Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas atraves de mecanismos de tentativa e erro. Um problema busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida.
+Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida.
 
 \subsection{\textit{Best-first search}}
 
 É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que gerada, e uma lista fechada dos nos que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados. 
 
-A lista aberta contem apenas o nó inicial e o algoritimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
+A lista aberta contem apenas o nó inicial e o algorítimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
 
 Existem muitas implementações do BFS, tais como \textit{Dijkstra's} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
 
