@@ -3,23 +3,23 @@
 %\addcontentsline{toc}{chapter}{Revisão de Literatura}
 % ----------------------------------------------------------
 
-Nesse capitulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos geneticos, paralelismo ou uma união de todas ao mesmo tempo.
+Nesse capítulo é feita uma revisão no estado da arte de diferentes formas de utilizar os algoritmos de busca, algoritmos genéticos, paralelismo ou uma união de todas ao mesmo tempo.
 
-\section{Busca Heuristica}
+\section{Busca Heurística}
 
-Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida.
+Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema de busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida. Os algoritmos BFS e o A* são otimo exemplos de busca heurística.
 
 \subsection{\textit{Best-first search}}
 
-É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que gerada, e uma lista fechada dos nos que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados. 
+É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que é gerada, e uma lista fechada dos nós que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados. 
 
 A lista aberta contem apenas o nó inicial e o algorítimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
 
-Existem muitas implementações do BFS, tais como \textit{Dijkstra's} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
+Existem muitas implementações do BFS, tais como \textit{Dijkstra} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
 
 \subsection{O Algoritmo A*}
 
-O algorítimo A* é um dos mais populares soluções no ramo de busca de caminhos, um desses motivos é que sempre garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
+O algoritmo A* é um dos mais populares soluções no ramo de busca de caminhos, um desses motivos é que sempre garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
 O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
 \[f(n) = g(n) + h(n)\]
 Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino, ou seja nunca pode ser super-estimado. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart} 
@@ -48,21 +48,21 @@ O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro di
     \label{fig:CustoMovimento}
 \end{minipage}
 
-Uma heurística famosa e muito utilizada é conhecida como distancia manhattan, usada principalmente em ambientes de grades, ela estima a distancia real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstaculo.
+Uma heurística famosa e muito utilizada é conhecida como distância manhattan, usada principalmente em ambientes de grades, ela estima a distância real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstáculo.
 A distância manhattan garante a solução com mais baixo custo, pois cada nó deve caminhar pelo menos, a sua distância manhattan, e o movimento é dado de um nó por vez \cite{Korf2000}.
 
 Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto inicial e o vetor de objetivo, resultando em um caminho "reto" entre dois nós. \cite{GameProgrammingHeuristics}.
 
-Ainda pode ser realizada uma alteração no algoritmo de distancia manhattan para levar em conta as diagonais, este fica chamado de "distancia diagonal", adicionando um custo de movimentação diagonal diferente ao de movimentação adjacente.
+Ainda pode ser realizada uma alteração no algoritmo de distância manhattan para levar em conta as diagonais, este fica chamado de distância diagonal, adicionando um custo de movimentação diagonal diferente ao de movimentação adjacente.
 
-Também pode ser utilizada como função heurística a distancia euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h. Ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda terá os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
+Também pode ser utilizada como função heurística a distância euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h, ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda terá os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
 
-Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distancia manhattan comparado com a distancia euclideana.
+Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distância manhattan comparado com a distância euclideana.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/manhatam.png}}
-    \captionof{figure}{Ilustração de diferença entre distancia Manhatam e euclideana}
+    \captionof{figure}{Ilustração de diferença entre distância Manhatam e euclideana}
     \label{fig:Manhattan}
 \end{minipage}
 
@@ -71,7 +71,7 @@ Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distancia manhattan
     A linha azul representa a distancia euclideana $\sqrt{72} \approx 8.485$
 \end{description}
 
-Uma limitação do A*, é o fato que ele requer uma grande quantidade de recursos da CPU, caso haja muitos nós a pesquisar como é o caso em grandes mapas que são populares em jogos recentes, isso  pode causar pequenos atrasos.
+Uma limitação do A* é o fato requerer uma grande quantidade de recursos da CPU. Caso haja muitos nós a pesquisar, como é o caso em grandes mapas que são populares em jogos recentes, isso  pode causar pequenos atrasos.
 Esse atraso pode ser agravado caso haja múltiplos agentes de inteligência artificial ou quando o agente tem que se mover de um lado do mapa para o outro 
 
 Este alto custo de recursos da CPU pode fazer com que o jogo congele até que o caminho ideal seja encontrado. Game designers tentam superar esses problemas realizando ajustes nos jogos, de forma a tentar evitar estas situações \cite{Timothy}.
@@ -91,19 +91,19 @@ FAR implementa restrições de fluxo para evitar colisões frontais, para assim 
 A arte de busca de caminhos está longe de um trabalho perfeito e muito ainda precisa ser feito \cite{Pontevia}.
 
 \subsection{Aplicações}
-Aplicações para os algoritmos de busca podem ser diversos, como por exemplo, em um simulador de carro corrida \cite{JungTing}. Utilizando o algoritmo do A* com duas modificações para encontrar o melhor caminho enquanto evita os obstáculos entre o ponto de inicio e o ponto de destino. 
-A primeira modificação consiste em utilizar o teorema de Pitagoras, onde primeira calcula a distância entre dois pontos(1 e 2), verifica se existe algum obstáculo dentre eles, se existir, utiliza o terceiro ponto para calcular a Hipotenusa e verifica se existe obstáculo entre a hipotenusa, se não existir, remove o ponto 2 e começa a considerar o caminho do ponto 1 para o ponto 3. A segunda modificação consiste em somente ir para frente, isso significa, procura somente os pontos a frente do carro, direita, esquerda e frente, simulando um controle de carro.
+Aplicações para os algoritmos de busca podem ser diversos, como por exemplo, em um simulador de carro corrida \cite{JungTing}. Utilizando o algoritmo do A* com duas modificações para encontrar o melhor caminho enquanto evita os obstáculos entre o ponto de início e o ponto de destino. 
+A primeira modificação consiste em utilizar o teorema de Pitágoras, onde primeira calcula a distância entre dois pontos(1 e 2), verifica se existe algum obstáculo dentre eles, se existir, utiliza o terceiro ponto para calcular a hipotenusa e verifica se existe obstáculo entre a hipotenusa, se não existir, remove o ponto 2 e começa a considerar o caminho do ponto 1 para o ponto 3. A segunda modificação consiste em somente ir para frente, isso significa, procura somente os pontos a frente do carro, direita, esquerda e frente, simulando um controle de carro.
 
 O projeto utiliza 3 pistas reais de corrida da Formula 1, Peru, Itália e Hungria, sendo cada pista, uma imagem de escala 1280x782 \textit{pixels} retiradas do site oficial da Formula 1. O Carro é implementado em \textit{Microsoft XNA Game Studio}, plataforma usada para desenvolver jogos para \textit{Windows Phone, Xbox e Windows}. As Imagens das pistas são modificadas para serem mapas de detecção de colisão, a pista é pintada de preto, indicando onde o carro pode andar e o resto pintado de branco indicando os o carro não pode andar. O carro tem o tamanho de 18x12 \textit{pixels} e uma movimentação de 2 \textit{pixels} por segundo. Como o XNA trabalha com uma taxa de quadros de 60 quadros por segundo, o carro se movimenta a 120 \textit{pixels} por segundo.
 
-Os resultados da primeira modificação conseguiu economizar ciclos de CPU, reduzindo o numero de pontos indicadores da pista em 97\%. A segunda modificação tem a vantagem de obter o tempo de volta mais curto, por que reduz o numero de nós do algoritmo A* de 4 para 3 nós]. A desvantagem é que o carro pode balançar em curvas acentuadas. Em geral, as modificações garantiram uma melhoria em performance, economizando o numero de ciclos de CPU.
+Os resultados obtidos por \cite{JungTing} na primeira modificação conseguiu economizar ciclos de CPU, reduzindo o numero de pontos indicadores da pista em 97\%. A segunda modificação tem a vantagem de obter o tempo de volta mais curto, por que reduz o numero de nós do algoritmo A* de 4 para 3 nós]. A desvantagem é que o carro pode balançar em curvas acentuadas. Em geral, as modificações garantiram uma melhoria em performance, economizando o numero de ciclos de CPU.
 
 
-\section{Algorítimos de busca paralelo}
+\section{Algoritmos paralelo de busca}
 
-O problema de busca de caminho pode ser facilmente quebrado em duas maneiras \cite{WilliamMiller}.
+Existem duas maneiras que porém ajudar a resolver o problema de busca de caminho \cite{WilliamMiller}.
 
-A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, também conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas não escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e não seria capaz de executar em um ambiente que não ofereça no minimo essa estrutura. \cite{Janie_Chang}.
+A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, também conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas não escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e não seria capaz de executar em um ambiente que não ofereça no mínimo essa estrutura. \cite{Janie_Chang}.
 
 A segunda abordagem seria tratar cada busca de caminho como uma unidade individual e distribuir cada uma para um núcleo.
 Esta abordagem funciona facilmente com qualquer número de núcleos e é possivelmente a forma mais eficaz de distribuição de grandes conjuntos de dados \cite{Jad} \cite{WilliamMiller}.
@@ -111,11 +111,11 @@ Esta abordagem funciona facilmente com qualquer número de núcleos e é possive
 
 \section{Algoritmos genéticos}
 
-AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do principio de seleção natural para abordar uma  ampla serie de problemas, geralmente de adaptação.
+AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação.
 
 \subsection{Funcionamento}
  
-Inspirado na maneira como o seleção natural explica o processo de evolução das especies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} ver Figura \ref{fig:EstruturaAG}. \cite{DiogoCLucas}
+Inspirado na maneira como o seleção natural explica o processo de evolução das espécies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} conforme a Figura \ref{fig:EstruturaAG}. \cite{DiogoCLucas}
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -128,13 +128,12 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 É comum fazer uso de funções aleatórias para gerar os indivíduos, sendo este um recurso simples que visa fornecer maior diversidade.
 
 \textbf{Avaliação}: Avalia-se a aptidão das soluções, os indivíduos da população, então é feita uma análise para que se estabeleça quão bem elas respondem ao problema proposto.
-
 A função de avaliação também pode ser chamada de função objetivo. Ela pode variar de acordo com problema,  
-Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das características do individuo, operando apenas sobre uma amostragem destas.
+Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das características do indivíduo, operando apenas sobre uma amostragem destas.
 
 \textbf{Seleção}: Ela é a responsável pela perpetuação de boas características na espécie. 
-Neste estagio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
-O Grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
+Neste estágio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
+O grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
 
 \textbf{Cruzamento}: Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
 
@@ -152,7 +151,7 @@ Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser
 Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
 
 
-Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algorítimo se baseia, sua função é codificar as possíveis soluções do problema a ser tratado e partir de sua manipulação no processo evolutivo, a partir daí que são encontradas as respostas.
+Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algoritmo se baseia, sua função é codificar as possíveis soluções do problema a ser tratado e partir de sua manipulação no processo evolutivo, a partir daí que são encontradas as respostas.
 
 Esses indivíduos precisam de uma representação, essa será o principal responsável pelo desempenho do programa. É comum chamar de \textit{genoma} ou \textit{cromossomo} para se referir ao individuo. Por essa definição podemos resumir um indivíduo pelos genes que possui, ou seja seu \textit{genótipo}.
 
@@ -163,6 +162,7 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 	\centering
 \vspace{0.5cm}
 \renewcommand{\arraystretch}{2.0}
+\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
 	\begin{tabular}{|C{4cm}|C{3.5cm}|C{7cm}|}
 		\hline
 		\textbf{Problema} & \textbf{Genótipo} & \textbf{ Fenótipo} \\
@@ -174,14 +174,13 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 		Regras de aprendizado para agentes & C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & Se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)\\
 		\hline
 	\end{tabular}
-		\caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
 \end{table}	
 
 Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como:
 \[f_O(x)\]  
-Este vai representar o quão bem a resposta apresentada pelo individuo soluciona o problema proposto.
+Que vai representar o quão bem a resposta apresentada pelo individuo soluciona o problema proposto.
 
-Também é calculado o grau de adaptação do individuo relativo aos outros membros da população a qual ele pertence, esse é chamado de grau de aptidão, para um individuo $x$ temos seu grau de aptidão denotado pela formula:
+Também é calculado o grau de adaptação do indivíduo relativo aos outros membros da população a qual ele pertence, esse é chamado de grau de aptidão, para um indivíduo $x$ temos seu grau de aptidão denotado pela fórmula:
 
 \[f_A(x) = \frac{f_O(x)}{ \sum_{i=1}^{n}  f_O(i)  }  \]
 
@@ -191,14 +190,14 @@ Também é calculado o grau de adaptação do individuo relativo aos outros memb
  
  Algumas definições importantes relativo as populações de um AG são:
  
- \textbf{Geração:} É o numero de vezes em que a população passou pelo processo de seleção, reprodução, mutação e atualização.
+ \textbf{Geração:} É o número de vezes em que a população passou pelo processo de seleção, reprodução, mutação e atualização.
 
 \textbf{Média de adaptação:} 
 
 \[ M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n} \]
 
 \textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
-Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma media de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
+Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma média de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
 
 \textbf{Diversidade:} Mede o grau de variação entre os genótipos da população. Ela é fundamental para o tamanho da busca.
 Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura}.
@@ -206,9 +205,9 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 \textbf{Elite:} São os indivíduos mais bem adaptados da população. Uma técnica comum nos AG é p \textit{elitismo}, onde são selecionados k melhores indivíduos que serão mantidos a cada geração.
 
 \subsection{Aplicações}
-Existem vários aplicações para os algoritmo genéticos, por serem uma inteligencia artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
+Existem vários aplicações para os algoritmo genéticos, por serem uma inteligência artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
-O modelo m-PRC(Problema de Rotas de Cobertura multi-veiculo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
+O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
 O Modelo é definido como um grafo não direcionado: \[G=(V\cup W, E)\] Onde \[V\cup W\] compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
 V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V$_0$. 
 
@@ -221,11 +220,11 @@ O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as
 	\label{fig:GrafoVUW}
 \end{minipage}
 
-Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solucão. E o AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
+Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solucão; O AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
 
-Pode-se concluir que a utilização de algoritmos geneticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
+A conclusão de \cite{Washington} é que a utilização de algoritmos geneticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
-\section{Algorítimos genéticos para busca de caminhos}
+\section{Algoritmos genéticos para busca de caminhos}
 
 Buscando melhorar a eficiência dos algoritmos de busca, foram criadas formas híbridas, onde utilizam inteligência artificial para analisar todo o percusso e ajudar o algoritmo de busca a decidir em momentos que a próxima ação é incerta.
 
@@ -273,7 +272,7 @@ A Figura \ref{fig:CaminhoBFS} mostra o resultado de caminho percorrido pelo BFS 
 	\label{fig:CaminhoPPGA}
 \end{minipage}
 
-Os resultados da análise do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. 
+Os resultados obtidos da análise feita por \cite{Ulysses} do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. 
 
 
 
