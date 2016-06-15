@@ -7,11 +7,11 @@ Nesse capítulo é feita uma revisão no estado da arte de diferentes formas de 
 
 \section{Busca Heurística}
 
-Busca heurística é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema de busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida. Os algoritmos BFS e o A* são otimo exemplos de busca heurística.
+Busca heurística de caminhos é um subgrupo de algoritmos de busca em grafos \cite{Winston}, é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema de busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida. Os algoritmos BFS e o A* são otimo exemplos de busca heurística. \cite{KORF199341}
 
 \subsection{\textit{Best-first search}}
 
-É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que é gerada, e uma lista fechada dos nós que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados. 
+É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que é gerada, e uma lista fechada dos nós que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados.
 
 A lista aberta contem apenas o nó inicial e o algorítimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
 
@@ -20,8 +20,12 @@ Existem muitas implementações do BFS, tais como \textit{Dijkstra} ou A*, o que
 \subsection{O Algoritmo A*}
 
 O algoritmo A* é um dos mais populares soluções no ramo de busca de caminhos, um desses motivos é que sempre garantindo achar o menor caminho entre dois pontos \cite{PEHart}, porém,  gera uma grande árvore de busca nos processos, consumindo muito tempo e memória. É comum haver modificações no algoritmo para explorar uma árvore de busca menor, diminuindo o tempo para achar um caminho sacrificando a garantia de se encontrar o melhor caminho no final. \cite{Botea}.
-O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística.
-\[f(n) = g(n) + h(n)\]
+O algoritmo A*, em sua forma tradicional, utiliza a fórmula heurística \ref{eq:FormulaHeuristica}. 
+
+\begin{equation} \label{eq:FormulaHeuristica}
+     f(n) = g(n) + h(n)
+\end{equation}
+
 Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para atingir o nó de destino a partir do nó n. Este sempre deve ser menor ou igual a distância real entre o ponto n e o destino, ou seja nunca pode ser super-estimado. Para cada iteração sobre os vizinhos do nó atual é calculado o f(n) e adicionado em uma lista de nós abertos (A), mantendo uma referência do nó que serviu de origem para chegar nele, caso o nó ja esteja na lista e o valor de f(n) novo for menor, o valor de f(n) e o nó de origem é substituído pelo novo. Depois é verificado na lista o menor valor de f(n), este é removido, adicionado a lista de nos fechados (F) e a partir desse ponto, ele se torna o nó atual, quando o nó atual é o mesmo nó de destino o algorítimo retorna o caminho encontrado, assim podemos encontrar a solução ideal. \cite{PEHart} 
 
 Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura \ref{fig:GrafoBusca}.
@@ -48,16 +52,16 @@ O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro di
     \label{fig:CustoMovimento}
 \end{minipage}
 
-Uma heurística famosa e muito utilizada é conhecida como distância manhattan, usada principalmente em ambientes de grades, ela estima a distância real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstáculo.
-A distância manhattan garante a solução com mais baixo custo, pois cada nó deve caminhar pelo menos, a sua distância manhattan, e o movimento é dado de um nó por vez \cite{Korf2000}.
+Uma heurística famosa e muito utilizada é conhecida como distância Manhattan, usada principalmente em ambientes de grades, ela estima a distância real entre os nós pela soma do deslocamento vertical e horizontal entre dois pontos, ignorando qualquer obstáculo.
+A distância Manhattan garante a solução com mais baixo custo, pois cada nó deve caminhar pelo menos, a sua distância Manhattan, e o movimento é dado de um nó por vez \cite{Korf2000}.
 
-Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto inicial e o vetor de objetivo, resultando em um caminho "reto" entre dois nós. \cite{GameProgrammingHeuristics}.
+Ainda pode ser facilmente modificado para levar em conta o produto vetorial entre o vetor do ponto inicial e o vetor de objetivo, resultando em um caminho reto entre dois nós. \cite{GameProgrammingHeuristics}.
 
-Ainda pode ser realizada uma alteração no algoritmo de distância manhattan para levar em conta as diagonais, este fica chamado de distância diagonal, adicionando um custo de movimentação diagonal diferente ao de movimentação adjacente.
+Ainda pode ser realizada uma alteração no algoritmo de distância Manhattan para levar em conta as diagonais, este fica chamado de distância diagonal, adicionando um custo de movimentação diagonal diferente ao de movimentação adjacente.
 
 Também pode ser utilizada como função heurística a distância euclideana, no entanto, neste caso teremos problemas com o uso de A*, pois a função de custo g não irá corresponder a função heurística h, ja que a  distância euclidiana é mais curta do que Manhattan ou a distância diagonal, você ainda terá os caminhos mais curtos, mas o A* levará mais tempo para ser executado \cite{GameProgrammingHeuristics}.
 
-Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distância manhattan comparado com a distância euclideana.
+Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distância Manhattan comparado com a distância euclideana.
 
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
@@ -67,7 +71,7 @@ Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distância manhatta
 \end{minipage}
 
 \begin{description}
-    \item[Figura 4] As linhas de cor vermelho, verde e amarelo tem o mesmo tamanho (12), e representam a distancia manhattan, a amarela leva em consideração o produto vetorial.
+    \item[Figura 4] As linhas de cor vermelho, verde e amarelo tem o mesmo tamanho (12), e representam a distancia Manhattan, a amarela leva em consideração o produto vetorial.
     A linha azul representa a distancia euclideana $\sqrt{72} \approx 8.485$
 \end{description}
 
@@ -106,11 +110,11 @@ O projeto utiliza 3 pistas reais de corrida da Formula 1, Peru, Itália e Hungri
 Os resultados obtidos por \cite{JungTing} na primeira modificação conseguiu economizar ciclos de CPU, reduzindo o numero de pontos indicadores da pista em 97\%. A segunda modificação tem a vantagem de obter o tempo de volta mais curto, por que reduz o numero de nós do algoritmo A* de 4 para 3 nós]. A desvantagem é que o carro pode balançar em curvas acentuadas. Em geral, as modificações garantiram uma melhoria em performance, economizando o numero de ciclos de CPU.
 
 
-\section{Algoritmos paralelo de busca}
+\section{Algoritmo paralelo de busca}
 
-Existem duas maneiras que porém ajudar a resolver o problema de busca de caminho \cite{WilliamMiller}.
+O problema de busca de caminho pode ser facilmente quebrado em duas maneiras \cite{WilliamMiller}.
 
-A primeira abordagem seria quebrar o problema em dois, iniciando a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, também conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas não escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e não seria capaz de executar em um ambiente que não ofereça no mínimo essa estrutura. \cite{Janie_Chang}.
+A primeira abordagem seria iniciar a busca  de ambos os nós, inicial e final simultaneamente, Esta variação do A*, também conhecida como Pesquisa Bidirecional, permite que um problema seja dividido em dois núcleos, mas não escala facilmente com um maior numero de núcleos ou com um problema de maior tamanho. Esta abordagem requer dois núcleos livres por busca, e não seria capaz de executar em um ambiente que não ofereça no mínimo essa estrutura. \cite{Janie_Chang}.
 
 A segunda abordagem seria tratar cada busca de caminho como uma unidade individual e distribuir cada uma para um núcleo.
 Esta abordagem funciona facilmente com qualquer número de núcleos e é possivelmente a forma mais eficaz de distribuição de grandes conjuntos de dados \cite{Jad} \cite{WilliamMiller}.
@@ -118,11 +122,11 @@ Esta abordagem funciona facilmente com qualquer número de núcleos e é possive
 
 \section{Algoritmos genéticos}
 
-AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação.
+AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação. \cite{DiogoCLucas}
 
 \subsection{Funcionamento}
  
-Inspirado na maneira como o seleção natural explica o processo de evolução das espécies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} conforme a Figura \ref{fig:EstruturaAG}. \cite{DiogoCLucas}
+Inspirado na maneira como o seleção natural explica o processo de evolução das espécies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} conforme a Figura \ref{fig:EstruturaAG}. 
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
@@ -130,6 +134,9 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
 	\label{fig:EstruturaAG}
 \end{minipage}
+
+
+Cada etapa do AG funciona da seguinte forma:
 
 \textbf{Inicialização}: Criar uma população de possíveis respostas para um problema. 
 É comum fazer uso de funções aleatórias para gerar os indivíduos, sendo este um recurso simples que visa fornecer maior diversidade.
@@ -183,22 +190,22 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 	\end{tabular}
 \end{table}	
 
-Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como:
+Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como na formula \ref{eq:solve0}.
 
-\begin{equation} \label{eq:solve}
+\begin{equation} \label{eq:solve0}
 f_O(x)  
 \end{equation}
-\cite{DiogoCLucas}~\ref{eq:solve}
+
 
 Que vai representar o quão bem a resposta apresentada pelo individuo soluciona o problema proposto.
 
-Também é calculado o grau de adaptação do indivíduo relativo aos outros membros da população a qual ele pertence, esse é chamado de grau de aptidão, para um indivíduo $x$ temos seu grau de aptidão denotado pela fórmula:
+Também é calculado o grau de adaptação do indivíduo relativo aos outros membros da população a qual ele pertence, esse é chamado de grau de aptidão, para um indivíduo $x$ temos seu grau de aptidão denotado pela fórmula \ref{eq:solve1}.
 
 
-\begin{equation} \label{eq:solve}
+\begin{equation} \label{eq:solve1}
 	f_A(x) = \frac{f_O(x)}{ \sum_{i=1}^{n}  f_O(i)  }  
 \end{equation}
-\cite{DiogoCLucas}~\ref{eq:solve}
+
 
  Sendo n o tamanho da população.
  
@@ -208,12 +215,12 @@ Também é calculado o grau de adaptação do indivíduo relativo aos outros mem
  
  \textbf{Geração:} É o número de vezes em que a população passou pelo processo de seleção, reprodução, mutação e atualização.
 
-\textbf{Média de adaptação:} É a taxa média que oa individuoa se adaptaram ao problema.
+\textbf{Média de adaptação:} É a taxa média que oa individuos se adaptaram ao problema, é definida pela formula \ref{eq:solve2}. 
 
-\begin{equation} \label{eq:solve}
+\begin{equation} \label{eq:solve2}
 M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n}
 \end{equation}
-\cite{DiogoCLucas}~\ref{eq:solve}
+
 
 \textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
 Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma média de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
@@ -226,20 +233,19 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligência artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
-O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada. 
-O Modelo é definido como um grafo não direcionado: 
+O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada \cite{Washington}. 
+O Modelo é definido como um grafo não direcionado \ref{eq:solve3}. 
 
-\begin{equation} \label{eq:solve}
+\begin{equation} \label{eq:solve3}
 G=(V\cup W, E)
 \end{equation}
-\cite{Washington}~\ref{eq:solve}
 
-Onde: 
+Onde \ref{eq:solve4}: 
 
-\begin{equation} \label{eq:solve}
+\begin{equation} \label{eq:solve4}
 V\cup W
 \end{equation}
-\cite{Washington}~\ref{eq:solve}
+
 
 Compõem o conjunto de vértices e E o conjunto de arestas, ou seja, o subgrafo induzido por E e um grafo completo cujo conjunto de nós é V. 
 V são todos os vértices que podem ser visitados e é composto pelo subconjunto T, que são os vértices que devem ser visitados por algum veiculo. W é um conjunto de vértices onde todos os M veículos devem passar. M é o numero de rotas de veículos que começam no vértice base V$_0$. 
