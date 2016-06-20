@@ -31,7 +31,7 @@ Onde g(n) é o custo para chegar ao nó n, e h(n) é o custo estimado para ating
 Podemos aplicar o algoritmo A* em um Grafo direcionado ponderado por exemplo da Figura \ref{fig:GrafoBusca}.
 
 \begin{minipage}{\linewidth}
-    \makebox[\linewidth]{
+    \makebox[\linewidth][c]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/figura1.png}}
     \captionof{figure}{Grafo para busca \cite{PEHart}}
     \label{fig:GrafoBusca}
@@ -46,7 +46,7 @@ Quando definimos o mapa de busca em uma matriz bidimensional NxM, situação com
 O modelo em \textit{tile}, onde o movimento do agente está restrito a quatro direções ortogonais com custo 1, e \textit{octile}, onde o agente pode ainda mover-se na diagonal com custo equivalente ao valor da hipotenusa de um triângulo retângulo com catetos igual a 1, sendo assim  $ \sqrt{2}  \approx 1.4 $. É comum para fim de simplificar os cálculos multiplicar os valores de custo por 10 ou 100 como pode ser visto na Figura \ref{fig:CustoMovimento}.
 
 \begin{minipage}{\linewidth}
-    \makebox[\linewidth]{
+    \makebox[\linewidth][c]{
         \includegraphics[keepaspectratio=true,scale=1.5]{ibagens/mov_cost.png}}
     \captionof{figure}{Custo de movimentação}
     \label{fig:CustoMovimento}
@@ -64,7 +64,7 @@ Também pode ser utilizada como função heurística a distância euclideana, no
 Podemos verificar na Figura \ref{fig:Manhattan}, exemplos de distância Manhattan comparado com a distância euclideana.
 
 \begin{minipage}{\linewidth}
-    \makebox[\linewidth]{
+    \makebox[\linewidth][c]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/manhatam.png}}
     \captionof{figure}{Ilustração de diferença entre distância Manhatam e euclideana}
     \label{fig:Manhattan}
@@ -83,7 +83,7 @@ Este alto custo de recursos da CPU pode fazer com que o jogo congele até que o 
 Pelo motivo do alto custo, a heurística fornece uma expansão considerável dos nós, que são mantidos na memória durante todo o processamento. A Figura \ref{fig:ExemploAStar} mostra a expansão da heurística.
 
 \begin{minipage}{\linewidth}
-    \makebox[\linewidth]{
+    \makebox[\linewidth][c]{
         \includegraphics[keepaspectratio=true,scale=1]{ibagens/figura2.png}}
     \captionof{figure}{Exemplo de A* \cite{Ulysses} }
     \label{fig:ExemploAStar}
@@ -101,7 +101,7 @@ A primeira modificação consiste em utilizar o teorema de Pitágoras, onde prim
 O projeto utiliza 3 pistas reais de corrida da Formula 1, Peru, Itália e Hungria, sendo cada pista, uma imagem de escala 1280x782 \textit{pixels} retiradas do site oficial da Formula 1. O Carro é implementado em \textit{Microsoft XNA Game Studio}, plataforma usada para desenvolver jogos para \textit{Windows Phone, Xbox e Windows}. As Imagens das pistas são modificadas para serem mapas de detecção de colisão, a pista é pintada de preto, indicando onde o carro pode andar e o resto pintado de branco indicando os o carro não pode andar. O carro tem o tamanho de 18x12 \textit{pixels} e uma movimentação de 2 \textit{pixels} por segundo. Como o XNA trabalha com uma taxa de quadros de 60 quadros por segundo, o carro se movimenta a 120 \textit{pixels} por segundo.A Figura \ref{fig:GameCarPista} mostra um exemplo de rota gerada na pista do Peru.
 
 \begin{minipage}{\linewidth}
-	\makebox[\linewidth]{
+	\makebox[\linewidth][c]{
 		\includegraphics[keepaspectratio=true,scale=1.0]{ibagens/GameCarPista.png}}
 	\captionof{figure}{Pisca de formula 1 do Peru \cite{JungTing} }
 	\label{fig:GameCarPista}
@@ -272,7 +272,9 @@ Utilizando o algoritmo de busca BFS (\textit{Best First Search}), foi desenvolvi
 \begin{minipage}{\linewidth}
 	\centering
 	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/Fluxograma.png}}
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Fluxograma.png}
+		\centering
+		}
 	\captionof{figure}{Fluxograma do PPGA \cite{Ulysses} }
 	\label{fig:Fluxograma}
 \end{minipage}
@@ -301,8 +303,9 @@ A Figura \ref{fig:CaminhoPPGA} mostra o resultado de caminho percorrido pelo BFS
 
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=1.2]{ibagens/PPGA.png}
 		\centering
-		\includegraphics[keepaspectratio=true,scale=1.2]{ibagens/PPGA.png}}
+		}
 	\captionof{figure}{Caminho criado pelo BFS e o PPGA \cite{Ulysses} }
 	\label{fig:CaminhoPPGA}
 \end{minipage}
@@ -326,7 +329,9 @@ Cada escravo realiza a interpretação do problema, aplica a função de cálcul
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
 		\centering
-		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/AGParallelJohn.png}}
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/AGParallelJohn.png}
+		\centering
+		}
 	\captionof{figure}{Desenho do modelo de \cite{Jason} }
 	\label{fig:AGParallelJohn}
 \end{minipage}
@@ -350,8 +355,9 @@ O modelo \cite{Alaoui}, por todos os escravos devem enviar para o nó mestre, de
  
  \begin{minipage}{\linewidth}
  	\makebox[\linewidth]{
+ 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/AGParallel.png}
  		\centering
- 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/AGParallel.png}}
+ 		}
  	\captionof{figure}{Protótipo de \cite{Vilson} }
  	\label{fig:AGParallel}
  \end{minipage}
