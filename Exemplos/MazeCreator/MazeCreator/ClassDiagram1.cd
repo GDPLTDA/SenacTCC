@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="xnafan.MazeCreator.MazeCreator">
+    <Position X="5.75" Y="0.5" Width="3.5" />
+    <Members>
+      <Field Name="_currentTile" Hidden="true" />
+      <Field Name="_height" Hidden="true" />
+      <Field Name="_longestPathSoFar" Hidden="true" />
+      <Field Name="_tiletoTry" Hidden="true" />
+      <Field Name="_width" Hidden="true" />
+      <Method Name="GetValidNeighbors" Hidden="true" />
+      <Method Name="HasThreeWallsIntact" Hidden="true" />
+      <Method Name="IsInside" Hidden="true" />
+      <Field Name="NSEW" Hidden="true" />
+      <Field Name="rnd" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAEBACAAAAEABQDAEAECBCAAAAAAAEgAAMgAAA=</HashCode>
+      <FileName>MazeCreator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
