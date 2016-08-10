@@ -61,14 +61,14 @@ namespace AStar
         /// <param name="map">A boolean representation of a grid in which true = walkable and false = not walkable</param>
         private void InitializeNodes(bool[,] map)
         {
-            this.width = map.GetLength(0);
-            this.height = map.GetLength(1);
-            this.nodes = new Node[this.width, this.height];
-            for (int y = 0; y < this.height; y++)
+            width = map.GetLength(0);
+            height = map.GetLength(1);
+            nodes = new Node[width, height];
+            for (int y = 0; y < height; y++)
             {
-                for (int x = 0; x < this.width; x++)
+                for (int x = 0; x < width; x++)
                 {
-                    this.nodes[x, y] = new Node(x, y, map[x, y], this.searchParameters.EndLocation);
+                    nodes[x, y] = new Node(x, y, map[x, y], searchParameters.EndLocation);
                 }
             }
         }

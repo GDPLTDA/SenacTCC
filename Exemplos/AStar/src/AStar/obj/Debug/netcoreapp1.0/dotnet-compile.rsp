@@ -1,5 +1,5 @@
---temp-output:c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\obj\Debug\netcoreapp1.0\
---out:c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\bin\Debug\netcoreapp1.0\AStar.dll
+--temp-output:C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\obj\Debug\netcoreapp1.0\
+--out:C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\bin\Debug\netcoreapp1.0\AStar.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -89,9 +89,10 @@
 --reference:C:\Users\rmendonca\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\rmendonca\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\rmendonca\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\Node.cs
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\NodeState.cs
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\PathFinder.cs
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\Program.cs
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\SearchParameters.cs
-c:\Users\rmendonca\Documents\GitHub\SenacTCC\AStar\src\AStar\Properties\AssemblyInfo.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\AStar.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\Node.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\NodeState.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\PathFinder.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\Program.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\SearchParameters.cs
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\AStar\src\AStar\Properties\AssemblyInfo.cs
