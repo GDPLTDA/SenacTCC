@@ -1,0 +1,189 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.6 }
+
+\bibitem[Alaoui e El-Ghazawi 2000]{Alaoui}
+\abntrefinfo{Alaoui e El-Ghazawi}{ALAOUI; EL-GHAZAWI}{2000}
+{ALAOUI, O.~F. S.~M.; EL-GHAZAWI, T. A parallel genetic algorithm for task
+  mapping on parallel machines.
+2000.}
+
+\bibitem[Björnsson et al. 2005]{Yngvi}
+\abntrefinfo{Björnsson et al.}{BJöRNSSON et al.}{2005}
+{BJöRNSSON, Y. et al. Fringe search: beating a* at pathfinding on game maps.
+  In:  \emph{In Proceedings of IEEE Symposium on Computational Intelligence and
+  Games}. [S.l.: s.n.], 2005. p. 125--132.}
+
+\bibitem[Botea 2004]{Botea}
+\abntrefinfo{Botea}{BOTEA}{2004}
+{BOTEA, M.~M. A. Near optimal hierarchical path-finding.
+\emph{Journal of Game Development, Vol. 1}, p. 7--28, 2004.}
+
+\bibitem[Cain 2002]{Timothy}
+\abntrefinfo{Cain}{CAIN}{2002}
+{CAIN, T. \emph{Practical Optimizations for A*}. [S.l.: s.n.], 2002.}
+
+\bibitem[Champandard 2010]{Jad}
+\abntrefinfo{Champandard}{CHAMPANDARD}{2010}
+{CHAMPANDARD, J.~N. e A.~J. \emph{The Secrets of Parallel Pathfinding on Modern
+  Computer Hardware}. 2010.
+Dispon{\'\i}vel em:
+  \url{https://software.intel.com/en-us/articles/the-secrets-of-parallel-pathfinding-on-modern-computer-hardware}.
+  Acesso em: 29/05/2016.}
+
+\bibitem[Chang 2009]{Janie_Chang}
+\abntrefinfo{Chang}{CHANG}{2009}
+{CHANG, J. \emph{Making the Shortest Path Even Quicker}. 2009.
+Dispon{\'\i}vel em:
+  \url{http://research.microsoft.com/en-us/news/features/shortestpath-070709.aspx}.
+  Acesso em: 29/05/2016.}
+
+\bibitem[D.Lohn Silvano P.~Colombano 2000]{Jason}
+\abntrefinfo{D.Lohn Silvano P.~Colombano}{D.LOHN SILVANO P.~COLOMBANO}{2000}
+{D.LOHN SILVANO P.~COLOMBANO, G. L. H. t. D.~S. J. Parallel genetic algorithm
+  for automated electronic circuit design.
+2000.}
+
+\bibitem[Graham 2003]{Ross_Graham}
+\abntrefinfo{Graham}{GRAHAM}{2003}
+{GRAHAM, H. M. e. S.~S. R. Pathfinding in computer games.
+\emph{The ITB Journal}, v.~4, 2003.}
+
+\bibitem[Hart e Raphael 1968]{PEHart}
+\abntrefinfo{Hart e Raphael}{HART; RAPHAEL}{1968}
+{HART, N. J.~N. P.~E.; RAPHAEL, B. A formal basis for the heuristic
+  determination of minimum cost paths.
+\emph{IEEE Transactions on Systems, Science, and Cybernetics}, SSC-4, p.
+  100--107, 1968.}
+
+\bibitem[Holland 1975]{Holland1975}
+\abntrefinfo{Holland}{HOLLAND}{1975}
+{HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
+  MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
+  \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
+
+\bibitem[Karp 1972]{Kar72}
+\abntrefinfo{Karp}{KARP}{1972}
+{KARP, R. Reducibility among combinatorial problems. In:  MILLER, R.; THATCHER,
+  J. (Ed.). \emph{Complexity of Computer Computations}. [S.l.]: Plenum Press,
+  1972. p. 85--103.}
+
+\bibitem[Korf 1993]{KORF199341}
+\abntrefinfo{Korf}{KORF}{1993}
+{KORF, R.~E. Linear-space best-first search.
+\emph{Artificial Intelligence}, v.~62, n.~1, p. 41 -- 78, 1993.
+ISSN 0004-3702.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/000437029390045D}.}
+
+\bibitem[Korf 2000]{Korf2000}
+\abntrefinfo{Korf}{KORF}{2000}
+{KORF, R.~E. Abstraction, reformulation, and approximation: 4th international
+  symposium, sara 2000 horseshoe bay, usa, july 26--29, 2000 proceedings.
+In:  \underline{\ \ \ \ \ \ \ \ }. Berlin, Heidelberg: Springer Berlin
+  Heidelberg, 2000. cap. Recent Progress in the Design and Analysis of
+  Admissible Heuristic Functions, p. 45--55.
+ISBN 978-3-540-44914-0.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1007/3-540-44914-0\_3}.}
+
+\bibitem[Leigh e Miles 2007]{Ryan}
+\abntrefinfo{Leigh e Miles}{LEIGH; MILES}{2007}
+{LEIGH, S. h. J.~L. R.; MILES, C. Using a genetic algorithm to explore a*-like
+  pathfinding algorithms.
+2007.}
+
+\bibitem[Lucas 2002]{DiogoCLucas}
+\abntrefinfo{Lucas}{LUCAS}{2002}
+{LUCAS, D.~C. Algoritmos genéticos: uma introdução.
+Universidade Federal do Rio Grande do Sul, 2002.
+Dispon{\'\i}vel em:
+  \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
+
+\bibitem[Machado et al. 2011]{Ulysses2}
+\abntrefinfo{Machado et al.}{MACHADO et al.}{2011}
+{MACHADO, A.~F. da V. et al. Real time pathfinding with genetic algorithm. In:
+  \emph{2011 Brazilian Symposium on Games and Digital Entertainment, Salvador,
+  Bahia, Brazil, November 7-9, 2011}. [s.n.], 2011. p. 215--221.
+  Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1109/SBGAMES.2011.23}.}
+
+\bibitem[Miller 2010]{WilliamMiller}
+\abntrefinfo{Miller}{MILLER}{2010}
+{MILLER, W. Applying parallel programming to path-finding with the a*
+  algorithm.
+2010.}
+
+\bibitem[MOLE 2002]{Vilson}
+\abntrefinfo{MOLE}{MOLE}{2002}
+{MOLE, V. L.~D. Algoritmos genéticos – uma abordagem paralela baseada em
+  populações cooperantes.
+2002.}
+
+\bibitem[Muhlenbein 2000]{Heinz}
+\abntrefinfo{Muhlenbein}{MUHLENBEIN}{2000}
+{MUHLENBEIN, H. Evolution in time and space - the parallel genetic algorithm.
+2000.}
+
+\bibitem[Oliveira 2009]{Washington}
+\abntrefinfo{Oliveira}{OLIVEIRA}{2009}
+{OLIVEIRA, W.~A. de. Algoritmo genético para o problema de rotas de cobertura
+  multiveículo.
+2009.}
+
+\bibitem[Patel 2010]{GameProgrammingHeuristics}
+\abntrefinfo{Patel}{PATEL}{2010}
+{PATEL, A. \emph{A*’s Use of the Heuristic}. 2010.
+Dispon{\'\i}vel em:
+  \url{http://theory.stanford.edu/~amitp/GameProgramming/Heuristics.html}.
+  Acesso em: 29/05/2016.}
+
+\bibitem[Pollack 1960]{Pollack}
+\abntrefinfo{Pollack}{POLLACK}{1960}
+{POLLACK, W.~W. M. Solutions of the shortest-route problem-a review.
+\emph{Operations Research}, INFORMS, v.~8, n.~2, p. 224--230, 1960.
+ISSN 0030364X, 15265463.
+Dispon{\'\i}vel em: \url{http://www.jstor.org/stable/167205}.}
+
+\bibitem[Pontevia 2008]{Pontevia}
+\abntrefinfo{Pontevia}{PONTEVIA}{2008}
+{PONTEVIA, P. Pathfinding is not a star.
+\emph{Autodesk, white paper}, p.~1--6, 2008.}
+
+\bibitem[Ratner e Warmuth 1986]{RatnerW86}
+\abntrefinfo{Ratner e Warmuth}{RATNER; WARMUTH}{1986}
+{RATNER, D.; WARMUTH, M.~K. Finding a shortest solution for the n x n extension
+  of the 15-puzzle is intractable. In:  KEHLER, T. (Ed.). \emph{AAAI}. [S.l.]:
+  Morgan Kaufmann, 1986. p. 168--172.}
+
+\bibitem[Roshani 2015]{Reza}
+\abntrefinfo{Roshani}{ROSHANI}{2015}
+{ROSHANI, M. K.~S. R. Parallel genetic algorithm for shortest path routing
+  problem with collaborative neighbors.
+2015.}
+
+\bibitem[Santos 2012]{Ulysses}
+\abntrefinfo{Santos}{SANTOS}{2012}
+{SANTOS, A. F. V. M. e. E. W. G.~C. U.~O. Pathfinding based on pattern
+  detection using genetic algorithms.
+\emph{SBC - Proceedings of SBGames}, 2012.}
+
+\bibitem[Wang e Lin 2012]{JungTing}
+\abntrefinfo{Wang e Lin}{WANG; LIN}{2012}
+{WANG, J.-Y.; LIN, Y.-B. Game ai: Simulating car racing game by applying
+  pathfinding algorithms.
+\emph{International Journal of Machine Learning and Computing}, v.~2, 2012.}
+
+\bibitem[Wang e Botea 2008]{Ko-hsin}
+\abntrefinfo{Wang e Botea}{WANG; BOTEA}{2008}
+{WANG, K. hsin C.; BOTEA, A. Fast and memory-efficient multi-agent pathfinding.
+  In:  \emph{In ICAPS}. [S.l.: s.n.], 2008. p. 380--387.}
+
+\bibitem[Winston 1992]{Winston}
+\abntrefinfo{Winston}{WINSTON}{1992}
+{WINSTON, P.~H. \emph{Artificial Intelligence (3rd Ed.)}. Boston, MA, USA:
+  Addison-Wesley Longman Publishing Co., Inc., 1992.
+ISBN 0-201-53377-4.}
+
+\end{thebibliography}

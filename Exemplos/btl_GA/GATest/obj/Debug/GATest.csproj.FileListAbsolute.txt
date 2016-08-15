@@ -1,0 +1,14 @@
+C:\Users\rmendonca\Downloads\btl_GA\GATest\bin\Debug\GATest.exe
+C:\Users\rmendonca\Downloads\btl_GA\GATest\bin\Debug\GATest.pdb
+C:\Users\rmendonca\Downloads\btl_GA\GATest\bin\Debug\GeneticAlgorithm.dll
+C:\Users\rmendonca\Downloads\btl_GA\GATest\bin\Debug\GeneticAlgorithm.pdb
+C:\Users\rmendonca\Downloads\btl_GA\GATest\obj\Debug\GATest.csprojResolveAssemblyReference.cache
+C:\Users\rmendonca\Downloads\btl_GA\GATest\obj\Debug\GATest.exe
+C:\Users\rmendonca\Downloads\btl_GA\GATest\obj\Debug\GATest.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\bin\Debug\GATest.exe
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\bin\Debug\GATest.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\bin\Debug\GeneticAlgorithm.dll
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\bin\Debug\GeneticAlgorithm.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\obj\Debug\GATest.csprojResolveAssemblyReference.cache
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\obj\Debug\GATest.exe
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\btl_GA\GATest\obj\Debug\GATest.pdb
