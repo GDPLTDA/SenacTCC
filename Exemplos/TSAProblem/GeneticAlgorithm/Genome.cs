@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TSAProblem.GeneticAlgorithm
 {
@@ -37,11 +34,11 @@ namespace TSAProblem.GeneticAlgorithm
 
         private List<int> GrabPermutation(int limit)
         {
-            List<int> lstVecPerm = new List<int>();
+            var lstVecPerm = new List<int>();
 
             for (int i = 0; i < limit; i++)
             {
-                int nextPossibleNumber = objRandom.Next(0, limit);
+                var nextPossibleNumber = objRandom.Next(0, limit);
 
                 while (TestNumber(lstVecPerm, nextPossibleNumber))
                 {
@@ -53,7 +50,7 @@ namespace TSAProblem.GeneticAlgorithm
             return lstVecPerm;
         }
 
-        private bool TestNumber(List<int> vector, int NextPossibleNumber)
+        private static bool TestNumber(List<int> vector, int NextPossibleNumber)
         {
             return vector.Contains(NextPossibleNumber);
         }

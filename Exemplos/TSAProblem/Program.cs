@@ -13,7 +13,10 @@ namespace TSAProblem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTeste());
+            using (var formTeste = new FormTeste())
+            {
+                Application.Run(formTeste);
+            }
         }
     }
 }

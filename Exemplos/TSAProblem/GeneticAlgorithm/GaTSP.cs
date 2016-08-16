@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TSAProblem.GeneticAlgorithm
 {
@@ -36,7 +34,7 @@ namespace TSAProblem.GeneticAlgorithm
         }
         private double longestRoute;
         private int fittestGenome;
-        private int generation;
+        public int generation;
         private Random objRandom;
 
         public GaTSP(GAParams tParams)
@@ -52,25 +50,25 @@ namespace TSAProblem.GeneticAlgorithm
 
             objRandom = new Random();
 
-            objMap = new MapTSP(tParams.numberOfCities);
+            objMap = new MapTSP(tParams.numberOfCities, tParams.MapaSize);
             CreateStartingPopulation();
         }
 
         private List<int> Mutation(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
+            var lstMutated = Copy(vector);
 
             if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
 
-            int pos1 = objRandom.Next(0, Params.numberOfCities);
-            int pos2 = pos1;
+            var pos1 = objRandom.Next(0, Params.numberOfCities);
+            var pos2 = pos1;
 
             while (pos1 == pos2)
             {
                 pos2 = objRandom.Next(0, Params.numberOfCities);
             }
 
-            int temp = lstMutated[pos1];
+            var temp = lstMutated[pos1];
             lstMutated[pos1] = lstMutated[pos2];
             lstMutated[pos2] = temp;
 
@@ -78,23 +76,23 @@ namespace TSAProblem.GeneticAlgorithm
         }
         public List<int> MutateSM(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
+            var lstMutated = Copy(vector);
             if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
 
-            int minSpanSize = 3;
+            const int minSpanSize = 3;
             int beg, end;
             beg = end = 0;
             ChooseSection(out beg, out end, lstMutated.Count, minSpanSize);
 
-            int span = end - beg;
-            int numberOfSwaprsRequired = span;
+            var span = end - beg;
+            var numberOfSwaprsRequired = span;
 
-            while (numberOfSwaprsRequired!=0)
+            while (numberOfSwaprsRequired != 0)
             {
-                int no1 = objRandom.Next(beg, end + 1);
-                int no2 = objRandom.Next(beg, end + 1);
+                var no1 = objRandom.Next(beg, end + 1);
+                var no2 = objRandom.Next(beg, end + 1);
 
-                int temp = lstMutated[no1];
+                var temp = lstMutated[no1];
                 lstMutated[no1] = lstMutated[no2];
                 lstMutated[no2] = temp;
 
@@ -105,30 +103,30 @@ namespace TSAProblem.GeneticAlgorithm
         }
         private void ChooseSection(out int beg, out int end, int maxSpanSize, int minSpanSize)
         {
-            int spanSize = objRandom.Next(minSpanSize, maxSpanSize);
+            var spanSize = objRandom.Next(minSpanSize, maxSpanSize);
             beg = objRandom.Next(0, maxSpanSize - spanSize);
             end = beg + spanSize;
         }
         public List<int> MutateDM(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
+            var lstMutated = Copy(vector);
             if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
 
-            int minSpanSize = 3;
+            const int minSpanSize = 3;
             int beg, end;
             beg = end = 0;
             ChooseSection(out beg, out end, lstMutated.Count, minSpanSize);
 
-            List<int> lstTemp = new List<int>();
+            var lstTemp = new List<int>();
             for (int i = beg; i < end; i++)
             {
                 lstTemp.Add(lstMutated[beg]);
                 lstMutated.RemoveAt(beg);
             }
 
-            int insertLocation = objRandom.Next(0, lstMutated.Count + 1);
-            int count=0;
-            for (int i = insertLocation; count<lstTemp.Count; i++)
+            var insertLocation = objRandom.Next(0, lstMutated.Count + 1);
+            var count = 0;
+            for (int i = insertLocation; count < lstTemp.Count; i++)
             {
                 lstMutated.Insert(i, lstTemp[count]);
                 count++;
@@ -138,33 +136,35 @@ namespace TSAProblem.GeneticAlgorithm
         }
         public List<int> MutateIM(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
+            var lstMutated = Copy(vector);
             if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
 
-            int randomPoint = objRandom.Next(0, lstMutated.Count);
-            int tempNumber = lstMutated[randomPoint];
+            var randomPoint = objRandom.Next(0, lstMutated.Count);
+            var tempNumber = lstMutated[randomPoint];
             lstMutated.RemoveAt(randomPoint);
-            int insertAt = objRandom.Next(0, lstMutated.Count);
+            var insertAt = objRandom.Next(0, lstMutated.Count);
             lstMutated.Insert(insertAt, tempNumber);
 
             return lstMutated;
         }
         public List<int> MutateIVM(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.mutationRate)
+                return vector;
 
+            var lstMutated = Copy(vector);
             int beg, end;
             beg = end = 0;
+
             ChooseSection(out beg, out end, lstMutated.Count, 2);
-            List<int> lstTemp = new List<int>();
+            var lstTemp = new List<int>();
             for (int i = beg; i < end; i++)
             {
                 lstTemp.Add(lstMutated[beg]);
                 lstMutated.RemoveAt(beg);
             }
             lstTemp.Reverse();
-            int count=0;
+            var count = 0;
             for (int i = beg; i < end; i++)
             {
                 lstMutated.Insert(i, lstTemp[count]);
@@ -174,34 +174,34 @@ namespace TSAProblem.GeneticAlgorithm
         }
         public List<int> MutateDIVM(List<int> vector)
         {
-            List<int> lstMutated = Copy(vector);
+            var lstMutated = Copy(vector);
             if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
 
             int beg, end;
             beg = end = 0;
             ChooseSection(out beg, out end, lstMutated.Count, 2);
-            List<int> lstTemp = new List<int>();
+            var lstTemp = new List<int>();
             for (int i = beg; i < end; i++)
             {
                 lstTemp.Add(lstMutated[beg]);
                 lstMutated.RemoveAt(beg);
             }
 
-            int numberOfSwaprsRequired = lstTemp.Count;
+            var numberOfSwaprsRequired = lstTemp.Count;
             while (numberOfSwaprsRequired != 0)
             {
-                int no1 = objRandom.Next(0, lstTemp.Count);
-                int no2 = objRandom.Next(0,lstTemp.Count);
+                var no1 = objRandom.Next(0, lstTemp.Count);
+                var no2 = objRandom.Next(0, lstTemp.Count);
 
-                int temp = lstTemp[no1];
+                var temp = lstTemp[no1];
                 lstTemp[no1] = lstTemp[no2];
                 lstTemp[no2] = temp;
 
                 --numberOfSwaprsRequired;
             }
 
-            int insertLocation = objRandom.Next(0, lstMutated.Count + 1);
-            int count = 0;
+            var insertLocation = objRandom.Next(0, lstMutated.Count + 1);
+            var count = 0;
             for (int i = insertLocation; count < lstTemp.Count; i++)
             {
                 lstMutated.Insert(i, lstTemp[count]);
@@ -221,9 +221,9 @@ namespace TSAProblem.GeneticAlgorithm
                 return;
             }
 
-            int beg = objRandom.Next(0, mum.Count - 1);
+            var beg = objRandom.Next(0, mum.Count - 1);
 
-            int end = beg;
+            var end = beg;
 
             while (end <= beg)
             {
@@ -232,15 +232,15 @@ namespace TSAProblem.GeneticAlgorithm
 
             for (int pos = beg; pos < end + 1; ++pos)
             {
-                int gene1 = mum[pos];
-                int gene2 = dad[pos];
+                var gene1 = mum[pos];
+                var gene2 = dad[pos];
 
                 if (gene1 != gene2)
                 {
-                    int posGene1 = baby1.IndexOf(gene1);
-                    int posGene2 = baby1.IndexOf(gene2);
+                    var posGene1 = baby1.IndexOf(gene1);
+                    var posGene2 = baby1.IndexOf(gene2);
 
-                    int temp = baby1[posGene1];
+                    var temp = baby1[posGene1];
                     baby1[posGene1] = baby1[posGene2];
                     baby1[posGene2] = temp;
 
@@ -262,10 +262,10 @@ namespace TSAProblem.GeneticAlgorithm
                 return;
             }
 
-            List<int> lstTempCities = new List<int>();
-            List<int> lstPositions = new List<int>();
+            var lstTempCities = new List<int>();
+            var lstPositions = new List<int>();
 
-            int pos = objRandom.Next(0, mum.Count - 1);
+            var pos = objRandom.Next(0, mum.Count - 1);
 
             while (pos < mum.Count)
             {
@@ -274,7 +274,7 @@ namespace TSAProblem.GeneticAlgorithm
                 pos += objRandom.Next(1, mum.Count - pos);
             }
 
-            int cPos = 0;
+            var cPos = 0;
             for (int cit = 0; cit < baby2.Count; ++cit)
             {
                 for (int i = 0; i < lstTempCities.Count; ++i)
@@ -291,7 +291,7 @@ namespace TSAProblem.GeneticAlgorithm
             lstTempCities.Clear();
             cPos = 0;
 
-            for (int i = 0; i < lstPositions.Count-1; ++i)
+            for (int i = 0; i < lstPositions.Count - 1; ++i)
             {
                 lstTempCities.Add(dad[lstPositions[i]]);
             }
@@ -313,20 +313,17 @@ namespace TSAProblem.GeneticAlgorithm
         {
             baby1 = Copy(mum);
             baby2 = Copy(dad);
+
             if (objRandom.NextDouble() > Params.crossoverRate || AreEqual(mum, dad))
-            {
                 return;
-            }
 
             for (int i = 0; i < mum.Count; i++)
-            {
                 baby1[i] = baby2[i] = -1;
-            }
 
-            int l = baby2.Count;
+            //var l = baby2.Count;
 
-            List<int> lstPositions = new List<int>();
-            int Pos = objRandom.Next(0, mum.Count - 1);
+            var lstPositions = new List<int>();
+            var Pos = objRandom.Next(0, mum.Count - 1);
 
             while (Pos < mum.Count)
             {
@@ -345,33 +342,24 @@ namespace TSAProblem.GeneticAlgorithm
 
             for (int pos = 0; pos < mum.Count; ++pos)
             {
-                while (c2<mum.Count && baby2[c2]>-1)
-                {
+                while (c2 < mum.Count && baby2[c2] > -1)
                     ++c2;
-                }
                 if (!baby2.Contains(mum[pos]))
-                {
                     baby2[c2] = mum[pos];
-                }
 
-                while ((c1<mum.Count) && (baby1[c1]>-1))
-                {
+                while ((c1 < mum.Count) && (baby1[c1] > -1))
                     ++c1;
-                }
 
                 if (!baby1.Contains(dad[pos]))
-                {
                     baby1[c1] = dad[pos];
-                }
-
             }
         }
 
         private Genome RouletteWheelSelection()
         {
-            double slice = objRandom.NextDouble() * (double)totalFitness;
-            double total = 0;
-            int selectedGenome = 0;
+            var slice = objRandom.NextDouble() * totalFitness;
+            var total = (double)0;
+            var selectedGenome = 0;
 
             for (int i = 0; i < Params.populationSize; i++)
             {
@@ -383,7 +371,6 @@ namespace TSAProblem.GeneticAlgorithm
                     break;
                 }
             }
-
             return lstPopulation[selectedGenome];
         }
 
@@ -392,7 +379,7 @@ namespace TSAProblem.GeneticAlgorithm
             totalFitness = 0;
             for (int i = 0; i < Params.populationSize; ++i)
             {
-                double tourLength = objMap.GetTourLength(lstPopulation[i].Cities);
+                var tourLength = objMap.GetTourLength(lstPopulation[i].Cities);
                 lstPopulation[i].Fitness = tourLength;
 
                 if (tourLength < shortestRoute)
@@ -401,9 +388,7 @@ namespace TSAProblem.GeneticAlgorithm
                     fittestGenome = i;
                 }
                 if (tourLength > longestRoute)
-                {
                     longestRoute = tourLength;
-                }
             }
 
             for (int i = 0; i < Params.populationSize; ++i)
@@ -415,41 +400,39 @@ namespace TSAProblem.GeneticAlgorithm
 
         public void Epoch()
         {
-            GAEventArgs objEA = new GAEventArgs();
-            objEA.MapImage = objMap.MapImage;
-            OnDrawMap(objEA);
-
             Reset();
 
             CalculatePopulationFitness();
-            //if (shortestRoute <= objMap.BestPossibleRoute)
-                //return;
 
-            List<Genome> lstNewPop = new List<Genome>();
-
+            var objEA = new GAEventArgs
+            {
+                MapImage = objMap.MapImage
+            };
+            OnDrawMap(objEA);
             objMap.Draw(lstPopulation[fittestGenome].Cities);
+
+            var lstNewPop = new List<Genome>();
 
             lstPopulation = lstPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
-            {
                 lstNewPop.Add(lstPopulation[i]);
-            }
 
             while (lstNewPop.Count <= Params.populationSize)
             {
-                Genome mum = RouletteWheelSelection();
-                Genome dad = RouletteWheelSelection();
+                var mom = RouletteWheelSelection();
+                var dad = RouletteWheelSelection();
+
+                var baby1List = new List<int>();
+                var baby2List = new List<int>();
+
+                CrossoverPBX(mom.Cities, dad.Cities, out baby1List, out baby2List);
+
+                baby1List = MutateIVM(baby1List);
+                baby2List = MutateIVM(baby2List);
 
                 Genome baby1, baby2;
                 baby1 = new Genome();
                 baby2 = new Genome();
-                List<int> baby1List = new List<int>();
-                List<int> baby2List = new List<int>();
-
-                CrossoverPBX(mum.Cities, dad.Cities,out baby1List,out baby2List);
-
-                baby1List = MutateIVM(baby1List);
-                baby2List = MutateIVM(baby2List);
 
                 baby1.Cities = baby1List;
                 baby2.Cities = baby2List;
@@ -457,9 +440,8 @@ namespace TSAProblem.GeneticAlgorithm
                 lstNewPop.Add(baby1);
                 lstNewPop.Add(baby2);
             }
-
             lstPopulation = Copy(lstNewPop);
-            
+
             ++generation;
         }
 
@@ -467,47 +449,45 @@ namespace TSAProblem.GeneticAlgorithm
         {
             for (int i = 0; i < Params.populationSize; i++)
             {
-                Genome objGenome = new Genome(Params.numberOfCities, objRandom);
+                var objGenome = new Genome(Params.numberOfCities, objRandom);
                 lstPopulation.Add(objGenome);
             }
         }
 
         private void Reset()
         {
-            this.fittestGenome = 0;
-            this.generation = 0;
-            this.shortestRoute = double.MaxValue;
-            this.longestRoute = 0;
+            fittestGenome = 0;
+            shortestRoute = double.MaxValue;
+            longestRoute = 0;
         }
 
-        private bool AreEqual(List<int> lst1, List<int> lst2)
+        private static bool AreEqual(List<int> lst1, List<int> lst2)
         {
-            if (lst1.Count != lst2.Count) return false;
+            if (lst1.Count != lst2.Count)
+                return false;
 
             for (int i = 0; i < lst1.Count; i++)
-            {
-                if (lst1[i] != lst2[i]) return false;
-            }
+                if (lst1[i] != lst2[i])
+                    return false;
+
             return true;
         }
 
-        private List<int> Copy(List<int> listToCopy)
+        private static List<int> Copy(List<int> listToCopy)
         {
-            List<int> lstReturn = new List<int>();
+            var lstReturn = new List<int>();
             for (int i = 0; i < listToCopy.Count; i++)
-            {
                 lstReturn.Add(listToCopy[i]);
-            }
+
             return lstReturn;
         }
 
-        private List<Genome> Copy(List<Genome> listToCopy)
+        private static List<Genome> Copy(List<Genome> listToCopy)
         {
-            List<Genome> lstReturn = new List<Genome>();
+            var lstReturn = new List<Genome>();
             for (int i = 0; i < listToCopy.Count; i++)
-            {
                 lstReturn.Add(listToCopy[i]);
-            }
+
             return lstReturn;
         }
     }

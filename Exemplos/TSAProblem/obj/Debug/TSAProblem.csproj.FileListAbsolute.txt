@@ -18,4 +18,3 @@ C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\bin\Debug\TSAPr
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.Properties.Resources.resources
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.csproj.GenerateResource.Cache
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.FormTeste.resources
-C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.csprojResolveAssemblyReference.cache

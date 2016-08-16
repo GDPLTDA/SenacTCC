@@ -6,7 +6,7 @@ namespace TSAProblem.GeneticAlgorithm
 {
     public class MapTSP
     {
-        private int MapSize = 250;
+        private int MapSize;
         private List<Coordinate> lstCityCoordinates;
         public List<Coordinate> CityCoordinates
         {
@@ -24,10 +24,12 @@ namespace TSAProblem.GeneticAlgorithm
             get { return bmpImage; }
         }
 
-        public MapTSP(int numberOfCities)
+        public MapTSP(int tNumberOfCities,int tMapSize)
         {
-            this.numberOfCities = numberOfCities;
-            this.lstCityCoordinates = new List<Coordinate>();
+            MapSize = tMapSize;
+
+            numberOfCities = tNumberOfCities;
+            lstCityCoordinates = new List<Coordinate>();
 
             CreateCitiesCirular(MapSize);
             CalculateBestPossibleRoute();
@@ -38,7 +40,7 @@ namespace TSAProblem.GeneticAlgorithm
             Brush RedBrush = new SolidBrush(Color.Red);
             bmpImage = new Bitmap((int)(2 * 110), (int)(2 * 110));
 
-            Graphics g = Graphics.FromImage(bmpImage);
+            var g = Graphics.FromImage(bmpImage);
 
             var Ran = new Random();
 
@@ -57,30 +59,34 @@ namespace TSAProblem.GeneticAlgorithm
                 var x = Ran.Next(10,(int)MapSize-50);
                 var y = Ran.Next(10, (int)MapSize-50);
 
-                lstCityCoordinates.Add(new Coordinate() { X = x, Y = y });
+                lstCityCoordinates.Add(new Coordinate { X = x, Y = y });
             }
         }
 
         public Bitmap Draw(List<int> pointList)
         {
             Brush blackBrush = new SolidBrush(Color.Black);
-            Bitmap myImage = CreateBitMap();
+            var myImage = CreateBitMap();
             using (Graphics g = Graphics.FromImage(myImage))
             {
                 for (int i = 0; i < pointList.Count-1; i++)
                 {
-                    int x1 = (int)lstCityCoordinates[pointList[i]].X + 5;
-                    int y1 = (int)lstCityCoordinates[pointList[i]].Y + 5;
-                    int x2 = (int)lstCityCoordinates[pointList[i + 1]].X + 5;
-                    int y2 = (int)lstCityCoordinates[pointList[i + 1]].Y + 5;
-                    g.DrawLine(new Pen(blackBrush,2), new Point(x1, y1), new Point(x2, y2));
+                    var x1 = (int)lstCityCoordinates[pointList[i]].X + 5;
+                    var y1 = (int)lstCityCoordinates[pointList[i]].Y + 5;
+                    var x2 = (int)lstCityCoordinates[pointList[i + 1]].X + 5;
+                    var y2 = (int)lstCityCoordinates[pointList[i + 1]].Y + 5;
+
+                    using (var pen = new Pen(blackBrush, 2))
+                    {
+                        g.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+                    }
                 }
 
             }
             return myImage;
         }
 
-        private double CalculateA2B(Coordinate A, Coordinate B)
+        private static double CalculateA2B(Coordinate A, Coordinate B)
         {
             return Math.Sqrt(Math.Pow(A.X - B.X, 2) + Math.Pow(A.Y - B.Y, 2));
         }
@@ -106,7 +112,7 @@ namespace TSAProblem.GeneticAlgorithm
                 }
                 tourLength += CalculateA2B(lstCityCoordinates[lstCityCoordinates.Count - 1],
                     lstCityCoordinates[0]);
-            
+
             return tourLength;
         }
     }

@@ -11,27 +11,26 @@ namespace TSAProblem
         GAParams Param;
         Thread Thead;
         Bitmap MapImage;
-        private Object thisLock = new Object();
+        private readonly object thisLock = new object();
 
         double BestSolution;
         int generation;
         public FormTeste()
         {
             InitializeComponent();
-
-            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (cmdStart.Text == "Start")
             {
-                Param = new GAParams()
+                Param = new GAParams
                 {
                     mutationRate = Convert.ToDouble(txtMutation.Text),
                     crossoverRate = Convert.ToDouble(txtCrossover.Text),
                     populationSize = Convert.ToInt16(txtPopulation.Text),
-                    numberOfCities = Convert.ToInt16(txtCities.Text)
+                    numberOfCities = Convert.ToInt16(txtCities.Text),
+                    MapaSize = pictureBox1.Width
                 };
                 UpdateTime.Enabled = true;
                 cmdStart.Text = "Stop";
@@ -49,21 +48,21 @@ namespace TSAProblem
 
         public void Run()
         {
-            GaTSP objGA = new GaTSP(Param);
+            var objGA = new GaTSP(Param);
             objGA.DrawMap += objGA_DrawMap;
-            generation = 1;
+
             while (true)
             {
                 objGA.Epoch();
                 BestSolution = objGA.BestSolution;
-                generation++;
+                generation   = objGA.generation;
                 Thread.Sleep(100);
             }
         }
 
         void objGA_DrawMap(object sender, EventArgs e)
         {
-            GAEventArgs temp = e as GAEventArgs;
+            var temp = e as GAEventArgs;
             MapImage = temp.MapImage;
         }
 
