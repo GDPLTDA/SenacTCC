@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5A93569E-7C83-47F8-A852-604B8F7A52AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{186A20B2-3304-47A8-A16E-321BFF7E3B8A}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TCC.AStar", "src\AStar\TCC.AStar.xproj", "{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TSAProblem", "src\TSAProblem\TSAProblem.csproj", "{5D4EEDDF-ACC1-46EC-837C-8AE40C1950A9}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TCC.GeneticAlgorithm", "src\TCC.GeneticAlgorithm\TCC.GeneticAlgorithm.xproj", "{DAC2C2F5-623C-42EF-8202-B905C10C9F30}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "TCC.Core", "src\TCC.Core\TCC.Core.xproj", "{B2AE349D-B1D2-46E1-9633-FB4702719E3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D4EEDDF-ACC1-46EC-837C-8AE40C1950A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D4EEDDF-ACC1-46EC-837C-8AE40C1950A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D4EEDDF-ACC1-46EC-837C-8AE40C1950A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D4EEDDF-ACC1-46EC-837C-8AE40C1950A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAC2C2F5-623C-42EF-8202-B905C10C9F30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAC2C2F5-623C-42EF-8202-B905C10C9F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAC2C2F5-623C-42EF-8202-B905C10C9F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAC2C2F5-623C-42EF-8202-B905C10C9F30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2AE349D-B1D2-46E1-9633-FB4702719E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AE349D-B1D2-46E1-9633-FB4702719E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AE349D-B1D2-46E1-9633-FB4702719E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AE349D-B1D2-46E1-9633-FB4702719E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{54E1A4DA-B3A9-4E8E-ACDC-C2C09AF10813} = {5A93569E-7C83-47F8-A852-604B8F7A52AF}
+		{DAC2C2F5-623C-42EF-8202-B905C10C9F30} = {5A93569E-7C83-47F8-A852-604B8F7A52AF}
+		{B2AE349D-B1D2-46E1-9633-FB4702719E3B} = {5A93569E-7C83-47F8-A852-604B8F7A52AF}
+	EndGlobalSection
+EndGlobal

@@ -1,27 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using TCC.Core;
 
-namespace TSAProblem.GeneticAlgorithm
+namespace TCC.GeneticAlgorithm
 {
-    public class GAEventArgs : EventArgs
+    public class GATSP
     {
-        public Bitmap MapImage;
-    }
-
-    public delegate void DrawMapHandle(object sender, EventArgs e);
-    public class GaTSP
-    {
-        private List<Genome> lstPopulation;
-        private MapTSP objMap;
-
-        public event DrawMapHandle DrawMap;
-        protected virtual void OnDrawMap(EventArgs e)
-        {
-            if (DrawMap != null)
-                DrawMap(this, e);
-        }
+        private List<GAGenome> lstPopulation;
+        private GAMapTSP objMap;
 
         private GAParams Params;
         private int NumBest2Add = 1;
@@ -37,9 +24,9 @@ namespace TSAProblem.GeneticAlgorithm
         public int generation;
         private Random objRandom;
 
-        public GaTSP(GAParams tParams)
+        public GATSP(GAParams tParams)
         {
-            lstPopulation = new List<Genome>();
+            lstPopulation = new List<GAGenome>();
 
             Params = tParams;
 
@@ -50,10 +37,14 @@ namespace TSAProblem.GeneticAlgorithm
 
             objRandom = new Random();
 
-            objMap = new MapTSP(tParams.numberOfCities, tParams.MapaSize);
+            objMap = new GAMapTSP(tParams.numberOfCities, tParams.MapaSize);
             CreateStartingPopulation();
         }
 
+        public List<Coordinate> GetlstCityCoordinates()
+        {
+            return objMap.lstCityCoordinates;
+        }
         private List<int> Mutation(List<int> vector)
         {
             var lstMutated = Copy(vector);
@@ -355,7 +346,7 @@ namespace TSAProblem.GeneticAlgorithm
             }
         }
 
-        private Genome RouletteWheelSelection()
+        private GAGenome RouletteWheelSelection()
         {
             var slice = objRandom.NextDouble() * totalFitness;
             var total = (double)0;
@@ -398,20 +389,22 @@ namespace TSAProblem.GeneticAlgorithm
             }
         }
 
+        public List<int> GetBestCitie()
+        {
+            return lstPopulation[fittestGenome].Cities;
+        }
+        public List<Coordinate> GetCityCoordinates()
+        {
+            return objMap.lstCityCoordinates;
+        }
+
         public void Epoch()
         {
             Reset();
 
             CalculatePopulationFitness();
 
-            var objEA = new GAEventArgs
-            {
-                MapImage = objMap.MapImage
-            };
-            OnDrawMap(objEA);
-            objMap.Draw(lstPopulation[fittestGenome].Cities);
-
-            var lstNewPop = new List<Genome>();
+            var lstNewPop = new List<GAGenome>();
 
             lstPopulation = lstPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
@@ -430,9 +423,9 @@ namespace TSAProblem.GeneticAlgorithm
                 baby1List = MutateIVM(baby1List);
                 baby2List = MutateIVM(baby2List);
 
-                Genome baby1, baby2;
-                baby1 = new Genome();
-                baby2 = new Genome();
+                GAGenome baby1, baby2;
+                baby1 = new GAGenome();
+                baby2 = new GAGenome();
 
                 baby1.Cities = baby1List;
                 baby2.Cities = baby2List;
@@ -449,7 +442,7 @@ namespace TSAProblem.GeneticAlgorithm
         {
             for (int i = 0; i < Params.populationSize; i++)
             {
-                var objGenome = new Genome(Params.numberOfCities, objRandom);
+                var objGenome = new GAGenome(Params.numberOfCities, objRandom);
                 lstPopulation.Add(objGenome);
             }
         }
@@ -482,9 +475,9 @@ namespace TSAProblem.GeneticAlgorithm
             return lstReturn;
         }
 
-        private static List<Genome> Copy(List<Genome> listToCopy)
+        private static List<GAGenome> Copy(List<GAGenome> listToCopy)
         {
-            var lstReturn = new List<Genome>();
+            var lstReturn = new List<GAGenome>();
             for (int i = 0; i < listToCopy.Count; i++)
                 lstReturn.Add(listToCopy[i]);
 
