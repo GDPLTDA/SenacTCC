@@ -1,45 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
+using TCC.Core;
 
-namespace TSAProblem.GeneticAlgorithm
+namespace TCC.GeneticAlgorithm
 {
-    public class GAEventArgs : EventArgs
+    public class GATSP
     {
-        public Bitmap MapImage;
-    }
+        private List<GAGenome> lstPopulation { get; set; }
+        private GAMapTSP objMap { get; set; }
 
-    public delegate void DrawMapHandle(object sender, EventArgs e);
-    public class GaTSP
-    {
-        private List<Genome> lstPopulation;
-        private MapTSP objMap;
+        private GAParams Params { get; set; }
+        private int NumBest2Add { get; set; } = 1;
 
-        public event DrawMapHandle DrawMap;
-        protected virtual void OnDrawMap(EventArgs e)
-        {
-            if (DrawMap != null)
-                DrawMap(this, e);
-        }
-
-        private GAParams Params;
-        private int NumBest2Add = 1;
-
-        private double totalFitness;
-        private double shortestRoute;
+        private double totalFitness { get; set; }
+        private double shortestRoute { get; set; }
         public double BestSolution
         {
             get { return shortestRoute; }
         }
-        private double longestRoute;
-        private int fittestGenome;
-        public int generation;
-        private Random objRandom;
+        private double longestRoute { get; set; }
+        private int fittestGenome { get; set; }
+        public int generation { get; set; }
+        private Random objRandom { get; set; }
 
-        public GaTSP(GAParams tParams)
+        public GATSP(GAParams tParams)
         {
-            lstPopulation = new List<Genome>();
+            lstPopulation = new List<GAGenome>();
 
             Params = tParams;
 
@@ -50,10 +37,14 @@ namespace TSAProblem.GeneticAlgorithm
 
             objRandom = new Random();
 
-            objMap = new MapTSP(tParams.numberOfCities, tParams.MapaSize);
+            objMap = new GAMapTSP(tParams.numberOfCities, tParams.MapaSize);
             CreateStartingPopulation();
         }
 
+        public List<Coordinate> GetlstCityCoordinates()
+        {
+            return objMap.lstCityCoordinates;
+        }
         private List<int> Mutation(List<int> vector)
         {
             var lstMutated = Copy(vector);
@@ -155,16 +146,14 @@ namespace TSAProblem.GeneticAlgorithm
             var lstMutated = Copy(vector);
             int beg, end;
             beg = end = 0;
-            
-            ChooseSection(out beg, out end, lstMutated.Count, 2);
 
+            ChooseSection(out beg, out end, lstMutated.Count, 2);
             var lstTemp = new List<int>();
             for (int i = beg; i < end; i++)
             {
                 lstTemp.Add(lstMutated[beg]);
                 lstMutated.RemoveAt(beg);
             }
-
             lstTemp.Reverse();
             var count = 0;
             for (int i = beg; i < end; i++)
@@ -346,7 +335,6 @@ namespace TSAProblem.GeneticAlgorithm
             {
                 while (c2 < mum.Count && baby2[c2] > -1)
                     ++c2;
-
                 if (!baby2.Contains(mum[pos]))
                     baby2[c2] = mum[pos];
 
@@ -358,7 +346,7 @@ namespace TSAProblem.GeneticAlgorithm
             }
         }
 
-        private Genome RouletteWheelSelection()
+        private GAGenome RouletteWheelSelection()
         {
             var slice = objRandom.NextDouble() * totalFitness;
             var total = (double)0;
@@ -401,20 +389,22 @@ namespace TSAProblem.GeneticAlgorithm
             }
         }
 
+        public List<int> GetBestCitie()
+        {
+            return lstPopulation[fittestGenome].Cities;
+        }
+        public List<Coordinate> GetCityCoordinates()
+        {
+            return objMap.lstCityCoordinates;
+        }
+
         public void Epoch()
         {
             Reset();
 
             CalculatePopulationFitness();
 
-            var objEA = new GAEventArgs
-            {
-                MapImage = objMap.MapImage
-            };
-            OnDrawMap(objEA);
-            objMap.Draw(lstPopulation[fittestGenome].Cities);
-
-            var lstNewPop = new List<Genome>();
+            var lstNewPop = new List<GAGenome>();
 
             lstPopulation = lstPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
@@ -433,9 +423,9 @@ namespace TSAProblem.GeneticAlgorithm
                 baby1List = MutateIVM(baby1List);
                 baby2List = MutateIVM(baby2List);
 
-                Genome baby1, baby2;
-                baby1 = new Genome();
-                baby2 = new Genome();
+                GAGenome baby1, baby2;
+                baby1 = new GAGenome();
+                baby2 = new GAGenome();
 
                 baby1.Cities = baby1List;
                 baby2.Cities = baby2List;
@@ -452,7 +442,7 @@ namespace TSAProblem.GeneticAlgorithm
         {
             for (int i = 0; i < Params.populationSize; i++)
             {
-                var objGenome = new Genome(Params.numberOfCities, objRandom);
+                var objGenome = new GAGenome(Params.numberOfCities, objRandom);
                 lstPopulation.Add(objGenome);
             }
         }
@@ -485,9 +475,9 @@ namespace TSAProblem.GeneticAlgorithm
             return lstReturn;
         }
 
-        private static List<Genome> Copy(List<Genome> listToCopy)
+        private static List<GAGenome> Copy(List<GAGenome> listToCopy)
         {
-            var lstReturn = new List<Genome>();
+            var lstReturn = new List<GAGenome>();
             for (int i = 0; i < listToCopy.Count; i++)
                 lstReturn.Add(listToCopy[i]);
 
