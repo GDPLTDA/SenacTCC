@@ -18,3 +18,12 @@ C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\bin\Debug\TSAPr
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.Properties.Resources.resources
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.csproj.GenerateResource.Cache
 C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.FormTeste.resources
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\bin\Debug\TSAProblem.exe.config
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.exe
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.pdb
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\bin\Debug\TSAProblem.exe
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\bin\Debug\TSAProblem.pdb
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.csprojResolveAssemblyReference.cache
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.FormTeste.resources
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.Properties.Resources.resources
+C:\Users\rodri\Documents\Github\SenacTCC\Exemplos\TSAProblem\obj\Debug\TSAProblem.csproj.GenerateResource.Cache
