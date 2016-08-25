@@ -3,7 +3,7 @@
     /// <summary>
     /// Represents the search state of a Node
     /// </summary>
-    public enum NodeState
+    public enum ASNodeState
     {
         /// <summary>
         /// The node has not yet been considered in any possible paths

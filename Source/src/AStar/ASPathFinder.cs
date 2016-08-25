@@ -8,29 +8,32 @@ using TCC.Core;
 
 namespace TCC.AStar
 {
-    public class PathFinder
+    public class ASPathFinder
     {
         private int width;
         private int height;
-        private Node[,] nodes;
-        private Node startNode;
-        private Node endNode;
-        private SearchParameters searchParameters;
+        private ASNode[,] nodes;
+        private ASNode startNode;
+        private ASNode endNode;
+        private ASSearchParameters searchParameters;
 
         /// <summary>
         /// Create a new instance of PathFinder
         /// </summary>
         /// <param name="searchParameters"></param>
-        public PathFinder(SearchParameters searchParameters)
+        public ASPathFinder(ASSearchParameters tsearchParameters)
         {
-            this.searchParameters = searchParameters;
+            searchParameters = tsearchParameters;
             InitializeNodes(searchParameters.Map);
             int x = (int)searchParameters.StartLocation.X;
             int y = (int)searchParameters.StartLocation.Y;
 
-            this.startNode = this.nodes[x, y];
-            this.startNode.State = NodeState.Open;
-            this.endNode = this.nodes[x, y];
+            startNode = nodes[x, y];
+            startNode.State = ASNodeState.Open;
+
+            x = (int)searchParameters.EndLocation.X;
+            y = (int)searchParameters.EndLocation.Y;
+            endNode = nodes[x, y];
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace TCC.AStar
             if (success)
             {
                 // If a path was found, follow the parents from the end node to build a list of locations
-                Node node = this.endNode;
+                ASNode node = this.endNode;
                 while (node.ParentNode != null)
                 {
                     path.Add(node.Location);
@@ -67,14 +70,10 @@ namespace TCC.AStar
         {
             width = map.GetLength(0);
             height = map.GetLength(1);
-            nodes = new Node[width, height];
+            nodes = new ASNode[width, height];
             for (int y = 0; y < height; y++)
-            {
                 for (int x = 0; x < width; x++)
-                {
-                    nodes[x, y] = new Node(x, y, map[x, y], searchParameters.EndLocation);
-                }
-            }
+                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.EndLocation);
         }
 
         /// <summary>
@@ -82,28 +81,22 @@ namespace TCC.AStar
         /// </summary>
         /// <param name="currentNode">The node from which to find a path</param>
         /// <returns>True if a path to the destination has been found, otherwise false</returns>
-        private bool Search(Node currentNode)
+        private bool Search(ASNode currentNode)
         {
             // Set the current node to Closed since it cannot be traversed more than once
-            currentNode.State = NodeState.Closed;
-            List<Node> nextNodes = GetAdjacentWalkableNodes(currentNode);
+            currentNode.State = ASNodeState.Closed;
+            List<ASNode> nextNodes = GetAdjacentWalkableNodes(currentNode);
 
             // Sort by F-value so that the shortest possible routes are considered first
             nextNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
             foreach (var nextNode in nextNodes)
-            {
                 // Check whether the end node has been reached
-                if (nextNode.Location == this.endNode.Location)
-                {
+                if (nextNode.Location.X == endNode.Location.X && nextNode.Location.Y == endNode.Location.Y)
                     return true;
-                }
                 else
-                {
                     // If not, check the next set of nodes
                     if (Search(nextNode)) // Note: Recurses back into Search(Node)
                         return true;
-                }
-            }
 
             // The method returns false if this path leads to be a dead end
             return false;
@@ -114,9 +107,9 @@ namespace TCC.AStar
         /// </summary>
         /// <param name="fromNode">The node from which to return the next possible nodes in the path</param>
         /// <returns>A list of next possible nodes in the path</returns>
-        private List<Node> GetAdjacentWalkableNodes(Node fromNode)
+        private List<ASNode> GetAdjacentWalkableNodes(ASNode fromNode)
         {
-            List<Node> walkableNodes = new List<Node>();
+            List<ASNode> walkableNodes = new List<ASNode>();
             IEnumerable<Coordinate> nextLocations = GetAdjacentLocations(fromNode.Location);
 
             foreach (var location in nextLocations)
@@ -125,23 +118,23 @@ namespace TCC.AStar
                 int y = (int)location.Y;
 
                 // Stay within the grid's boundaries
-                if (x < 0 || x >= this.width || y < 0 || y >= this.height)
+                if (x < 0 || x >= width || y < 0 || y >= height)
                     continue;
 
-                Node node = this.nodes[x, y];
+                ASNode node = nodes[x, y];
                 // Ignore non-walkable nodes
                 if (!node.IsWalkable)
                     continue;
 
                 // Ignore already-closed nodes
-                if (node.State == NodeState.Closed)
+                if (node.State == ASNodeState.Closed)
                     continue;
 
                 // Already-open nodes are only added to the list if their G-value is lower going via this route.
-                if (node.State == NodeState.Open)
+                if (node.State == ASNodeState.Open)
                 {
-                    float traversalCost = Node.GetTraversalCost(node.Location, node.ParentNode.Location);
-                    float gTemp = fromNode.G + traversalCost;
+                    double traversalCost = ASNode.GetTraversalCost(node.Location, node.ParentNode.Location);
+                    double gTemp = fromNode.G + traversalCost;
                     if (gTemp < node.G)
                     {
                         node.ParentNode = fromNode;
@@ -152,7 +145,7 @@ namespace TCC.AStar
                 {
                     // If it's untested, set the parent and flag it as 'Open' for consideration
                     node.ParentNode = fromNode;
-                    node.State = NodeState.Open;
+                    node.State = ASNodeState.Open;
                     walkableNodes.Add(node);
                 }
             }

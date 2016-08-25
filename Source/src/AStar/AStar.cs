@@ -18,78 +18,50 @@ namespace TCC.AStar
         /// <summary>
         /// Outputs three examples of path finding to the Console.
         /// </summary>
-        /// <remarks>The examples have copied from the unit tests!</remarks>
-        public void Run()
-        {
-            // Start with a clear map (don't add any obstacles)
-            var WallConfig1 = WallSimple();
-            PathFinder pathFinder = new PathFinder(WallConfig1);
-            List<Coordinate> path = pathFinder.FindPath();
-            ShowRoute("The algorithm should find a direct path without obstacles:", path, WallConfig1);
+        ///// <remarks>The examples have copied from the unit tests!</remarks>
+        //public void Run()
+        //{
+        //    // Start with a clear map (don't add any obstacles)
+        //    var WallConfig1 = WallSimple();
+        //    ASPathFinder pathFinder = new ASPathFinder(WallConfig1);
+        //    List<Coordinate> path = pathFinder.FindPath();
+        //    ShowRoute("The algorithm should find a direct path without obstacles:", path, WallConfig1);
 
-            // Now add an obstacle
-            var WallConfig2 = WallWithGap();
-            pathFinder = new PathFinder(WallConfig2);
-            path = pathFinder.FindPath();
-            ShowRoute("The algorithm should find a route around the obstacle:", path, WallConfig2);
+        //    // Now add an obstacle
+        //    var WallConfig2 = WallWithGap();
+        //    pathFinder = new ASPathFinder(WallConfig2);
+        //    path = pathFinder.FindPath();
+        //    ShowRoute("The algorithm should find a route around the obstacle:", path, WallConfig2);
 
-            // Finally, create a barrier between the start and end points
-            var WallConfig3 = WallWithoutGap();
-            pathFinder = new PathFinder(WallConfig3);
-            path = pathFinder.FindPath();
-            ShowRoute("The algorithm should not be able to find a route around the barrier:", path, WallConfig3);
+        //    // Finally, create a barrier between the start and end points
+        //    var WallConfig3 = WallWithoutGap();
+        //    pathFinder = new ASPathFinder(WallConfig3);
+        //    path = pathFinder.FindPath();
+        //    ShowRoute("The algorithm should not be able to find a route around the barrier:", path, WallConfig3);
 
-            var WallConfig4 = WallFile();
-            pathFinder = new PathFinder(WallConfig4);
-            path = pathFinder.FindPath();
-            ShowRoute("Lendo o arquivo:", path, WallConfig4);
+        //    var WallConfig4 = WallFile();
+        //    pathFinder = new ASPathFinder(WallConfig4);
+        //    path = pathFinder.FindPath();
+        //    ShowRoute("Lendo o arquivo:", path, WallConfig4);
 
-            //for (int i = 0; i < 5; i++)
-            //{
-            //    InitializeMap();
-            //    Thread.Sleep(1000);
-            //    pathFinder = new PathFinder(WallRandom(););
-            //    path = pathFinder.FindPath();
-            //    ShowRoute("Random map", path);
-            //}
-            Console.WriteLine("Press any key to exit...");
-            Console.Read();
-        }
+        //    //for (int i = 0; i < 5; i++)
+        //    //{
+        //    //    InitializeMap();
+        //    //    Thread.Sleep(1000);
+        //    //    pathFinder = new PathFinder(WallRandom(););
+        //    //    path = pathFinder.FindPath();
+        //    //    ShowRoute("Random map", path);
+        //    //}
+        //    Console.WriteLine("Press any key to exit...");
+        //    Console.Read();
+        //}
 
         /// <summary>
         /// Displays the map and path as a simple grid to the console
         /// </summary>
         /// <param name="title">A descriptive title</param>
         /// <param name="path">The points that comprise the path</param>
-        private void ShowRoute(string title, IEnumerable<Coordinate> path, SearchParameters searchParameters)
-        {
-            Console.WriteLine("{0}\r\n", title);
-            bool[,] map = searchParameters.Map;
 
-            for (int y = 0; y < map.GetLength(1); y++) // Invert the Y-axis so that coordinate 0,0 is shown in the bottom-left
-            {
-                for (int x = 0; x < map.GetLength(0); x++)
-                {
-                    if (searchParameters.StartLocation.Equals(new Coordinate(x, y)))
-                        // Show the start position
-                        Console.Write('S');
-                    else if (searchParameters.EndLocation.Equals(new Coordinate(x, y)))
-                        // Show the end position
-                        Console.Write('E');
-                    else if (map[x, y] == false)
-                        // Show any barriers
-                        Console.Write('#');
-                    else if (path.Where(p => p.X == x && p.Y == y).Any())
-                        // Show the path in between
-                        Console.Write('*');
-                    else
-                        // Show nodes that aren't part of the path
-                        Console.Write('-');
-                }
-                Console.WriteLine();
-            }
-            Console.WriteLine();
-        }
 
         public bool[,] GetMap()
         {
@@ -105,7 +77,7 @@ namespace TCC.AStar
         /// <summary>
         /// Creates a clear map with a start and end point and sets up the search parameters
         /// </summary>
-        private SearchParameters WallSimple()
+        public ASSearchParameters WallSimple()
         {
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
@@ -118,13 +90,13 @@ namespace TCC.AStar
             var startLocation = new Coordinate(1, 2);
             var endLocation = new Coordinate(9, 2);
 
-            return new SearchParameters(startLocation, endLocation, map);
+            return new ASSearchParameters(startLocation, endLocation, map);
         }
 
         /// <summary>
         /// Create an L-shaped wall between S and F
         /// </summary>
-        private SearchParameters WallWithGap()
+        public ASSearchParameters WallWithGap()
         {
             //  □ □ □ ■ □ □ □
             //  □ □ □ ■ □ □ □
@@ -141,14 +113,14 @@ namespace TCC.AStar
             map[4, 1] = false;
             var startLocation = new Coordinate(1, 2);
             var endLocation = new Coordinate(9, 2);
-            return new SearchParameters(startLocation, endLocation, map);
+            return new ASSearchParameters(startLocation, endLocation, map);
         }
 
 
         /// <summary>
         /// Create an L-shaped wall between S and F
         /// </summary>
-        private SearchParameters WallRandom()
+        public ASSearchParameters WallRandom()
         {
             var map = GetMap();
             var h = map.GetLength(0);
@@ -165,14 +137,14 @@ namespace TCC.AStar
 
             var startLocation = new Coordinate(r.Next(h), r.Next(w));
             var endLocation = new Coordinate(r.Next(h), r.Next(w));
-            return new SearchParameters(startLocation, endLocation, map);
+            return new ASSearchParameters(startLocation, endLocation, map);
         }
 
 
         /// <summary>
         /// Create a closed barrier between S and F
         /// </summary>
-        private SearchParameters WallWithoutGap()
+        public ASSearchParameters WallWithoutGap()
         {
             //  □ □ □ ■ □ □ □
             //  □ □ □ ■ □ □ □
@@ -189,10 +161,10 @@ namespace TCC.AStar
             map[3, 0] = false;
             var startLocation = new Coordinate(1, 2);
             var endLocation = new Coordinate(9, 2);
-            return new SearchParameters(startLocation, endLocation, map);
+            return new ASSearchParameters(startLocation, endLocation, map);
         }
 
-        private SearchParameters WallFile()
+        public ASSearchParameters WallFile()
         {
             var map = GetMap();
             int x = 0, y = 0;
@@ -235,7 +207,7 @@ namespace TCC.AStar
                 }
             }
             
-            return new SearchParameters(startLocation, endLocation, map);
+            return new ASSearchParameters(startLocation, endLocation, map);
         }
 
     }

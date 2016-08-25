@@ -7,9 +7,9 @@ namespace TCC.AStar
     /// <summary>
     /// Represents a single node on a grid that is being searched for a path between two points
     /// </summary>
-    public class Node
+    public class ASNode
     {
-        private Node parentNode;
+        private ASNode parentNode;
 
         /// <summary>
         /// The node's location in the grid
@@ -24,37 +24,37 @@ namespace TCC.AStar
         /// <summary>
         /// Cost from start to here
         /// </summary>
-        public float G { get; private set; }
+        public double G { get; private set; }
 
         /// <summary>
         /// Estimated cost from here to end
         /// </summary>
-        public float H { get; private set; }
+        public double H { get; private set; }
 
         /// <summary>
         /// Flags whether the node is open, closed or untested by the PathFinder
         /// </summary>
-        public NodeState State { get; set; }
+        public ASNodeState State { get; set; }
 
         /// <summary>
         /// Estimated total cost (F = G + H)
         /// </summary>
-        public float F
+        public double F
         {
-            get { return this.G + this.H; }
+            get { return G + H; }
         }
 
         /// <summary>
         /// Gets or sets the parent node. The start node's parent is always null.
         /// </summary>
-        public Node ParentNode
+        public ASNode ParentNode
         {
-            get { return this.parentNode; }
+            get { return parentNode; }
             set
             {
                 // When setting the parent, also calculate the traversal cost from the start node to here (the 'G' value)
-                this.parentNode = value;
-                this.G = this.parentNode.G + GetTraversalCost(this.Location, this.parentNode.Location);
+                parentNode = value;
+                G = parentNode.G + GetTraversalCost(Location, parentNode.Location);
             }
         }
 
@@ -65,13 +65,13 @@ namespace TCC.AStar
         /// <param name="y">The node's location along the Y axis</param>
         /// <param name="isWalkable">True if the node can be traversed, false if the node is a wall</param>
         /// <param name="endLocation">The location of the destination node</param>
-        public Node(int x, int y, bool isWalkable, Coordinate endLocation)
+        public ASNode(int x, int y, bool isWalkable, Coordinate endLocation)
         {
-            this.Location = new Coordinate(x, y);
-            this.State = NodeState.Untested;
-            this.IsWalkable = isWalkable;
-            this.H = GetTraversalCost(this.Location, endLocation);
-            this.G = 0;
+            Location = new Coordinate(x, y);
+            State = ASNodeState.Untested;
+            IsWalkable = isWalkable;
+            H = GetTraversalCost(Location, endLocation);
+            G = 0;
         }
 
         public override string ToString()
@@ -82,11 +82,11 @@ namespace TCC.AStar
         /// <summary>
         /// Gets the distance between two points
         /// </summary>
-        internal static float GetTraversalCost(Coordinate location, Coordinate otherLocation)
+        internal static double GetTraversalCost(Coordinate location, Coordinate otherLocation)
         {
             double deltaX = otherLocation.X - location.X;
             double deltaY = otherLocation.Y - location.Y;
-            return (float)Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
+            return Math.Sqrt(deltaX * deltaX + deltaY * deltaY);
         }
     }
 }

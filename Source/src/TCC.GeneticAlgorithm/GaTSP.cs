@@ -7,22 +7,22 @@ namespace TCC.GeneticAlgorithm
 {
     public class GATSP
     {
-        private List<GAGenome> lstPopulation;
-        private GAMapTSP objMap;
+        private List<GAGenome> lstPopulation { get; set; }
+        private GAMapTSP objMap { get; set; }
 
-        private GAParams Params;
-        private int NumBest2Add = 1;
+        private GAParams Params { get; set; }
+        private int NumBest2Add { get; set; } = 1;
 
-        private double totalFitness;
-        private double shortestRoute;
+        private double totalFitness { get; set; }
+        private double shortestRoute { get; set; }
         public double BestSolution
         {
             get { return shortestRoute; }
         }
-        private double longestRoute;
-        private int fittestGenome;
-        public int generation;
-        private Random objRandom;
+        private double longestRoute { get; set; }
+        private int fittestGenome { get; set; }
+        public int generation { get; set; }
+        private Random objRandom { get; set; }
 
         public GATSP(GAParams tParams)
         {
