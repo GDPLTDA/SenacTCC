@@ -1,18 +1,22 @@
-﻿{
+{
   "version": "1.0.0-*",
   "buildOptions": {
-    "emitEntryPoint": false,
+    "emitEntryPoint": true,
     "debugType": "portable"
   },
 
   "dependencies": {
+    "AStar": "1.0.0-*",
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.0"
     },
     "System.Drawing.Primitives": "4.0.0",
     "System.Runtime": "4.1.0",
-    "System.Text.Encoding.CodePages": "4.0.1"
+    "System.Text.Encoding.CodePages": "4.0.1",
+    "TCC.Core": "1.0.0-*",
+    "TCC.GAFindingPath": "1.0.0-*",
+    "TCC.GeneticAlgorithm": "1.0.0-*",
   },
 
   "frameworks": {

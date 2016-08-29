@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using TCC.Core;
 
 namespace TCC.AStar
@@ -9,33 +8,27 @@ namespace TCC.AStar
     /// </summary>
     public class ASNode
     {
-        private ASNode parentNode;
-
+        private ASNode parentNode { get; set; }
         /// <summary>
         /// The node's location in the grid
         /// </summary>
         public Coordinate Location { get; private set; }
-
         /// <summary>
         /// True when the node may be traversed, otherwise false
         /// </summary>
         public bool IsWalkable { get; set; }
-        
         /// <summary>
         /// Cost from start to here
         /// </summary>
         public double G { get; private set; }
-
         /// <summary>
         /// Estimated cost from here to end
         /// </summary>
         public double H { get; private set; }
-
         /// <summary>
         /// Flags whether the node is open, closed or untested by the PathFinder
         /// </summary>
         public ASNodeState State { get; set; }
-
         /// <summary>
         /// Estimated total cost (F = G + H)
         /// </summary>
@@ -43,7 +36,6 @@ namespace TCC.AStar
         {
             get { return G + H; }
         }
-
         /// <summary>
         /// Gets or sets the parent node. The start node's parent is always null.
         /// </summary>
@@ -57,7 +49,6 @@ namespace TCC.AStar
                 G = parentNode.G + GetTraversalCost(Location, parentNode.Location);
             }
         }
-
         /// <summary>
         /// Creates a new instance of Node.
         /// </summary>
@@ -73,12 +64,6 @@ namespace TCC.AStar
             H = GetTraversalCost(Location, endLocation);
             G = 0;
         }
-
-        public override string ToString()
-        {
-            return string.Format("{0}, {1}: {2}", this.Location.X, this.Location.Y, this.State);
-        }
-
         /// <summary>
         /// Gets the distance between two points
         /// </summary>

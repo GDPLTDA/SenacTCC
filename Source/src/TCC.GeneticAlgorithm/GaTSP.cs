@@ -9,21 +9,14 @@ namespace TCC.GeneticAlgorithm
     {
         private List<GAGenome> lstPopulation { get; set; }
         private GAMapTSP objMap { get; set; }
-
         private GAParams Params { get; set; }
         private int NumBest2Add { get; set; } = 1;
-
         private double totalFitness { get; set; }
         private double shortestRoute { get; set; }
-        public double BestSolution
-        {
-            get { return shortestRoute; }
-        }
         private double longestRoute { get; set; }
         private int fittestGenome { get; set; }
         public int generation { get; set; }
-        private Random objRandom { get; set; }
-
+        private Random objRandom { get; set; } = new Random();
         public GATSP(GAParams tParams)
         {
             lstPopulation = new List<GAGenome>();
@@ -35,29 +28,24 @@ namespace TCC.GeneticAlgorithm
             shortestRoute = double.MaxValue;
             longestRoute = 0;
 
-            objRandom = new Random();
-
-            objMap = new GAMapTSP(tParams.numberOfCities, tParams.MapaSize);
+            objMap = new GAMapTSP(tParams.NumberOfCities, tParams.MapaSize);
             CreateStartingPopulation();
         }
-
         public List<Coordinate> GetlstCityCoordinates()
         {
-            return objMap.lstCityCoordinates;
+            return objMap.CityCoordinates;
         }
         private List<int> Mutation(List<int> vector)
         {
             var lstMutated = Copy(vector);
 
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.MutationRate) return lstMutated;
 
-            var pos1 = objRandom.Next(0, Params.numberOfCities);
+            var pos1 = objRandom.Next(0, Params.NumberOfCities);
             var pos2 = pos1;
 
             while (pos1 == pos2)
-            {
-                pos2 = objRandom.Next(0, Params.numberOfCities);
-            }
+                pos2 = objRandom.Next(0, Params.NumberOfCities);
 
             var temp = lstMutated[pos1];
             lstMutated[pos1] = lstMutated[pos2];
@@ -68,7 +56,7 @@ namespace TCC.GeneticAlgorithm
         public List<int> MutateSM(List<int> vector)
         {
             var lstMutated = Copy(vector);
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.MutationRate) return lstMutated;
 
             const int minSpanSize = 3;
             int beg, end;
@@ -101,7 +89,7 @@ namespace TCC.GeneticAlgorithm
         public List<int> MutateDM(List<int> vector)
         {
             var lstMutated = Copy(vector);
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.MutationRate) return lstMutated;
 
             const int minSpanSize = 3;
             int beg, end;
@@ -128,7 +116,7 @@ namespace TCC.GeneticAlgorithm
         public List<int> MutateIM(List<int> vector)
         {
             var lstMutated = Copy(vector);
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.MutationRate) return lstMutated;
 
             var randomPoint = objRandom.Next(0, lstMutated.Count);
             var tempNumber = lstMutated[randomPoint];
@@ -140,7 +128,7 @@ namespace TCC.GeneticAlgorithm
         }
         public List<int> MutateIVM(List<int> vector)
         {
-            if (objRandom.NextDouble() > Params.mutationRate)
+            if (objRandom.NextDouble() > Params.MutationRate)
                 return vector;
 
             var lstMutated = Copy(vector);
@@ -166,7 +154,7 @@ namespace TCC.GeneticAlgorithm
         public List<int> MutateDIVM(List<int> vector)
         {
             var lstMutated = Copy(vector);
-            if (objRandom.NextDouble() > Params.mutationRate) return lstMutated;
+            if (objRandom.NextDouble() > Params.MutationRate) return lstMutated;
 
             int beg, end;
             beg = end = 0;
@@ -201,13 +189,11 @@ namespace TCC.GeneticAlgorithm
 
             return lstMutated;
         }
-
-
         private void Crossover(List<int> mum, List<int> dad, out List<int> baby1, out List<int> baby2)
         {
             baby1 = Copy(mum);
             baby2 = Copy(dad);
-            if (objRandom.NextDouble() > Params.crossoverRate || AreEqual(mum, dad))
+            if (objRandom.NextDouble() > Params.CrossoverRate || AreEqual(mum, dad))
             {
                 return;
             }
@@ -248,7 +234,7 @@ namespace TCC.GeneticAlgorithm
         {
             baby1 = Copy(mum);
             baby2 = Copy(dad);
-            if (objRandom.NextDouble() > Params.crossoverRate || AreEqual(mum, dad))
+            if (objRandom.NextDouble() > Params.CrossoverRate || AreEqual(mum, dad))
             {
                 return;
             }
@@ -305,13 +291,11 @@ namespace TCC.GeneticAlgorithm
             baby1 = Copy(mum);
             baby2 = Copy(dad);
 
-            if (objRandom.NextDouble() > Params.crossoverRate || AreEqual(mum, dad))
+            if (objRandom.NextDouble() > Params.CrossoverRate || AreEqual(mum, dad))
                 return;
 
             for (int i = 0; i < mum.Count; i++)
                 baby1[i] = baby2[i] = -1;
-
-            //var l = baby2.Count;
 
             var lstPositions = new List<int>();
             var Pos = objRandom.Next(0, mum.Count - 1);
@@ -352,7 +336,7 @@ namespace TCC.GeneticAlgorithm
             var total = (double)0;
             var selectedGenome = 0;
 
-            for (int i = 0; i < Params.populationSize; i++)
+            for (int i = 0; i < Params.PopulationSize; i++)
             {
                 total += lstPopulation[i].Fitness;
 
@@ -368,7 +352,7 @@ namespace TCC.GeneticAlgorithm
         private void CalculatePopulationFitness()
         {
             totalFitness = 0;
-            for (int i = 0; i < Params.populationSize; ++i)
+            for (int i = 0; i < Params.PopulationSize; ++i)
             {
                 var tourLength = objMap.GetTourLength(lstPopulation[i].Cities);
                 lstPopulation[i].Fitness = tourLength;
@@ -382,7 +366,7 @@ namespace TCC.GeneticAlgorithm
                     longestRoute = tourLength;
             }
 
-            for (int i = 0; i < Params.populationSize; ++i)
+            for (int i = 0; i < Params.PopulationSize; ++i)
             {
                 lstPopulation[i].Fitness = longestRoute - lstPopulation[i].Fitness;
                 totalFitness += lstPopulation[i].Fitness;
@@ -395,7 +379,7 @@ namespace TCC.GeneticAlgorithm
         }
         public List<Coordinate> GetCityCoordinates()
         {
-            return objMap.lstCityCoordinates;
+            return objMap.CityCoordinates;
         }
 
         public void Epoch()
@@ -410,7 +394,7 @@ namespace TCC.GeneticAlgorithm
             for (int i = 0; i < NumBest2Add; i++)
                 lstNewPop.Add(lstPopulation[i]);
 
-            while (lstNewPop.Count <= Params.populationSize)
+            while (lstNewPop.Count <= Params.PopulationSize)
             {
                 var mom = RouletteWheelSelection();
                 var dad = RouletteWheelSelection();
@@ -437,12 +421,11 @@ namespace TCC.GeneticAlgorithm
 
             ++generation;
         }
-
         private void CreateStartingPopulation()
         {
-            for (int i = 0; i < Params.populationSize; i++)
+            for (int i = 0; i < Params.PopulationSize; i++)
             {
-                var objGenome = new GAGenome(Params.numberOfCities, objRandom);
+                var objGenome = new GAGenome(Params.NumberOfCities, objRandom);
                 lstPopulation.Add(objGenome);
             }
         }

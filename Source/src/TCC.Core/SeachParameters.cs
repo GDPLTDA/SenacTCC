@@ -11,18 +11,15 @@ namespace TCC.AStar
     /// <summary>
     /// Defines the parameters which will be used to find a path across a section of the map
     /// </summary>
-    public class ASSearchParameters
+    public class SeachParameters
     {
-        public Coordinate StartLocation { get; set; }
-
-        public Coordinate EndLocation { get; set; }
-        
+        public Coordinate LocationStart { get; set; }
+        public Coordinate LocationEnd { get; set; }
         public bool[,] Map { get; set; }
-
-        public ASSearchParameters(Coordinate startLocation, Coordinate endLocation, bool[,] map)
+        public SeachParameters(Coordinate startLocation, Coordinate endLocation, bool[,] map)
         {
-            StartLocation = startLocation;
-            EndLocation = endLocation;
+            LocationStart = startLocation;
+            LocationEnd = endLocation;
             Map = map;
         }
     }
