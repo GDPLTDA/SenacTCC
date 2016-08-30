@@ -158,7 +158,7 @@ namespace TCC.Interface
             var startLocation = new Coordinate(0, 0);
             var endLocation = new Coordinate(0, 0);
 
-            using (FileStream oFileStream = new FileStream(@"c:\test.txt", FileMode.Open))
+            using (FileStream oFileStream = new FileStream(@"test.txt", FileMode.Open))
             {
                 x = 0;
 
