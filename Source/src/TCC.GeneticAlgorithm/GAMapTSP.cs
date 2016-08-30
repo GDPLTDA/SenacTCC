@@ -6,56 +6,53 @@ namespace TCC.GeneticAlgorithm
 {
     public class GAMapTSP
     {
-        private int MapSize { get; set; }
-        public List<Coordinate> CityCoordinates { get; set; }
-        private int NumberOfCities { get; set; }
+        public List<Coordinate> Cities { get; set; }
+        private int NumberOfRoutes { get; set; }
         private double BestRoute { get; set; }
+
         public GAMapTSP(int tNumberOfCities, int tMapSize)
         {
-            MapSize = tMapSize;
+            NumberOfRoutes = tNumberOfCities;
+            Cities = new List<Coordinate>();
 
-            NumberOfCities = tNumberOfCities;
-            CityCoordinates = new List<Coordinate>();
-
-            CreateCitiesCirular(MapSize);
+            CreateCitiesRandom(tMapSize);
             CalculateBestPossibleRoute();
         }
-        public void CreateCitiesCirular(double tMapSize)
+        public void CreateCitiesRandom(double tMapSize)
         {
             var Ran = new Random();
+            var size = (int)tMapSize - 50;
 
-            for (int i = 0; i < NumberOfCities; i++)
+            for (int i = 0; i < NumberOfRoutes; i++)
             {
-                var x = Ran.Next(10, (int)tMapSize-50);
-                var y = Ran.Next(10, (int)tMapSize-50);
+                var x = Ran.Next(10, size);
+                var y = Ran.Next(10, size);
 
-                CityCoordinates.Add(new Coordinate(x,y));
+                Cities.Add(new Coordinate(x,y));
             }
-        }
-        private static double CalculateA2B(Coordinate tA, Coordinate tB)
-        {
-            return Math.Sqrt(Math.Pow(tA.X - tB.X, 2) + Math.Pow(tA.Y - tB.Y, 2));
         }
         private void CalculateBestPossibleRoute()
         {
             BestRoute = 0;
-            for (int i = 0; i < CityCoordinates.Count-1; i++)
-            {
-                BestRoute += CalculateA2B(CityCoordinates[i], CityCoordinates[i + 1]);
-            }
-            BestRoute += CalculateA2B(CityCoordinates[CityCoordinates.Count - 1],
-                CityCoordinates[0]);
+            for (int i = 0; i < Cities.Count-1; i++)
+                BestRoute += JJFunc.CalcteA2B(Cities[i], Cities[i + 1]);
+
+            BestRoute += JJFunc.CalcteA2B(Cities[Cities.Count - 1],
+                Cities[0]);
         }
-        public double GetTourLength(List<int> tListOfCities)
+        public double GetTourLength(List<Coordinate> tListOfCities)
         {
             double tourLength = 0;
-                for (int i = 0; i < tListOfCities.Count - 1; i++)
-                {
-                    tourLength += CalculateA2B(CityCoordinates[tListOfCities[i]],
-                        CityCoordinates[tListOfCities[i + 1]]);
-                }
-                tourLength += CalculateA2B(CityCoordinates[CityCoordinates.Count - 1],
-                    CityCoordinates[0]);
+
+            for (int i = 0; i < tListOfCities.Count - 1; i++) {
+                var a = Convert.ToInt32(tListOfCities[i].X);
+                var b = Convert.ToInt32(tListOfCities[i + 1].X);
+
+                tourLength += JJFunc.CalcteA2B(Cities[a], Cities[b]);
+            }
+
+            tourLength += JJFunc.CalcteA2B(Cities[Cities.Count - 1],
+                Cities[0]);
 
             return tourLength;
         }

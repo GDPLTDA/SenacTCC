@@ -16,7 +16,7 @@
     "System.Text.Encoding.CodePages": "4.0.1",
     "TCC.Core": "1.0.0-*",
     "TCC.GAFindingPath": "1.0.0-*",
-    "TCC.GeneticAlgorithm": "1.0.0-*",
+    "TCC.GeneticAlgorithm": "1.0.0-*"
   },
 
   "frameworks": {

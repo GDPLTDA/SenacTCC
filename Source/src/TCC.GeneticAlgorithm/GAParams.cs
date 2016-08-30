@@ -6,6 +6,6 @@
         public double MutationRate { get; set; }
         public double CrossoverRate { get; set; }
         public int PopulationSize { get; set; }
-        public int NumberOfCities { get; set; }
+        public int NumberOfRoutes { get; set; }
     }
 }

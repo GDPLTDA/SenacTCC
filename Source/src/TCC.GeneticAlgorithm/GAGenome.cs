@@ -1,54 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using TCC.Core;
 
 namespace TCC.GeneticAlgorithm
 {
     public class GAGenome
     {
-        private List<int> cities { get; set; }
-        private double fitness { get; set; }
-        public List<int> Cities
-        {
-            set { cities = value; }
-            get { return cities; }
-        }
-        public double Fitness
-        {
-            set { fitness = value; }
-            get { return fitness; }
-        }
-        private Random objRandom { get; set; }
+        public List<Coordinate> Route { get; set; }
+        public double Fitness { get; set; }
         public GAGenome()
         {
-            this.fitness = 0;
+            Fitness = 0;
         }
-
-        public GAGenome(int numberOfCities,Random objRandom)
+        public GAGenome(int numberOfCities)
         {
-            this.fitness = 0;
-            this.objRandom = objRandom;
-            cities = GrabPermutation(numberOfCities);
+            Fitness = 0;
+            Route = GrabPermutation(numberOfCities);
         }
-        private List<int> GrabPermutation(int limit)
+        private List<Coordinate> GrabPermutation(int limit)
         {
-            var lstVecPerm = new List<int>();
+            var lstVecPerm = new List<Coordinate>();
+            var objRandom = new Random();
 
             for (int i = 0; i < limit; i++)
             {
                 var nextPossibleNumber = objRandom.Next(0, limit);
-
+                
                 while (TestNumber(lstVecPerm, nextPossibleNumber))
-                {
                     nextPossibleNumber = objRandom.Next(0, limit);
-                }
 
-                lstVecPerm.Add(nextPossibleNumber);
+                lstVecPerm.Add(new Coordinate(nextPossibleNumber,0));
             }
             return lstVecPerm;
         }
-        private static bool TestNumber(List<int> vector, int NextPossibleNumber)
+        private static bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
         {
-            return vector.Contains(NextPossibleNumber);
+            return vector.Exists(i=>i.X == NextPossibleNumber);
         }
     }
 }
