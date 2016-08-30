@@ -5,8 +5,8 @@ namespace TCC.GeneticAlgorithm
 {
     public class GAGenome
     {
-        private List<int> cities;
-        private double fitness;
+        private List<int> cities { get; set; }
+        private double fitness { get; set; }
         public List<int> Cities
         {
             set { cities = value; }
@@ -17,9 +17,7 @@ namespace TCC.GeneticAlgorithm
             set { fitness = value; }
             get { return fitness; }
         }
-
-        private Random objRandom;
-
+        private Random objRandom { get; set; }
         public GAGenome()
         {
             this.fitness = 0;
@@ -31,7 +29,6 @@ namespace TCC.GeneticAlgorithm
             this.objRandom = objRandom;
             cities = GrabPermutation(numberOfCities);
         }
-
         private List<int> GrabPermutation(int limit)
         {
             var lstVecPerm = new List<int>();
@@ -49,7 +46,6 @@ namespace TCC.GeneticAlgorithm
             }
             return lstVecPerm;
         }
-
         private static bool TestNumber(List<int> vector, int NextPossibleNumber)
         {
             return vector.Contains(NextPossibleNumber);

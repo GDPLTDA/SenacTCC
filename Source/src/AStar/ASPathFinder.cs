@@ -1,41 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TCC.Core;
 
 namespace TCC.AStar
 {
     public class ASPathFinder
     {
-        private int width;
-        private int height;
-        private ASNode[,] nodes;
-        private ASNode startNode;
-        private ASNode endNode;
-        private ASSearchParameters searchParameters;
-
+        private int width { get; set; }
+        private int height { get; set; }
+        private ASNode[,] nodes { get; set; }
+        private ASNode startNode { get; set; }
+        private ASNode endNode { get; set; }
+        private SeachParameters searchParameters { get; set; }
         /// <summary>
         /// Create a new instance of PathFinder
         /// </summary>
         /// <param name="searchParameters"></param>
-        public ASPathFinder(ASSearchParameters tsearchParameters)
+        public ASPathFinder(SeachParameters tsearchParameters)
         {
             searchParameters = tsearchParameters;
             InitializeNodes(searchParameters.Map);
-            int x = (int)searchParameters.StartLocation.X;
-            int y = (int)searchParameters.StartLocation.Y;
+            int x = (int)searchParameters.LocationStart.X;
+            int y = (int)searchParameters.LocationStart.Y;
 
             startNode = nodes[x, y];
             startNode.State = ASNodeState.Open;
 
-            x = (int)searchParameters.EndLocation.X;
-            y = (int)searchParameters.EndLocation.Y;
+            x = (int)searchParameters.LocationEnd.X;
+            y = (int)searchParameters.LocationEnd.Y;
             endNode = nodes[x, y];
         }
-
         /// <summary>
         /// Attempts to find a path from the start location to the end location based on the supplied SearchParameters
         /// </summary>
@@ -48,7 +41,7 @@ namespace TCC.AStar
             if (success)
             {
                 // If a path was found, follow the parents from the end node to build a list of locations
-                ASNode node = this.endNode;
+                ASNode node = endNode;
                 while (node.ParentNode != null)
                 {
                     path.Add(node.Location);
@@ -61,7 +54,6 @@ namespace TCC.AStar
 
             return path;
         }
-
         /// <summary>
         /// Builds the node grid from a simple grid of booleans indicating areas which are and aren't walkable
         /// </summary>
@@ -73,9 +65,8 @@ namespace TCC.AStar
             nodes = new ASNode[width, height];
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.EndLocation);
+                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.LocationEnd);
         }
-
         /// <summary>
         /// Attempts to find a path to the destination node using <paramref name="currentNode"/> as the starting location
         /// </summary>
@@ -101,7 +92,6 @@ namespace TCC.AStar
             // The method returns false if this path leads to be a dead end
             return false;
         }
-
         /// <summary>
         /// Returns any nodes that are adjacent to <paramref name="fromNode"/> and may be considered to form the next step in the path
         /// </summary>
@@ -152,7 +142,6 @@ namespace TCC.AStar
 
             return walkableNodes;
         }
-
         /// <summary>
         /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
         /// </summary>
