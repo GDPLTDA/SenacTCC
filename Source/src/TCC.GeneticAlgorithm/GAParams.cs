@@ -2,6 +2,7 @@
 {
     public class GAParams
     {
+        
         public int MapaSize { get; set; }
         public double MutationRate { get; set; }
         public double CrossoverRate { get; set; }

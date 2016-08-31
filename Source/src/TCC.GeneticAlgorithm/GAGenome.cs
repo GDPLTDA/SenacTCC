@@ -12,10 +12,16 @@ namespace TCC.GeneticAlgorithm
         {
             Fitness = 0;
         }
-        public GAGenome(int numberOfCities)
+        public GAGenome(SeachParameters tParams)
         {
             Fitness = 0;
-            Route = GrabPermutation(numberOfCities);
+            Route = RouteFinding(tParams);
+        }
+
+        public GAGenome(int numberOfRoute)
+        {
+            Fitness = 0;
+            Route = GrabPermutation(numberOfRoute);
         }
         private List<Coordinate> GrabPermutation(int limit)
         {
@@ -36,6 +42,33 @@ namespace TCC.GeneticAlgorithm
         private static bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
         {
             return vector.Exists(i=>i.X == NextPossibleNumber);
+        }
+        /// <summary>
+        /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
+        /// </summary>
+        /// <param name="fromLocation">The location from which to return all adjacent points</param>
+        /// <returns>The locations as an IEnumerable of Points</returns>
+        public static List<Coordinate> RouteFinding(SeachParameters tParam)
+        {
+            var lstVecPerm = new List<Coordinate>();
+            var objRandom = new Random();
+            bool run = true;
+            var coor = tParam.LocationStart;
+
+            while (run)
+            {
+                lstVecPerm.Add(coor);
+                var lisadj = JJFunc.GetAdjacentLocations(coor);
+
+                var i = objRandom.Next(0, lisadj.Count -1);
+
+                if(!tParam.Valid(lisadj[i]))
+                    run = false;
+
+                coor = lisadj[i];
+            }
+
+            return lstVecPerm;
         }
     }
 }

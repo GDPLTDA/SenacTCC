@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using TCC.Core;
 
-namespace TCC.AStar
+namespace TCC.Astar
 {
     public class ASPathFinder
     {
@@ -100,7 +100,7 @@ namespace TCC.AStar
         private List<ASNode> GetAdjacentWalkableNodes(ASNode fromNode)
         {
             List<ASNode> walkableNodes = new List<ASNode>();
-            IEnumerable<Coordinate> nextLocations = GetAdjacentLocations(fromNode.Location);
+            List<Coordinate> nextLocations = JJFunc.GetAdjacentLocations(fromNode.Location);
 
             foreach (var location in nextLocations)
             {
@@ -141,25 +141,6 @@ namespace TCC.AStar
             }
 
             return walkableNodes;
-        }
-        /// <summary>
-        /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
-        /// </summary>
-        /// <param name="fromLocation">The location from which to return all adjacent points</param>
-        /// <returns>The locations as an IEnumerable of Points</returns>
-        private static IEnumerable<Coordinate> GetAdjacentLocations(Coordinate fromLocation)
-        {
-            return new Coordinate[]
-            {
-                new Coordinate(fromLocation.X-1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X-1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X-1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X,   fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X+1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X,   fromLocation.Y-1)
-            };
         }
     }
 }

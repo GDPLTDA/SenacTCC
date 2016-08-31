@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using TCC.AStar;
+using TCC.Astar;
 using TCC.Core;
+using TCC.GAFindingPath;
+using TCC.GeneticAlgorithm;
 
-namespace TCC.Interface
+namespace TCC.OutPutConsole
 {
     class Program
     {
@@ -15,11 +17,15 @@ namespace TCC.Interface
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var WallConfig1 = WallSimple();
-            Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
+            //var WallConfig1 = WallSimple();
+            //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
 
-            var WallConfig4 = WallFile();
-            Run(WallConfig4, "Lendo o arquivo:");
+            //var WallConfig4 = WallFile();
+            //Run(WallConfig4, "Lendo o arquivo:");
+
+            var tGaParams = TesteGA();
+            var WallGA = WallSimple();
+            RunGA(tGaParams, WallGA, "GA:");
         }
         static void Run(SeachParameters tParams, string Msg)
         {
@@ -27,17 +33,31 @@ namespace TCC.Interface
             var path = pathFinder.FindPath();
             ShowRoute(Msg, path, tParams);
         }
-        static bool[,] GetMap()
-        {
-            int w = 30, h = 20;
-            var map = new bool[w, h];
-            for (int y = 0; y < h; y++)
-                for (int x = 0; x < w; x++)
-                    map[x, y] = true;
 
-            return map;
+        static void RunGA(GAParams tGaParams, SeachParameters tParams, string Msg)
+        {
+            var pathFinder = new GAFP(tGaParams, tParams);
+
+            pathFinder.Epoch();
+
+            var path = pathFinder.GetBestPath();
+            ShowRoute(Msg, path, tParams);
         }
-        static void ShowRoute(string title, IEnumerable<Coordinate> path, SeachParameters searchParameters)
+
+        static GAParams TesteGA()
+        {
+            var map = JJFunc.GetMap();
+            var Retorno = new GAParams
+            {
+                MutationRate = 0.3,
+                CrossoverRate = 0.4,
+                PopulationSize = 100,
+                MapaSize = map.Length
+            };
+
+            return Retorno;
+        }
+        static void ShowRoute(string title, List<Coordinate> path, SeachParameters searchParameters)
         {
             Console.WriteLine("{0}\r\n", title);
             bool[,] map = searchParameters.Map;
@@ -77,7 +97,7 @@ namespace TCC.Interface
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
 
-            var map = GetMap();
+            var map = JJFunc.GetMap();
 
             var startLocation = new Coordinate(1, 2);
             var endLocation = new Coordinate(9, 2);
@@ -96,7 +116,7 @@ namespace TCC.Interface
             //  □ □ □ □ □ □ □
 
             // Path: 1,2 ; 2,1 ; 3,0 ; 4,0 ; 5,1 ; 5,2
-            var map = GetMap();
+            var map = JJFunc.GetMap();
             map[3, 4] = false;
             map[3, 3] = false;
             map[3, 2] = false;
@@ -111,7 +131,7 @@ namespace TCC.Interface
         /// </summary>
         static SeachParameters WallRandom()
         {
-            var map = GetMap();
+            var map = JJFunc.GetMap();
             var h = map.GetLength(0);
             var w = map.GetLength(1);
 
@@ -140,7 +160,7 @@ namespace TCC.Interface
             //  □ □ □ ■ □ □ □
 
             // No path
-            var map = GetMap();
+            var map = JJFunc.GetMap();
             map[3, 4] = false;
             map[3, 3] = false;
             map[3, 2] = false;
@@ -152,7 +172,7 @@ namespace TCC.Interface
         }
         static SeachParameters WallFile()
         {
-            var map = GetMap();
+            var map = JJFunc.GetMap();
             int x = 0, y = 0;
             byte Dig;
             var startLocation = new Coordinate(0, 0);

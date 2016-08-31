@@ -16,6 +16,7 @@ namespace TCC.GeneticAlgorithm
         private double longestRoute { get; set; } = 0;
         private int fittestGenome { get; set; } = 0;
         public int generation { get; set; } = 0;
+        public double BestSolution { get { return objMap.BestRoute; } } 
         private Random objRandom { get; set; } = new Random();
         public GaTSP(GAParams tParams)
         {

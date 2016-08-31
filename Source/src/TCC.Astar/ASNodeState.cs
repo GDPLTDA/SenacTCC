@@ -1,4 +1,4 @@
-﻿namespace TCC.AStar
+﻿namespace TCC.Astar
 {
     /// <summary>
     /// Represents the search state of a Node
