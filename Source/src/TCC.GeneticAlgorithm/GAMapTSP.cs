@@ -8,7 +8,7 @@ namespace TCC.GeneticAlgorithm
     {
         public List<Coordinate> Cities { get; set; }
         private int NumberOfRoutes { get; set; }
-        private double BestRoute { get; set; }
+        public double BestRoute { get; set; }
 
         public GAMapTSP(int tNumberOfCities, int tMapSize)
         {

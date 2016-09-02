@@ -1,26 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using TCC.Core;
 
 namespace TCC.GeneticAlgorithm
 {
     public class GAGenome
     {
+        int max = 1000;
         public List<Coordinate> Route { get; set; }
         public double Fitness { get; set; }
+        static Random objRandom;
         public GAGenome()
         {
             Fitness = 0;
         }
-        public GAGenome(int numberOfCities)
+        public GAGenome(SeachParameters tParams, Random tobjRandom)
+        {
+            objRandom = tobjRandom;
+            Fitness = 0;
+            Route = RouteFinding(tParams);
+        }
+
+        public GAGenome(int numberOfRoute)
         {
             Fitness = 0;
-            Route = GrabPermutation(numberOfCities);
+            Route = GrabPermutation(numberOfRoute);
         }
         private List<Coordinate> GrabPermutation(int limit)
         {
             var lstVecPerm = new List<Coordinate>();
-            var objRandom = new Random();
 
             for (int i = 0; i < limit; i++)
             {
@@ -33,9 +42,56 @@ namespace TCC.GeneticAlgorithm
             }
             return lstVecPerm;
         }
-        private static bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
+        private bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
         {
             return vector.Exists(i=>i.X == NextPossibleNumber);
+        }
+        /// <summary>
+        /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
+        /// </summary>
+        /// <param name="fromLocation">The location from which to return all adjacent points</param>
+        /// <returns>The locations as an IEnumerable of Points</returns>
+        public List<Coordinate> RouteFinding(SeachParameters tParam)
+        {
+            var lstVecPerm = new List<Coordinate>();
+            bool run = true;
+            var coor = tParam.LocationStart;
+            while (run)
+            {
+                lstVecPerm.Add(coor);
+                var lisadj = JJFunc.GetAdjacentLocations(coor);
+
+                var i = objRandom.Next(0, lisadj.Count -1);
+
+                if(!tParam.Valid(lisadj[i]))
+                    run = false;
+
+                coor = lisadj[i];
+            }
+
+            return lstVecPerm;
+        }
+
+        public static Coordinate AddCoor(SeachParameters tParam, Coordinate tCoor)
+        {
+            var run = true;
+            var i = 0;
+            List<Coordinate> lisadj = new List<Coordinate>();
+            var max = 0;
+            while (run)
+            {
+                lisadj = JJFunc.GetAdjacentLocations(tCoor);
+
+                i = objRandom.Next(0, lisadj.Count - 1);
+
+                if (!tParam.Valid(lisadj[i]))
+                    run = false;
+
+                max++;
+                if (max > 30)
+                    return tCoor;
+            }
+            return lisadj[i];
         }
     }
 }

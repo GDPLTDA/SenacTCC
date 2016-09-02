@@ -1,5 +1,8 @@
 {
   "version": "1.0.0-*",
+  "dependencies": {
+    "TCC.Core": "1.0.0-*" 
+  },
   "frameworks": {
     "net451": {},
     "netstandard1.5": {
@@ -11,10 +14,5 @@
         "portable-net451+win8"
       ]
     }
-  },
-  "dependencies": {
-    "TCC.Astar": "1.0.0-*",
-    "TCC.Core": "1.0.0-*",
-    "TCC.GeneticAlgorithm": "1.0.0-*"
   }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using TCC.Core;
 
-namespace TCC.AStar
+namespace TCC.Astar
 {
     /// <summary>
     /// Represents a single node on a grid that is being searched for a path between two points
