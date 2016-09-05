@@ -122,8 +122,17 @@ namespace TCC.GeneticAlgorithm
             baby1 = JJFunc.Copy(mum);
             baby2 = JJFunc.Copy(dad);
 
+            baby1 = baby1.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+            baby2 = baby2.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+
             if (objRandom.NextDouble() > Params.CrossoverRate || JJFunc.AreEqual(mum, dad))
                 return;
+
+            mum = JJFunc.EqualSize(mum, dad);
+            dad = JJFunc.EqualSize(dad, mum);
+
+            baby1 = JJFunc.Copy(mum);
+            baby2 = JJFunc.Copy(dad);
 
             for (int i = 0; i < mum.Count; i++)
                 baby1[i] = baby2[i] = new Coordinate(-1, -1);
@@ -159,6 +168,9 @@ namespace TCC.GeneticAlgorithm
                 if (c1 < baby1.Count && !baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi))
                     baby1[c1] = dad[pos];
             }
+
+            baby1 = baby1.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+            baby2 = baby2.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
         }
     }
 }

@@ -84,19 +84,18 @@ namespace TCC.GeneticAlgorithm
             var run = true;
             var i = 0;
             List<Coordinate> lisadj = new List<Coordinate>();
-            var max = 0;
+
+            if (!tParam.Valid(tCoor))
+                return tCoor;
+
             while (run)
             {
                 lisadj = JJFunc.GetAdjacentLocations(tCoor);
 
                 i = objRandom.Next(0, lisadj.Count - 1);
 
-                if (!tParam.Valid(lisadj[i]))
-                    run = false;
+                run = !tParam.Valid(lisadj[i]);
 
-                max++;
-                if (max > 30)
-                    return tCoor;
             }
             return lisadj[i];
         }

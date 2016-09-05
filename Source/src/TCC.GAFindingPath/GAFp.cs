@@ -63,6 +63,12 @@ namespace TCC.GAFindingPath
                 baby1List = ObjMutate.MutateIVM(baby1List);
                 baby2List = ObjMutate.MutateIVM(baby2List);
 
+                var newcoor1 = GAGenome.AddCoor(SeachParams, baby1List.Last());
+                var newcoor2 = GAGenome.AddCoor(SeachParams, baby2List.Last());
+
+                baby1List.Add(newcoor1);
+                baby2List.Add(newcoor2);
+
                 var baby1 = new GAGenome(baby1List, objRandom);
                 var baby2 = new GAGenome(baby2List, objRandom);
 

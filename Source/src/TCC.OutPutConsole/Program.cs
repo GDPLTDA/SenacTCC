@@ -46,15 +46,14 @@ namespace TCC.OutPutConsole
                 pathFinder.Epoch();
                 var path = pathFinder.GetBestPath();
 
-                if (pathFinder.Generation % 10 == 0)
-                {
+                //if (pathFinder.Generation % 10 == 0)
+                //{
                     Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
                     ShowRoute(Msg, path, tParams);
-                }
+                //}
                 
             }
         }
-
         static GAParams TesteGA()
         {
             var map = JJFunc.GetMap();
@@ -134,7 +133,7 @@ namespace TCC.OutPutConsole
             map[3, 1] = false;
             map[4, 1] = false;
             var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var endLocation = new Coordinate(15, 15);
             return new SeachParameters(startLocation, endLocation, map);
         }
         /// <summary>
