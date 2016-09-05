@@ -47,8 +47,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\TCC.GeneticAlgorithm\bin\Debug\net451\TCC.Core.dll</HintPath>
     </Reference>
-    <Reference Include="TCC.GeneticAlgorithm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="TCC.GeneticAlgorithm">
       <HintPath>..\TCC.GeneticAlgorithm\bin\Debug\net451\TCC.GeneticAlgorithm.dll</HintPath>
     </Reference>
   </ItemGroup>

@@ -11,8 +11,10 @@ namespace TCC.GeneticAlgorithm
         public List<Coordinate> Route { get; set; }
         public double Fitness { get; set; }
         static Random objRandom;
-        public GAGenome()
+        public GAGenome(List<Coordinate> tListRoute, Random tobjRandom)
         {
+            objRandom = tobjRandom;
+            Route = tListRoute;
             Fitness = 0;
         }
         public GAGenome(SeachParameters tParams, Random tobjRandom)
@@ -22,8 +24,9 @@ namespace TCC.GeneticAlgorithm
             Route = RouteFinding(tParams);
         }
 
-        public GAGenome(int numberOfRoute)
+        public GAGenome(int numberOfRoute, Random tobjRandom)
         {
+            objRandom = tobjRandom;
             Fitness = 0;
             Route = GrabPermutation(numberOfRoute);
         }
@@ -38,13 +41,13 @@ namespace TCC.GeneticAlgorithm
                 while (TestNumber(lstVecPerm, nextPossibleNumber))
                     nextPossibleNumber = objRandom.Next(0, limit);
 
-                lstVecPerm.Add(new Coordinate(nextPossibleNumber,0));
+                lstVecPerm.Add(new Coordinate(nextPossibleNumber, 0));
             }
             return lstVecPerm;
         }
         private bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
         {
-            return vector.Exists(i=>i.X == NextPossibleNumber);
+            return vector.Exists(i=>i.Xi == NextPossibleNumber);
         }
         /// <summary>
         /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
@@ -56,15 +59,19 @@ namespace TCC.GeneticAlgorithm
             var lstVecPerm = new List<Coordinate>();
             bool run = true;
             var coor = tParam.LocationStart;
+
             while (run)
             {
-                lstVecPerm.Add(coor);
+                // verfica se não está voltando para o mesmo no anterior
+                if(!lstVecPerm.Exists(x=>x.Xi == coor.Xi && x.Yi == coor.Yi))
+                    lstVecPerm.Add(coor);
+
                 var lisadj = JJFunc.GetAdjacentLocations(coor);
 
                 var i = objRandom.Next(0, lisadj.Count -1);
 
-                if(!tParam.Valid(lisadj[i]))
-                    run = false;
+                // verifica se teve colisão ou se encontrou o fim
+                run = tParam.Valid(lisadj[i]);
 
                 coor = lisadj[i];
             }

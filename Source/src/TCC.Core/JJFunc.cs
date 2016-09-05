@@ -7,11 +7,21 @@ namespace TCC.Core
 {
     public static class JJFunc
     {
+        public static List<Coordinate> EqualSize(List<Coordinate> tA, List<Coordinate> tB)
+        {
+            int ca = tA.Count, cb = tB.Count;
+
+            if(ca < cb)
+                for (int i = 0; i < cb - ca; i++)
+                    tA.Add(new Coordinate(-1, -1));
+
+            return tA;
+        }
+
         public static double CalcteA2B(Coordinate tA, Coordinate tB)
         {
             return Math.Sqrt(Math.Pow(tA.X - tB.X, 2) + Math.Pow(tA.Y - tB.Y, 2));
         }
-
         public static bool[,] GetMap()
         {
             int w = 30, h = 20;
@@ -22,7 +32,6 @@ namespace TCC.Core
 
             return map;
         }
-
         public static List<Coordinate> GetAdjacentLocations(Coordinate fromLocation)
         {
             return new List<Coordinate>

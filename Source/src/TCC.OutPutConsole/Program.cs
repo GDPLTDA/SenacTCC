@@ -20,8 +20,8 @@ namespace TCC.OutPutConsole
             //var WallConfig1 = WallSimple();
             //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
 
-            var WallConfig4 = WallWithGap();
-            Run(WallConfig4, "Lendo o arquivo:");
+            //var WallConfig4 = WallWithGap();
+            //Run(WallConfig4, "Lendo o arquivo:");
 
             //var WallConfig5 = WallFile();
             //Run(WallConfig5, "Lendo o arquivo:");
@@ -44,14 +44,11 @@ namespace TCC.OutPutConsole
             while (true)
             {
                 pathFinder.Epoch();
-
-                
-
                 var path = pathFinder.GetBestPath();
 
-                if (pathFinder.generation % 10 == 0)
+                if (pathFinder.Generation % 10 == 0)
                 {
-                    Console.WriteLine("G:{0}\r\n", pathFinder.generation);
+                    Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
                     ShowRoute(Msg, path, tParams);
                 }
                 
