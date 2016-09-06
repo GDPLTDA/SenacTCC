@@ -104,7 +104,7 @@ namespace TCC.GeneticAlgorithm
         }
         public List<Coordinate> MutateIVM(List<Coordinate> vector)
         {
-            if (objRandom.NextDouble() > Params.MutationRate)
+            if (objRandom.NextDouble() > Params.MutationRate || vector.Count() < 2)
                 return vector;
 
             var lstMutated = JJFunc.Copy(vector);

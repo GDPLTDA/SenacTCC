@@ -60,8 +60,8 @@ namespace TCC.GAFindingPath
 
                 ObjCrossOver.CrossoverPBX(mom.Route, dad.Route, out baby1List, out baby2List);
 
-                baby1List = ObjMutate.MutateIVM(baby1List);
-                baby2List = ObjMutate.MutateIVM(baby2List);
+                //baby1List = ObjMutate.MutateIVM(baby1List);
+                //baby2List = ObjMutate.MutateIVM(baby2List);
 
                 var newcoor1 = GAGenome.AddCoor(SeachParams, baby1List.Last());
                 var newcoor2 = GAGenome.AddCoor(SeachParams, baby2List.Last());

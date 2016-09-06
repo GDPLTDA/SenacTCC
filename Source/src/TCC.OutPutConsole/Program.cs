@@ -20,14 +20,14 @@ namespace TCC.OutPutConsole
             //var WallConfig1 = WallSimple();
             //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
 
-            //var WallConfig4 = WallWithGap();
+            //var WallConfig4 = WallFile();
             //Run(WallConfig4, "Lendo o arquivo:");
 
             //var WallConfig5 = WallFile();
             //Run(WallConfig5, "Lendo o arquivo:");
 
             var tGaParams = TesteGA();
-            var WallGA = WallWithGap();
+            var WallGA = WallFile();
             RunGA(tGaParams, WallGA, "GA:");
         }
         static void Run(SeachParameters tParams, string Msg)

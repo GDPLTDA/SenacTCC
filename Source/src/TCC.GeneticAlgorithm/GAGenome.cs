@@ -7,7 +7,6 @@ namespace TCC.GeneticAlgorithm
 {
     public class GAGenome
     {
-        int max = 1000;
         public List<Coordinate> Route { get; set; }
         public double Fitness { get; set; }
         static Random objRandom;
