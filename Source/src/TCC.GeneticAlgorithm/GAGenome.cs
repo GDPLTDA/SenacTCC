@@ -1,58 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using TCC.Core;
 
 namespace TCC.GeneticAlgorithm
 {
     public class GAGenome
     {
-        private List<int> cities;
-        private double fitness;
-        public List<int> Cities
+        public List<Coordinate> Route { get; set; }
+        public double Fitness { get; set; }
+        static Random objRandom;
+        public GAGenome(List<Coordinate> tListRoute, Random tobjRandom)
         {
-            set { cities = value; }
-            get { return cities; }
+            objRandom = tobjRandom;
+            Route = tListRoute;
+            Fitness = 0;
         }
-        public double Fitness
+        public GAGenome(SeachParameters tParams, Random tobjRandom)
         {
-            set { fitness = value; }
-            get { return fitness; }
-        }
-
-        private Random objRandom;
-
-        public GAGenome()
-        {
-            this.fitness = 0;
+            objRandom = tobjRandom;
+            Fitness = 0;
+            Route = RouteFinding(tParams);
         }
 
-        public GAGenome(int numberOfCities,Random objRandom)
+        public GAGenome(int numberOfRoute, Random tobjRandom)
         {
-            this.fitness = 0;
-            this.objRandom = objRandom;
-            cities = GrabPermutation(numberOfCities);
+            objRandom = tobjRandom;
+            Fitness = 0;
+            Route = GrabPermutation(numberOfRoute);
         }
-
-        private List<int> GrabPermutation(int limit)
+        private List<Coordinate> GrabPermutation(int limit)
         {
-            var lstVecPerm = new List<int>();
+            var lstVecPerm = new List<Coordinate>();
 
             for (int i = 0; i < limit; i++)
             {
                 var nextPossibleNumber = objRandom.Next(0, limit);
-
+                
                 while (TestNumber(lstVecPerm, nextPossibleNumber))
-                {
                     nextPossibleNumber = objRandom.Next(0, limit);
-                }
 
-                lstVecPerm.Add(nextPossibleNumber);
+                lstVecPerm.Add(new Coordinate(nextPossibleNumber, 0));
             }
             return lstVecPerm;
         }
-
-        private static bool TestNumber(List<int> vector, int NextPossibleNumber)
+        private bool TestNumber(List<Coordinate> vector, int NextPossibleNumber)
         {
-            return vector.Contains(NextPossibleNumber);
+            return vector.Exists(i=>i.Xi == NextPossibleNumber);
+        }
+        /// <summary>
+        /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
+        /// </summary>
+        /// <param name="fromLocation">The location from which to return all adjacent points</param>
+        /// <returns>The locations as an IEnumerable of Points</returns>
+        public List<Coordinate> RouteFinding(SeachParameters tParam)
+        {
+            var lstVecPerm = new List<Coordinate>();
+            bool run = true;
+            var coor = tParam.LocationStart;
+
+            while (run)
+            {
+                // verfica se não está voltando para o mesmo no anterior
+                if(!lstVecPerm.Exists(x=>x.Xi == coor.Xi && x.Yi == coor.Yi))
+                    lstVecPerm.Add(coor);
+
+                var lisadj = JJFunc.GetAdjacentLocations(coor);
+
+                var i = objRandom.Next(0, lisadj.Count -1);
+
+                // verifica se teve colisão ou se encontrou o fim
+                run = tParam.Valid(lisadj[i]);
+
+                coor = lisadj[i];
+            }
+
+            return lstVecPerm;
+        }
+
+        public static Coordinate AddCoor(SeachParameters tParam, Coordinate tCoor)
+        {
+            var run = true;
+            var i = 0;
+            List<Coordinate> lisadj = new List<Coordinate>();
+
+            if (!tParam.Valid(tCoor))
+                return tCoor;
+
+            while (run)
+            {
+                lisadj = JJFunc.GetAdjacentLocations(tCoor);
+
+                i = objRandom.Next(0, lisadj.Count - 1);
+
+                run = !tParam.Valid(lisadj[i]);
+
+            }
+            return lisadj[i];
         }
     }
 }

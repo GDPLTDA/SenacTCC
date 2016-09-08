@@ -13,7 +13,7 @@ namespace TSAProblem
         GAParams Param;
         Thread Thead;
         Bitmap MapImage;
-        GATSP objGA;
+        GaTSP objGA;
         private readonly object thisLock = new object();
 
         double BestSolution;
@@ -29,10 +29,10 @@ namespace TSAProblem
             {
                 Param = new GAParams
                 {
-                    mutationRate = Convert.ToDouble(txtMutation.Text),
-                    crossoverRate = Convert.ToDouble(txtCrossover.Text),
-                    populationSize = Convert.ToInt16(txtPopulation.Text),
-                    numberOfCities = Convert.ToInt16(txtCities.Text),
+                    MutationRate = Convert.ToDouble(txtMutation.Text),
+                    CrossoverRate = Convert.ToDouble(txtCrossover.Text),
+                    PopulationSize = Convert.ToInt16(txtPopulation.Text),
+                    NumberOfRoutes = Convert.ToInt16(txtCities.Text),
                     MapaSize = pictureBox1.Width
                 };
                 UpdateTime.Enabled = true;
@@ -51,7 +51,7 @@ namespace TSAProblem
 
         public void Run()
         {
-            objGA = new GATSP(Param);
+            objGA = new GaTSP(Param);
             while (true)
             {
                 MapImage = Draw(objGA.GetBestCitie());
@@ -79,7 +79,7 @@ namespace TSAProblem
             return bmpImage;
         }
 
-        public Bitmap Draw(List<int> pointList)
+        public Bitmap Draw(List<Coordinate> pointList)
         {
             Brush blackBrush = new SolidBrush(Color.Black);
             var myImage = CreateBitMap();
@@ -90,10 +90,13 @@ namespace TSAProblem
             {
                 for (int i = 0; i < pointList.Count - 1; i++)
                 {
-                    var x1 = (int)lstCityCoordinates[pointList[i]].X + 5;
-                    var y1 = (int)lstCityCoordinates[pointList[i]].Y + 5;
-                    var x2 = (int)lstCityCoordinates[pointList[i + 1]].X + 5;
-                    var y2 = (int)lstCityCoordinates[pointList[i + 1]].Y + 5;
+                    var p = Convert.ToInt32(pointList[i].X);
+                    var j = Convert.ToInt32(pointList[i + 1].X);
+
+                    var x1 = (int)lstCityCoordinates[p].X + 5;
+                    var y1 = (int)lstCityCoordinates[p].Y + 5;
+                    var x2 = (int)lstCityCoordinates[j].X + 5;
+                    var y2 = (int)lstCityCoordinates[j].Y + 5;
 
                     using (var pen = new Pen(blackBrush, 2))
                     {

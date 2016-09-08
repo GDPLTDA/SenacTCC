@@ -43,11 +43,11 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TCC.Core">
-      <HintPath>..\TCC.Core\bin\Debug\net451\TCC.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="TCC.GeneticAlgorithm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TCC.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TCC.GeneticAlgorithm\bin\Debug\net451\TCC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="TCC.GeneticAlgorithm">
       <HintPath>..\TCC.GeneticAlgorithm\bin\Debug\net451\TCC.GeneticAlgorithm.dll</HintPath>
     </Reference>
   </ItemGroup>
@@ -88,8 +88,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
-    <Analyzer Include="packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
+    <Analyzer Include="..\..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.Common.dll" />
+    <Analyzer Include="..\..\packages\codecracker.CSharp.1.0.0\analyzers\dotnet\cs\CodeCracker.CSharp.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

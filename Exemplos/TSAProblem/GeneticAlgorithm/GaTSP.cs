@@ -155,14 +155,16 @@ namespace TSAProblem.GeneticAlgorithm
             var lstMutated = Copy(vector);
             int beg, end;
             beg = end = 0;
-
+            
             ChooseSection(out beg, out end, lstMutated.Count, 2);
+
             var lstTemp = new List<int>();
             for (int i = beg; i < end; i++)
             {
                 lstTemp.Add(lstMutated[beg]);
                 lstMutated.RemoveAt(beg);
             }
+
             lstTemp.Reverse();
             var count = 0;
             for (int i = beg; i < end; i++)
@@ -344,6 +346,7 @@ namespace TSAProblem.GeneticAlgorithm
             {
                 while (c2 < mum.Count && baby2[c2] > -1)
                     ++c2;
+
                 if (!baby2.Contains(mum[pos]))
                     baby2[c2] = mum[pos];
 

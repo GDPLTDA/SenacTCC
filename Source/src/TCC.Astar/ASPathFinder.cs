@@ -1,38 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TCC.Core;
 
-namespace TCC.AStar
+namespace TCC.Astar
 {
-    public class PathFinder
+    public class ASPathFinder
     {
-        private int width;
-        private int height;
-        private Node[,] nodes;
-        private Node startNode;
-        private Node endNode;
-        private SearchParameters searchParameters;
-
+        private int width { get; set; }
+        private int height { get; set; }
+        private ASNode[,] nodes { get; set; }
+        private ASNode startNode { get; set; }
+        private ASNode endNode { get; set; }
+        private SeachParameters searchParameters { get; set; }
         /// <summary>
         /// Create a new instance of PathFinder
         /// </summary>
         /// <param name="searchParameters"></param>
-        public PathFinder(SearchParameters searchParameters)
+        public ASPathFinder(SeachParameters tsearchParameters)
         {
-            this.searchParameters = searchParameters;
+            searchParameters = tsearchParameters;
             InitializeNodes(searchParameters.Map);
-            int x = (int)searchParameters.StartLocation.X;
-            int y = (int)searchParameters.StartLocation.Y;
+            int x = (int)searchParameters.LocationStart.X;
+            int y = (int)searchParameters.LocationStart.Y;
 
-            this.startNode = this.nodes[x, y];
-            this.startNode.State = NodeState.Open;
-            this.endNode = this.nodes[x, y];
+            startNode = nodes[x, y];
+            startNode.State = ASNodeState.Open;
+
+            x = (int)searchParameters.LocationEnd.X;
+            y = (int)searchParameters.LocationEnd.Y;
+            endNode = nodes[x, y];
         }
-
         /// <summary>
         /// Attempts to find a path from the start location to the end location based on the supplied SearchParameters
         /// </summary>
@@ -45,7 +41,7 @@ namespace TCC.AStar
             if (success)
             {
                 // If a path was found, follow the parents from the end node to build a list of locations
-                Node node = this.endNode;
+                ASNode node = endNode;
                 while (node.ParentNode != null)
                 {
                     path.Add(node.Location);
@@ -58,7 +54,6 @@ namespace TCC.AStar
 
             return path;
         }
-
         /// <summary>
         /// Builds the node grid from a simple grid of booleans indicating areas which are and aren't walkable
         /// </summary>
@@ -67,57 +62,45 @@ namespace TCC.AStar
         {
             width = map.GetLength(0);
             height = map.GetLength(1);
-            nodes = new Node[width, height];
+            nodes = new ASNode[width, height];
             for (int y = 0; y < height; y++)
-            {
                 for (int x = 0; x < width; x++)
-                {
-                    nodes[x, y] = new Node(x, y, map[x, y], searchParameters.EndLocation);
-                }
-            }
+                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.LocationEnd);
         }
-
         /// <summary>
         /// Attempts to find a path to the destination node using <paramref name="currentNode"/> as the starting location
         /// </summary>
         /// <param name="currentNode">The node from which to find a path</param>
         /// <returns>True if a path to the destination has been found, otherwise false</returns>
-        private bool Search(Node currentNode)
+        private bool Search(ASNode currentNode)
         {
             // Set the current node to Closed since it cannot be traversed more than once
-            currentNode.State = NodeState.Closed;
-            List<Node> nextNodes = GetAdjacentWalkableNodes(currentNode);
+            currentNode.State = ASNodeState.Closed;
+            List<ASNode> nextNodes = GetAdjacentWalkableNodes(currentNode);
 
             // Sort by F-value so that the shortest possible routes are considered first
             nextNodes.Sort((node1, node2) => node1.F.CompareTo(node2.F));
             foreach (var nextNode in nextNodes)
-            {
                 // Check whether the end node has been reached
-                if (nextNode.Location == this.endNode.Location)
-                {
+                if (nextNode.Location.X == endNode.Location.X && nextNode.Location.Y == endNode.Location.Y)
                     return true;
-                }
                 else
-                {
                     // If not, check the next set of nodes
                     if (Search(nextNode)) // Note: Recurses back into Search(Node)
                         return true;
-                }
-            }
 
             // The method returns false if this path leads to be a dead end
             return false;
         }
-
         /// <summary>
         /// Returns any nodes that are adjacent to <paramref name="fromNode"/> and may be considered to form the next step in the path
         /// </summary>
         /// <param name="fromNode">The node from which to return the next possible nodes in the path</param>
         /// <returns>A list of next possible nodes in the path</returns>
-        private List<Node> GetAdjacentWalkableNodes(Node fromNode)
+        private List<ASNode> GetAdjacentWalkableNodes(ASNode fromNode)
         {
-            List<Node> walkableNodes = new List<Node>();
-            IEnumerable<Coordinate> nextLocations = GetAdjacentLocations(fromNode.Location);
+            List<ASNode> walkableNodes = new List<ASNode>();
+            List<Coordinate> nextLocations = JJFunc.GetAdjacentLocations(fromNode.Location);
 
             foreach (var location in nextLocations)
             {
@@ -125,23 +108,23 @@ namespace TCC.AStar
                 int y = (int)location.Y;
 
                 // Stay within the grid's boundaries
-                if (x < 0 || x >= this.width || y < 0 || y >= this.height)
+                if (x < 0 || x >= width || y < 0 || y >= height)
                     continue;
 
-                Node node = this.nodes[x, y];
+                ASNode node = nodes[x, y];
                 // Ignore non-walkable nodes
                 if (!node.IsWalkable)
                     continue;
 
                 // Ignore already-closed nodes
-                if (node.State == NodeState.Closed)
+                if (node.State == ASNodeState.Closed)
                     continue;
 
                 // Already-open nodes are only added to the list if their G-value is lower going via this route.
-                if (node.State == NodeState.Open)
+                if (node.State == ASNodeState.Open)
                 {
-                    float traversalCost = Node.GetTraversalCost(node.Location, node.ParentNode.Location);
-                    float gTemp = fromNode.G + traversalCost;
+                    double traversalCost = ASNode.GetTraversalCost(node.Location, node.ParentNode.Location);
+                    double gTemp = fromNode.G + traversalCost;
                     if (gTemp < node.G)
                     {
                         node.ParentNode = fromNode;
@@ -152,32 +135,12 @@ namespace TCC.AStar
                 {
                     // If it's untested, set the parent and flag it as 'Open' for consideration
                     node.ParentNode = fromNode;
-                    node.State = NodeState.Open;
+                    node.State = ASNodeState.Open;
                     walkableNodes.Add(node);
                 }
             }
 
             return walkableNodes;
-        }
-
-        /// <summary>
-        /// Returns the eight locations immediately adjacent (orthogonally and diagonally) to <paramref name="fromLocation"/>
-        /// </summary>
-        /// <param name="fromLocation">The location from which to return all adjacent points</param>
-        /// <returns>The locations as an IEnumerable of Points</returns>
-        private static IEnumerable<Coordinate> GetAdjacentLocations(Coordinate fromLocation)
-        {
-            return new Coordinate[]
-            {
-                new Coordinate(fromLocation.X-1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X-1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X-1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X,   fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X+1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X,   fromLocation.Y-1)
-            };
         }
     }
 }

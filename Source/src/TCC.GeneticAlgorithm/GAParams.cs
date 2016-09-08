@@ -2,10 +2,11 @@
 {
     public class GAParams
     {
+        
         public int MapaSize { get; set; }
-        public double mutationRate { get; set; }
-        public double crossoverRate { get; set; }
-        public int populationSize { get; set; }
-        public int numberOfCities { get; set; }
+        public double MutationRate { get; set; }
+        public double CrossoverRate { get; set; }
+        public int PopulationSize { get; set; }
+        public int NumberOfRoutes { get; set; }
     }
 }
