@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using TCC.Core;
+using System.Linq;
 
 namespace TCC.GeneticAlgorithm
 {
@@ -13,7 +14,7 @@ namespace TCC.GeneticAlgorithm
         public GAGenome(List<Coordinate> tListRoute, Random tobjRandom)
         {
             objRandom = tobjRandom;
-            Route = tListRoute;
+            Route = tListRoute.Select(i=>new Coordinate(i)).ToList();
             Fitness = 0;
         }
         public GAGenome(SeachParameters tParams, Random tobjRandom)
@@ -84,14 +85,11 @@ namespace TCC.GeneticAlgorithm
             var i = 0;
             List<Coordinate> lisadj = new List<Coordinate>();
 
-            if (!tParam.Valid(tCoor))
-                return tCoor;
-
             while (run)
             {
                 lisadj = JJFunc.GetAdjacentLocations(tCoor);
 
-                i = objRandom.Next(0, lisadj.Count - 1);
+                i = objRandom.Next(0, lisadj.Count);
 
                 run = !tParam.Valid(lisadj[i]);
 

@@ -116,7 +116,7 @@ namespace TCC.GeneticAlgorithm
                 lstNewPop.Add(baby1);
                 lstNewPop.Add(baby2);
             }
-            lstPopulation = GA.CopyGenome(lstNewPop);
+            lstPopulation = GA.CopyGenome(lstNewPop, objRandom);
 
             ++generation;
         }

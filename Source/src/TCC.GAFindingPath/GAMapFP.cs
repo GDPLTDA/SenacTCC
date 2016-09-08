@@ -10,7 +10,6 @@ namespace TCC.GAFindingPath
     public class GAMapFP
     {
         SeachParameters Config { get; set; }
-        public List<Coordinate> Positions { get; set; }
 
         public GAMapFP(SeachParameters tConfig)
         {
@@ -20,10 +19,10 @@ namespace TCC.GAFindingPath
         {
             double tourLength = 0;
 
-            for (int i = 0; i < tListRoute.Count - 1; i++)
-                tourLength += JJFunc.CalcteA2B(tListRoute[i], tListRoute[i + 1]);
+            //for (int i = 0; i < tListRoute.Count - 1; i++)
+            //    tourLength += JJFunc.CalcteA2B(tListRoute[i], tListRoute[i + 1]);
 
-            tourLength += 2 * JJFunc.CalcteA2B(tListRoute.Last(i => i != null), Config.LocationEnd);
+            tourLength += (5.0 * JJFunc.CalcteA2B(tListRoute.Last(), Config.LocationEnd));
 
             return tourLength;
         }

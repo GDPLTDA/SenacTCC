@@ -138,7 +138,7 @@ namespace TCC.GeneticAlgorithm
                 baby1[i] = baby2[i] = new Coordinate(-1, -1);
 
             var lstPositions = new List<int>();
-            var Pos = objRandom.Next(0, mum.Count - 1);
+            var Pos = objRandom.Next(0, mum.Count);
 
             while (Pos < mum.Count)
             {

@@ -48,7 +48,7 @@ namespace TCC.GAFindingPath
 
             ListPopulation = ListPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
-                lstNewPop.Add(ListPopulation[i]);
+                lstNewPop.Add(new GAGenome(ListPopulation[i].Route, objRandom));
 
             while (lstNewPop.Count <= GaParams.PopulationSize)
             {
@@ -66,8 +66,10 @@ namespace TCC.GAFindingPath
                 var newcoor1 = GAGenome.AddCoor(SeachParams, baby1List.Last());
                 var newcoor2 = GAGenome.AddCoor(SeachParams, baby2List.Last());
 
-                baby1List.Add(newcoor1);
-                baby2List.Add(newcoor2);
+                //if (!baby1List.Exists(i=> i.Xi == newcoor1.Xi && i.Yi == newcoor1.Yi))
+                    baby1List.Add(new Coordinate(newcoor1));
+                //if (!baby2List.Exists(i => i.Xi == newcoor2.Xi && i.Yi == newcoor2.Yi))
+                    baby2List.Add(new Coordinate(newcoor2));
 
                 var baby1 = new GAGenome(baby1List, objRandom);
                 var baby2 = new GAGenome(baby2List, objRandom);
@@ -75,7 +77,7 @@ namespace TCC.GAFindingPath
                 lstNewPop.Add(baby1);
                 lstNewPop.Add(baby2);
             }
-            ListPopulation = GA.CopyGenome(lstNewPop);
+            ListPopulation = GA.CopyGenome(lstNewPop, objRandom);
             
             ++Generation;
         }

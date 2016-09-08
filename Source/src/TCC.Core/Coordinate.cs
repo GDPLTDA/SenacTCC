@@ -11,6 +11,16 @@ namespace TCC.Core
         public double Y { get; set; }
         public int Xi { get; set; }
         public int Yi { get; set; }
+
+        public Coordinate(Coordinate tCoor)
+        {
+            X = tCoor.X;
+            Y = tCoor.Y;
+
+            Xi = tCoor.Xi;
+            Yi = tCoor.Yi;
+        }
+
         public Coordinate(double tX, double tY)
         {
             X = tX;

@@ -20,8 +20,8 @@ namespace TCC.OutPutConsole
             //var WallConfig1 = WallSimple();
             //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
 
-            //var WallConfig4 = WallFile();
-            //Run(WallConfig4, "Lendo o arquivo:");
+            var WallConfig4 = WallFile();
+            Run(WallConfig4, "Lendo o arquivo:");
 
             //var WallConfig5 = WallFile();
             //Run(WallConfig5, "Lendo o arquivo:");
@@ -182,7 +182,7 @@ namespace TCC.OutPutConsole
         }
         static SeachParameters WallFile()
         {
-            var map = JJFunc.GetMap();
+            var map = JJFunc.GetMap(11,10);
             int x = 0, y = 0;
             byte Dig;
             var startLocation = new Coordinate(0, 0);

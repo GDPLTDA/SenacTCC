@@ -22,9 +22,8 @@ namespace TCC.Core
         {
             return Math.Sqrt(Math.Pow(tA.X - tB.X, 2) + Math.Pow(tA.Y - tB.Y, 2));
         }
-        public static bool[,] GetMap()
+        public static bool[,] GetMap(int w = 30,int h = 20)
         {
-            int w = 30, h = 20;
             var map = new bool[w, h];
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
@@ -51,7 +50,7 @@ namespace TCC.Core
         {
             var lstReturn = new List<Coordinate>();
             for (int i = 0; i < listToCopy.Count; i++)
-                lstReturn.Add(listToCopy[i]);
+                lstReturn.Add(new Coordinate(listToCopy[i]));
 
             return lstReturn;
         }
