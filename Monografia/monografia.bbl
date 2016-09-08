@@ -3,7 +3,7 @@
 \setlength{\labelsep}{0pt}\begin{thebibliography}{}
 \providecommand{\abntrefinfo}[3]{}
 \providecommand{\abntbstabout}[1]{}
-\abntbstabout{v-1.9.6 }
+\abntbstabout{v-1.9.3 }
 
 \bibitem[Alaoui e El-Ghazawi 2000]{Alaoui}
 \abntrefinfo{Alaoui e El-Ghazawi}{ALAOUI; EL-GHAZAWI}{2000}
@@ -185,5 +185,11 @@ Dispon{\'\i}vel em: \url{http://www.jstor.org/stable/167205}.}
 {WINSTON, P.~H. \emph{Artificial Intelligence (3rd Ed.)}. Boston, MA, USA:
   Addison-Wesley Longman Publishing Co., Inc., 1992.
 ISBN 0-201-53377-4.}
+
+\bibitem[Xu 2016]{Xueqiao}
+\abntrefinfo{Xu}{XU}{2016}
+{XU, X.~J. \emph{PathFinding.js}. 2016.
+Dispon{\'\i}vel em: \url{https://github.com/qiao/PathFinding.js}. Acesso em:
+  08/09/2016.}
 
 \end{thebibliography}

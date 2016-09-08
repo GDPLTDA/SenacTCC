@@ -24,7 +24,13 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Proposta}}{24}{chapter.3}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Cronograma}}{25}{chapter.4}
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{25}{chapter.4}
+\contentsline {section}{\numberline {4.1}Tecnologia}{25}{section.4.1}
+\contentsline {section}{\numberline {4.2}Testes}{25}{section.4.2}
+\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclus\IeC {\~a}o}}{26}{chapter.5}
+\contentsline {section}{\numberline {5.1}Resultados}{26}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trabalhos futuros}{26}{section.5.2}
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {Refer\^encias}}{26}{section*.7}
+\contentsline {chapter}{\uppercase {Refer\^encias}}{27}{section*.7}
