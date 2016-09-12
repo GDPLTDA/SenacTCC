@@ -48,11 +48,7 @@ namespace TCC.Core
 
         public static List<Coordinate> Copy(List<Coordinate> listToCopy)
         {
-            var lstReturn = new List<Coordinate>();
-            for (int i = 0; i < listToCopy.Count; i++)
-                lstReturn.Add(new Coordinate(listToCopy[i]));
-
-            return lstReturn;
+            return listToCopy.Select(i=>new Coordinate(i)).ToList();
         }
 
         public static bool AreEqual(List<Coordinate> lst1, List<Coordinate> lst2)

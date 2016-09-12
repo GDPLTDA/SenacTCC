@@ -10,8 +10,11 @@ namespace TCC.GeneticAlgorithm
         public static List<GAGenome> CopyGenome(List<GAGenome> listToCopy,Random ObjRandom)
         {
             var lstReturn = new List<GAGenome>();
-            for (int i = 0; i < listToCopy.Count; i++)
-                lstReturn.Add(new GAGenome(listToCopy[i].Route, ObjRandom));
+
+            foreach (var item in listToCopy)
+            {
+                lstReturn.Add(new GAGenome(item.Route, ObjRandom));
+            }              
 
             return lstReturn;
         }

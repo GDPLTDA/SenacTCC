@@ -116,14 +116,8 @@ namespace TCC.GeneticAlgorithm
         }
         public void CrossoverPBX(List<Coordinate> mum, List<Coordinate> dad, out List<Coordinate> baby1, out List<Coordinate> baby2)
         {
-            mum = JJFunc.EqualSize(mum, dad);
-            dad = JJFunc.EqualSize(dad, mum);
-
             baby1 = JJFunc.Copy(mum);
             baby2 = JJFunc.Copy(dad);
-
-            baby1 = baby1.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
-            baby2 = baby2.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
 
             if (objRandom.NextDouble() > Params.CrossoverRate || JJFunc.AreEqual(mum, dad))
                 return;
@@ -159,14 +153,16 @@ namespace TCC.GeneticAlgorithm
             {
                 while (c2 < mum.Count && baby2[c2].Xi > -1)
                     ++c2;
-                if (c2 < baby2.Count && !baby2.Exists(i => i.Xi == mum[pos].Xi && i.Yi == mum[pos].Yi))
-                    baby2[c2] = mum[pos];
+                if (c2 < baby2.Count)
+                    if (!baby2.Exists(i => i.Xi == mum[pos].Xi && i.Yi == mum[pos].Yi) || baby2[c2].Xi == -1)
+                        baby2[c2] = mum[pos];
 
                 while (c1 < mum.Count && baby1[c1].Xi > -1)
                     ++c1;
 
-                if (c1 < baby1.Count && !baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi))
-                    baby1[c1] = dad[pos];
+                if (c1 < baby1.Count)
+                    if (!baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi) || baby1[c1].Xi == -1)
+                        baby1[c1] = dad[pos];
             }
 
             baby1 = baby1.Where(i => i.Xi != -1 && i.Yi != -1).ToList();

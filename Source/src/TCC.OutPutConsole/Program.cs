@@ -61,7 +61,7 @@ namespace TCC.OutPutConsole
             {
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
-                PopulationSize = 100,
+                PopulationSize = 10,
                 MapaSize = map.Length
             };
 

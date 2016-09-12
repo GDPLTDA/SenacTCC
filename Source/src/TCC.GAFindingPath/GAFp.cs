@@ -83,7 +83,6 @@ namespace TCC.GAFindingPath
         }
         private GAGenome RouletteWheelSelection()
         {
-
             var slice = objRandom.NextDouble() * TotalFitness;
             var total = (double)0;
             var selectedGenome = 0;
@@ -102,6 +101,7 @@ namespace TCC.GAFindingPath
         }
         void CalculatePopulationFitness()
         {
+            TotalFitness = 0;
             var shortestRoute = double.MaxValue;
             var longestRoute = 0.0;
 
@@ -113,10 +113,14 @@ namespace TCC.GAFindingPath
                 if (tourLength < shortestRoute)
                 {
                     shortestRoute = tourLength;
-                    BestPopulation = i;
+                    
                 }
                 if (tourLength > longestRoute)
+                {
+                    BestPopulation = i;
                     longestRoute = tourLength;
+                }
+
             }
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)

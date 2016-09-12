@@ -19,10 +19,10 @@ namespace TCC.GAFindingPath
         {
             double tourLength = 0;
 
-            //for (int i = 0; i < tListRoute.Count - 1; i++)
-            //    tourLength += JJFunc.CalcteA2B(tListRoute[i], tListRoute[i + 1]);
+            for (int i = 0; i < tListRoute.Count - 1; i++)
+                tourLength += JJFunc.CalcteA2B(tListRoute[i], tListRoute[i + 1]) / 5;
 
-            tourLength += (5.0 * JJFunc.CalcteA2B(tListRoute.Last(), Config.LocationEnd));
+            tourLength += 5 * JJFunc.CalcteA2B(tListRoute.Last(), Config.LocationEnd);
 
             return tourLength;
         }
