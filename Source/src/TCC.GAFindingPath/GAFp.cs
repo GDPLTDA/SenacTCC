@@ -114,11 +114,10 @@ namespace TCC.GAFindingPath
                 if (tourLength < shortestRoute)
                 {
                     shortestRoute = tourLength;
-                    
+                    BestPopulation = i;
                 }
                 if (tourLength > longestRoute)
                 {
-                    BestPopulation = i;
                     longestRoute = tourLength;
                 }
 
