@@ -20,14 +20,14 @@ namespace TCC.OutPutConsole
             //var WallConfig1 = WallSimple();
             //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
 
-            var WallConfig4 = WallWithGap();
+            var WallConfig4 = WallFile();
             Run(WallConfig4, "Lendo o arquivo:");
 
             //var WallConfig5 = WallFile();
             //Run(WallConfig5, "Lendo o arquivo:");
 
             var tGaParams = TesteGA();
-            var WallGA = WallWithGap();
+            var WallGA = WallFile();
             RunGA(tGaParams, WallGA, "GA:");
         }
         static void Run(SeachParameters tParams, string Msg)
@@ -44,20 +44,16 @@ namespace TCC.OutPutConsole
             while (true)
             {
                 pathFinder.Epoch();
-
-                
-
                 var path = pathFinder.GetBestPath();
 
-                if (pathFinder.generation % 10 == 0)
-                {
-                    Console.WriteLine("G:{0}\r\n", pathFinder.generation);
+                //if (pathFinder.Generation % 10 == 0)
+                //{
+                    Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
                     ShowRoute(Msg, path, tParams);
-                }
+                //}
                 
             }
         }
-
         static GAParams TesteGA()
         {
             var map = JJFunc.GetMap();
@@ -65,7 +61,7 @@ namespace TCC.OutPutConsole
             {
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
-                PopulationSize = 100,
+                PopulationSize = 10,
                 MapaSize = map.Length
             };
 
@@ -137,7 +133,7 @@ namespace TCC.OutPutConsole
             map[3, 1] = false;
             map[4, 1] = false;
             var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var endLocation = new Coordinate(15, 15);
             return new SeachParameters(startLocation, endLocation, map);
         }
         /// <summary>
@@ -186,7 +182,7 @@ namespace TCC.OutPutConsole
         }
         static SeachParameters WallFile()
         {
-            var map = JJFunc.GetMap();
+            var map = JJFunc.GetMap(11,10);
             int x = 0, y = 0;
             byte Dig;
             var startLocation = new Coordinate(0, 0);

@@ -44,12 +44,8 @@ namespace TCC.GeneticAlgorithm
         {
             double tourLength = 0;
 
-            for (int i = 0; i < tListOfCities.Count - 1; i++) {
-                var a = Convert.ToInt32(tListOfCities[i].X);
-                var b = Convert.ToInt32(tListOfCities[i + 1].X);
-
-                tourLength += JJFunc.CalcteA2B(Cities[a], Cities[b]);
-            }
+            for (int i = 0; i < tListOfCities.Count - 1; i++) 
+                tourLength += JJFunc.CalcteA2B(Cities[tListOfCities[i].Xi], Cities[tListOfCities[i + 1].Xi]);
 
             tourLength += JJFunc.CalcteA2B(Cities[Cities.Count - 1],
                 Cities[0]);

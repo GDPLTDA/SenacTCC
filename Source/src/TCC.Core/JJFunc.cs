@@ -7,14 +7,23 @@ namespace TCC.Core
 {
     public static class JJFunc
     {
+        public static List<Coordinate> EqualSize(List<Coordinate> tA, List<Coordinate> tB)
+        {
+            int ca = tA.Count, cb = tB.Count;
+
+            if(ca < cb)
+                for (int i = 0; i < cb - ca; i++)
+                    tA.Add(new Coordinate(-1, -1));
+
+            return tA;
+        }
+
         public static double CalcteA2B(Coordinate tA, Coordinate tB)
         {
             return Math.Sqrt(Math.Pow(tA.X - tB.X, 2) + Math.Pow(tA.Y - tB.Y, 2));
         }
-
-        public static bool[,] GetMap()
+        public static bool[,] GetMap(int w = 30,int h = 20)
         {
-            int w = 30, h = 20;
             var map = new bool[w, h];
             for (int y = 0; y < h; y++)
                 for (int x = 0; x < w; x++)
@@ -22,7 +31,6 @@ namespace TCC.Core
 
             return map;
         }
-
         public static List<Coordinate> GetAdjacentLocations(Coordinate fromLocation)
         {
             return new List<Coordinate>
@@ -40,11 +48,7 @@ namespace TCC.Core
 
         public static List<Coordinate> Copy(List<Coordinate> listToCopy)
         {
-            var lstReturn = new List<Coordinate>();
-            for (int i = 0; i < listToCopy.Count; i++)
-                lstReturn.Add(listToCopy[i]);
-
-            return lstReturn;
+            return listToCopy.Select(i=>new Coordinate(i)).ToList();
         }
 
         public static bool AreEqual(List<Coordinate> lst1, List<Coordinate> lst2)

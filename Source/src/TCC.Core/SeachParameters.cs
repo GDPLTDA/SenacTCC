@@ -21,8 +21,8 @@ namespace TCC.Core
         {
             var ok = true;
 
-            var x = Convert.ToInt32(tCoor.X);
-            var y = Convert.ToInt32(tCoor.Y);
+            var x = tCoor.Xi;
+            var y = tCoor.Yi;
             var n = Map.GetLength(0);
 
             if (x >= n || x < 0)
@@ -35,11 +35,11 @@ namespace TCC.Core
             if (!Map[x, y])
                 return false;
             
-            var xf = Convert.ToInt32(LocationEnd.X);
-            var yf = Convert.ToInt32(LocationEnd.Y);
+            var xf = LocationEnd.Xi;
+            var yf = LocationEnd.Yi;
 
             if (xf == x && yf == x)
-                ok = false;
+                ok = true;
 
             return ok;
         }
