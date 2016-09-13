@@ -143,16 +143,26 @@ namespace TCC.GAFindingPath
 
         private void CrossoverPBX(List<Coordinate> mum, List<Coordinate> dad, out List<Coordinate> baby1, out List<Coordinate> baby2)
         {
+            if (mum.Count < dad.Count)
+                for (int i = 0; i <= dad.Count - mum.Count; i++)
+                {
+                    mum.Add(new Coordinate(-1, 0));
+                }
+            if (dad.Count < mum.Count)
+                for (int i = 0; i <= mum.Count - dad.Count; i++)
+                {
+                    dad.Add(new Coordinate(-1, 0));
+                }
+
             baby1 = JJFunc.Copy(mum);
             baby2 = JJFunc.Copy(dad);
 
             if (objRandom.NextDouble() > GaParams.CrossoverRate || JJFunc.AreEqual(mum, dad))
                 return;
+            
 
             for (int i = 0; i < mum.Count; i++)
-                baby1[i] = new Coordinate(-1, 0);
-            for (int i = 0; i < dad.Count; i++)
-                baby2[i] = new Coordinate(-1, 0);
+                baby1[i] = baby2[i] = new Coordinate(-1, 0);
 
             var lstPositions = new List<int>();
             var Pos = objRandom.Next(0, mum.Count - 1);
@@ -177,19 +187,13 @@ namespace TCC.GAFindingPath
                 while (c2 < mum.Count && baby2[c2].X > -1)
                     ++c2;
                 if (!baby2.Contains(mum[pos]))
-                {
-                    if (c2 < baby2.Count)
-                        baby2[c2] = mum[pos];
-                }
+                    baby2[c2] = mum[pos];
 
                 while ((c1 < mum.Count) && (baby1[c1].X > -1))
                     ++c1;
 
                 if (!baby1.Contains(dad[pos]))
-                {
-                    if(c1 < baby1.Count)
-                        baby1[c1] = dad[pos];
-                }
+                    baby1[c1] = dad[pos];
             }
         }
 
