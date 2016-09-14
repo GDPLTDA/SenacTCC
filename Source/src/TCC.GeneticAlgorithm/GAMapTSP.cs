@@ -28,7 +28,7 @@ namespace TCC.GeneticAlgorithm
                 var x = Ran.Next(10, size);
                 var y = Ran.Next(10, size);
 
-                Cities.Add(new Coordinate(x,y));
+                Cities.Add(new Coordinate(0, x, y));
             }
         }
         private void CalculateBestPossibleRoute()

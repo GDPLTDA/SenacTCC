@@ -46,6 +46,11 @@ namespace TCC.GAFindingPath
 
             var lstNewPop = new List<GAGenome>();
 
+            if (ListPopulation.Count(i=>i.Route.Exists(o=>o.Xi < 0 || o.Yi < 0)) > 0)
+            {
+                int i = 0;
+            }
+
             ListPopulation = ListPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
                 lstNewPop.Add(new GAGenome(ListPopulation[i].Route, objRandom));
@@ -98,7 +103,7 @@ namespace TCC.GAFindingPath
                 }
             }
 
-            return ListPopulation[selectedGenome];
+            return new GAGenome(ListPopulation[selectedGenome].Route, objRandom);
         }
         void CalculatePopulationFitness()
         {

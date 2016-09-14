@@ -11,6 +11,7 @@ namespace TCC.GeneticAlgorithm
         public List<Coordinate> Route { get; set; }
         public double Fitness { get; set; }
         static Random objRandom;
+
         public GAGenome(List<Coordinate> tListRoute, Random tobjRandom)
         {
             objRandom = tobjRandom;
@@ -41,7 +42,7 @@ namespace TCC.GeneticAlgorithm
                 while (TestNumber(lstVecPerm, nextPossibleNumber))
                     nextPossibleNumber = objRandom.Next(0, limit);
 
-                lstVecPerm.Add(new Coordinate(nextPossibleNumber, 0));
+                lstVecPerm.Add(new Coordinate(0, nextPossibleNumber, 0));
             }
             return lstVecPerm;
         }
@@ -66,14 +67,17 @@ namespace TCC.GeneticAlgorithm
                 if(!lstVecPerm.Exists(x=>x.Xi == coor.Xi && x.Yi == coor.Yi))
                     lstVecPerm.Add(coor);
 
-                var lisadj = JJFunc.GetAdjacentLocations(coor);
+                //var lisadj = JJFunc.GetAdjacentLocations(coor);
 
-                var i = objRandom.Next(0, lisadj.Count -1);
+                //var i = objRandom.Next(0, lisadj.Count -1);
+
+                var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
+                var coordir = JJFunc.CalcDir(coor, (Direction)dir);
 
                 // verifica se teve colisão ou se encontrou o fim
-                run = tParam.Valid(lisadj[i]);
+                run = tParam.Valid(coordir);
 
-                coor = lisadj[i];
+                coor = coordir;
             }
 
             return lstVecPerm;
@@ -83,18 +87,21 @@ namespace TCC.GeneticAlgorithm
         {
             var run = true;
             var i = 0;
-            List<Coordinate> lisadj = new List<Coordinate>();
-
+            //List<Coordinate> lisadj = new List<Coordinate>();
+            Coordinate coordir = tCoor;
             while (run)
             {
-                lisadj = JJFunc.GetAdjacentLocations(tCoor);
+                //lisadj = JJFunc.GetAdjacentLocations(tCoor);
 
-                i = objRandom.Next(0, lisadj.Count);
+                //i = objRandom.Next(0, lisadj.Count);
 
-                run = !tParam.Valid(lisadj[i]);
+                var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
+                coordir = JJFunc.CalcDir(tCoor, (Direction)dir);
+
+                run = !tParam.Valid(coordir);
 
             }
-            return lisadj[i];
+            return coordir;
         }
     }
 }

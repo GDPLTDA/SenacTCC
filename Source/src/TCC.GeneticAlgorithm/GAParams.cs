@@ -2,7 +2,7 @@
 {
     public class GAParams
     {
-        
+        public SeachParameters Params { get; set; }
         public int MapaSize { get; set; }
         public double MutationRate { get; set; }
         public double CrossoverRate { get; set; }

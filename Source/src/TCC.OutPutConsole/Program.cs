@@ -26,8 +26,9 @@ namespace TCC.OutPutConsole
             //var WallConfig5 = WallFile();
             //Run(WallConfig5, "Lendo o arquivo:");
 
-            var tGaParams = TesteGA();
             var WallGA = WallFile();
+            var tGaParams = TesteGA();
+            
             RunGA(tGaParams, WallGA, "GA:");
         }
         static void Run(SeachParameters tParams, string Msg)
@@ -109,8 +110,8 @@ namespace TCC.OutPutConsole
 
             var map = JJFunc.GetMap();
 
-            var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var startLocation = new Coordinate(0, 1, 2);
+            var endLocation = new Coordinate(0, 9, 2);
 
             return new SeachParameters(startLocation, endLocation, map);
         }
@@ -132,8 +133,8 @@ namespace TCC.OutPutConsole
             map[3, 2] = false;
             map[3, 1] = false;
             map[4, 1] = false;
-            var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(15, 15);
+            var startLocation = new Coordinate(0, 1, 2);
+            var endLocation = new Coordinate(0, 15, 15);
             return new SeachParameters(startLocation, endLocation, map);
         }
         /// <summary>
@@ -154,8 +155,8 @@ namespace TCC.OutPutConsole
                 map[r.Next(h), r.Next(w)] = false;
             }
 
-            var startLocation = new Coordinate(r.Next(h), r.Next(w));
-            var endLocation = new Coordinate(r.Next(h), r.Next(w));
+            var startLocation = new Coordinate(0, r.Next(h), r.Next(w));
+            var endLocation = new Coordinate(0, r.Next(h), r.Next(w));
             return new SeachParameters(startLocation, endLocation, map);
         }
         /// <summary>
@@ -176,8 +177,8 @@ namespace TCC.OutPutConsole
             map[3, 2] = false;
             map[3, 1] = false;
             map[3, 0] = false;
-            var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var startLocation = new Coordinate(0, 1, 2);
+            var endLocation = new Coordinate(0, 9, 2);
             return new SeachParameters(startLocation, endLocation, map);
         }
         static SeachParameters WallFile()
@@ -185,8 +186,8 @@ namespace TCC.OutPutConsole
             var map = JJFunc.GetMap(11,10);
             int x = 0, y = 0;
             byte Dig;
-            var startLocation = new Coordinate(0, 0);
-            var endLocation = new Coordinate(0, 0);
+            var startLocation = new Coordinate(0, 0, 0);
+            var endLocation = new Coordinate(0, 0, 0);
 
             using (FileStream oFileStream = new FileStream(@"test.txt", FileMode.Open))
             {
@@ -212,10 +213,10 @@ namespace TCC.OutPutConsole
                     }
 
                     if (cDig == MapSymbol.Start)
-                        startLocation = new Coordinate(x, y);
+                        startLocation = new Coordinate(0, x, y);
 
                     if (cDig == MapSymbol.End)
-                        endLocation = new Coordinate(x, y);
+                        endLocation = new Coordinate(0, x, y);
 
                     if (cDig == MapSymbol.Block)
                         map[x, y] = false;

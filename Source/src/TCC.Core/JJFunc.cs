@@ -7,13 +7,38 @@ namespace TCC.Core
 {
     public static class JJFunc
     {
+        public static Coordinate CalcDir(Coordinate tCoor,Direction tDir)
+        {
+            var X = tCoor.X;
+            var Y = tCoor.Y;
+
+            switch (tDir)
+            {
+                case Direction.Up:
+                    Y += -1;
+                    break;
+                case Direction.Down:
+                    Y += 1;
+                    break;
+                case Direction.Left:
+                    X += -1;
+                    break;
+                case Direction.Rigth:
+                    X += 1;
+                    break;
+                default:
+                    break;
+            }
+            return new Coordinate(tDir, X, Y);
+        }
+
         public static List<Coordinate> EqualSize(List<Coordinate> tA, List<Coordinate> tB)
         {
             int ca = tA.Count, cb = tB.Count;
 
             if(ca < cb)
                 for (int i = 0; i < cb - ca; i++)
-                    tA.Add(new Coordinate(-1, -1));
+                    tA.Add(new Coordinate(0, -1, -1));
 
             return tA;
         }
@@ -35,14 +60,14 @@ namespace TCC.Core
         {
             return new List<Coordinate>
             {
-                new Coordinate(fromLocation.X-1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X-1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X-1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X,   fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y+1),
-                new Coordinate(fromLocation.X+1, fromLocation.Y  ),
-                new Coordinate(fromLocation.X+1, fromLocation.Y-1),
-                new Coordinate(fromLocation.X,   fromLocation.Y-1)
+                new Coordinate(0, fromLocation.X-1, fromLocation.Y-1),
+                new Coordinate(0, fromLocation.X-1, fromLocation.Y  ),
+                new Coordinate(0, fromLocation.X-1, fromLocation.Y+1),
+                new Coordinate(0, fromLocation.X,   fromLocation.Y+1),
+                new Coordinate(0, fromLocation.X+1, fromLocation.Y+1),
+                new Coordinate(0, fromLocation.X+1, fromLocation.Y  ),
+                new Coordinate(0, fromLocation.X+1, fromLocation.Y-1),
+                new Coordinate(0, fromLocation.X,   fromLocation.Y-1)
             };
         }
 

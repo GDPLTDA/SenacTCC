@@ -73,7 +73,7 @@ namespace TCC.GeneticAlgorithm
 
             while (pos < mum.Count)
             {
-                lstPositions.Add(new Coordinate(pos, 0));
+                lstPositions.Add(new Coordinate(0, pos, 0));
                 lstTempCities.Add(mum[pos]);
                 pos += objRandom.Next(1, mum.Count - pos);
             }
@@ -129,7 +129,7 @@ namespace TCC.GeneticAlgorithm
             baby2 = JJFunc.Copy(dad);
 
             for (int i = 0; i < mum.Count; i++)
-                baby1[i] = baby2[i] = new Coordinate(-1, -1);
+                baby1[i] = baby2[i] = new Coordinate(0, -1, -1);
 
             var lstPositions = new List<int>();
             var Pos = objRandom.Next(0, mum.Count);
@@ -154,19 +154,40 @@ namespace TCC.GeneticAlgorithm
                 while (c2 < mum.Count && baby2[c2].Xi > -1)
                     ++c2;
                 if (c2 < baby2.Count)
-                    if (!baby2.Exists(i => i.Xi == mum[pos].Xi && i.Yi == mum[pos].Yi) || baby2[c2].Xi == -1)
+                    if (!baby2.Exists(i => i.Xi == mum[pos].Xi && i.Yi == mum[pos].Yi))
                         baby2[c2] = mum[pos];
 
                 while (c1 < mum.Count && baby1[c1].Xi > -1)
                     ++c1;
 
                 if (c1 < baby1.Count)
-                    if (!baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi) || baby1[c1].Xi == -1)
+                    if (!baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi))
                         baby1[c1] = dad[pos];
             }
 
-            baby1 = baby1.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
-            baby2 = baby2.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+            baby1 = AdaptationBaby(baby1);
+            baby2 = AdaptationBaby(baby2);
+        }
+
+        public List<Coordinate> AdaptationBaby(List<Coordinate> tBaby)
+        {
+            tBaby = tBaby.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+
+            var newbaby = new List<Coordinate>();
+            newbaby.Add(tBaby[0]);
+
+            for (int i = 1; i < tBaby.Count; i++)
+            {
+                var coor = JJFunc.CalcDir(tBaby[i - 1], tBaby[i].Dir);
+
+                !tParam.Valid(coordir);
+
+                newbaby.Add(coor);
+            }
+
+            
+
+            return newbaby;
         }
     }
 }
