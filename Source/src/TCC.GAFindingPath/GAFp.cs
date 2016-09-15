@@ -15,20 +15,18 @@ namespace TCC.GAFindingPath
         int NumBest2Add { get; set; } = 1;
         List<GAGenome> ListPopulation { get; set; } = new List<GAGenome>();
         GAParams GaParams { get; set; }
-        SeachParameters SeachParams { get; set; }
         GAMapFP ObjMap { get; set; }
         int BestPopulation { get; set; }
         public double TotalFitness { get; set; }
         GAMutate ObjMutate { get; set; }
         GACrossOver ObjCrossOver { get; set; }
-        public GAFP(GAParams tParams, SeachParameters tSeachParams)
+        public GAFP(GAParams tParams)
         {
             GaParams = tParams;
             ObjCrossOver = new GACrossOver(tParams, objRandom);
             ObjMutate = new GAMutate(tParams, objRandom);
 
-            SeachParams = tSeachParams;
-            ObjMap = new GAMapFP(SeachParams);
+            ObjMap = new GAMapFP(GaParams.Params);
 
             CreateStartingPopulation();
         }
@@ -36,7 +34,7 @@ namespace TCC.GAFindingPath
         {
             for (int i = 0; i < GaParams.PopulationSize; i++)
             {
-                var objGenome = new GAGenome(SeachParams, objRandom);
+                var objGenome = new GAGenome(GaParams.Params, objRandom);
                 ListPopulation.Add(objGenome);
             }
         }
@@ -45,11 +43,6 @@ namespace TCC.GAFindingPath
             CalculatePopulationFitness();
 
             var lstNewPop = new List<GAGenome>();
-
-            if (ListPopulation.Count(i=>i.Route.Exists(o=>o.Xi < 0 || o.Yi < 0)) > 0)
-            {
-                int i = 0;
-            }
 
             ListPopulation = ListPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
@@ -65,11 +58,14 @@ namespace TCC.GAFindingPath
 
                 ObjCrossOver.CrossoverPBX(mom.Route, dad.Route, out baby1List, out baby2List);
 
+                baby1List = AdaptationBaby(baby1List);
+                baby2List = AdaptationBaby(baby2List);
+
                 //baby1List = ObjMutate.MutateIVM(baby1List);
                 //baby2List = ObjMutate.MutateIVM(baby2List);
 
-                var newcoor1 = GAGenome.AddCoor(SeachParams, baby1List.Last());
-                var newcoor2 = GAGenome.AddCoor(SeachParams, baby2List.Last());
+                var newcoor1 = GAGenome.AddCoor(GaParams.Params, baby1List.Last());
+                var newcoor2 = GAGenome.AddCoor(GaParams.Params, baby2List.Last());
 
                 //if (!baby1List.Exists(i=> i.Xi == newcoor1.Xi && i.Yi == newcoor1.Yi))
                     baby1List.Add(new Coordinate(newcoor1));
@@ -86,6 +82,26 @@ namespace TCC.GAFindingPath
             
             ++Generation;
         }
+        public List<Coordinate> AdaptationBaby(List<Coordinate> tBaby)
+        {
+            tBaby = tBaby.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+
+            var Search = GaParams.Params;
+
+            var newbaby = new List<Coordinate>();
+            newbaby.Add(tBaby[0]);
+
+            for (int i = 1; i < tBaby.Count; i++)
+            {
+                var coor = JJFunc.CalcDir(newbaby.Last(), tBaby[i].Dir);
+
+                if(Search.Valid(coor))
+                    newbaby.Add(coor);
+            }
+
+            return newbaby;
+        }
+
         private GAGenome RouletteWheelSelection()
         {
             var slice = objRandom.NextDouble() * TotalFitness;
@@ -125,7 +141,6 @@ namespace TCC.GAFindingPath
                 {
                     longestRoute = tourLength;
                 }
-
             }
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
@@ -137,6 +152,15 @@ namespace TCC.GAFindingPath
         public List<Coordinate> GetBestPath()
         {
             return ListPopulation[BestPopulation].Route.Where(i=>i!=null).ToList();
+        }
+        public double CalcFitness(List<Coordinate> tListCoor)
+        {
+            double fitness = 0;
+            double teto = Math.Pow(GaParams.MapaSize, 2) * 3;
+
+
+
+            return fitness;
         }
     }
 }

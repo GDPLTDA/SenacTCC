@@ -164,30 +164,6 @@ namespace TCC.GeneticAlgorithm
                     if (!baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi))
                         baby1[c1] = dad[pos];
             }
-
-            baby1 = AdaptationBaby(baby1);
-            baby2 = AdaptationBaby(baby2);
-        }
-
-        public List<Coordinate> AdaptationBaby(List<Coordinate> tBaby)
-        {
-            tBaby = tBaby.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
-
-            var newbaby = new List<Coordinate>();
-            newbaby.Add(tBaby[0]);
-
-            for (int i = 1; i < tBaby.Count; i++)
-            {
-                var coor = JJFunc.CalcDir(tBaby[i - 1], tBaby[i].Dir);
-
-                !tParam.Valid(coordir);
-
-                newbaby.Add(coor);
-            }
-
-            
-
-            return newbaby;
         }
     }
 }

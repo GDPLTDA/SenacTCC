@@ -1,4 +1,6 @@
-﻿namespace TCC.GeneticAlgorithm
+﻿using TCC.Core;
+
+namespace TCC.GeneticAlgorithm
 {
     public class GAParams
     {

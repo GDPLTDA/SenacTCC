@@ -27,9 +27,9 @@ namespace TCC.OutPutConsole
             //Run(WallConfig5, "Lendo o arquivo:");
 
             var WallGA = WallFile();
-            var tGaParams = TesteGA();
+            var tGaParams = TesteGA(WallGA);
             
-            RunGA(tGaParams, WallGA, "GA:");
+            RunGA(tGaParams, "GA:");
         }
         static void Run(SeachParameters tParams, string Msg)
         {
@@ -38,9 +38,9 @@ namespace TCC.OutPutConsole
             ShowRoute(Msg, path, tParams);
         }
 
-        static void RunGA(GAParams tGaParams, SeachParameters tParams, string Msg)
+        static void RunGA(GAParams tGaParams, string Msg)
         {
-            var pathFinder = new GAFP(tGaParams, tParams);
+            var pathFinder = new GAFP(tGaParams);
 
             while (true)
             {
@@ -50,12 +50,12 @@ namespace TCC.OutPutConsole
                 //if (pathFinder.Generation % 10 == 0)
                 //{
                     Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
-                    ShowRoute(Msg, path, tParams);
+                    ShowRoute(Msg, path, tGaParams);
                 //}
                 
             }
         }
-        static GAParams TesteGA()
+        static GAParams TesteGA(SeachParameters tSeach)
         {
             var map = JJFunc.GetMap();
             var Retorno = new GAParams
@@ -63,24 +63,30 @@ namespace TCC.OutPutConsole
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
                 PopulationSize = 10,
-                MapaSize = map.Length
+                MapaSize = map.Length,
+                Params = tSeach
             };
 
             return Retorno;
         }
-        static void ShowRoute(string title, List<Coordinate> path, SeachParameters searchParameters)
+        static void ShowRoute(string title, List<Coordinate> path, GAParams tGaParams)
+        {
+            ShowRoute(title, path, tGaParams.Params);
+        }
+
+        static void ShowRoute(string title, List<Coordinate> path, SeachParameters tSearch)
         {
             Console.WriteLine("{0}\r\n", title);
-            bool[,] map = searchParameters.Map;
+            bool[,] map = tSearch.Map;
 
             for (int y = 0; y < map.GetLength(1); y++) // Invert the Y-axis so that coordinate 0,0 is shown in the bottom-left
             {
                 for (int x = 0; x < map.GetLength(0); x++)
                 {
-                    if (searchParameters.LocationStart.X == x && searchParameters.LocationStart.Y == y)
+                    if (tSearch.LocationStart.X == x && tSearch.LocationStart.Y == y)
                         // Show the start position
                         Console.Write(MapSymbol.Start);
-                    else if (searchParameters.LocationEnd.X == x && searchParameters.LocationEnd.Y == y)
+                    else if (tSearch.LocationEnd.X == x && tSearch.LocationEnd.Y == y)
                         // Show the end position
                         Console.Write(MapSymbol.End);
                     else if (!map[x, y])
