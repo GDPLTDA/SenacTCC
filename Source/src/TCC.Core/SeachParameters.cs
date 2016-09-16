@@ -34,13 +34,13 @@ namespace TCC.Core
 
             if (!Map[x, y])
                 return false;
-            
+           /* 
             var xf = LocationEnd.Xi;
             var yf = LocationEnd.Yi;
 
             if (xf == x && yf == x)
                 ok = true;
-
+            */
             return ok;
         }
     }

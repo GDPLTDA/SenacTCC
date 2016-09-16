@@ -12,8 +12,7 @@ namespace TCC.OutPutConsole
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
@@ -40,9 +39,10 @@ namespace TCC.OutPutConsole
 
         static void RunGA(GAParams tGaParams, string Msg)
         {
+            var run = true;
             var pathFinder = new GAFP(tGaParams);
 
-            while (true)
+            while (run)
             {
                 pathFinder.Epoch();
                 var path = pathFinder.GetBestPath();
@@ -52,18 +52,21 @@ namespace TCC.OutPutConsole
                     Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
                     ShowRoute(Msg, path, tGaParams);
                 //}
-                
+                if(path.Last().Xi == tGaParams.Params.LocationEnd.Xi && path.Last().Yi == tGaParams.Params.LocationEnd.Yi )
+                    run = false;
             }
+
         }
         static GAParams TesteGA(SeachParameters tSeach)
         {
-            var map = JJFunc.GetMap();
+            var map = tSeach.Map;
             var Retorno = new GAParams
             {
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
-                PopulationSize = 10,
-                MapaSize = map.Length,
+                PopulationSize = 100,
+                MapWidth = map.GetLength(0),
+                MapHeight = map.GetLength(1),
                 Params = tSeach
             };
 
@@ -101,7 +104,7 @@ namespace TCC.OutPutConsole
                 }
                 Console.WriteLine();
             }
-            Console.ReadKey();
+            System.Threading.Thread.Sleep(500);
         }
         /// <summary>
         /// Creates a clear map with a start and end point and sets up the search parameters

@@ -12,7 +12,7 @@ namespace TCC.GAFindingPath
     {
         Random objRandom = new Random();
         public int Generation { get; set; } = 0;
-        int NumBest2Add { get; set; } = 1;
+        int NumBest2Add { get; set; } = 10;
         List<GAGenome> ListPopulation { get; set; } = new List<GAGenome>();
         GAParams GaParams { get; set; }
         GAMapFP ObjMap { get; set; }
@@ -118,7 +118,7 @@ namespace TCC.GAFindingPath
                     break;
                 }
             }
-
+            
             return new GAGenome(ListPopulation[selectedGenome].Route, objRandom);
         }
         void CalculatePopulationFitness()
@@ -129,12 +129,15 @@ namespace TCC.GAFindingPath
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
             {
-                var tourLength = ObjMap.Get(ListPopulation[i].Route);
+                //var tourLength = ObjMap.Get(ListPopulation[i].Route);
+                var tourLength = CalcFitness(ListPopulation[i].Route);
+                
                 ListPopulation[i].Fitness = tourLength;
 
                 if (tourLength < shortestRoute)
                 {
                     shortestRoute = tourLength;
+                    
                     BestPopulation = i;
                 }
                 if (tourLength > longestRoute)
@@ -156,9 +159,37 @@ namespace TCC.GAFindingPath
         public double CalcFitness(List<Coordinate> tListCoor)
         {
             double fitness = 0;
-            double teto = Math.Pow(GaParams.MapaSize, 2) * 3;
+            double teto = (GaParams.MapWidth+GaParams.MapHeight)*3;
+            
+            var Gx = GaParams.Params.LocationEnd.X;
+            var Gy = GaParams.Params.LocationEnd.Y;
+            
+            var Sx = tListCoor.Last().X;
+            var Sy = tListCoor.Last().Y;
 
 
+            var horizontal = tListCoor.Sum(e => {
+                if ( new Direction[]{Direction.Up, Direction.Down}.Contains(e.Dir) )
+                    return 0;
+
+                return e.Dir == Direction.Left ? -1 : 1;
+            });
+
+
+            var vertical = tListCoor.Sum(e => {
+                if ( new Direction[]{Direction.Left, Direction.Rigth}.Contains(e.Dir) )
+                    return 0;
+
+                return e.Dir == Direction.Down ? -1 : 1;
+            });
+
+
+            var MH = Math.Abs(Gx-(Sx+horizontal) *GaParams.MapWidth ) + 
+                     Math.Abs(Gy-(Sy+vertical) * GaParams.MapHeight);
+            
+            var MT = horizontal*GaParams.MapWidth + vertical*GaParams.MapHeight;
+
+            fitness = teto - MH - MT * 0.1f;
 
             return fitness;
         }
