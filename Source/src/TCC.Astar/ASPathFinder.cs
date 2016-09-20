@@ -19,14 +19,14 @@ namespace TCC.Astar
         {
             searchParameters = tsearchParameters;
             InitializeNodes(searchParameters.Map);
-            int x = (int)searchParameters.LocationStart.X;
-            int y = (int)searchParameters.LocationStart.Y;
+            int x = (int)searchParameters.LocStart.X;
+            int y = (int)searchParameters.LocStart.Y;
 
             startNode = nodes[x, y];
             startNode.State = ASNodeState.Open;
 
-            x = (int)searchParameters.LocationEnd.X;
-            y = (int)searchParameters.LocationEnd.Y;
+            x = (int)searchParameters.LocEnd.X;
+            y = (int)searchParameters.LocEnd.Y;
             endNode = nodes[x, y];
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace TCC.Astar
             nodes = new ASNode[width, height];
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.LocationEnd);
+                    nodes[x, y] = new ASNode(x, y, map[x, y], searchParameters.LocEnd);
         }
         /// <summary>
         /// Attempts to find a path to the destination node using <paramref name="currentNode"/> as the starting location

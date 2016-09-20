@@ -15,18 +15,13 @@ namespace TCC.GAFindingPath
         int NumBest2Add { get; set; } = 10;
         List<GAGenome> ListPopulation { get; set; } = new List<GAGenome>();
         GAParams GaParams { get; set; }
-        GAMapFP ObjMap { get; set; }
         int BestPopulation { get; set; }
         public double TotalFitness { get; set; }
-        GAMutate ObjMutate { get; set; }
         GACrossOver ObjCrossOver { get; set; }
         public GAFP(GAParams tParams)
         {
             GaParams = tParams;
             ObjCrossOver = new GACrossOver(tParams, objRandom);
-            ObjMutate = new GAMutate(tParams, objRandom);
-
-            ObjMap = new GAMapFP(GaParams.Params);
 
             CreateStartingPopulation();
         }
@@ -58,33 +53,33 @@ namespace TCC.GAFindingPath
 
                 ObjCrossOver.CrossoverPBX(mom.Route, dad.Route, out baby1List, out baby2List);
 
-                baby1List = AdaptationBaby(baby1List);
-                baby2List = AdaptationBaby(baby2List);
-
-                //baby1List = ObjMutate.MutateIVM(baby1List);
-                //baby2List = ObjMutate.MutateIVM(baby2List);
-
-                var newcoor1 = GAGenome.AddCoor(GaParams.Params, baby1List.Last());
-                var newcoor2 = GAGenome.AddCoor(GaParams.Params, baby2List.Last());
-
-                //if (!baby1List.Exists(i=> i.Xi == newcoor1.Xi && i.Yi == newcoor1.Yi))
-                    baby1List.Add(new Coordinate(newcoor1));
-                //if (!baby2List.Exists(i => i.Xi == newcoor2.Xi && i.Yi == newcoor2.Yi))
-                    baby2List.Add(new Coordinate(newcoor2));
-
+                baby1List = MutationBaby(baby1List);
+                baby2List = MutationBaby(baby2List);
+                
                 var baby1 = new GAGenome(baby1List, objRandom);
                 var baby2 = new GAGenome(baby2List, objRandom);
 
                 lstNewPop.Add(baby1);
                 lstNewPop.Add(baby2);
             }
-            ListPopulation = GA.CopyGenome(lstNewPop, objRandom);
+            ListPopulation = lstNewPop;
             
-            ++Generation;
+            Generation++;
+        }
+        public List<Coordinate> MutationBaby(List<Coordinate> tBaby)
+        {
+            tBaby = AdaptationBaby(tBaby);
+
+            var newcoor = GAGenome.AddCoor(GaParams.Params, tBaby.Last());
+
+            if (!tBaby.Exists(i => i.Equals(newcoor)))
+                tBaby.Add(new Coordinate(newcoor));
+
+            return tBaby;
         }
         public List<Coordinate> AdaptationBaby(List<Coordinate> tBaby)
         {
-            tBaby = tBaby.Where(i => i.Xi != -1 && i.Yi != -1).ToList();
+            tBaby = tBaby.Where(i => !i.Equals(-1, -1)).ToList();
 
             var Search = GaParams.Params;
 
@@ -93,10 +88,13 @@ namespace TCC.GAFindingPath
 
             for (int i = 1; i < tBaby.Count; i++)
             {
-                var coor = JJFunc.CalcDir(newbaby.Last(), tBaby[i].Dir);
+                var coor = new Coordinate(newbaby.Last(), tBaby[i].DirCoor);
 
                 if(Search.Valid(coor))
                     newbaby.Add(coor);
+
+                if (coor.Equals(Search.LocEnd))
+                    break;
             }
 
             return newbaby;
@@ -129,7 +127,6 @@ namespace TCC.GAFindingPath
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
             {
-                //var tourLength = ObjMap.Get(ListPopulation[i].Route);
                 var tourLength = CalcFitness(ListPopulation[i].Route);
                 
                 ListPopulation[i].Fitness = tourLength;
@@ -161,28 +158,27 @@ namespace TCC.GAFindingPath
             double fitness = 0;
             double teto = (GaParams.MapWidth+GaParams.MapHeight)*3;
             
-            var Gx = GaParams.Params.LocationEnd.X;
-            var Gy = GaParams.Params.LocationEnd.Y;
+            var Gx = GaParams.Params.LocEnd.X;
+            var Gy = GaParams.Params.LocEnd.Y;
             
             var Sx = tListCoor.Last().X;
             var Sy = tListCoor.Last().Y;
 
 
             var horizontal = tListCoor.Sum(e => {
-                if ( new Direction[]{Direction.Up, Direction.Down}.Contains(e.Dir) )
+                if ( new Direction[]{Direction.Up, Direction.Down}.Contains(e.DirCoor) )
                     return 0;
 
-                return e.Dir == Direction.Left ? -1 : 1;
+                return e.DirCoor == Direction.Left ? -1 : 1;
             });
 
 
             var vertical = tListCoor.Sum(e => {
-                if ( new Direction[]{Direction.Left, Direction.Rigth}.Contains(e.Dir) )
+                if ( new Direction[]{Direction.Left, Direction.Rigth}.Contains(e.DirCoor) )
                     return 0;
 
-                return e.Dir == Direction.Down ? -1 : 1;
+                return e.DirCoor == Direction.Down ? -1 : 1;
             });
-
 
             var MH = Math.Abs(Gx-(Sx+horizontal) *GaParams.MapWidth ) + 
                      Math.Abs(Gy-(Sy+vertical) * GaParams.MapHeight);
