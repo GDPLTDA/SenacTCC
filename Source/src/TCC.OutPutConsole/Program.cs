@@ -16,13 +16,13 @@ namespace TCC.OutPutConsole
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var WallConfig4 = WallFile();
-            Run(WallConfig4, "A*");
-
             var WallGA = WallFile();
             var tGaParams = TesteGA(WallGA);
 
             RunGA(tGaParams, "Algoritmo Genetico:");
+
+            var WallConfig4 = WallFile();
+            Run(WallConfig4, "AStar");
         }
         static void Run(SeachParameters tParams, string Msg)
         {
@@ -44,15 +44,15 @@ namespace TCC.OutPutConsole
                 var path = pathFinder.GetBestPath();
 
                 // exibe o desenho do mapa
-                ShowRoute(Msg, path, tGaParams);
+                Console.Clear();
                 Console.WriteLine("Geracao:{0}\r\n", pathFinder.Generation);
-
+                ShowRoute(Msg, path, tGaParams);
+                
                 // verifica se encontrou o destino
                 var last = path.Last();
                 var end = tGaParams.Params.LocEnd;
                 run = !(last.Equals(end));
             }
-            Console.ReadKey();
         }
         static GAParams TesteGA(SeachParameters tSeach)
         {
