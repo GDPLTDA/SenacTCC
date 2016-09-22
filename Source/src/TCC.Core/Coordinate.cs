@@ -15,11 +15,20 @@ namespace TCC.Core
     }
     public class Coordinate
     {
-        public Direction Dir { get; set; }
+        public Direction DirCoor { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
         public int Xi { get; set; }
         public int Yi { get; set; }
+
+        public bool Equals(int x, int y)
+        {
+            return X == x && Y == y;
+        }
+        public bool Equals(Coordinate obj)
+        {
+            return X == obj.X && Y == obj.Y;
+        }
         public Coordinate(Coordinate tCoor)
         {
             X = tCoor.X;
@@ -28,8 +37,46 @@ namespace TCC.Core
             Xi = tCoor.Xi;
             Yi = tCoor.Yi;
 
-            Dir = tCoor.Dir;
+            DirCoor = tCoor.DirCoor;
         }
+        public Coordinate(Coordinate tCoor, Direction tDir)
+        {
+            X = tCoor.X;
+            Y = tCoor.Y;
+
+            switch (tDir)
+            {
+                case Direction.Up:
+                    Y += -1;
+                    break;
+                case Direction.Down:
+                    Y += 1;
+                    break;
+                case Direction.Left:
+                    X += -1;
+                    break;
+                case Direction.Rigth:
+                    X += 1;
+                    break;
+                default:
+                    break;
+            }
+            DirCoor = tDir;
+            Xi = Convert.ToInt32(X);
+            Yi = Convert.ToInt32(Y);
+        }
+
+        public Coordinate(double tX, double tY)
+        {
+            X = tX;
+            Y = tY;
+
+            Xi = Convert.ToInt32(tX);
+            Yi = Convert.ToInt32(tY);
+
+            DirCoor = Direction.None;
+        }
+
         public Coordinate(Direction tDir, double tX, double tY)
         {
             X = tX;
@@ -38,7 +85,7 @@ namespace TCC.Core
             Xi = Convert.ToInt32(tX);
             Yi = Convert.ToInt32(tY);
 
-            Dir = tDir;
+            DirCoor = tDir;
         }
     }
 }

@@ -59,7 +59,7 @@ namespace TCC.GeneticAlgorithm
         {
             var lstVecPerm = new List<Coordinate>();
             bool run = true;
-            var coor = tParam.LocationStart;
+            var coor = tParam.LocStart;
 
             while (run)
             {
@@ -67,12 +67,9 @@ namespace TCC.GeneticAlgorithm
                 if(!lstVecPerm.Exists(x=>x.Xi == coor.Xi && x.Yi == coor.Yi))
                     lstVecPerm.Add(coor);
 
-                //var lisadj = JJFunc.GetAdjacentLocations(coor);
-
-                //var i = objRandom.Next(0, lisadj.Count -1);
 
                 var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
-                var coordir = JJFunc.CalcDir(coor, (Direction)dir);
+                var coordir = new Coordinate(coor, (Direction)dir);
 
                 // verifica se teve colisão ou se encontrou o fim
                 run = tParam.Valid(coordir);
@@ -87,19 +84,13 @@ namespace TCC.GeneticAlgorithm
         {
             var run = true;
             var i = 0;
-            //List<Coordinate> lisadj = new List<Coordinate>();
             Coordinate coordir = tCoor;
             while (run)
             {
-                //lisadj = JJFunc.GetAdjacentLocations(tCoor);
-
-                //i = objRandom.Next(0, lisadj.Count);
-
                 var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
-                coordir = JJFunc.CalcDir(tCoor, (Direction)dir);
+                coordir = new Coordinate(tCoor, (Direction)dir);
 
                 run = !tParam.Valid(coordir);
-
             }
             return coordir;
         }

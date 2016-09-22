@@ -154,14 +154,14 @@ namespace TCC.GeneticAlgorithm
                 while (c2 < mum.Count && baby2[c2].Xi > -1)
                     ++c2;
                 if (c2 < baby2.Count)
-                    if (!baby2.Exists(i => i.Xi == mum[pos].Xi && i.Yi == mum[pos].Yi))
+                    if (!baby2.Exists(i => i.Equals(mum[pos])))
                         baby2[c2] = mum[pos];
 
                 while (c1 < mum.Count && baby1[c1].Xi > -1)
                     ++c1;
 
                 if (c1 < baby1.Count)
-                    if (!baby1.Exists(i=> i.Xi ==  dad[pos].Xi &&  i.Yi == dad[pos].Yi))
+                    if (!baby1.Exists(i=> i.Equals(dad[pos])))
                         baby1[c1] = dad[pos];
             }
         }

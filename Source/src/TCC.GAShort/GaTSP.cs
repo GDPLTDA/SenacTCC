@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using TCC.Core;
+using TCC.GeneticAlgorithm;
 
-namespace TCC.GeneticAlgorithm
+namespace TCC.GAPathShort
 {
-    public class GaTSP
+    public class GATSP
     {
         private List<GAGenome> lstPopulation { get; set; } = new List<GAGenome>();
-        private GAMapTSP objMap { get; set; }
+        private GATSPMap objMap { get; set; }
         private GAParams Params { get; set; }
         private int NumBest2Add { get; set; } = 1;
         private double totalFitness { get; set; }
@@ -20,13 +21,13 @@ namespace TCC.GeneticAlgorithm
         private Random objRandom { get; set; } = new Random();
         GAMutate ObjMutate { get; set; }
         GACrossOver ObjCrossOver { get; set; }
-        public GaTSP(GAParams tParams)
+        public GATSP(GAParams tParams)
         {
             Params = tParams;
             ObjCrossOver = new GACrossOver(tParams, objRandom);
             ObjMutate = new GAMutate(tParams, objRandom);
 
-            objMap = new GAMapTSP(tParams.NumberOfRoutes, tParams.MapaSize);
+            objMap = new GATSPMap(tParams.NumberOfRoutes, tParams.MapWidth, tParams.MapHeight);
             CreateStartingPopulation();
         }
         public List<Coordinate> GetlstCityCoordinates()
@@ -95,7 +96,7 @@ namespace TCC.GeneticAlgorithm
 
             lstPopulation = lstPopulation.OrderByDescending(x => x.Fitness).ToList();
             for (int i = 0; i < NumBest2Add; i++)
-                lstNewPop.Add(lstPopulation[i]);
+                lstNewPop.Add(new GAGenome(lstPopulation[i].Route, objRandom));
 
             while (lstNewPop.Count <= Params.PopulationSize)
             {
@@ -116,7 +117,7 @@ namespace TCC.GeneticAlgorithm
                 lstNewPop.Add(baby1);
                 lstNewPop.Add(baby2);
             }
-            lstPopulation = GA.CopyGenome(lstNewPop, objRandom);
+            lstPopulation = lstNewPop;
 
             ++generation;
         }

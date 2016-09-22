@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 // associated with an assembly.
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TCC.GA")]
+[assembly: AssemblyProduct("TCC.GeneticAlgorithm")]
 [assembly: AssemblyTrademark("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
@@ -16,4 +16,4 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c73762bf-e439-4b96-9214-d2d375277ebd")]
+[assembly: Guid("dac2c2f5-623c-42ef-8202-b905c10c9f30")]
