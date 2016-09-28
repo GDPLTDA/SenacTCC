@@ -72,7 +72,7 @@ namespace TCC.GAFindingPath
 
             var newcoor = GAGenome.AddCoor(GaParams.Params, tBaby.Last());
 
-            if (!tBaby.Exists(i => i.Equals(newcoor)))
+            //if (!tBaby.Exists(i => i.Equals(newcoor)))
                 tBaby.Add(new Coordinate(newcoor));
 
             return tBaby;
@@ -122,32 +122,24 @@ namespace TCC.GAFindingPath
         void CalculatePopulationFitness()
         {
             TotalFitness = 0;
-            var shortestRoute = double.MaxValue;
-            var longestRoute = 0.0;
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
             {
-                var tourLength = CalcFitness(ListPopulation[i].Route);
-                
-                ListPopulation[i].Fitness = tourLength;
-
-                if (tourLength < shortestRoute)
-                {
-                    shortestRoute = tourLength;
-                    
-                    BestPopulation = i;
-                }
-                if (tourLength > longestRoute)
-                {
-                    longestRoute = tourLength;
-                }
-            }
-
-            for (int i = 0; i < GaParams.PopulationSize; ++i)
-            {
-                ListPopulation[i].Fitness = longestRoute - ListPopulation[i].Fitness;
+                ListPopulation[i].Fitness = CalcFitness(ListPopulation[i].Route);
                 TotalFitness += ListPopulation[i].Fitness;
             }
+
+            ListPopulation = ListPopulation.OrderBy(i => i.Fitness).ToList();
+            var shortestRoute = ListPopulation.Min(i => i.Fitness) ;
+            var longestRoute = ListPopulation.Max(i => i.Fitness);
+
+            BestPopulation = 0;
+
+            //for (int i = 0; i < GaParams.PopulationSize; ++i)
+            //{
+            //    ListPopulation[i].Fitness = longestRoute - ListPopulation[i].Fitness;
+            //    TotalFitness += ListPopulation[i].Fitness;
+            //}
         }
         public List<Coordinate> GetBestPath()
         {
@@ -164,7 +156,6 @@ namespace TCC.GAFindingPath
             var Sx = tListCoor.Last().X;
             var Sy = tListCoor.Last().Y;
 
-
             var horizontal = tListCoor.Sum(e => {
                 if ( new Direction[]{Direction.Up, Direction.Down}.Contains(e.DirCoor) )
                     return 0;
@@ -180,12 +171,18 @@ namespace TCC.GAFindingPath
                 return e.DirCoor == Direction.Down ? -1 : 1;
             });
 
-            var MH = Math.Abs(Gx-(Sx+horizontal) *GaParams.MapWidth ) + 
+            var MH = Math.Abs(Gx-(Sx+horizontal) * GaParams.MapWidth ) + 
                      Math.Abs(Gy-(Sy+vertical) * GaParams.MapHeight);
             
             var MT = horizontal*GaParams.MapWidth + vertical*GaParams.MapHeight;
 
-            fitness = teto - MH - MT * 0.1f;
+            fitness = (teto - MH - MT) * 0.1f;
+
+
+            if (fitness < 0) {
+                int i = 0;
+            }
+
 
             return fitness;
         }

@@ -16,7 +16,7 @@ namespace TCC.OutPutConsole
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var WallGA = WallFile();
+            var WallGA = WallSimple();
             var tGaParams = TesteGA(WallGA);
 
             RunGA(tGaParams, "Algoritmo Genetico:");
@@ -110,14 +110,14 @@ namespace TCC.OutPutConsole
         {
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
-            //  □ S □ □ □ F □
+            //  □ F □ □ □ S □
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
 
             var map = JJFunc.GetMap();
 
             var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var endLocation = new Coordinate(9, 2); 
 
             return new SeachParameters(startLocation, endLocation, map);
         }
@@ -189,7 +189,7 @@ namespace TCC.OutPutConsole
         }
         static SeachParameters WallFile()
         {
-            var map = JJFunc.GetMap(11,10);
+            var listblock = new List<Coordinate>();
             int x = 0, y = 0;
             byte Dig;
             var startLocation = new Coordinate(0, 0);
@@ -198,7 +198,6 @@ namespace TCC.OutPutConsole
             using (FileStream oFileStream = new FileStream(@"test.txt", FileMode.Open))
             {
                 x = 0;
-
                 BinaryReader oReader = new BinaryReader(oFileStream);
 
                 while (!(oReader.BaseStream.Position == oReader.BaseStream.Length))
@@ -225,9 +224,15 @@ namespace TCC.OutPutConsole
                         endLocation = new Coordinate(x, y);
 
                     if (cDig == MapSymbol.Block)
-                        map[x, y] = false;
+                        listblock.Add(new Coordinate(x, y));
                     x++;
                 }
+            }
+            var map = JJFunc.GetMap(x, y + 1);
+
+            foreach (var item in listblock)
+            {
+                map[item.Xi, item.Yi] = false;
             }
             return new SeachParameters(startLocation, endLocation, map);
         }
