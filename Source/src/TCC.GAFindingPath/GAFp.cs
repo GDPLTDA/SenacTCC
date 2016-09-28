@@ -72,7 +72,7 @@ namespace TCC.GAFindingPath
 
             var newcoor = GAGenome.AddCoor(GaParams.Params, tBaby.Last());
 
-            //if (!tBaby.Exists(i => i.Equals(newcoor)))
+            if (!tBaby.Exists(i => i.Equals(newcoor)))
                 tBaby.Add(new Coordinate(newcoor));
 
             return tBaby;
@@ -124,10 +124,7 @@ namespace TCC.GAFindingPath
             TotalFitness = 0;
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
-            {
                 ListPopulation[i].Fitness = CalcFitness(ListPopulation[i].Route);
-                TotalFitness += ListPopulation[i].Fitness;
-            }
 
             ListPopulation = ListPopulation.OrderBy(i => i.Fitness).ToList();
             var shortestRoute = ListPopulation.Min(i => i.Fitness) ;
@@ -135,11 +132,11 @@ namespace TCC.GAFindingPath
 
             BestPopulation = 0;
 
-            //for (int i = 0; i < GaParams.PopulationSize; ++i)
-            //{
-            //    ListPopulation[i].Fitness = longestRoute - ListPopulation[i].Fitness;
-            //    TotalFitness += ListPopulation[i].Fitness;
-            //}
+            for (int i = 0; i < GaParams.PopulationSize; ++i)
+            {
+                ListPopulation[i].Fitness = longestRoute - ListPopulation[i].Fitness;
+                TotalFitness += ListPopulation[i].Fitness;
+            }
         }
         public List<Coordinate> GetBestPath()
         {
@@ -176,7 +173,7 @@ namespace TCC.GAFindingPath
             
             var MT = horizontal*GaParams.MapWidth + vertical*GaParams.MapHeight;
 
-            fitness = (teto - MH - MT) * 0.1f;
+            fitness = teto - MH - MT * 0.1f;
 
 
             if (fitness < 0) {

@@ -16,7 +16,7 @@ namespace TCC.OutPutConsole
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            var WallGA = WallSimple();
+            var WallGA = WallFile();
             var tGaParams = TesteGA(WallGA);
 
             RunGA(tGaParams, "Algoritmo Genetico:");
