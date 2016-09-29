@@ -70,7 +70,10 @@ namespace TCC.GAFindingPath
         {
             tBaby = AdaptationBaby(tBaby);
 
-            var newcoor = GAGenome.AddCoor(GaParams.Params, tBaby.Last());
+            if (GaParams.Params.LocEnd.Equals(tBaby.Last()))
+                return tBaby;
+
+            var newcoor = GAGenome.AddCoor(GaParams.Params, tBaby);
 
             if (!tBaby.Exists(i => i.Equals(newcoor)))
                 tBaby.Add(new Coordinate(newcoor));
@@ -90,7 +93,7 @@ namespace TCC.GAFindingPath
             {
                 var coor = new Coordinate(newbaby.Last(), tBaby[i].DirCoor);
 
-                if(Search.Valid(coor))
+                if(Search.Valid(coor) && !newbaby.Exists(x => x.Equals(coor)))
                     newbaby.Add(coor);
 
                 if (coor.Equals(Search.LocEnd))
@@ -104,7 +107,7 @@ namespace TCC.GAFindingPath
         {
             var slice = objRandom.NextDouble() * TotalFitness;
             var total = (double)0;
-            var selectedGenome = 0;
+            var selectedGenome = 0;// objRandom.Next(0, ListPopulation.Count - 1);
 
             for (int i = 0; i < GaParams.PopulationSize; i++)
             {
@@ -116,7 +119,7 @@ namespace TCC.GAFindingPath
                     break;
                 }
             }
-            
+
             return new GAGenome(ListPopulation[selectedGenome].Route, objRandom);
         }
         void CalculatePopulationFitness()
@@ -126,11 +129,15 @@ namespace TCC.GAFindingPath
             for (int i = 0; i < GaParams.PopulationSize; ++i)
                 ListPopulation[i].Fitness = CalcFitness(ListPopulation[i].Route);
 
+            var coorend = GaParams.Params.LocEnd;
+
+            //ListPopulation = ListPopulation.OrderBy(i => JJFunc.CalcteA2B(i.Route.Last(), coorend)).ToList();
             ListPopulation = ListPopulation.OrderBy(i => i.Fitness).ToList();
+
+
             var shortestRoute = ListPopulation.Min(i => i.Fitness) ;
             var longestRoute = ListPopulation.Max(i => i.Fitness);
-
-            BestPopulation = 0;
+            BestPopulation = 0; // ListPopulation.Count -1 ;
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
             {
@@ -154,7 +161,7 @@ namespace TCC.GAFindingPath
             var Sy = tListCoor.Last().Y;
 
             var horizontal = tListCoor.Sum(e => {
-                if ( new Direction[]{Direction.Up, Direction.Down}.Contains(e.DirCoor) )
+                if ( new Direction[]{ Direction.None, Direction.Up, Direction.Down}.Contains(e.DirCoor) )
                     return 0;
 
                 return e.DirCoor == Direction.Left ? -1 : 1;
@@ -162,7 +169,7 @@ namespace TCC.GAFindingPath
 
 
             var vertical = tListCoor.Sum(e => {
-                if ( new Direction[]{Direction.Left, Direction.Rigth}.Contains(e.DirCoor) )
+                if ( new Direction[]{ Direction.None, Direction.Left, Direction.Rigth}.Contains(e.DirCoor) )
                     return 0;
 
                 return e.DirCoor == Direction.Down ? -1 : 1;
@@ -174,12 +181,6 @@ namespace TCC.GAFindingPath
             var MT = horizontal*GaParams.MapWidth + vertical*GaParams.MapHeight;
 
             fitness = teto - MH - MT * 0.1f;
-
-
-            if (fitness < 0) {
-                int i = 0;
-            }
-
 
             return fitness;
         }

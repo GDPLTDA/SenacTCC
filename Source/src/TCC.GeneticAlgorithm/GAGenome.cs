@@ -80,19 +80,48 @@ namespace TCC.GeneticAlgorithm
             return lstVecPerm;
         }
 
-        public static Coordinate AddCoor(SeachParameters tParam, Coordinate tCoor)
+        public static Coordinate AddCoor(SeachParameters tParam, List<Coordinate> tListCoor)
         {
-            var run = true;
-            var i = 0;
-            Coordinate coordir = tCoor;
-            while (run)
-            {
-                var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
-                coordir = new Coordinate(tCoor, (Direction)dir);
+            Coordinate coordir = tListCoor.Last();
+            Coordinate coorant = coordir;
 
-                run = !tParam.Valid(coordir);
+            List<Coordinate> coorretur = new List<Coordinate>();
+
+            if (tListCoor.Count > 1 )
+                coorant = tListCoor[tListCoor.Count -2];
+
+            var mindis = double.MaxValue;
+            var countdir = Enum.GetNames(typeof(Direction)).Length;
+
+            for (int i = 1; i < countdir; i++)
+            {
+                var newcoor = new Coordinate(coordir, (Direction)i);
+
+                if (tParam.Valid(newcoor) && !coorant.Equals(newcoor)) {
+                    var dis = JJFunc.CalcteA2B(newcoor, tParam.LocEnd);
+                    if (dis < mindis)
+                    {
+                        mindis = dis;
+                        coorretur.Add(newcoor);
+                    }
+                 }
             }
-            return coordir;
+
+            if (coorretur.Count() == 0)
+                coorretur.Add( new Coordinate(coordir, Direction.None));
+
+            var dir = objRandom.Next(0, coorretur.Count);
+
+            return coorretur[dir];
+
+            //while (run)
+            //{
+            //    var dir = objRandom.Next(1, Enum.GetNames(typeof(Direction)).Length);
+            //    coordir = new Coordinate(tCoor, (Direction)dir);
+
+            //    run = !tParam.Valid(coordir);
+            //}
+            //return coordir;
         }
     }
 }

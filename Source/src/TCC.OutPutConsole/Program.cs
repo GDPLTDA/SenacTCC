@@ -61,7 +61,7 @@ namespace TCC.OutPutConsole
             {
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
-                PopulationSize = 100,
+                PopulationSize = 1000,
                 MapWidth = map.GetLength(0),
                 MapHeight = map.GetLength(1),
                 Params = tSeach
@@ -197,7 +197,6 @@ namespace TCC.OutPutConsole
 
             using (FileStream oFileStream = new FileStream(@"test.txt", FileMode.Open))
             {
-                x = 0;
                 BinaryReader oReader = new BinaryReader(oFileStream);
 
                 while (!(oReader.BaseStream.Position == oReader.BaseStream.Length))
@@ -207,14 +206,13 @@ namespace TCC.OutPutConsole
                     var cDig = (char)Dig;
 
                     if (Dig == 13)
-                    {
-                        Dig = oReader.ReadByte();
-                    }
+                        continue;
 
                     if (Dig == 10)
                     {
                         y++;
                         x = 0;
+                        continue;
                     }
 
                     if (cDig == MapSymbol.Start)
@@ -227,8 +225,9 @@ namespace TCC.OutPutConsole
                         listblock.Add(new Coordinate(x, y));
                     x++;
                 }
+                y++;
             }
-            var map = JJFunc.GetMap(x, y + 1);
+            var map = JJFunc.GetMap(x, y);
 
             foreach (var item in listblock)
             {
