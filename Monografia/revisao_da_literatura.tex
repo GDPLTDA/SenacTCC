@@ -11,11 +11,15 @@ Busca heurística de caminhos é um subgrupo de algoritmos de busca em grafos \c
 
 \subsection{\textit{Best-first search}}
 
-É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que é gerada, e uma lista fechada dos nós que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados.
+É um algoritmo de busca heurística geral. Ele mantém uma lista aberta contendo os nós ainda não visitados de uma árvore que é gerada, e uma lista fechada dos nós que já foram expandidos e visitados. Cada nó tem um valor de custo, em cada ciclo um nó de menor custo da lista aberta é expandido, cada filho do nó é avaliado por uma função de custo \ref{eq:FormulaHeuristicaBFS}  e adicionado na lista aberta, e o nó pai é adicionado a lista de nos fechados.
+
+\begin{equation} \label{eq:FormulaHeuristicaBFS}
+f(n) =  h(n)
+\end{equation}
 
 A lista aberta contem apenas o nó inicial e o algorítimo termina quando encontrar o nó de destino para expansão.\cite{KORF199341}
 
-Existem muitas implementações do BFS, tais como \textit{Dijkstra} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
+Existem muitas implementações com alterações do BFS, tais como \textit{Dijkstra} ou A*, o que os diferencia basicamente é como é implementada sua função de custo.
 
 \subsection{O Algoritmo A*}
 
@@ -91,6 +95,21 @@ Pelo motivo do alto custo, a heurística fornece uma expansão considerável dos
 
 É comum no meio dos jogos digitais termos mais de um agente rodando ao mesmo tempo, um otimização para esse problema, proposta por Ko- Hsin, Cindy Wang e Adi Botea, examina o planejamento de caminhos multi-agente. Eles propõem um algoritmo chamado de FAR (\textit{Flow Annotation Replanning}) para combater os problemas técnicos envolvidos em pesquisas globais por várias entidades.
 FAR implementa restrições de fluxo para evitar colisões frontais, para assim reduzir o espaço de busca que uma entidade deve considerar quando planejar a sua rota. Esse método tem a possibilidade de entrar em \textit{deadlock}, um estado de bloqueio, porem o algoritmo é capaz de contornar esse problema \cite{Ko-hsin}.
+
+É comum a utilização do BFS apenas, como possui uma função heurisitica mais simples consome menos memoria, porem não garante a certeza do melhor caminho. \cite{UlyssesTCC}\cite{Russell}.
+
+Outra solução é o uso de metaheurísticas para a adaptação do algoritimo de busca ao ambiente. São estratégias de alto nível que guiam os processos de pesquisa, e tem como objetivo explorar, de forma eficiente, o espaço de busca, a fim de encontrar soluções ideais tanto para problemas simples, quanto  complexos. São técnicas não determinísticas e
+podem utilizar heurísticas para guiar seu processo de pesquisa. São exemplos de metaheurísticas, Algoritmos Genéticos (AG), BuscaTabu, Colônia de Formigas, GRASP, Simulated Annealing, dentre outras. \cite{Blum}
+
+Korf propôs o algoritmo Iterative Deepening A* (IDA*) \cite{Korf85}, o mesmo utiliza a busca em  profundidade combinada com a heurística do A*. O resultado é um algoritmo que encontra a solução ótima, com o gasto mínimo de memória. Essa tecnica tem como desvantagem gerar uma árvore na busca a cada iteração. Com isso, o algoritmo exige muito processamento, o que pode tornálo mais lento que o A* em determinados casos.
+
+Em contraponto temos a proposta apresentada por Björnsson \cite{Bjornsson}, o Fringe Search, visa otimizar o algoritmo IDA*. O foco é eliminar a principal deficiência do IDA* já citada. De forma que a cada iteração, não é mais necessário gerar a árvore  novamente, pois o algoritmo armazena os nós folhas da mesma, o que faz que, na próxima iteração, a busca se inicie a partir desses nós. Com isso, o algoritmo Fringe Search consegue ser mais rápido
+que o IDA*.
+
+O Recursive Best–First Search (RBFS), proposto por Korf \cite{Korf92}, é um algoritmo que trabalha com a redução do consumo de memória para o processo de busca de caminhos. Este algoritmo utiliza a mesma heurística do BFS e promove uma otimização espacial para o mesmo.
+
+A técnica de reconhecimento de padrão de obstáculos do ambiente é um assunto tratado por Demyen e Buro \cite{Demyen}. O algoritmo por eles proposto, chamado de Triangulation Reduction A* (TRA*), utiliza uma abstração do ambiente a fim de determinar o padrão dos obstáculos do ambiente. Este visa otimizar o tempo gasto no processamento do algoritmo A*. Esse método tem como desvantagem, requisitar um formato específico dos obstáculos do ambiente, que devem ser poligonais, o que pode inviabilizar sua utilização em
+qualquer tipo de ambiente.
 
 A arte de busca de caminhos está longe de um trabalho perfeito e muito ainda precisa ser feito \cite{Pontevia}.
 
@@ -310,7 +329,7 @@ A Figura \ref{fig:CaminhoPPGA} mostra o resultado de caminho percorrido pelo BFS
 	\label{fig:CaminhoPPGA}
 \end{minipage}
 
-Os resultados obtidos da análise feita por \cite{Ulysses} do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}. 
+Os resultados obtidos da análise feita por \cite{Ulysses} do PPGA foram bons, por encontrar boas soluções em um curto período de tempo, mostrando ser muito bom para mapas onde o percurso segue um padrão, mas perdendo para o BFS para mapas mistos ou que não seguem o mesmo padrão ao longo o percurso, considerando o modelo como promissor, indicando que mudanças nos parâmetros do algoritmo genéticos, pode melhorar o desempenho dos testes \cite{Ulysses}.
 
 \section{Algoritmos genéticos paralelos ou distribuídos para busca de caminhos}
 

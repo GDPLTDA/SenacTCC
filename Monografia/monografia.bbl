@@ -12,15 +12,37 @@
 2000.}
 
 \bibitem[Björnsson et al. 2005]{Yngvi}
-\abntrefinfo{Björnsson et al.}{BJöRNSSON et al.}{2005}
+\abntrefinfo{Björnsson et al.}{BJöRNSSON et al.}{2005a}
 {BJöRNSSON, Y. et al. Fringe search: beating a* at pathfinding on game maps.
   In:  \emph{In Proceedings of IEEE Symposium on Computational Intelligence and
   Games}. [S.l.: s.n.], 2005. p. 125--132.}
+
+\bibitem[Björnsson et al. 2005]{Bjornsson}
+\abntrefinfo{Björnsson et al.}{BJöRNSSON et al.}{2005b}
+{BJöRNSSON, Y. et al. Fringe search: beating a* at pathfinding on game maps.
+  In:  \emph{In Proceedings of IEEE Symposium on Computational Intelligence and
+  Games}. [S.l.: s.n.], 2005. p. 125--132.}
+
+\bibitem[Blum e Roli 2003]{Blum}
+\abntrefinfo{Blum e Roli}{BLUM; ROLI}{2003}
+{BLUM, C.; ROLI, A. Metaheuristics in combinatorial optimization: Overview and
+  conceptual comparison.
+\emph{ACM Comput. Surv.}, ACM, New York, NY, USA, v.~35, n.~3, p. 268--308,
+  set. 2003.
+ISSN 0360-0300.
+Dispon{\'\i}vel em: \url{http://doi.acm.org/10.1145/937503.937505}.}
 
 \bibitem[Botea 2004]{Botea}
 \abntrefinfo{Botea}{BOTEA}{2004}
 {BOTEA, M.~M. A. Near optimal hierarchical path-finding.
 \emph{Journal of Game Development, Vol. 1}, p. 7--28, 2004.}
+
+\bibitem[Burchardt e Salomon 2006]{Burchardt}
+\abntrefinfo{Burchardt e Salomon}{BURCHARDT; SALOMON}{2006}
+{BURCHARDT, H.; SALOMON, R. {Implementation of Path Planning using Genetic
+  Algorithms on Mobile Robots}. In:  IEEE. \emph{IEEE World Congress on
+  Computational Intelligence (WCCI 2006), Congress on Evolutionary Computation
+  (CEC 2006)}. Vancouver, Canada, 2006. p. 1831--1836.}
 
 \bibitem[Cain 2002]{Timothy}
 \abntrefinfo{Cain}{CAIN}{2002}
@@ -40,6 +62,12 @@ Dispon{\'\i}vel em:
 Dispon{\'\i}vel em:
   \url{http://research.microsoft.com/en-us/news/features/shortestpath-070709.aspx}.
   Acesso em: 29/05/2016.}
+
+\bibitem[Demyen e Buro 2006]{Demyen}
+\abntrefinfo{Demyen e Buro}{DEMYEN; BURO}{2006}
+{DEMYEN, D.; BURO, M. Efficient triangulation-based pathfinding. In:
+  \emph{AAAI}. AAAI Press, 2006. p. 942--947. Dispon{\'\i}vel em:
+  \url{http://dblp.uni-trier.de/db/conf/aaai/aaai2006.html\#DemyenB06}.}
 
 \bibitem[D.Lohn Silvano P.~Colombano 2000]{Jason}
 \abntrefinfo{D.Lohn Silvano P.~Colombano}{D.LOHN SILVANO P.~COLOMBANO}{2000}
@@ -70,6 +98,17 @@ Dispon{\'\i}vel em:
 {KARP, R. Reducibility among combinatorial problems. In:  MILLER, R.; THATCHER,
   J. (Ed.). \emph{Complexity of Computer Computations}. [S.l.]: Plenum Press,
   1972. p. 85--103.}
+
+\bibitem[Korf 1985]{Korf85}
+\abntrefinfo{Korf}{KORF}{1985}
+{KORF, R.~E. Depth-first iterative-deepening: An optimal admissible tree
+  search.
+\emph{Artificial Intelligence}, v.~27, p. 97--109, 1985.}
+
+\bibitem[Korf 1992]{Korf92}
+\abntrefinfo{Korf}{KORF}{1992}
+{KORF, R.~E. Linear-space est-first search:.
+\emph{Computer Science Department}, 1992.}
 
 \bibitem[Korf 1993]{KORF199341}
 \abntrefinfo{Korf}{KORF}{1993}
@@ -163,11 +202,24 @@ Dispon{\'\i}vel em: \url{http://www.jstor.org/stable/167205}.}
   problem with collaborative neighbors.
 2015.}
 
+\bibitem[Russell e Norvig 2003]{Russell}
+\abntrefinfo{Russell e Norvig}{RUSSELL; NORVIG}{2003}
+{RUSSELL, S.~J.; NORVIG, P. \emph{Artificial Intelligence: A Modern Approach}.
+  2. ed. [S.l.]: Pearson Education, 2003.
+ISBN 0137903952.}
+
 \bibitem[Santos 2012]{Ulysses}
-\abntrefinfo{Santos}{SANTOS}{2012}
+\abntrefinfo{Santos}{SANTOS}{2012a}
 {SANTOS, A. F. V. M. e. E. W. G.~C. U.~O. Pathfinding based on pattern
   detection using genetic algorithms.
 \emph{SBC - Proceedings of SBGames}, 2012.}
+
+\bibitem[Santos 2012]{UlyssesTCC}
+\abntrefinfo{Santos}{SANTOS}{2012b}
+{SANTOS, U.~O. Best first search com algoritmo genÉtico para otimizaÇÃo de
+  espaÇo em problemas de busca de caminhos.
+INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO SUDESTE DE MINAS
+  GERAIS CÂMPUS RIO POMBA, 2012.}
 
 \bibitem[Wang e Lin 2012]{JungTing}
 \abntrefinfo{Wang e Lin}{WANG; LIN}{2012}
