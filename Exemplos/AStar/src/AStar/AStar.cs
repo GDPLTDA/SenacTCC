@@ -202,7 +202,7 @@ namespace AStar
             var startLocation = new Point(0, 0);
             var endLocation = new Point(0, 0);
 
-            using (FileStream oFileStream = new FileStream(@"c:\test.txt", FileMode.Open))
+            using (FileStream oFileStream = new FileStream(@"Test.txt", FileMode.Open))
             {
                 x = 0;
 
