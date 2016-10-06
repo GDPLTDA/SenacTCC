@@ -120,7 +120,6 @@ namespace TCC.GAFindingPath
                 {
                     longestRoute = tourLength;
                 }
-
             }
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
