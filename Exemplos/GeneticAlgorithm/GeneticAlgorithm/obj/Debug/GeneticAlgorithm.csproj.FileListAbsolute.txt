@@ -1,0 +1,10 @@
+C:\Users\ALFREDAL\Documents\Visual Studio 2008\Projects\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ALFREDAL\Documents\Visual Studio 2008\Projects\GeneticAlgorithm\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.exe
+C:\Users\ALFREDAL\Documents\Visual Studio 2008\Projects\GeneticAlgorithm\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.pdb
+C:\Users\ALFREDAL\Documents\Visual Studio 2008\Projects\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.exe
+C:\Users\ALFREDAL\Documents\Visual Studio 2008\Projects\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.exe
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\GeneticAlgorithm\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.exe
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\GeneticAlgorithm\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.pdb
+C:\Users\rmendonca\Documents\GitHub\SenacTCC\Exemplos\GeneticAlgorithm\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.csprojResolveAssemblyReference.cache
