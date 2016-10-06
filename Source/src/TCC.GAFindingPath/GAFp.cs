@@ -134,7 +134,6 @@ namespace TCC.GAFindingPath
             //ListPopulation = ListPopulation.OrderBy(i => JJFunc.CalcteA2B(i.Route.Last(), coorend)).ToList();
             ListPopulation = ListPopulation.OrderBy(i => i.Fitness).ToList();
 
-
             var shortestRoute = ListPopulation.Min(i => i.Fitness) ;
             var longestRoute = ListPopulation.Max(i => i.Fitness);
             BestPopulation = 0; // ListPopulation.Count -1 ;
