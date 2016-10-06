@@ -11,7 +11,11 @@ namespace TCC.Core
         Up,
         Down,
         Left,
-        Rigth
+        Rigth,
+        UpLeft,
+        UpRigth,
+        DownLeft,
+        DownRigth
     }
     public class Coordinate
     {
@@ -57,6 +61,23 @@ namespace TCC.Core
                     break;
                 case Direction.Rigth:
                     X += 1;
+                    break;
+
+                case Direction.UpLeft:
+                    X += -1;
+                    Y += -1;
+                    break;
+                case Direction.DownLeft:
+                    X += -1;
+                    Y += 1;
+                    break;
+                case Direction.UpRigth:
+                    X += 1;
+                    Y += -1;
+                    break;
+                case Direction.DownRigth:
+                    X += 1;
+                    Y += 1;
                     break;
                 default:
                     break;

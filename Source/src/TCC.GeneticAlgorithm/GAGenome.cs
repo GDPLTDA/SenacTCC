@@ -90,7 +90,7 @@ namespace TCC.GeneticAlgorithm
             if (tListCoor.Count > 1 )
                 coorant = tListCoor[tListCoor.Count -2];
 
-            var mindis = double.MaxValue;
+            var mindis =  double.MaxValue;
             var countdir = Enum.GetNames(typeof(Direction)).Length;
 
             for (int i = 1; i < countdir; i++)
