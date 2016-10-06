@@ -58,7 +58,7 @@ namespace TCC.Astar
         /// <param name="endLocation">The location of the destination node</param>
         public ASNode(int x, int y, bool isWalkable, Coordinate endLocation)
         {
-            Location = new Coordinate(x, y);
+            Location = new Coordinate(0, x, y);
             State = ASNodeState.Untested;
             IsWalkable = isWalkable;
             H = GetTraversalCost(Location, endLocation);

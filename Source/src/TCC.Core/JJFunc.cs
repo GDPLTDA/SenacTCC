@@ -13,11 +13,10 @@ namespace TCC.Core
 
             if(ca < cb)
                 for (int i = 0; i < cb - ca; i++)
-                    tA.Add(new Coordinate(-1, -1));
+                    tA.Add(new Coordinate(0, -1, -1));
 
             return tA;
         }
-
         public static double CalcteA2B(Coordinate tA, Coordinate tB)
         {
             return Math.Sqrt(Math.Pow(tA.X - tB.X, 2) + Math.Pow(tA.Y - tB.Y, 2));

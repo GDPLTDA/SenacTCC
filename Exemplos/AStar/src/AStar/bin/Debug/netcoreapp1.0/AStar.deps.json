@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v1.0",
+    "signature": "12c17756d38a76a4c97759a545aa17ff4a99bc77"
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v1.0": {
+      "AStar/1.0.0": {
+        "dependencies": {
+          "System.Drawing.Primitives": "4.0.0"
+        },
+        "runtime": {
+          "AStar.dll": {}
+        }
+      },
+      "System.Drawing.Primitives/4.0.0": {
+        "runtime": {
+          "lib/netstandard1.1/System.Drawing.Primitives.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AStar/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.Drawing.Primitives/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9lVRG1voBwzLGZkf1XFJrobdZDZ5ZHMU4FVTbXAbzehpN90yYgkUeo9GoEYdvkt/EXaaHZJAeuffXP4JBbY+Ig=="
+    }
+  }
+}

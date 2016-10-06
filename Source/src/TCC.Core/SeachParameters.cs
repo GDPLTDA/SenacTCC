@@ -7,13 +7,13 @@ namespace TCC.Core
     /// </summary>
     public class SeachParameters
     {
-        public Coordinate LocationStart { get; set; }
-        public Coordinate LocationEnd { get; set; }
+        public Coordinate LocStart { get; set; }
+        public Coordinate LocEnd { get; set; }
         public bool[,] Map { get; set; }
         public SeachParameters(Coordinate startLocation, Coordinate endLocation, bool[,] map)
         {
-            LocationStart = startLocation;
-            LocationEnd = endLocation;
+            LocStart = startLocation;
+            LocEnd = endLocation;
             Map = map;
         }
 
@@ -34,13 +34,6 @@ namespace TCC.Core
 
             if (!Map[x, y])
                 return false;
-            
-            var xf = LocationEnd.Xi;
-            var yf = LocationEnd.Yi;
-
-            if (xf == x && yf == x)
-                ok = true;
-
             return ok;
         }
     }

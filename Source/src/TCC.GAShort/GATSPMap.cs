@@ -2,33 +2,34 @@
 using System.Collections.Generic;
 using TCC.Core;
 
-namespace TCC.GeneticAlgorithm
+namespace TCC.GAPathShort
 {
-    public class GAMapTSP
+    public class GATSPMap
     {
         public List<Coordinate> Cities { get; set; }
         private int NumberOfRoutes { get; set; }
         public double BestRoute { get; set; }
 
-        public GAMapTSP(int tNumberOfCities, int tMapSize)
+        public GATSPMap(int tNumberOfCities, int MapWidth, int MapHeight)
         {
             NumberOfRoutes = tNumberOfCities;
             Cities = new List<Coordinate>();
 
-            CreateCitiesRandom(tMapSize);
+            CreateCitiesRandom(MapWidth, MapHeight);
             CalculateBestPossibleRoute();
         }
-        public void CreateCitiesRandom(double tMapSize)
+        public void CreateCitiesRandom(int MapWidth, int MapHeight)
         {
             var Ran = new Random();
-            var size = (int)tMapSize - 50;
+            var sizeW = MapWidth - 50;
+            var sizeH = MapHeight - 50;
 
             for (int i = 0; i < NumberOfRoutes; i++)
             {
-                var x = Ran.Next(10, size);
-                var y = Ran.Next(10, size);
+                var x = Ran.Next(10, sizeW);
+                var y = Ran.Next(10, sizeH);
 
-                Cities.Add(new Coordinate(x,y));
+                Cities.Add(new Coordinate(0, x, y));
             }
         }
         private void CalculateBestPossibleRoute()

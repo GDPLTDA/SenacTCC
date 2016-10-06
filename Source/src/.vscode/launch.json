@@ -6,11 +6,12 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}/AStar/src/AStar/bin/Debug/netcoreapp1.0/AStar.dll",
+            "program": "${workspaceRoot}/TCC.OutPutConsole/bin/Debug/netcoreapp1.0/TCC.OutPutConsole.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,
-            "stopAtEntry": false
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
         },
         {
             "name": ".NET Core Attach",

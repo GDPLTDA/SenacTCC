@@ -7,8 +7,8 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>dac2c2f5-623c-42ef-8202-b905c10c9f30</ProjectGuid>
-    <RootNamespace>TCC.GeneticAlgorithm</RootNamespace>
+    <ProjectGuid>c73762bf-e439-4b96-9214-d2d375277ebd</ProjectGuid>
+    <RootNamespace>TCC.GA</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>

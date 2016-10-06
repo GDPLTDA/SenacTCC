@@ -12,80 +12,87 @@ namespace TCC.OutPutConsole
 {
     class Program
     {
-        static void Main(string[] args)
-        {
+        static void Main(string[] args) {
             //seta enconding correto no programa, bug do core
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-            //var WallConfig1 = WallSimple();
-            //Run(WallConfig1, "The algorithm should find a direct path without obstacles:");
+            var WallGA = WallFile();
+            var tGaParams = TesteGA(WallGA);
+
+            RunGA(tGaParams, "Algoritmo Genetico:");
 
             var WallConfig4 = WallFile();
-            Run(WallConfig4, "Lendo o arquivo:");
-
-            //var WallConfig5 = WallFile();
-            //Run(WallConfig5, "Lendo o arquivo:");
-
-            var tGaParams = TesteGA();
-            var WallGA = WallFile();
-            RunGA(tGaParams, WallGA, "GA:");
+            Run(WallConfig4, "AStar");
         }
         static void Run(SeachParameters tParams, string Msg)
         {
             var pathFinder = new ASPathFinder(tParams);
             var path = pathFinder.FindPath();
             ShowRoute(Msg, path, tParams);
+            Console.ReadKey();
         }
 
-        static void RunGA(GAParams tGaParams, SeachParameters tParams, string Msg)
+        static void RunGA(GAParams tGaParams, string Msg)
         {
-            var pathFinder = new GAFP(tGaParams, tParams);
+            var run = true;
+            var pathFinder = new GAFP(tGaParams);
 
-            while (true)
+            while (run)
             {
+                // Cria uma nova população
                 pathFinder.Epoch();
                 var path = pathFinder.GetBestPath();
 
-                //if (pathFinder.Generation % 10 == 0)
-                //{
-                    Console.WriteLine("G:{0}\r\n", pathFinder.Generation);
-                    ShowRoute(Msg, path, tParams);
-                //}
+                // exibe o desenho do mapa
+                Console.Clear();
+                Console.WriteLine("Geracao:{0}\r\n", pathFinder.Generation);
+                ShowRoute(Msg, path, tGaParams);
                 
+                // verifica se encontrou o destino
+                var last = path.Last();
+                var end = tGaParams.Params.LocEnd;
+                run = !(last.Equals(end));
             }
         }
-        static GAParams TesteGA()
+        static GAParams TesteGA(SeachParameters tSeach)
         {
-            var map = JJFunc.GetMap();
+            var map = tSeach.Map;
             var Retorno = new GAParams
             {
                 MutationRate = 0.3,
                 CrossoverRate = 0.4,
-                PopulationSize = 10,
-                MapaSize = map.Length
+                PopulationSize = 1000,
+                MapWidth = map.GetLength(0),
+                MapHeight = map.GetLength(1),
+                Params = tSeach
             };
 
             return Retorno;
         }
-        static void ShowRoute(string title, List<Coordinate> path, SeachParameters searchParameters)
+        static void ShowRoute(string title, List<Coordinate> path, GAParams tGaParams)
         {
-            Console.WriteLine("{0}\r\n", title);
-            bool[,] map = searchParameters.Map;
+            ShowRoute(title, path, tGaParams.Params);
+        }
+
+        static void ShowRoute(string title, List<Coordinate> path, SeachParameters tSearch)
+        {
+            Console.WriteLine("{0}\r", title);
+            bool[,] map = tSearch.Map;
 
             for (int y = 0; y < map.GetLength(1); y++) // Invert the Y-axis so that coordinate 0,0 is shown in the bottom-left
             {
                 for (int x = 0; x < map.GetLength(0); x++)
                 {
-                    if (searchParameters.LocationStart.X == x && searchParameters.LocationStart.Y == y)
+                    if (tSearch.LocStart.Equals(x, y))
                         // Show the start position
                         Console.Write(MapSymbol.Start);
-                    else if (searchParameters.LocationEnd.X == x && searchParameters.LocationEnd.Y == y)
+                    else if (tSearch.LocEnd.Equals(x, y))
                         // Show the end position
                         Console.Write(MapSymbol.End);
                     else if (!map[x, y])
                         // Show any barriers
                         Console.Write(MapSymbol.Block);
-                    else if (path.Where(p => p.X == x && p.Y == y).Any())
+                    else if (path.Where(p => p.Equals(x, y)).Any())
                         // Show the path in between
                         Console.Write(MapSymbol.Step);
                     else
@@ -94,7 +101,7 @@ namespace TCC.OutPutConsole
                 }
                 Console.WriteLine();
             }
-            Console.ReadKey();
+            System.Threading.Thread.Sleep(500);
         }
         /// <summary>
         /// Creates a clear map with a start and end point and sets up the search parameters
@@ -103,14 +110,14 @@ namespace TCC.OutPutConsole
         {
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
-            //  □ S □ □ □ F □
+            //  □ F □ □ □ S □
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
 
             var map = JJFunc.GetMap();
 
             var startLocation = new Coordinate(1, 2);
-            var endLocation = new Coordinate(9, 2);
+            var endLocation = new Coordinate(9, 2); 
 
             return new SeachParameters(startLocation, endLocation, map);
         }
@@ -182,7 +189,7 @@ namespace TCC.OutPutConsole
         }
         static SeachParameters WallFile()
         {
-            var map = JJFunc.GetMap(11,10);
+            var listblock = new List<Coordinate>();
             int x = 0, y = 0;
             byte Dig;
             var startLocation = new Coordinate(0, 0);
@@ -190,8 +197,6 @@ namespace TCC.OutPutConsole
 
             using (FileStream oFileStream = new FileStream(@"test.txt", FileMode.Open))
             {
-                x = 0;
-
                 BinaryReader oReader = new BinaryReader(oFileStream);
 
                 while (!(oReader.BaseStream.Position == oReader.BaseStream.Length))
@@ -201,14 +206,13 @@ namespace TCC.OutPutConsole
                     var cDig = (char)Dig;
 
                     if (Dig == 13)
-                    {
-                        Dig = oReader.ReadByte();
-                    }
+                        continue;
 
                     if (Dig == 10)
                     {
                         y++;
                         x = 0;
+                        continue;
                     }
 
                     if (cDig == MapSymbol.Start)
@@ -218,9 +222,16 @@ namespace TCC.OutPutConsole
                         endLocation = new Coordinate(x, y);
 
                     if (cDig == MapSymbol.Block)
-                        map[x, y] = false;
+                        listblock.Add(new Coordinate(x, y));
                     x++;
                 }
+                y++;
+            }
+            var map = JJFunc.GetMap(x, y);
+
+            foreach (var item in listblock)
+            {
+                map[item.Xi, item.Yi] = false;
             }
             return new SeachParameters(startLocation, endLocation, map);
         }

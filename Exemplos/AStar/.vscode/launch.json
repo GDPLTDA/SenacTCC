@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceRoot}\\src\\AStar\\bin\\Debug\\netcoreapp1.0\\AStar.dll",
+            "program": "${workspaceRoot}/src/AStar/bin/Debug/netcoreapp1.0/AStar.dll",
             "args": [],
             "cwd": "${workspaceRoot}",
             "externalConsole": false,

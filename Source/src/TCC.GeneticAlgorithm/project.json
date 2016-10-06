@@ -1,4 +1,4 @@
-{
+﻿{
   "version": "1.0.0-*",
   "dependencies": {
     "TCC.Core": "1.0.0-*"
