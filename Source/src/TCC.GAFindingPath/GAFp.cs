@@ -127,7 +127,9 @@ namespace TCC.GAFindingPath
             TotalFitness = 0;
 
             for (int i = 0; i < GaParams.PopulationSize; ++i)
+            {
                 ListPopulation[i].Fitness = CalcFitness(ListPopulation[i].Route);
+            }
 
             var coorend = GaParams.Params.LocEnd;
 
