@@ -13,7 +13,7 @@ namespace TCC.Drawing
         int width, heght;
         int BlockSize;
         int FPS = 2;
-        List<Point2D> Map;
+        List<Point2D> GridMap;
 
         /// <summary>
         /// Cria uma tela divida em blocos
@@ -21,13 +21,22 @@ namespace TCC.Drawing
         /// <param name="twidth">Larga em quantidade de blocos</param>
         /// <param name="theght">Altura em quantidade de blocos</param>
         /// <param name="tBlockSize">tamanho dos blocos</param>
-        public MapWindow(int twidth, int theght,int tBlockSize)
+        public MapWindow(int twidth, int theght, int tBlockSize)
             : base(twidth * tBlockSize, theght * tBlockSize)
         {
             width = twidth * tBlockSize;
             heght = theght * tBlockSize;
             BlockSize = tBlockSize;
             Title = "TCC";
+        }
+        public MapWindow(MapGenerate tMap, int tBlockSize)
+            :base(tMap.Width * tBlockSize, tMap.Heght * tBlockSize)
+        {
+            width = tMap.Width * tBlockSize;
+            heght = tMap.Heght * tBlockSize;
+            BlockSize = tBlockSize;
+            Title = "TCC";
+            GridMap = tMap.GridMap;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -42,7 +51,7 @@ namespace TCC.Drawing
 
         public void SetMap(List<Point2D> tMap)
         {
-            Map = tMap;
+            GridMap = tMap;
         }
 
         public void DrawMap(List<Point2D> tMap)
@@ -95,7 +104,7 @@ namespace TCC.Drawing
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             DrawGrid();
-            DrawMap(Map);
+            DrawMap(GridMap);
             base.OnRenderFrame(e);
             SwapBuffers();
             Thread.Sleep(1000 / FPS);

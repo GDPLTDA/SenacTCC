@@ -9,16 +9,17 @@ namespace TCC
 {
     static class Program
     {
-        static MapWindow Window = new MapWindow(10, 10, 30);
+        static MapWindow Window;
         static void Main(string[] args)
         {
+            Window = new MapWindow(new MapGenerate(@"test.txt"), 30);
             Window.UpdateFrame += new EventHandler<FrameEventArgs>(UpdateMap);
             Window.Run();
         }
 
         public static void UpdateMap(object o, FrameEventArgs e)
         {
-            Window.SetMap(WallWithGap());
+            //Window.SetMap(WallWithGap());
             tx++;
         }
         static int tx = 0, ty = 0;
