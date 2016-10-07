@@ -165,6 +165,9 @@ namespace TCC.GAFindingPath
                 if ( new Direction[]{ Direction.None, Direction.Up, Direction.Down}.Contains(e.DirCoor) )
                     return 0;
 
+                if (new Direction[] { Direction.DownLeft, Direction.DownRigth, Direction.UpLeft, Direction.UpRigth }.Contains(e.DirCoor))
+                    return e.DirCoor == Direction.DownLeft || e.DirCoor == Direction.UpLeft ? -1 : 1;
+
                 return e.DirCoor == Direction.Left ? -1 : 1;
             });
 
@@ -172,6 +175,9 @@ namespace TCC.GAFindingPath
             var vertical = tListCoor.Sum(e => {
                 if ( new Direction[]{ Direction.None, Direction.Left, Direction.Rigth}.Contains(e.DirCoor) )
                     return 0;
+
+                if (new Direction[] { Direction.DownLeft, Direction.DownRigth, Direction.UpLeft, Direction.UpRigth }.Contains(e.DirCoor))
+                    return e.DirCoor == Direction.DownLeft || e.DirCoor == Direction.DownRigth ? -1 : 1;
 
                 return e.DirCoor == Direction.Down ? -1 : 1;
             });
