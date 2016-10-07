@@ -25,10 +25,8 @@ namespace TCC
 
         public static void UpdateMap(object o, FrameEventArgs e)
         {
-            //Window.SetMap(WallWithGap());
-            tx++;
+            
         }
-        static int tx = 0, ty = 0;
         static List<Point2D> WallWithGap()
         {
             //  □ □ □ ■ □ □ □
@@ -46,8 +44,6 @@ namespace TCC
 
             map.Add(new Point2D(1, 2, Color.Red));
             map.Add(new Point2D(5, 2, Color.Blue));
-
-            map.Add(new Point2D(tx, ty, Color.Green));
 
             return map;
         }
