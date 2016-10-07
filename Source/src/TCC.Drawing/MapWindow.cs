@@ -18,17 +18,8 @@ namespace TCC.Drawing
         /// <summary>
         /// Cria uma tela divida em blocos
         /// </summary>
-        /// <param name="twidth">Larga em quantidade de blocos</param>
-        /// <param name="theght">Altura em quantidade de blocos</param>
+        /// <param name="tMap">Gerador de mapas</param>
         /// <param name="tBlockSize">tamanho dos blocos</param>
-        public MapWindow(int twidth, int theght, int tBlockSize)
-            : base(twidth * tBlockSize, theght * tBlockSize)
-        {
-            width = twidth * tBlockSize;
-            heght = theght * tBlockSize;
-            BlockSize = tBlockSize;
-            Title = "TCC";
-        }
         public MapWindow(MapGenerate tMap, int tBlockSize)
             :base(tMap.Width * tBlockSize, tMap.Heght * tBlockSize)
         {

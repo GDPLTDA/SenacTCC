@@ -12,7 +12,8 @@ namespace TCC
         static MapWindow Window;
         static void Main(string[] args)
         {
-            Window = new MapWindow(new MapGenerate(@"test.txt"), 30);
+            //Window = new MapWindow(new MapGenerate(20, 20, 0.2), 30);
+            Window = new MapWindow(new MapGenerate("test.txt"), 30);
             Window.UpdateFrame += new EventHandler<FrameEventArgs>(UpdateMap);
             Window.Run();
         }

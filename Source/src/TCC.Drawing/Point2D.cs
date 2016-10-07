@@ -11,6 +11,10 @@ namespace TCC.Drawing
             Color = tColor;
         }
 
+        public bool Equals(Point2D obj)
+        {
+            return X == obj.X && Y == obj.Y;
+        }
         public int X { get; set; }
         public int Y { get; set; }
         public Color Color { get; set; }
