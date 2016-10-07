@@ -12,8 +12,13 @@ namespace TCC
         static MapWindow Window;
         static void Main(string[] args)
         {
-            //Window = new MapWindow(new MapGenerate(20, 20, 0.2), 30);
-            Window = new MapWindow(new MapGenerate("test.txt"), 30);
+            // Mapa criado por código
+            //Window = new MapWindow(new MapGenerate(10,10, WallWithGap()), 30);
+            // Mapa Aleatorio
+            Window = new MapWindow(new MapGenerate(20, 20, 0.3), 30);
+            // Mapa carregador por um arquivo
+            //Window = new MapWindow(new MapGenerate("test.txt"), 30);
+
             Window.UpdateFrame += new EventHandler<FrameEventArgs>(UpdateMap);
             Window.Run();
         }
