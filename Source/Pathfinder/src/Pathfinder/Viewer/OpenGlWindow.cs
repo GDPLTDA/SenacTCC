@@ -37,25 +37,26 @@ namespace Pathfinder.Viewer
             finderThread.Start();
         }
 
-        private void LoopWraper(object sender, EventArgs e)
+        private void LoopWraper(object sender, EventArgs _e)
         {
+            var e = (FinderEventArgs)_e;
             Console.Clear();
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()} ");
+            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step} ");
             Thread.Sleep(200);
         }
 
-        private void EndWraper(object sender, EventArgs e)
+        private void EndWraper(object sender, EventArgs _e)
         {
             
             Console.Clear();
-
-            if (((FinderEventArgs)e).Finded)
+            var e = (FinderEventArgs)_e;
+            if (e.Finded)
             {
                 path = _finder.GetPath();
                 drawPath = true;
             }
 
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nPath Length: {path.OrderBy(x=>x.G).Last().G} ");
+            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}\nPath Length: {path.OrderBy(x=>x.G).Last().G} ");
             Console.ReadKey();
 
         }

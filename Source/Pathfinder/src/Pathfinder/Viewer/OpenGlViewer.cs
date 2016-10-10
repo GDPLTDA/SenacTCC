@@ -19,15 +19,6 @@ namespace Pathfinder.Viewer
             _finder = finder;
         }
 
-        public void End(FinderEventArgs e)
-        {
-           
-        }
-
-        public void Loop(FinderEventArgs e)
-        {
-            
-        }
 
         public void Run(IMap map)
         {
@@ -36,9 +27,6 @@ namespace Pathfinder.Viewer
             window.Run();
         }
 
-        public void Start()
-        {
-           
-        }
+      
     }
 }

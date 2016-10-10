@@ -28,7 +28,7 @@ namespace Pathfinder.Viewer
             var text = GetTextRepresentation(_finder.GridMap);
             Console.WriteLine(text);
 
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}");
+            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}");
             Thread.Sleep(1000);
         }
 
@@ -39,7 +39,7 @@ namespace Pathfinder.Viewer
             var text = GetTextRepresentation(_finder.GridMap, false, true);
 
             Console.WriteLine(text);
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nPath Length: {path.OrderBy(x => x.G).Last().G} ");
+            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}\nPath Length: {path.OrderBy(x => x.G).Last().G} ");
             Console.ReadKey();
         }
 

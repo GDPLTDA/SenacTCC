@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Pathfinder.Abstraction;
+using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,6 +12,23 @@ namespace Pathfinder
     public class Settings
     {
         public IConfigurationRoot Configuration { get; set; }
+      
+        public char Start { get; set; }
+        public char End { get; set; }
+        public char Empty { get; set; }
+        public char Wall { get; set; }
+        public char Path { get; set; }
+        public char Opened { get; set; }
+        public char Closed { get; set; }
+        public int OpenGlBlockSize { get; set; }
+
+        public int MapViwer { get; set; }
+        public int MapOrigin { get; set; }
+        public int Heuristic { get; set; }
+        public int Algorithn { get; set; }
+        public Constants.DiagonalMovement AllowDiagonal { get; set; }
+
+
         public Settings()
         {
             var builder = new ConfigurationBuilder()
@@ -31,23 +50,89 @@ namespace Pathfinder
             MapOrigin = int.Parse(Configuration[nameof(MapOrigin)]);
             Heuristic = int.Parse(Configuration[nameof(Heuristic)]);
             Algorithn = int.Parse(Configuration[nameof(Algorithn)]);
-            AllowDiagonal = (Constants.DiagonalMovement) int.Parse(Configuration[nameof(AllowDiagonal)]);
+            AllowDiagonal = (Constants.DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
         }
 
-        public char Start { get; set; }
-        public char End { get; set; }
-        public char Empty { get; set; }
-        public char Wall { get; set; }
-        public char Path { get; set; }
-        public char Opened { get; set; }
-        public char Closed { get; set; }
-        public int OpenGlBlockSize { get; set; }
 
-        public int MapViwer { get; set; }
-        public int MapOrigin { get; set; }
-        public int Heuristic { get; set; }
-        public int Algorithn { get; set; }
-        public Constants.DiagonalMovement AllowDiagonal { get; set; }
+        public IFinder GetFinder(IHeuristic heuri)
+        {
+            IFinder ret = null;
+
+            switch (Algorithn)
+            {
+                case 0:
+                    ret = FinderFactory.GetAStarImplementation(AllowDiagonal, heuri);
+                    break;
+                case 1:
+                    ret = FinderFactory.GetBFSImplementation(AllowDiagonal, heuri);
+                    break;
+            }
+
+            return ret;
+        }
+
+        public IHeuristic GetHeuristic()
+        {
+            IHeuristic ret = null;
+            switch (Heuristic)
+            {
+                case 0:
+                    ret = HeuristicFactory.GetManhattamImplementation();
+                    break;
+                case 1:
+                    ret = HeuristicFactory.GetEuclideanImplementation();
+                    break;
+                case 2:
+                    ret = HeuristicFactory.GetOctileImplementation();
+                    break;
+                case 3:
+                    ret = HeuristicFactory.GetChebyshevImplementation();
+                    break;
+            }
+
+            return ret;
+
+        }
+
+        public IMapGenerator GetGenerator()
+        {
+            IMapGenerator ret = null;
+
+            switch (MapOrigin)
+            {
+                case 0:
+                    ret = MapGeneratorFactory.GetStaticMapGeneratorImplementation();
+                    break;
+
+                case 1:
+                    ret = MapGeneratorFactory.GetFileMapGeneratorImplementation();
+                    break;
+
+                case 2:
+                    ret = MapGeneratorFactory.GetRandomMapGeneratorImplementation();
+                    break;
+            }
+
+            return ret;
+        }
+
+        public IViewer GetViewer(IFinder finder)
+        {
+            IViewer ret = null;
+
+            switch (MapViwer)
+            {
+                case 0:
+                    ret = ViewerFactory.GetConsoleViewerImplementation(finder);
+                    break;
+                case 1:
+                    ret = ViewerFactory.GetOpenGlViewerImplementation(finder);
+                    break;
+            }
+
+            return ret;
+        }
+
 
     }
 }
