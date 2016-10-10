@@ -49,7 +49,7 @@ namespace Pathfinder.Abstraction
 
         public static void ShowEndLog(IFinder finder, IList<Node> path, FinderEventArgs e)
         {
-            if (path.Any(x => !x.Walkable))
+            if (path?.Any(x => !x.Walkable)??false)
                 throw new Exception("Why is there a wall on the path?");
 
             
