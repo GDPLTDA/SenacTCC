@@ -15,7 +15,7 @@ namespace TCC
             // Mapa criado por código
             //Window = new MapWindow(new MapGenerate(10,10, WallWithGap()), 30);
             // Mapa Aleatorio
-            Window = new MapWindow(new MapGenerate(20, 20, 0.3), 30);
+            Window = new MapWindow(new MapGenerate(20, 20, 0.3), 5);
             // Mapa carregador por um arquivo
             //Window = new MapWindow(new MapGenerate("test.txt"), 30);
 
