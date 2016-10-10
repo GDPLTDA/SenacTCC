@@ -43,7 +43,7 @@ namespace Pathfinder.Abstraction
         
         public static void ShowStepLog(IFinder finder, FinderEventArgs e)
         {
-            Console.Clear();
+            
             Console.WriteLine($"Alg={finder.Name}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps:{e.Step} ");
         }
 

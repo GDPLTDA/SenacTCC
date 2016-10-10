@@ -88,14 +88,15 @@ namespace Pathfinder.Finders
                         neighbor.ParentNode = node;
 
                         if (!isOpen(neighbor))
-                            _openList.Add(neighbor);
+                            _openList.Push(neighbor);
                         
                     }
 
-                    _openList = _openList.OrderByDescending(e => e.Cost)
-                                .ThenByDescending(e=>e.G)
-                                .ThenByDescending(e => e.H).ToList();
-                } 
+                   
+                }
+
+                _openList = _openList.OrderByDescending(e => e.Cost).ToList();
+               
 
                 OnStep(BuildArgs(step++));
             }

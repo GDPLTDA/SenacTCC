@@ -21,7 +21,7 @@ namespace Pathfinder
             var generator = settings.GetGenerator();
             var viewer    = settings.GetViewer(finder);
 
-            var map = generator.DefineMap();
+            var map =  generator.DefineMap();
             viewer.Run(map);
             
         }    

@@ -12,9 +12,12 @@ namespace Pathfinder
             var ret = list.Last();
             list.Remove(ret);
             return ret;
-        } 
+        }
 
-        
+        public static void Push<T>(this IList<T> list, T item)
+        {
+            list.Insert(0, item);
+        }
 
     }
 }
