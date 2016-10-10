@@ -25,7 +25,7 @@ namespace Pathfinder.Viewer
         public override void Loop(FinderEventArgs e)
         {
             Console.Clear();
-            var text = GetTextRepresentation(_finder.GridMap);
+            var text = GetTextRepresentation(e.GridMap);
             Console.WriteLine(text);
 
             AbstractViewer.ShowStepLog(_finder, e);
@@ -36,7 +36,7 @@ namespace Pathfinder.Viewer
         {
             Console.Clear();
             path = _finder.GetPath();
-            var text = GetTextRepresentation(_finder.GridMap, false, true);
+            var text = GetTextRepresentation(e.GridMap, false, true);
             Console.WriteLine(text);
 
             AbstractViewer.ShowEndLog(_finder, path, e);

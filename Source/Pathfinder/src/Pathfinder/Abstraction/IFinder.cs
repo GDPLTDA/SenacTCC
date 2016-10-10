@@ -10,7 +10,7 @@ namespace Pathfinder.Abstraction
     {
         string Name { get; set; }
         bool Find(IMap grid);
-        IMap GridMap { get; set; }
+        
         DiagonalMovement DiagonalMovement { get; set; }
         IHeuristic Heuristic { get; set; }
         int Weight { get; set; }
@@ -35,7 +35,7 @@ namespace Pathfinder.Abstraction
        public int Step { get; set; }
        public int ExpandedNodesCount { get; set; }
        public bool Finded { get; set; }
-
+        public IMap GridMap { get; set; }
     }
 
 }
