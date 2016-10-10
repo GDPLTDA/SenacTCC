@@ -134,15 +134,18 @@ namespace Pathfinder
                 neighbors.Add(Nodes[y - 1, x + 1]);
             }
             // ↘
-            if (d2 && this.IsWalkableAt(y + 1, x + 1))
+            if (d2 && this.IsWalkableAt( x + 1, y + 1))
             {
                 neighbors.Add(Nodes[y + 1, x + 1]);
             }
             // ↙
-            if (d3 && this.IsWalkableAt(y + 1, x - 1))
+            if (d3 && this.IsWalkableAt(x - 1, y + 1))
             {
                 neighbors.Add(Nodes[y + 1, x - 1 ]);
             }
+
+            if (neighbors.Any(e => !e.Walkable))
+                throw new Exception("NO!!");
 
             return neighbors;
 
