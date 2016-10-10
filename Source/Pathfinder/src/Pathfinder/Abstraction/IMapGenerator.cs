@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
    public interface IMapGenerator
     {
-        IMap ReadMap(string argument = "");
+        IMap DefineMap(string argument = "");
     }
 }

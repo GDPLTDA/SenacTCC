@@ -28,8 +28,8 @@ namespace Pathfinder.Viewer
             var text = GetTextRepresentation(_finder.GridMap);
             Console.WriteLine(text);
 
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}");
-            Thread.Sleep(1000);
+            AbstractViewer.ShowStepLog(_finder, e);
+            Thread.Sleep(500);
         }
 
         public override void End(FinderEventArgs e)
@@ -37,10 +37,9 @@ namespace Pathfinder.Viewer
             Console.Clear();
             path = _finder.GetPath();
             var text = GetTextRepresentation(_finder.GridMap, false, true);
-
             Console.WriteLine(text);
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}\nPath Length: {path.OrderBy(x => x.G).Last().G} ");
-            Console.ReadKey();
+
+            AbstractViewer.ShowEndLog(_finder, path, e);
         }
 
         private string GetTextRepresentation(IMap map, bool showOpenNodes = true, bool showPath=false)

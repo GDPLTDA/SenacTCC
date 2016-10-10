@@ -16,19 +16,15 @@ namespace Pathfinder
         {
             settings = new Settings();
 
-            var heu = settings.GetHeuristic();
-            var finder = settings.GetFinder(heu);
+            var heuristic = settings.GetHeuristic();
+            var finder    = settings.GetFinder(heuristic);
             var generator = settings.GetGenerator();
-            var viewer = settings.GetViewer(finder);
+            var viewer    = settings.GetViewer(finder);
 
-            var map = generator.ReadMap();
+            var map = generator.DefineMap();
             viewer.Run(map);
-
-
-        }
-
-
-     
+            
+        }    
 
     }
 

@@ -25,6 +25,7 @@ namespace Pathfinder.Abstraction
 
         protected Node _startNode;
         protected Node _endNode;
+        public string Name { get; set; }
 
         public virtual bool isOpen (Node e) => _openList.Contains(e);
         public virtual bool isClosed(Node e) => _closedList.Contains(e);

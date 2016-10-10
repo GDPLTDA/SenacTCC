@@ -9,7 +9,7 @@ namespace Pathfinder.MapGenerators
 {
     public class FileMapGenerator : IMapGenerator
     {
-        public IMap ReadMap(string argument)
+        public IMap DefineMap(string argument)
         {
             int width = 0, height = 0;
             var nodes = new List<Node>();

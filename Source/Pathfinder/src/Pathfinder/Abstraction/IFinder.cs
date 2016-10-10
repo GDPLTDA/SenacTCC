@@ -8,7 +8,7 @@ namespace Pathfinder.Abstraction
 {
     public interface IFinder
     {
-
+        string Name { get; set; }
         bool Find(IMap grid);
         IMap GridMap { get; set; }
         DiagonalMovement DiagonalMovement { get; set; }

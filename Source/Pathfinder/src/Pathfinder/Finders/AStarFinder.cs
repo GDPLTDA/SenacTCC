@@ -17,7 +17,7 @@ namespace Pathfinder.Finders
           ) : base(diag,heuristic,weight)
         {
 
-            
+            Name = "A* (A Star)";
             // When diagonal movement is allowed the manhattan heuristic is not
             //admissible. It should be octile instead
             if ( DiagonalMovement == DiagonalMovement.Never)

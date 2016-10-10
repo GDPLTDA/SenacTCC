@@ -40,14 +40,13 @@ namespace Pathfinder.Viewer
         private void LoopWraper(object sender, EventArgs _e)
         {
             var e = (FinderEventArgs)_e;
-            Console.Clear();
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step} ");
+            AbstractViewer.ShowStepLog(_finder, e);
+
             Thread.Sleep(200);
         }
 
         private void EndWraper(object sender, EventArgs _e)
         {
-            
             Console.Clear();
             var e = (FinderEventArgs)_e;
             if (e.Finded)
@@ -55,12 +54,8 @@ namespace Pathfinder.Viewer
                 path = _finder.GetPath();
                 drawPath = true;
             }
-
-            if (path.Any(x => !x.Walkable))
-                throw new Exception("Why is there a wall on the path?");
-
-            Console.WriteLine($"Max Expanded Nodes = {_finder.GetMaxExpandedNodes()}\nProcess Time = {_finder.GetProcessedTime()}\nSteps:{e.Step}\nPath Length: {path.OrderBy(x=>x.G).Last().G} ");
-            Console.ReadKey();
+                      
+            AbstractViewer.ShowEndLog(_finder,path, e);
 
         }
 

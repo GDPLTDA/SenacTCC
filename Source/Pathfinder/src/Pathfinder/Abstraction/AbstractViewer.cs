@@ -41,5 +41,26 @@ namespace Pathfinder.Abstraction
         public abstract void End(FinderEventArgs e);
         public abstract void Start();      
         
+        public static void ShowStepLog(IFinder finder, FinderEventArgs e)
+        {
+            Console.Clear();
+            Console.WriteLine($"Alg={finder.Name}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps:{e.Step} ");
+        }
+
+        public static void ShowEndLog(IFinder finder, IList<Node> path, FinderEventArgs e)
+        {
+            if (path.Any(x => !x.Walkable))
+                throw new Exception("Why is there a wall on the path?");
+
+            
+            Console.WriteLine($"Alg={finder.Name}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps:{e.Step}");
+
+            if (e.Finded)
+                Console.WriteLine($"Path Length: {path.OrderBy(x => x.G).Last().G}");
+            else
+                Console.WriteLine("CANT FIND A PATH!");
+
+            Console.ReadKey();
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace Pathfinder.MapGenerators
     {
         public List<Node> GridMap = new List<Node>();
 
-        public IMap ReadMap(string argument)
+        public IMap DefineMap(string argument)
         {
             int width = 15, height = 15;
             double seed = 0.2;

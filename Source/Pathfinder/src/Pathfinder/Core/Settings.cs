@@ -66,6 +66,10 @@ namespace Pathfinder
                 case 1:
                     ret = FinderFactory.GetBFSImplementation(AllowDiagonal, heuri);
                     break;
+                case 2:
+                    ret = FinderFactory.GetDijkstraImplementation(AllowDiagonal, heuri);
+                    break;
+
             }
 
             return ret;
