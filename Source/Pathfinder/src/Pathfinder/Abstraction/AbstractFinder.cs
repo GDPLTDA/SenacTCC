@@ -13,7 +13,7 @@ namespace Pathfinder.Abstraction
         public event EventHandler End;
         public event EventHandler Start;
 
-        public IMap GridMap { get; set; }
+        protected IMap GridMap { get; set; }
         public DiagonalMovement DiagonalMovement { get; set; }
         public IHeuristic Heuristic { get; set; }
         public int Weight { get; set; }
@@ -44,6 +44,13 @@ namespace Pathfinder.Abstraction
             DiagonalMovement = diag;
             Heuristic = heuristic;
             Weight = weight;
+            Clear();
+        }
+
+
+        protected virtual void Clear()
+        {
+            GridMap = null;
             _openList = new List<Node>();
             _closedList = new List<Node>();
             _stopwatch = new Stopwatch();
@@ -85,7 +92,7 @@ namespace Pathfinder.Abstraction
                 path.Add(node);
                 node = node.ParentNode;
             }
-
+            Clear();
             return path;
         }
 
@@ -105,6 +112,7 @@ namespace Pathfinder.Abstraction
             args.Step = i;
             args.ExpandedNodesCount = _openList.Count() + _closedList.Count();
             args.Finded = finded;
+            args.GridMap = GridMap;
             return args;
         }
 

@@ -17,6 +17,7 @@ namespace Pathfinder.Viewer
         public bool drawPath = false;
         public IList<Node> path;
         IFinder _finder;
+        IMap GridMap;
         Thread finderThread;
 
         public OpenGlWindow(IMap map, IFinder finder, int blocksize)
@@ -32,6 +33,8 @@ namespace Pathfinder.Viewer
             _finder.Step += LoopWraper;
             _finder.End += EndWraper;
             _finder.Start += StartWraper;
+
+            GridMap = map;
 
             finderThread = new Thread(e => { _finder.Find(map); });
             finderThread.Start();
@@ -148,7 +151,7 @@ namespace Pathfinder.Viewer
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {
-            DrawMap(_finder.GridMap, drawPath);
+            DrawMap(GridMap, drawPath);
             DrawGrid();
             base.OnRenderFrame(e);
             SwapBuffers();
