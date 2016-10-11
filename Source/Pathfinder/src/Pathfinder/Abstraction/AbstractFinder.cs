@@ -37,6 +37,16 @@ namespace Pathfinder.Abstraction
 
         public AbstractFinder(
              DiagonalMovement diag,
+             int weight = 1
+           )
+        {
+            DiagonalMovement = diag;
+            Weight = weight;
+            Clear();
+        }
+
+        public AbstractFinder(
+             DiagonalMovement diag,
              IHeuristic heuristic,
              int weight = 1
            )

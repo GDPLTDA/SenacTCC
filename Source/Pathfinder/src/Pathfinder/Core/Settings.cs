@@ -69,6 +69,9 @@ namespace Pathfinder
                 case 2:
                     ret = FinderFactory.GetDijkstraImplementation(AllowDiagonal, heuri);
                     break;
+                case 3:
+                    ret = FinderFactory.GetGAImplementation(AllowDiagonal);
+                    break;
 
             }
 

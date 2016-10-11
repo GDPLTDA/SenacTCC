@@ -24,5 +24,10 @@ namespace Pathfinder.Factories
         {
             return new DijkstraFinder(diag, heuristic);
         }
+
+        public static IFinder GetGAImplementation(DiagonalMovement diag)
+        {
+            return new GAFinder(diag);
+        }
     }
 }
