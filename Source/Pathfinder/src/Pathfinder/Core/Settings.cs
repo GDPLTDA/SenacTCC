@@ -28,6 +28,10 @@ namespace Pathfinder
         public int Algorithn { get; set; }
         public Constants.DiagonalMovement AllowDiagonal { get; set; }
 
+        public double RandomSeed { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int MinimumPath { get; set; }
 
         public Settings()
         {
@@ -51,6 +55,11 @@ namespace Pathfinder
             Heuristic = int.Parse(Configuration[nameof(Heuristic)]);
             Algorithn = int.Parse(Configuration[nameof(Algorithn)]);
             AllowDiagonal = (Constants.DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
+
+            RandomSeed = double.Parse(Configuration[nameof(RandomSeed)]);
+            Width = int.Parse(Configuration[nameof(Width)]);
+            Height = int.Parse(Configuration[nameof(Height)]);
+            MinimumPath = int.Parse(Configuration[nameof(MinimumPath)]);
         }
 
 

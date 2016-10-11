@@ -14,9 +14,10 @@ namespace Pathfinder.MapGenerators
 
         public IMap DefineMap(string argument)
         {
-            int width = 15, height = 15;
-            double seed = 0.30;
-            int minPathLength = 10;
+            Settings settings = new Settings();
+            int width = settings.Width, height = settings.Height;
+            double seed = settings.RandomSeed;
+            int minPathLength = settings.MinimumPath;
             bool IsAGoodMap = false;
             IMap ret = null;
 
