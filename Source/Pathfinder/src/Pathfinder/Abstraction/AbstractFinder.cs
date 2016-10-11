@@ -92,7 +92,7 @@ namespace Pathfinder.Abstraction
                 path.Add(node);
                 node = node.ParentNode;
             }
-            Clear();
+            
             return path;
         }
 

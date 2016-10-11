@@ -22,7 +22,7 @@ namespace Pathfinder.Factories
 
         public static IFinder GetDijkstraImplementation(DiagonalMovement diag, IHeuristic heuristic)
         {
-            return new DijkstraFinder(diag, heuristic);
+            return new IDAStarFinder(diag, heuristic); //DijkstraFinder(diag, heuristic);
         }
     }
 }

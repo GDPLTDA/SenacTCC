@@ -110,7 +110,12 @@ namespace Pathfinder
                 d2 = s1 && s2;
                 d3 = s2 && s3;
             }
-        
+            else if (diag == DiagonalMovement.IfAtMostOneObstacle) {
+                d0 = s3 || s0;
+                d1 = s0 || s1;
+                d2 = s1 || s2;
+                d3 = s2 || s3;
+            }
             else if (diag == DiagonalMovement.Always)
             {
                 d0 = true;

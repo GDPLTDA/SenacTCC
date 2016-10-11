@@ -5,7 +5,8 @@ namespace Pathfinder.Constants
     {
         Never = 0,
         OnlyWhenNoObstacles = 1,
-        Always = 2,
+        IfAtMostOneObstacle = 2,
+        Always = 3
         
     }
 }

@@ -36,6 +36,10 @@ namespace Pathfinder
         public double H { get; set; }
         public double Cost { get; set; }
 
+        public bool Tested { get; set; }
+        public int RetainCount { get; set; }
+
+
         public override bool Equals(object other)
         {
             var ee = (Node)other;
