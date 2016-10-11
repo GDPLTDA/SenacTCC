@@ -18,6 +18,8 @@ namespace Pathfinder.Finders
         {
 
             Name = "A* (A Star)";
+            SleepUITimeInMs = 200;
+
             // When diagonal movement is allowed the manhattan heuristic is not
             //admissible. It should be octile instead
             if ( DiagonalMovement == DiagonalMovement.Never)
@@ -38,6 +40,7 @@ namespace Pathfinder.Finders
 
         public override bool Find(IMap grid)
         {
+            Clear();
             var sqrt2 = Sqrt(2);
             GridMap = grid;
             _startNode = grid.StartNode;

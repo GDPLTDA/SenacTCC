@@ -20,6 +20,14 @@ namespace Pathfinder.Factories
             return new BestFirstSearchFinder(diag, heuristic);
         }
 
+
+        public static IFinder GetIDAStarImplementation(DiagonalMovement diag, IHeuristic heuristic)
+        {
+            return new IDAStarFinder(diag, heuristic);
+        }
+
+        
+
         public static IFinder GetDijkstraImplementation(DiagonalMovement diag, IHeuristic heuristic)
         {
             return new DijkstraFinder(diag, heuristic);
