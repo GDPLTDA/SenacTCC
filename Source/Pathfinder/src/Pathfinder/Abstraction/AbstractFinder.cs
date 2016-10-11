@@ -27,6 +27,9 @@ namespace Pathfinder.Abstraction
         protected Node _endNode;
         public string Name { get; set; }
 
+        public int SleepUITimeInMs { get; set; }
+
+
         public virtual bool isOpen (Node e) => _openList.Contains(e);
         public virtual bool isClosed(Node e) => _closedList.Contains(e);
 
@@ -59,9 +62,16 @@ namespace Pathfinder.Abstraction
         protected virtual void OnStep(FinderEventArgs e)
         {
             _stopwatch.Stop();
+            StepConfig();
             UpdateMaxNodes();
             Step?.Invoke(this, e);
             _stopwatch.Start();
+        }
+
+
+        public virtual void StepConfig()
+        {
+
         }
 
         protected virtual void OnEnd(FinderEventArgs e)

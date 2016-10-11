@@ -17,6 +17,7 @@ namespace Pathfinder.Finders
         int nodesVisited;
         Stopwatch watch;
         Dictionary<int, Node> path;
+               
 
         public IDAStarFinder(
             DiagonalMovement diag,
@@ -26,10 +27,18 @@ namespace Pathfinder.Finders
         {
 
             Name = "IDA* (IDA Star)";
-            watch= new Stopwatch();
-            TimeLimit = double.PositiveInfinity;
+            SleepUITimeInMs = 30;
+            watch = new Stopwatch();
+
+            var ms = new Settings().IDAStarFinderTimeOut;
+
+            if (ms == 0)
+                TimeLimit = double.PositiveInfinity;
+            else
+                TimeLimit = ms;
+
             nodesVisited = 0;
-            TrackRecursion = false;
+            TrackRecursion = true;
         }
 
 
@@ -43,11 +52,24 @@ namespace Pathfinder.Finders
             return (a.X == b.X || a.Y == b.Y) ? 1 : Sqrt(2);
         }
 
-        
+
+        public override void StepConfig()
+        {
+            if (GridMap == null)
+                return;
+
+            _openList = new List<Node>();
+            for (int i = 0; i < GridMap.Height; i++)
+                for (int j = 0; j < GridMap.Width; j++)
+                    if (GridMap[i, j].Tested)
+                        _openList.Add(GridMap[i, j]);
+
+            
+        }
+
         private Tuple<Node,double> Search(Node node,double g,double cutoff, Dictionary<int,Node> route, int depth, Node end, int k)
         {
             nodesVisited++;
-            _maxExpandedNodes = nodesVisited;
 
             // Enforce timelimit:
             if (watch.ElapsedMilliseconds > 0 &&
@@ -74,16 +96,10 @@ namespace Pathfinder.Finders
                     route.Add(depth, node);
                 return new Tuple<Node, double>(node, 0); 
             }
-
-
+            
             
             var neighbours = GridMap.GetNeighbors(node, DiagonalMovement);
-
-            // Sort the neighbours, gives nicer paths. But, this deviates
-            // from the original algorithm - so I left it out.
-            //neighbours.sort(function(a, b){
-            //    return h(a, end) - h(b, end);
-            //});
+                       
 
             var min = double.PositiveInfinity;
             
@@ -105,11 +121,10 @@ namespace Pathfinder.Finders
                         neighbour.Tested = true;
 
                 }
-                              
-                t = Search(neighbour, g + Cost(node, neighbour), cutoff, route, depth + 1, end,k);
-                
 
-                OnStep(BuildArgs(k));
+                OnStep(BuildArgs(k));              
+                t = Search(neighbour, g + Cost(node, neighbour), cutoff, route, depth + 1, end,k);
+                                                
 
                 if (t.Item1!=null) {
                     if (route.ContainsKey(depth))
@@ -152,6 +167,7 @@ namespace Pathfinder.Finders
             
 
             OnStart(BuildArgs(0));
+            watch.Start();
             int k = 0;
             for (k = 0; true; k++)
             {           
@@ -159,8 +175,6 @@ namespace Pathfinder.Finders
                 route = new Dictionary<int, Node>();
 
                 t = Search(start, 0, cutOff, route, 0, end, k);
-
-               
 
                 if (t.Item2 == double.PositiveInfinity)
                 {

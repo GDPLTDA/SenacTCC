@@ -22,6 +22,8 @@ namespace Pathfinder
         public char Closed { get; set; }
         public int OpenGlBlockSize { get; set; }
 
+        public int IDAStarFinderTimeOut { get; set; }
+
         public int MapViwer { get; set; }
         public int MapOrigin { get; set; }
         public int Heuristic { get; set; }
@@ -50,7 +52,10 @@ namespace Pathfinder
             MapOrigin = int.Parse(Configuration[nameof(MapOrigin)]);
             Heuristic = int.Parse(Configuration[nameof(Heuristic)]);
             Algorithn = int.Parse(Configuration[nameof(Algorithn)]);
+            IDAStarFinderTimeOut = int.Parse(Configuration[nameof(IDAStarFinderTimeOut)]);
             AllowDiagonal = (Constants.DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
+
+            
         }
 
 
@@ -68,6 +73,9 @@ namespace Pathfinder
                     break;
                 case 2:
                     ret = FinderFactory.GetDijkstraImplementation(AllowDiagonal, heuri);
+                    break;
+                case 3:
+                    ret = FinderFactory.GetIDAStarImplementation(AllowDiagonal, heuri);
                     break;
 
             }

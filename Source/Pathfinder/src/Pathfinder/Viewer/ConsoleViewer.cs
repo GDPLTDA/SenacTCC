@@ -29,7 +29,7 @@ namespace Pathfinder.Viewer
             Console.WriteLine(text);
 
             AbstractViewer.ShowStepLog(_finder, e);
-            Thread.Sleep(200);
+            Thread.Sleep(_finder.SleepUITimeInMs);
         }
 
         public override void End(FinderEventArgs e)
