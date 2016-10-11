@@ -9,6 +9,9 @@ namespace Pathfinder.Abstraction
     public interface IFinder
     {
         string Name { get; set; }
+
+        int SleepUITimeInMs { get; set; }
+
         bool Find(IMap grid);
         
         DiagonalMovement DiagonalMovement { get; set; }

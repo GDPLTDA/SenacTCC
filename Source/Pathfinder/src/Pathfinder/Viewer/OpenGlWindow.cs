@@ -13,7 +13,7 @@ namespace Pathfinder.Viewer
         
         int width, heght;
         int BlockSize;
-        int FPS = 10;
+        int FPS = 30;
         public bool drawPath = false;
         public IList<Node> path;
         IFinder _finder;
@@ -46,7 +46,7 @@ namespace Pathfinder.Viewer
             var e = (FinderEventArgs)_e;
             AbstractViewer.ShowStepLog(_finder, e);
 
-            Thread.Sleep(200);
+            Thread.Sleep(_finder.SleepUITimeInMs);
         }
 
         private void EndWraper(object sender, EventArgs _e)
