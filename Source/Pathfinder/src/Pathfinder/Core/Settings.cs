@@ -36,6 +36,9 @@ namespace Pathfinder
         public int Height { get; set; }
         public int MinimumPath { get; set; }
 
+        public string FileToLoad { get; set; }
+        public string FolderToSaveMaps { get; set; }
+
         public Settings()
         {
             var builder = new ConfigurationBuilder()
@@ -65,6 +68,9 @@ namespace Pathfinder
             Width = int.Parse(Configuration[nameof(Width)]);
             Height = int.Parse(Configuration[nameof(Height)]);
             MinimumPath = int.Parse(Configuration[nameof(MinimumPath)]);
+
+            FileToLoad = Configuration[nameof(FileToLoad)].ToString();
+            FolderToSaveMaps = Configuration[nameof(FolderToSaveMaps)].ToString();
         }
 
 

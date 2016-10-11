@@ -65,6 +65,7 @@ namespace Pathfinder.MapGenerators
                 GridMap = new List<Node>();
             }
 
+            new FileTool().SaveFileFromMap(ret);
             return ret;
         }
         private Node RandNode(Random rand, int width, int height , bool wall)
