@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Genetic_Algorithm.Abstraction
+namespace Pathfinder.Abstraction
 {
-    public class IGenome
+    public interface IGenome
     {
     }
 }

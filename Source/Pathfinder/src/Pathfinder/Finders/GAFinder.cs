@@ -23,11 +23,11 @@ namespace Pathfinder.Finders
             Fitness = setting.GetFitness();
         }
 
-        public override bool Find(IGenome grid)
+        public override bool Find(IGenome ganome)
         {
-            GridMap = grid;
-            _startNode = grid.StartNode;
-            _endNode = grid.EndNode;
+            //GridMap = grid;
+            //_startNode = grid.StartNode;
+            //_endNode = grid.EndNode;
 
             int step = 0;
             OnStart(BuildArgs(step));
