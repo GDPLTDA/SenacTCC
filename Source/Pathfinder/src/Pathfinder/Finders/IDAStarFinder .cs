@@ -15,7 +15,7 @@ namespace Pathfinder.Finders
         bool TrackRecursion;
         double TimeLimit;
         int nodesVisited;
-        Stopwatch watch;
+        
         Dictionary<int, Node> path;
                
 
@@ -28,9 +28,9 @@ namespace Pathfinder.Finders
 
             Name = "IDA* (IDA Star)";
             SleepUITimeInMs = 30;
-            watch = new Stopwatch();
-
-            var ms = new Settings().IDAStarFinderTimeOut;
+            
+            var set = new Settings();
+            var ms = set.IDAStarFinderTimeOut;
 
             if (ms == 0)
                 TimeLimit = double.PositiveInfinity;
@@ -38,7 +38,7 @@ namespace Pathfinder.Finders
                 TimeLimit = ms;
 
             nodesVisited = 0;
-            TrackRecursion = true;
+            TrackRecursion = set.IDATrackRecursion;
         }
 
 
@@ -55,7 +55,7 @@ namespace Pathfinder.Finders
 
         public override void StepConfig()
         {
-            if (GridMap == null)
+            if (GridMap == null || !TrackRecursion)
                 return;
 
             _openList = new List<Node>();
@@ -72,8 +72,8 @@ namespace Pathfinder.Finders
             nodesVisited++;
 
             // Enforce timelimit:
-            if (watch.ElapsedMilliseconds > 0 &&
-                watch.ElapsedMilliseconds  > TimeLimit)
+            if (_stopwatch.ElapsedMilliseconds > 0 &&
+                _stopwatch.ElapsedMilliseconds  > TimeLimit)
             {
                 // Enforced as "path-not-found".
                 return null;
@@ -120,11 +120,14 @@ namespace Pathfinder.Finders
                     if (!neighbour.Tested)
                         neighbour.Tested = true;
 
+                    OnStep(BuildArgs(k));
                 }
-
-                OnStep(BuildArgs(k));              
+                
+                
                 t = Search(neighbour, g + Cost(node, neighbour), cutoff, route, depth + 1, end,k);
-                                                
+
+                if (t == null)
+                    return null;
 
                 if (t.Item1!=null) {
                     if (route.ContainsKey(depth))
@@ -161,13 +164,13 @@ namespace Pathfinder.Finders
             var start = _startNode = grid.StartNode;
 
             var cutOff = H(start, end);
-
+                        
             Dictionary<int, Node> route;
             Tuple<Node, double> t;
             
 
             OnStart(BuildArgs(0));
-            watch.Start();
+            
             int k = 0;
             for (k = 0; true; k++)
             {           
@@ -176,7 +179,7 @@ namespace Pathfinder.Finders
 
                 t = Search(start, 0, cutOff, route, 0, end, k);
 
-                if (t.Item2 == double.PositiveInfinity)
+                if (t==null || t.Item2 == double.PositiveInfinity)
                 {
                     OnEnd(BuildArgs(k, false));
                     return false;
