@@ -26,7 +26,6 @@ namespace Pathfinder.MapGenerators
                                     Constants.DiagonalMovement.OnlyWhenNoObstacles,
                                     HeuristicFactory.GetOctileImplementation()
                                 );
-            
 
             while (!IsAGoodMap)
             {
@@ -44,13 +43,11 @@ namespace Pathfinder.MapGenerators
 
                     GridMap.Add(p);
                     size--;
-
                 }
 
                 _map.DefineAllNodes(GridMap);
                 _map.StartNode = RandNode(rand, width, height, false);
                 _map.EndNode = RandNode(rand, width, height, false);
-
 
                 if (!_map.ValidMap())
                     throw new Exception("Invalid map configuration");
@@ -66,14 +63,10 @@ namespace Pathfinder.MapGenerators
 
                 }
                 GridMap = new List<Node>();
-
             }
 
             return ret;
-            
         }
-        
-
         private Node RandNode(Random rand, int width, int height , bool wall)
         {
             Node p = null;

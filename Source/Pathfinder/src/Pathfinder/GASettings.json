@@ -1,0 +1,9 @@
+﻿{
+  "GenerationLimit": 10000,
+  "MutationRate": 0.5,
+  "MutationAlgorithn": 0, // 0=Simple 1=OBX 2=PBX
+  "CrossoverRate": 0.5,
+  "CrossoverAlgorithn": 0, // 0=Simple 1=DIVM 2=DMI 3=IM 4=IVM 5=SMI
+  "PopulationSize": 100,
+  "FitnessAlgorithn": 0
+}

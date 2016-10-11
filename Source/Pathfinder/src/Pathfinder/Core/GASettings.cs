@@ -24,7 +24,7 @@ namespace Pathfinder
         {
             var builder = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
-              .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+              .AddJsonFile("GASettings.json", optional: true, reloadOnChange: true);
             Configuration = builder.Build();
 
 

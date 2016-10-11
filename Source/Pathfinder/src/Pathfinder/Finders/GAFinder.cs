@@ -10,11 +10,9 @@ namespace Pathfinder.Finders
     public class GAFinder : AbstractFinder
     {
         GASettings setting { get; set; }
-
         IFitness Fitness { get; set; }
         IMutate Mutate { get; set; }
         ICrossover Crossover { get; set; }
-
         public GAFinder(DiagonalMovement diag, int weight = 1) : base(diag, weight)
         {
             Name = "Genetic Algorithm";
@@ -25,7 +23,7 @@ namespace Pathfinder.Finders
             Fitness = setting.GetFitness();
         }
 
-        public override bool Find(IMap grid)
+        public override bool Find(IGenome grid)
         {
             GridMap = grid;
             _startNode = grid.StartNode;
@@ -33,7 +31,6 @@ namespace Pathfinder.Finders
 
             int step = 0;
             OnStart(BuildArgs(step));
-
 
             for (int i = 0; i < setting.GenerationLimit; i++)
             {
