@@ -13,7 +13,7 @@ namespace Pathfinder
 
         public FileTool()
         {
-            settings = new Settings();
+            settings = Program.settings;
         }
 
         public string GetTextRepresentation(IMap map)
@@ -127,11 +127,12 @@ namespace Pathfinder
 
             var now = DateTime.Now;
             if (string.IsNullOrEmpty(filename))
+            {
                 filename = $"map_{map.Width}x{map.Height}_{now.Year}{now.Month}{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.txt";
-                       
-            var newfileName = Path.Combine(folder, filename);
-
-            File.WriteAllText(newfileName, text);
+                filename = Path.Combine(folder, filename);
+            }         
+            
+            File.WriteAllText(filename, text);
 
         }
 

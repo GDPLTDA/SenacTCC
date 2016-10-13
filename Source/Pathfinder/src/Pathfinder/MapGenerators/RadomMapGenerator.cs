@@ -85,7 +85,9 @@ namespace Pathfinder.MapGenerators
                 GridMap = new List<Node>();
             }
 
-            new FileTool().SaveFileFromMap(ret);
+            if (settings.AppMode!=2)  // dont run if in batchmode
+                new FileTool().SaveFileFromMap(ret);
+
             return ret;
         }
         private Node RandNode(Random rand, int width, int height , bool wall)
