@@ -9,14 +9,12 @@ namespace Pathfinder.Finders
 {
     public class AStarFinder : AbstractFinder
     {
-     
         public AStarFinder(
             DiagonalMovement diag,
             IHeuristic heuristic,
             int weight = 1
           ) : base(diag,heuristic,weight)
         {
-
             Name = "A* (A Star)";
             SleepUITimeInMs = 200;
 
@@ -30,7 +28,6 @@ namespace Pathfinder.Finders
             {
                 Heuristic = heuristic ?? HeuristicFactory.GetOctileImplementation();
             }
-
         }
 
         public virtual double CalcH(int dx, int dy)
@@ -92,10 +89,7 @@ namespace Pathfinder.Finders
 
                         if (!isOpen(neighbor))
                             _openList.Push(neighbor);
-                        
                     }
-
-                   
                 }
 
                 _openList = _openList.OrderByDescending(e => e.Cost).ToList();
@@ -103,12 +97,9 @@ namespace Pathfinder.Finders
 
                 OnStep(BuildArgs(step++));
             }
-
             
             OnEnd(BuildArgs(step, false));
             return false;
         }
-
-                 
     }
 }

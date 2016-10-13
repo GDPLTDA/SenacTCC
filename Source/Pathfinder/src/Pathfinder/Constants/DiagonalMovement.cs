@@ -7,6 +7,5 @@ namespace Pathfinder.Constants
         OnlyWhenNoObstacles = 1,
         IfAtMostOneObstacle = 2,
         Always = 3
-        
     }
 }

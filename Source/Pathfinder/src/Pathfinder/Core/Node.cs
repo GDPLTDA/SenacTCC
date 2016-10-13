@@ -9,6 +9,13 @@ namespace Pathfinder
 {
     public class Node
     {
+        public Node(Node node)
+        {
+            X = node.X;
+            Y = node.Y;
+            Walkable = node.Walkable;
+            Direction = node.Direction;
+        }
 
         public Node(int x, int y)
         {
@@ -16,41 +23,45 @@ namespace Pathfinder
             Y = y;
             Walkable = true;
         }
-
-
         public Node(int x, int y, bool walkable)
         {
             X = x;
             Y = y;
             Walkable = walkable;
         }
-
-        
+        public Node(int x, int y, DirectionMovement direction)
+        {
+            X = x;
+            Y = y;
+            Direction = direction;
+        }
+        public Node(int x, int y, bool walkable, DirectionMovement direction)
+        {
+            X = x;
+            Y = y;
+            Walkable = walkable;
+            Direction = direction;
+        }
+        public DirectionMovement Direction { get; set; }
         public Node ParentNode { get; set; }
         public bool Walkable  { get; set; }
-        
         public int X { get; set; }
         public int Y { get; set; }
-
         public double G { get; set; }
         public double H { get; set; }
         public double Cost { get; set; }
-
         public bool Tested { get; set; }
         public int RetainCount { get; set; }
-
 
         public override bool Equals(object other)
         {
             var ee = (Node)other;
             return X == ee?.X && Y == ee?.Y;
         }
-
         public override int GetHashCode()
         {
             return base.GetHashCode();
         }
-
         public static bool operator == (Node node1, Node node2)
         {
             if (object.ReferenceEquals(node1, null))
@@ -69,7 +80,6 @@ namespace Pathfinder
             }
             return !node1.Equals(node2);
         }
-
         public override string ToString()
         {
             return $"{{{this.X},{this.Y},{(!Walkable?"Wall": "Walkable")},{Cost}}}";

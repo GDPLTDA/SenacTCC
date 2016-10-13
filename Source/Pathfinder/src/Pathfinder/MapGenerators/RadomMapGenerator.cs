@@ -23,7 +23,7 @@ namespace Pathfinder.MapGenerators
 
             // finder para valida se o mapa é passavel
             IFinder AStar = FinderFactory.GetAStarImplementation(
-                                    Constants.DiagonalMovement.OnlyWhenNoObstacles,
+                                    settings.AllowDiagonal,
                                     HeuristicFactory.GetOctileImplementation()
                                 );
 
