@@ -21,8 +21,28 @@ namespace Pathfinder.MapGenerators
             bool IsAGoodMap = false;
             IMap ret = null;
 
+            if (argument!=string.Empty)
+            {
+                var param = argument.Split('|');
+                try
+                {
+                    width   =  int.Parse(param[0]);
+                    height  =  int.Parse(param[1]);
+                    seed    =  double.Parse(param[2])/100;
+                    minPathLength = int.Parse(param[3]);
+
+                }
+                catch 
+                {
+
+                    throw new Exception("Ivalid random map parameters!");
+                }
+
+
+            }
+
             // finder para valida se o mapa é passavel
-            IFinder AStar = FinderFactory.GetAStarImplementation(
+            IFinder AStar = FinderFactory.GetBFSImplementation(
                                     settings.AllowDiagonal,
                                     HeuristicFactory.GetOctileImplementation()
                                 );

@@ -39,6 +39,8 @@ namespace Pathfinder
         public string FileToLoad { get; set; }
         public string FolderToSaveMaps { get; set; }
 
+        public int AppMode { get; set; }
+
         public Settings()
         {
             var builder = new ConfigurationBuilder()
@@ -71,14 +73,32 @@ namespace Pathfinder
 
             FileToLoad = Configuration[nameof(FileToLoad)].ToString();
             FolderToSaveMaps = Configuration[nameof(FolderToSaveMaps)].ToString();
+            AppMode = int.Parse(Configuration[nameof(AppMode)].ToString());
         }
 
+        public IAppMode GetAppMode( int option = -1)
+        {
 
-        public IFinder GetFinder(IHeuristic heuri)
+            var opt = option >= 0 ? option : AppMode;  
+            switch (opt)
+            {
+                case 0:
+                    return AppModeFactory.GetSingleRunImplementation();
+                case 1:
+                    return AppModeFactory.GetDynamicImplementation();
+                case 2:
+                    return AppModeFactory.GetBatchImplementation();
+            }
+
+            throw new Exception("No app mode selected");
+        }
+
+        public IFinder GetFinder(IHeuristic heuri, int option = -1)
         {
             IFinder ret = null;
 
-            switch (Algorithn)
+            var opt = option >= 0 ? option : Algorithn;
+            switch (opt)
             {
                 case 0:
                     ret = FinderFactory.GetAStarImplementation(AllowDiagonal, heuri);
@@ -101,10 +121,11 @@ namespace Pathfinder
             return ret;
         }
 
-        public IHeuristic GetHeuristic()
+        public IHeuristic GetHeuristic( int option = -1)
         {
             IHeuristic ret = null;
-            switch (Heuristic)
+            var opt = option >= 0 ? option : Heuristic;
+            switch (opt)
             {
                 case 0:
                     ret = HeuristicFactory.GetManhattamImplementation();
@@ -124,11 +145,12 @@ namespace Pathfinder
 
         }
 
-        public IMapGenerator GetGenerator()
+        public IMapGenerator GetGenerator( int option = -1)
         {
             IMapGenerator ret = null;
 
-            switch (MapOrigin)
+            var opt = option >= 0 ? option : MapOrigin;
+            switch (opt)
             {
                 case 0:
                     ret = MapGeneratorFactory.GetStaticMapGeneratorImplementation();
@@ -146,11 +168,12 @@ namespace Pathfinder
             return ret;
         }
 
-        public IViewer GetViewer(IFinder finder)
+        public IViewer GetViewer(IFinder finder, int option =-1)
         {
             IViewer ret = null;
 
-            switch (MapViwer)
+            var opt = option >= 0 ? option : MapViwer;
+            switch (opt)
             {
                 case 0:
                     ret = ViewerFactory.GetConsoleViewerImplementation(finder);
