@@ -16,7 +16,7 @@ namespace Pathfinder.Finders
         double TimeLimit;
         int nodesVisited;
         
-        Dictionary<int, Node> path;
+        
                
 
         public IDAStarFinder(
