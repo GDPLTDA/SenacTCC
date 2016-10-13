@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Abstraction
 {
-    public interface IGenome
+    public interface ISelection
     {
+        List<Node> Select(List<Genome> listnode);
     }
 }

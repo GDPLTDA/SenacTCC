@@ -8,9 +8,9 @@ namespace Pathfinder.Mutation
 {
     public class MutateIM : IMutate
     {
-        public List<Node> Mutate(List<Node> baby)
+        public List<Node> Calc(List<Node> baby)
         {
-            throw new NotImplementedException();
+            return baby;
         }
     }
 }

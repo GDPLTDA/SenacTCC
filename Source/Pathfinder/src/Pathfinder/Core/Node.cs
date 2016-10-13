@@ -53,10 +53,9 @@ namespace Pathfinder
         public bool Tested { get; set; }
         public int RetainCount { get; set; }
 
-        public override bool Equals(object other)
+        public bool Equals(Node other)
         {
-            var ee = (Node)other;
-            return X == ee?.X && Y == ee?.Y;
+            return X == other?.X && Y == other?.Y;
         }
         public override int GetHashCode()
         {

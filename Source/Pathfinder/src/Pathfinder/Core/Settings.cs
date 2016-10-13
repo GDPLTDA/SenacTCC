@@ -11,6 +11,7 @@ namespace Pathfinder
 {
     public class Settings
     {
+        public static Random Random { get; set; } = new Random();
         public IConfigurationRoot Configuration { get; set; }
       
         public char Start { get; set; }

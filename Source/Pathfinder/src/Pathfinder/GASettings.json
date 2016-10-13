@@ -5,5 +5,6 @@
   "CrossoverRate": 0.5,
   "CrossoverAlgorithn": 0, // 0=Simple 1=DIVM 2=DMI 3=IM 4=IVM 5=SMI
   "PopulationSize": 100,
-  "FitnessAlgorithn": 0
+  "FitnessAlgorithn": 0, // 0=Simple
+  "SelectionAlgorithn": 0 // 0=Simple
 }

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Mutation
+namespace Pathfinder.Selection
 {
-    public class MutateSM : IMutate
+    public class SelectionSimple : ISelection
     {
-        public List<Node> Calc(List<Node> baby)
+        public List<Node> Select(List<Genome> listnode)
         {
             return new List<Node>();
         }

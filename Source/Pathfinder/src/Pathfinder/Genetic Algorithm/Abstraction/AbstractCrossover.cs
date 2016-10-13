@@ -17,12 +17,40 @@ namespace Pathfinder.Abstraction
             Dad = mon;
             Mom = dad;
         }
-        List<Node> Mom { get; set; }
-        List<Node> Dad { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public bool IsEqual()
+        {
+            if (Mom.Count != Dad.Count)
+                return false;
+
+            for (int i = 0; i < Mom.Count; i++)
+            {
+                if (Mom[i] != Dad[i])
+                    return false;
+            }
+            return true;
+        }
+
+        public List<Node> Copy(List<Node> listnode)
+        {
+            var returnnode = new List<Node>();
+
+            foreach (var item in listnode)
+                returnnode.Add(new Node(item));
+
+            return returnnode;
+        }
+
+        public List<Node> Mom { get; set; }
+        public List<Node> Dad { get; set; }
     }
     public abstract class AbstractCrossover : ICrossover
     {
+        protected double CrossoverRate { get; set; }
         CrossoverOperation Operation { get; set; }
-        public abstract CrossoverOperation Cross(CrossoverOperation Operation);
+        public abstract CrossoverOperation Calc(CrossoverOperation Operation);
     }
 }

@@ -20,8 +20,5 @@ namespace Pathfinder
             app.Run();
             
         }    
-
     }
-
-        
 }

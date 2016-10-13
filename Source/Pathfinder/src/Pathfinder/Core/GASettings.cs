@@ -19,6 +19,8 @@ namespace Pathfinder
         public int PopulationSize { get; set; }
         public int MutationAlgorithn { get; set; }
         public int CrossoverAlgorithn { get; set; }
+
+        public int SelectionAlgorithn { get; set; }
         public int FitnessAlgorithn { get; set; }
         public GASettings()
         {
@@ -28,13 +30,14 @@ namespace Pathfinder
             Configuration = builder.Build();
 
 
-            GenerationLimit = Configuration[nameof(GenerationLimit)].ToString()[0];
-            MutationRate = Configuration[nameof(MutationRate)].ToString()[0];
-            CrossoverRate = Configuration[nameof(CrossoverRate)].ToString()[0];
-            PopulationSize = Configuration[nameof(PopulationSize)].ToString()[0];
-            MutationAlgorithn = Configuration[nameof(MutationAlgorithn)].ToString()[0];
-            CrossoverAlgorithn = Configuration[nameof(CrossoverAlgorithn)].ToString()[0];
-            FitnessAlgorithn = Configuration[nameof(FitnessAlgorithn)].ToString()[0];
+            GenerationLimit = int.Parse(Configuration[nameof(GenerationLimit)]);
+            MutationRate = double.Parse(Configuration[nameof(MutationRate)]);
+            CrossoverRate = double.Parse(Configuration[nameof(CrossoverRate)]);
+            PopulationSize = int.Parse(Configuration[nameof(PopulationSize)]);
+            MutationAlgorithn = int.Parse(Configuration[nameof(MutationAlgorithn)]);
+            CrossoverAlgorithn = int.Parse(Configuration[nameof(CrossoverAlgorithn)]);
+            FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
+            SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
         }
 
 
@@ -93,6 +96,19 @@ namespace Pathfinder
             {
                 case 0:
                     ret = FitnessFactory.GetSimpleImplementation();
+                    break;
+            }
+
+            return ret;
+        }
+
+        public ISelection GetSelection()
+        {
+            ISelection ret = null;
+            switch (SelectionAlgorithn)
+            {
+                case 0:
+                    ret = SelectionFactory.GetSimpleImplementation();
                     break;
             }
 
