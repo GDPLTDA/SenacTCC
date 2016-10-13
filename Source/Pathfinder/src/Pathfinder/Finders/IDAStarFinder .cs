@@ -89,7 +89,6 @@ namespace Pathfinder.Finders
 
             if (node == end)
             {
-                
                 if (route.ContainsKey(depth))
                     route[depth] = node;
                 else
@@ -151,9 +150,6 @@ namespace Pathfinder.Finders
 
             return new Tuple<Node, double>(null, min);       
         }
-
-
-  
 
         public override bool Find(IMap grid)
         {

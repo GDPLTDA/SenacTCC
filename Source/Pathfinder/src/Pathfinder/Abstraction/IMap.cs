@@ -12,6 +12,7 @@ namespace Pathfinder.Abstraction
         int Width { get; set; }
         Node[,] Nodes { get; set; }
         Node this[int x, int y] { get; set; }
+        Node GetDirectionNode(Node node, DirectionMovement direction);
         IList<Node> GetNeighbors(Node node, DiagonalMovement diag);
         Node StartNode { get; set; }
         Node EndNode { get; set; }

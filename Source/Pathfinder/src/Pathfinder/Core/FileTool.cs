@@ -96,8 +96,6 @@ namespace Pathfinder
                     x++;
                 }
                 y++;
-
-
             }
 
             width = x;
