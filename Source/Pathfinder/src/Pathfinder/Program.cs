@@ -23,10 +23,6 @@ namespace Pathfinder
 
             var map =  generator.DefineMap();
             viewer.Run(map);
-            
         }    
-
     }
-
-        
 }

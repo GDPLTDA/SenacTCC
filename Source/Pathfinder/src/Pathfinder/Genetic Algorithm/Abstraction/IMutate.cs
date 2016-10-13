@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
     public interface IMutate
     {
-        List<Node> Mutate(List<Node> baby);
+        List<Node> Calc(List<Node> baby);
     }
 }

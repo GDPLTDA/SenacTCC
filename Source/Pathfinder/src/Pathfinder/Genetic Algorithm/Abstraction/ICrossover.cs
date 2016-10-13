@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
     public interface ICrossover
     {
-        CrossoverOperation Cross(CrossoverOperation Operation);
+        CrossoverOperation Calc(CrossoverOperation Operation);
     }
 }

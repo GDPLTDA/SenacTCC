@@ -10,7 +10,7 @@ namespace Pathfinder.Fitness
     {
         public double Calc(List<Node> listnode)
         {
-            throw new NotImplementedException();
+            return 0;
         }
     }
 }

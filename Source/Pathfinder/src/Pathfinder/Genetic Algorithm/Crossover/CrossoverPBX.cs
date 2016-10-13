@@ -8,7 +8,7 @@ namespace Pathfinder.Crossover
 {
     public class CrossoverPBX : AbstractCrossover
     {
-        public override CrossoverOperation Cross(CrossoverOperation Operation)
+        public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
             return new CrossoverOperation();
         }
