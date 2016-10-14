@@ -25,7 +25,6 @@ namespace Pathfinder.Abstraction
 
         long GetProcessedTime();
         int GetMaxExpandedNodes();
-
         event EventHandler Start;
         event EventHandler Step;
         event EventHandler End;

@@ -50,7 +50,7 @@ namespace Pathfinder.Finders
 
             int step = 0;
             OnStart(BuildArgs(step));
-
+            
             while (!_openList.Count.Equals(0))
             {
                 var node = _openList.Pop();

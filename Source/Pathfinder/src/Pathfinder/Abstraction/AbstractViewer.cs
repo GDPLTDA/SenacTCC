@@ -44,7 +44,7 @@ namespace Pathfinder.Abstraction
         public static void ShowStepLog(IFinder finder, FinderEventArgs e)
         {
             
-            Console.WriteLine($"Alg={finder.Name}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step} ");
+            Console.WriteLine($"Alg={finder.Name}\nDiagonal={finder.DiagonalMovement.ToString()}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step} ");
         }
 
         public static void ShowEndLog(IFinder finder, IList<Node> path, FinderEventArgs e)
@@ -53,7 +53,7 @@ namespace Pathfinder.Abstraction
                 throw new Exception("Why is there a wall on the path?");
 
             
-            Console.WriteLine($"Alg={finder.Name}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step}");
+            Console.WriteLine($"Alg={finder.Name}\nDiagonal={finder.DiagonalMovement.ToString()}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step}");
 
             if (e.Finded)
                 Console.WriteLine($"Path Length: {path.OrderBy(x => x.G).Last().G}");

@@ -13,7 +13,16 @@ namespace Pathfinder.Abstraction
         public event EventHandler End;
         public event EventHandler Start;
 
-        protected IMap GridMap { get; set; }
+        private IMap _map;
+
+        protected IMap GridMap { get { return _map; }
+            set {
+                if (value?.AllowDiagonal.HasValue ?? false)
+                    DiagonalMovement = value.AllowDiagonal.Value;
+
+                _map = value;    
+            }
+        }
         public DiagonalMovement DiagonalMovement { get; set; }
         public IHeuristic Heuristic { get; set; }
         public int Weight { get; set; }
@@ -93,6 +102,7 @@ namespace Pathfinder.Abstraction
         protected virtual void OnStart(FinderEventArgs e)
         {
             Start?.Invoke(this, e);
+            _stopwatch.Reset();
             _stopwatch.Start();
         }
 
@@ -132,5 +142,6 @@ namespace Pathfinder.Abstraction
             return args;
         }
 
+     
     }
 }

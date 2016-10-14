@@ -20,23 +20,42 @@ namespace Pathfinder.AppMode
             setting.IDATrackRecursion = false;
             var qtdMaps = setting.Batch_map_qtd_to_generate;
             var now = DateTime.Now;
-            var folder = Path.Combine(setting.Batch_folder, $"batch_{setting.Width}x{setting.Height}_{setting.RandomSeed*100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}_{setting.AllowDiagonal}");
+            var folder = Path.Combine(setting.Batch_folder, $"batch_{setting.Width}x{setting.Height}_{setting.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
             var dataFile = Path.Combine(folder, "_data.csv");
-            
+
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);
 
+            
+          
+
+            var diags = Enum.GetValues(typeof(DiagonalMovement));
+            var diagonals = new DiagonalMovement[diags.Length];
+            for (int i = 0; i < diags.Length; i++)
+                diagonals[i] = (DiagonalMovement)diags.GetValue(i);
+
+
+            var divblock = Math.Ceiling((double)qtdMaps / (double)diagonals.Count());
+            var diagIndex = 0;
+            
             if (setting.Batch_map_origin==0)
             {
                 //generate maps
                 var generator = MapGeneratorFactory.GetRandomMapGeneratorImplementation();
+                
                 for (int i = 0; i < qtdMaps; i++)
                 {
                     Console.Clear();
                     Console.WriteLine("Generating maps...");
                     drawTextProgressBar(i, qtdMaps);
                     var map = generator.DefineMap();
+                    map.AllowDiagonal = diagonals[diagIndex];
                     ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString()+".txt"));
+                    
+                    if ( (i+1) % divblock == 0)
+                    {
+                        diagIndex++;
+                    }
                 }                
 
             }
@@ -51,13 +70,7 @@ namespace Pathfinder.AppMode
 
             var finders =new int[]{0, 1 , 2, 3};
             var heuristics = new int[] { 0, 1, 2, 3 };
-            var diagonals = new DiagonalMovement[]
-            {
-                DiagonalMovement.Never,
-                DiagonalMovement.OnlyWhenNoObstacles,
-                DiagonalMovement.IfAtMostOneObstacle,
-                DiagonalMovement.Always
-            };
+           
 
             var console_color = Console.ForegroundColor;
             var csvFile = new StringBuilder();
@@ -71,22 +84,17 @@ namespace Pathfinder.AppMode
                     var map = ft.ReadMapFromFile(files[i]);
 
                     
-                    //Console.WriteLine(ft.GetTextRepresentation(map));
-
                     foreach (var _finder in finders)
                         foreach (var _h in heuristics)
-                        // foreach (var diag in diagonals)
                         {
                                 var csv = new TextWrapper();
                                 var h = setting.GetHeuristic(_h);
                                 var finder = setting.GetFinder(h, _finder);
-                                // finder.DiagonalMovement = diag;
+
                                 csv.map = i.ToString() ;
                                 csv.alg = finder.Name;
                                 csv.heuristic = h.GetType().Name;
-                                csv.diagonal= finder.DiagonalMovement.ToString();
-
-
+                                csv.diagonal = map.AllowDiagonal.HasValue ? map.AllowDiagonal.Value.ToString() : finder.DiagonalMovement.ToString();
                                 Console.CursorLeft = 0;
                                 if (Console.CursorTop > 0)
                                 {
@@ -95,15 +103,17 @@ namespace Pathfinder.AppMode
                                 }
 
                                
-                                Console.WriteLine($"    ({i}){csv.alg} - { csv.heuristic } - {csv.diagonal}");
+                                Console.WriteLine($"            ({i}) {csv.alg} - { csv.heuristic } - {csv.diagonal}");
                                 drawTextProgressBar(i, fileCount);
                                 
 
                                 if (finder.Find(map))
                                 {
-                                    csv.solution = "Yes";
+                                    
                                     csv.pathLength = finder.GetPath().OrderBy(x => x.G).Last().G.ToString();
                                     Console.ForegroundColor = ConsoleColor.Green;
+                                    csv.solution = "Yes (" + finder.GetProcessedTime().ToString()+"ms )";
+                                    
                                 }
                                 else
                                 {

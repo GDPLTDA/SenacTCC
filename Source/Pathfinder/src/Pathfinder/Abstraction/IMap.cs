@@ -20,5 +20,7 @@ namespace Pathfinder.Abstraction
         void DefineAllNodes(IList<Node> nodes);
         void DefineAllNodes();
         bool ValidMap();
+
+        DiagonalMovement? AllowDiagonal { get; set; }
     }
 }

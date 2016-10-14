@@ -42,6 +42,7 @@ namespace Pathfinder.Viewer
 
         private void LoopWraper(object sender, EventArgs _e)
         {
+            
             Console.Clear();
             var e = (FinderEventArgs)_e;
             AbstractViewer.ShowStepLog(_finder, e);

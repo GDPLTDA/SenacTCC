@@ -14,6 +14,9 @@ namespace Pathfinder
         public int Width { get; set; }
         public Node StartNode { get { return _startNode; }  set { DefineNode(value); _startNode = value; } }
         public Node EndNode   { get { return _endNode; }    set { DefineNode(value); _endNode = value; } }
+
+        public DiagonalMovement? AllowDiagonal{get; set;}
+
         Node _startNode;
         Node _endNode;
 

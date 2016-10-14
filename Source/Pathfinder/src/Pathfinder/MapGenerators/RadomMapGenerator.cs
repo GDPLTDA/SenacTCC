@@ -1,4 +1,5 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.Constants;
 using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Pathfinder.MapGenerators
     {
         public List<Node> GridMap = new List<Node>();
 
-        public IMap DefineMap(string argument)
+        public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
             Settings settings = new Settings();
             int width = settings.Width, height = settings.Height;
@@ -41,9 +42,15 @@ namespace Pathfinder.MapGenerators
 
             }
 
+
+            DiagonalMovement d = settings.AllowDiagonal; 
+            if (diagonal.HasValue)
+                d = diagonal.Value;
+
+
             // finder para valida se o mapa é passavel
             IFinder AStar = FinderFactory.GetBFSImplementation(
-                                    settings.AllowDiagonal,
+                                    d,
                                     HeuristicFactory.GetOctileImplementation()
                                 );
 

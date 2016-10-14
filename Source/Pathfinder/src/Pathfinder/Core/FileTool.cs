@@ -1,4 +1,5 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -54,7 +55,7 @@ namespace Pathfinder
             Node endNode = null;
             int x = 0, y = 0;
             byte dig;
-            
+            DiagonalMovement? d = null;
 
             if (fileName == "")
                 throw new Exception("fileName is empty!");
@@ -78,6 +79,16 @@ namespace Pathfinder
                     }
 
                     var chrDig = (char)dig;
+                    
+                    if (chrDig == '?')
+                    {
+                        var line = new List<char>();
+                        while (chrDig!=10)
+                            line.Add(chrDig = reader.ReadChar());
+
+                        ReadMapSettings(string.Join("",line), out d);
+                        continue;
+                    }
 
                     if (chrDig == settings.Start)
                         startNode = new Node(x, y);
@@ -105,7 +116,7 @@ namespace Pathfinder
 
             ret.StartNode = startNode;
             ret.EndNode = endNode;
-
+            ret.AllowDiagonal = d;
             ret.DefineAllNodes(nodes);
             ret.DefineNode(ret.StartNode);
             ret.DefineNode(ret.EndNode);
@@ -114,6 +125,25 @@ namespace Pathfinder
                 throw new Exception("Invalid map configuration");
 
             return ret;
+        }
+
+        private void ReadMapSettings(string line, out DiagonalMovement? d)
+        {
+            var diagvar = "diagonal=";
+            d = null;
+
+            if (line.Contains(diagvar))
+            {
+                string diag = line.Substring(line.IndexOf(diagvar)+ diagvar.Length);
+                diag = diag.Substring(0, diag.IndexOf(";"));
+
+                var diags = Enum.GetValues(typeof(DiagonalMovement));
+                for (int i = 0; i < diags.Length; i++)
+                    if (diag.Contains(((DiagonalMovement)diags.GetValue(i)).ToString()))
+                    {
+                        d = (DiagonalMovement)diags.GetValue(i);
+                    }
+            }
         }
 
 
@@ -130,8 +160,11 @@ namespace Pathfinder
             {
                 filename = $"map_{map.Width}x{map.Height}_{now.Year}{now.Month}{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.txt";
                 filename = Path.Combine(folder, filename);
-            }         
-            
+            }
+
+            if (map.AllowDiagonal!=null)
+                text = $"?diagonal={map.AllowDiagonal};\n{text}";
+
             File.WriteAllText(filename, text);
 
         }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pathfinder.Abstraction;
 using static System.Console;
+using Pathfinder.Constants;
+
 namespace Pathfinder.AppMode
 {
     public class DynamicMode : IAppMode
@@ -33,6 +35,7 @@ namespace Pathfinder.AppMode
                 }
             }
 
+            settings.AllowDiagonal = (DiagonalMovement)d;
             var heuristic = settings.GetHeuristic(h);
             var finder = settings.GetFinder(heuristic,pf);
             var generator = settings.GetGenerator(m);

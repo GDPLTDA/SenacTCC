@@ -1,4 +1,5 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.Constants;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ namespace Pathfinder.MapGenerators
 {
     public class FileMapGenerator : IMapGenerator
     {
-        public IMap DefineMap(string argument)
+        public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
             var ft = new FileTool();
             var set = new Settings();
