@@ -69,6 +69,12 @@ namespace Pathfinder
             return IsInside(x, y) && Nodes[y,x].Walkable;
         }
 
+        public Node GetDirectionNode(Node node)
+        {
+            var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
+            return GetDirectionNode(node, dir);
+        }
+
         public Node GetDirectionNode(Node node, DirectionMovement direction)
         {
             int x = node.X, y = node.Y;

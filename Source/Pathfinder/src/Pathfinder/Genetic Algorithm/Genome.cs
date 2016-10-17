@@ -18,6 +18,12 @@ namespace Pathfinder
         {
         }
 
+        public Genome(IMap map, List<Node> listnode)
+        {
+            Map = map;
+            ListNodes = Copy(listnode);
+        }
+
         public Genome(IGenome genome)
         {
             Map = genome.Map;
@@ -42,16 +48,14 @@ namespace Pathfinder
                 if (!listnode.Exists(o => o.X == node.X && o.Y == node.Y))
                     listnode.Add(node);
 
-                var dir = Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
-                var newnode = Map.GetDirectionNode(node, (DirectionMovement)dir);
+                var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
+                var newnode = Map.GetDirectionNode(node);
 
                 // verifica se teve colisão ou se encontrou o fim
                 run = newnode != null;
 
                 if (newnode != null)
-                {
-                    node = new Node(newnode, node);
-                }
+                    node = new Node(newnode, node, dir);
             }
 
             return listnode;

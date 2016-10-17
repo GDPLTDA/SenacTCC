@@ -35,26 +35,16 @@ namespace Pathfinder.Crossover
             while (end < beg)
                 end = Settings.Random.Next(0, minindex);
 
-            for (int pos = beg; pos < end + 1; ++pos)
+            for (int pos = beg; pos <= end; ++pos)
             {
-                var gene1 = listmom[pos];
-                var gene2 = listdad[pos];
+                var genemom = listmom[pos];
+                var genedad = listdad[pos];
 
-                if (gene1 != gene2)
+                if (!genemom.Equals(genedad))
                 {
-                    var posGene1 = baby1.IndexOf(gene1);
-                    var posGene2 = baby1.IndexOf(gene2);
-
-                    var temp = baby1[posGene1];
-                    baby1[posGene1] = baby1[posGene2];
-                    baby1[posGene2] = temp;
-
-                    posGene1 = baby2.IndexOf(gene1);
-                    posGene2 = baby2.IndexOf(gene2);
-
-                    temp = baby2[posGene1];
-                    baby2[posGene1] = baby2[posGene2];
-                    baby2[posGene2] = temp;
+                    var temp = listbabymom[pos];
+                    listbabymom[pos] = listdad[pos];
+                    listdad[pos] = temp;
                 }
             }
 

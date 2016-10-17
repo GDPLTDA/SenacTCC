@@ -18,7 +18,7 @@ namespace Pathfinder
                 item.SetValue(this, item.GetValue(node));
             }
         }
-        public Node(Node node, Node parent)
+        public Node(Node node, Node parent, DirectionMovement direction)
         {
             Type type = node.GetType();
             foreach (var item in type.GetProperties())
@@ -26,6 +26,7 @@ namespace Pathfinder
                 item.SetValue(this, item.GetValue(node));
             }
             ParentNode = parent;
+            Direction = direction;
         }
 
         public Node(int x, int y)
