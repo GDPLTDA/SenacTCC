@@ -17,12 +17,15 @@ namespace Pathfinder.Crossover
             var babymom = Operation.Copy(Operation.Mom);
             var babydad = Operation.Copy(Operation.Dad);
 
-            var beg = Settings.Random.Next(0, babymom.Count - 1);
+            var listmom = babymom.ListNodes;
+            var listdad = babydad.ListNodes;
+
+            var beg = Settings.Random.Next(0, listmom.Count - 1);
 
             var end = beg;
 
             while (end <= beg)
-                end = Settings.Random.Next(0, babymom.Count);
+                end = Settings.Random.Next(0, listmom.Count);
 
             //for (int pos = beg; pos < end + 1; ++pos)
             //{

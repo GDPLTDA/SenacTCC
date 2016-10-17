@@ -44,7 +44,7 @@ namespace Pathfinder.Abstraction
         public static void ShowStepLog(IFinder finder, FinderEventArgs e)
         {
             
-            Console.WriteLine($"Alg={finder.Name}\nDiagonal={finder.DiagonalMovement.ToString()}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step} ");
+            Console.WriteLine($"Alg={finder.Name}\nDiagonal={finder.DiagonalMovement.ToString()}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generations:{e.Step} ");
         }
 
         public static void ShowEndLog(IFinder finder, IList<Node> path, FinderEventArgs e)

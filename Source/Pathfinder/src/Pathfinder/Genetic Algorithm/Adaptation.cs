@@ -14,7 +14,7 @@ namespace Pathfinder
             Map = map;
         }
 
-        public List<Node> Calc(List<Node> listnode)
+        public IGenome Calc(IGenome listnode)
         {
             return listnode;
         }

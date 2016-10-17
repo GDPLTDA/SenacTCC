@@ -8,9 +8,9 @@ namespace Pathfinder.Selection
 {
     public class SelectionSimple : ISelection
     {
-        public List<Node> Select(List<Genome> listnode)
+        public IGenome Select(List<IGenome> listnode)
         {
-            return new List<Node>();
+            return listnode[0];
         }
     }
 }

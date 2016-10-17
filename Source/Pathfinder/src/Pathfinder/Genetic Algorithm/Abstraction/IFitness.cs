@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
     public interface IFitness
     {
-        double Calc(List<Node> listnode);
+        double Calc(IGenome listnode);
     }
 }

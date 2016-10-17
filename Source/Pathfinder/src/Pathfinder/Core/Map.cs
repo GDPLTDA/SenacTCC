@@ -109,7 +109,7 @@ namespace Pathfinder
                         newnode = Nodes[y + 1, x + 1];
                     break;
             }
-                
+
             return newnode;
         }
 

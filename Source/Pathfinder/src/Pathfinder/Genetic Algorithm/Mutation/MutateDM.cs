@@ -8,7 +8,7 @@ namespace Pathfinder.Mutation
 {
     public class MutateDM : IMutate
     {
-        public List<Node> Calc(List<Node> baby)
+        public IGenome Calc(IGenome baby)
         {
             return baby;
         }

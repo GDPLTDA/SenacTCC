@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pathfinder.Constants;
+using System.Reflection;
 
 namespace Pathfinder
 {
@@ -11,10 +12,20 @@ namespace Pathfinder
     {
         public Node(Node node)
         {
-            X = node.X;
-            Y = node.Y;
-            Walkable = node.Walkable;
-            Direction = node.Direction;
+            Type type = node.GetType();
+            foreach (var item in type.GetProperties())
+            {
+                item.SetValue(this, item.GetValue(node));
+            }
+        }
+        public Node(Node node, Node parent)
+        {
+            Type type = node.GetType();
+            foreach (var item in type.GetProperties())
+            {
+                item.SetValue(this, item.GetValue(node));
+            }
+            ParentNode = parent;
         }
 
         public Node(int x, int y)
@@ -52,7 +63,6 @@ namespace Pathfinder
         public double Cost { get; set; }
         public bool Tested { get; set; }
         public int RetainCount { get; set; }
-
         public bool Equals(Node other)
         {
             return X == other?.X && Y == other?.Y;

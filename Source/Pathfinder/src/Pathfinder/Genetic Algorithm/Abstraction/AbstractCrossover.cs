@@ -7,12 +7,15 @@ namespace Pathfinder.Abstraction
 {
     public class CrossoverOperation
     {
+        public IGenome Mom { get; set; }
+        public IGenome Dad { get; set; }
+
         public CrossoverOperation()
         {
 
         }
 
-        public CrossoverOperation(List<Node> mon, List<Node> dad)
+        public CrossoverOperation(IGenome mon, IGenome dad)
         {
             Dad = mon;
             Mom = dad;
@@ -23,29 +26,12 @@ namespace Pathfinder.Abstraction
         /// <returns></returns>
         public bool IsEqual()
         {
-            if (Mom.Count != Dad.Count)
-                return false;
-
-            for (int i = 0; i < Mom.Count; i++)
-            {
-                if (Mom[i] != Dad[i])
-                    return false;
-            }
-            return true;
+            return Mom.Equals(Dad);
         }
-
-        public List<Node> Copy(List<Node> listnode)
+        public IGenome Copy(IGenome genome)
         {
-            var returnnode = new List<Node>();
-
-            foreach (var item in listnode)
-                returnnode.Add(new Node(item));
-
-            return returnnode;
+            return new Genome(genome);
         }
-
-        public List<Node> Mom { get; set; }
-        public List<Node> Dad { get; set; }
     }
     public abstract class AbstractCrossover : ICrossover
     {

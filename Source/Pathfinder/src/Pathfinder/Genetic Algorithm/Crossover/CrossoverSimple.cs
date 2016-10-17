@@ -10,7 +10,7 @@ namespace Pathfinder.Crossover
     {
         public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
-            return new CrossoverOperation();
+            return Operation;
         }
     }
 }

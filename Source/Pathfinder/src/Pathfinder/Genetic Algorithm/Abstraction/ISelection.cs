@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
     public interface ISelection
     {
-        List<Node> Select(List<Genome> listnode);
+        IGenome Select(List<IGenome> listnode);
     }
 }

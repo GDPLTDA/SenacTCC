@@ -8,7 +8,7 @@ namespace Pathfinder.Fitness
 {
     public class FitnessSimple : IFitness
     {
-        public double Calc(List<Node> listnode)
+        public double Calc(IGenome listnode)
         {
             return 0;
         }

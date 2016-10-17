@@ -4,23 +4,37 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pathfinder.Constants;
 using Pathfinder.Abstraction;
+using System.Reflection;
 
 namespace Pathfinder
 {
-    public class Genome
+    public class Genome : IGenome
     {
+        public IMap Map { get; set; }
         public List<Node> ListNodes { get; set; }
         public double Fitness { get; set; }
-        public Genome(IMap map)
+
+        public Genome()
         {
-            ListNodes = RouteFinding(map);
         }
 
-        public List<Node> RouteFinding(IMap map)
+        public Genome(IGenome genome)
+        {
+            Map = genome.Map;
+            ListNodes = Copy(genome.ListNodes);
+        }
+
+        public Genome(IMap map)
+        {
+            Map = map;
+            ListNodes = RouteFinding();
+        }
+
+        public List<Node> RouteFinding()
         {
             var listnode = new List<Node>();
             bool run = true;
-            var node = map.StartNode;
+            var node = new Node(Map.StartNode);
 
             while (run)
             {
@@ -29,19 +43,41 @@ namespace Pathfinder
                     listnode.Add(node);
 
                 var dir = Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
-                var newnode = map.GetDirectionNode(node, (DirectionMovement)dir);
+                var newnode = Map.GetDirectionNode(node, (DirectionMovement)dir);
 
                 // verifica se teve colisão ou se encontrou o fim
                 run = newnode != null;
 
                 if (newnode != null)
                 {
-                    newnode.ParentNode = node;
-                    node = newnode;
+                    node = new Node(newnode, node);
                 }
             }
 
             return listnode;
+        }
+
+        public bool IsEqual(IGenome genome)
+        {
+            if (ListNodes.Count != genome.ListNodes.Count)
+                return false;
+
+            for (int i = 0; i < ListNodes.Count; i++)
+            {
+                if (ListNodes[i] != genome.ListNodes[i])
+                    return false;
+            }
+            return true;
+        }
+
+        private List<Node> Copy(List<Node> listnode)
+        {
+            var returnnode = new List<Node>();
+
+            foreach (var item in listnode)
+                returnnode.Add(new Node(item));
+
+            return returnnode;
         }
     }
 }

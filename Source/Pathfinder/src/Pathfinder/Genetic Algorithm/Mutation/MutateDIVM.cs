@@ -8,9 +8,9 @@ namespace Pathfinder.Mutation
 {
     public class MutateDIVM : IMutate
     {
-        public List<Node> Calc(List<Node> baby)
+        public IGenome Calc(IGenome baby)
         {
-            return new List<Node>();
+            return baby;
         }
     }
 }

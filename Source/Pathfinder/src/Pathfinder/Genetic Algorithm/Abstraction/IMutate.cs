@@ -7,6 +7,6 @@ namespace Pathfinder.Abstraction
 {
     public interface IMutate
     {
-        List<Node> Calc(List<Node> baby);
+        IGenome Calc(IGenome baby);
     }
 }

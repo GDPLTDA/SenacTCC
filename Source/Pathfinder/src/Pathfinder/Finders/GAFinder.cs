@@ -9,7 +9,7 @@ namespace Pathfinder.Finders
 {
     public class GAFinder : AbstractFinder
     {
-        List<Genome> Populations { get; set; } = new List<Genome>();
+        List<IGenome> Populations { get; set; } = new List<IGenome>();
         GASettings setting { get; set; }
         IFitness Fitness { get; set; }
         IMutate Mutate { get; set; }
@@ -43,17 +43,27 @@ namespace Pathfinder.Finders
 
             for (int i = 0; i < setting.GenerationLimit; i++)
             {
+                List<IGenome> newpopulations = new List<IGenome>();
+
                 CalcFitness();
+                Populations = Populations.OrderByDescending(o => o.Fitness).ToList();
 
-                var nodemom = Selection.Select(Populations);
-                var nodedad = Selection.Select(Populations);
+                while (newpopulations.Count < Populations.Count)
+                {
+                    var nodemom = Selection.Select(Populations);
+                    var nodedad = Selection.Select(Populations);
 
-                var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
-                nodemom = Mutate.Calc(cross.Mom);
-                nodedad = Mutate.Calc(cross.Dad);
+                    var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
+                    nodemom = Mutate.Calc(cross.Mom);
+                    nodedad = Mutate.Calc(cross.Dad);
 
-                nodemom = Adaptation.Calc(nodemom);
-                nodedad = Adaptation.Calc(nodedad);
+                    nodemom = Adaptation.Calc(nodemom);
+                    nodedad = Adaptation.Calc(nodedad);
+
+                    newpopulations.Add(nodemom);
+                    newpopulations.Add(nodedad);
+                }
+                Populations = newpopulations.Select(o => (IGenome)new Genome(o)).OrderByDescending(o => o.ListNodes.Count).ToList();
 
                 _openList = Populations[0].ListNodes;
                 OnStep(BuildArgs(step++));
@@ -66,7 +76,7 @@ namespace Pathfinder.Finders
         void CalcFitness()
         {
             foreach (var item in Populations)
-                item.Fitness = Fitness.Calc(item.ListNodes);
+                item.Fitness = Fitness.Calc(item);
         }
     }
 }
