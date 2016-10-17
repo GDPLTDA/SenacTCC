@@ -8,6 +8,11 @@ namespace Pathfinder.Mutation
 {
     public class MutateIVM : IMutate
     {
+        public double MutationRate { get; set; }
+        public MutateIVM(double rate)
+        {
+            MutationRate = rate;
+        }
         public IGenome Calc(IGenome baby)
         {
             return baby;

@@ -26,27 +26,20 @@ namespace Pathfinder.Abstraction
         public DiagonalMovement DiagonalMovement { get; set; }
         public IHeuristic Heuristic { get; set; }
         public int Weight { get; set; }
-
-        protected int _maxExpandedNodes = 0;
-        protected Stopwatch _stopwatch;
-        protected IList<Node> _openList;
-        protected IList<Node> _closedList;
-
-        protected Node _startNode;
-        protected Node _endNode;
+        protected int _maxExpandedNodes { get; set; } = 0;
+        protected Stopwatch _stopwatch { get; set; }
+        protected List<Node> _openList { get; set; }
+        protected List<Node> _closedList { get; set; }
+        protected Node _startNode { get; set; }
+        protected Node _endNode { get; set; }
         public string Name { get; set; }
-
         public int SleepUITimeInMs { get; set; }
-
-
-        public virtual bool isOpen (Node e) => _openList.Contains(e);
-        public virtual bool isClosed(Node e) => _closedList.Contains(e);
-
+        public virtual bool isOpen (Node e) => _openList.Exists(i=>i.Equals(e));
+        public virtual bool isClosed(Node e) => _closedList.Exists(i => i.Equals(e));
         public virtual IList<Node> GetNodesInOpenedList() => _openList;
         public virtual IList<Node> GetNodesInClosedList() => _closedList;
         public virtual int GetMaxExpandedNodes() => _maxExpandedNodes;
         public virtual long GetProcessedTime() => _stopwatch.ElapsedMilliseconds;
-
         public AbstractFinder(
              DiagonalMovement diag,
              int weight = 1
@@ -56,7 +49,6 @@ namespace Pathfinder.Abstraction
             Weight = weight;
             Clear();
         }
-
         public AbstractFinder(
              DiagonalMovement diag,
              IHeuristic heuristic,
@@ -68,8 +60,6 @@ namespace Pathfinder.Abstraction
             Weight = weight;
             Clear();
         }
-
-
         protected virtual void Clear()
         {
             GridMap = null;
@@ -77,7 +67,6 @@ namespace Pathfinder.Abstraction
             _closedList = new List<Node>();
             _stopwatch = new Stopwatch();
         }
-
         protected virtual void OnStep(FinderEventArgs e)
         {
             _stopwatch.Stop();
@@ -86,8 +75,6 @@ namespace Pathfinder.Abstraction
             Step?.Invoke(this, e);
             _stopwatch.Start();
         }
-
-
         public virtual void StepConfig()
         {
 

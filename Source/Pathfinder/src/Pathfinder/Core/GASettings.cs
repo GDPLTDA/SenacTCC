@@ -39,60 +39,56 @@ namespace Pathfinder
             FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
             SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
         }
-
-
-        public ICrossover GetCrossover()
+        public ICrossover GetCrossover(double rate)
         {
             ICrossover ret = null;
             switch (CrossoverAlgorithn)
             {
                 case 0:
-                    ret = CrossoverFactory.GetSimpleImplementation();
+                    ret = CrossoverFactory.GetSimpleImplementation(rate);
                     break;
                 case 1:
-                    ret = CrossoverFactory.GetOBXImplementation();
+                    ret = CrossoverFactory.GetOBXImplementation(rate);
                     break;
                 case 2:
-                    ret = CrossoverFactory.GetPBXImplementation();
+                    ret = CrossoverFactory.GetPBXImplementation(rate);
                     break;
             }
 
             return ret;
 
         }
-
-        public IMutate GetMutate()
+        public IMutate GetMutate(double rate)
         {
             IMutate ret = null;
             switch (MutationAlgorithn)
             {
                 case 0:
-                    ret = MutateFactory.GetSimpleImplementation();
+                    ret = MutateFactory.GetSimpleImplementation(rate);
                     break;
                 case 1:
-                    ret = MutateFactory.GetDIVMImplementation();
+                    ret = MutateFactory.GetDIVMImplementation(rate);
                     break;
                 case 2:
-                    ret = MutateFactory.GetDMImplementation();
+                    ret = MutateFactory.GetDMImplementation(rate);
                     break;
                 case 3:
-                    ret = MutateFactory.GetIMImplementation();
+                    ret = MutateFactory.GetIMImplementation(rate);
                     break;
                 case 4:
-                    ret = MutateFactory.GetIVMImplementation();
+                    ret = MutateFactory.GetIVMImplementation(rate);
                     break;
                 case 5:
-                    ret = MutateFactory.GetSMImplementation();
+                    ret = MutateFactory.GetSMImplementation(rate);
                     break;
             }
 
             return ret;
         }
-
         public IFitness GetFitness()
         {
             IFitness ret = null;
-            switch (MutationAlgorithn)
+            switch (FitnessAlgorithn)
             {
                 case 0:
                     ret = FitnessFactory.GetSimpleImplementation();
@@ -101,7 +97,6 @@ namespace Pathfinder
 
             return ret;
         }
-
         public ISelection GetSelection()
         {
             ISelection ret = null;

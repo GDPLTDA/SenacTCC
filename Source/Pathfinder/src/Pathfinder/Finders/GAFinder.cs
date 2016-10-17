@@ -20,8 +20,8 @@ namespace Pathfinder.Finders
             Name = "Genetic Algorithm";
             setting = new GASettings();
 
-            Mutate = setting.GetMutate();
-            Crossover = setting.GetCrossover();
+            Mutate = setting.GetMutate(setting.MutationRate);
+            Crossover = setting.GetCrossover(setting.CrossoverRate);
             Fitness = setting.GetFitness();
             Selection = setting.GetSelection();
         }
@@ -43,23 +43,25 @@ namespace Pathfinder.Finders
 
             for (int i = 0; i < setting.GenerationLimit; i++)
             {
-                List<IGenome> newpopulations = new List<IGenome>();
+                var newpopulations = new List<IGenome>();
 
                 CalcFitness();
                 Populations = Populations.OrderByDescending(o => o.Fitness).ToList();
 
                 while (newpopulations.Count < Populations.Count)
                 {
+                    // Selection
                     var nodemom = Selection.Select(Populations);
                     var nodedad = Selection.Select(Populations);
-
+                    // CrossOver
                     var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
+                    // Mutation
                     nodemom = Mutate.Calc(cross.Mom);
                     nodedad = Mutate.Calc(cross.Dad);
-
+                    // Adaptation
                     nodemom = Adaptation.Calc(nodemom);
                     nodedad = Adaptation.Calc(nodedad);
-
+                    // Add in new population
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);
                 }

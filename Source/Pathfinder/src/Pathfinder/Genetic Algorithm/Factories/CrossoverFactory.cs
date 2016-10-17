@@ -9,17 +9,17 @@ namespace Pathfinder.Factories
 {
     public class CrossoverFactory
     {
-        public static ICrossover GetSimpleImplementation()
+        public static ICrossover GetSimpleImplementation(double rate)
         {
-            return new CrossoverSimple();
+            return new CrossoverSimple(rate);
         }
-        public static ICrossover GetOBXImplementation()
+        public static ICrossover GetOBXImplementation(double rate)
         {
-            return new CrossoverOBX();
+            return new CrossoverOBX(rate);
         }
-        public static ICrossover GetPBXImplementation()
+        public static ICrossover GetPBXImplementation(double rate)
         {
-            return new CrossoverPBX();
+            return new CrossoverPBX(rate);
         }
     }
 }

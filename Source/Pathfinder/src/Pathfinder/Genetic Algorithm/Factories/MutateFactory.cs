@@ -9,32 +9,32 @@ namespace Pathfinder.Factories
 {
     public class MutateFactory
     {
-        public static IMutate GetSimpleImplementation()
+        public static IMutate GetSimpleImplementation(double rate)
         {
-            return new MutateSimple();
+            return new MutateSimple(rate);
         }
-        public static IMutate GetDIVMImplementation()
+        public static IMutate GetDIVMImplementation(double rate)
         {
-            return new MutateDIVM();
+            return new MutateDIVM(rate);
         }
-        public static IMutate GetDMImplementation()
+        public static IMutate GetDMImplementation(double rate)
         {
-            return new MutateDM();
-        }
-
-        public static IMutate GetIMImplementation()
-        {
-            return new MutateIM();
+            return new MutateDM(rate);
         }
 
-        public static IMutate GetIVMImplementation()
+        public static IMutate GetIMImplementation(double rate)
         {
-            return new MutateIVM();
+            return new MutateIM(rate);
         }
 
-        public static IMutate GetSMImplementation()
+        public static IMutate GetIVMImplementation(double rate)
         {
-            return new MutateSM();
+            return new MutateIVM(rate);
+        }
+
+        public static IMutate GetSMImplementation(double rate)
+        {
+            return new MutateSM(rate);
         }
     }
 }

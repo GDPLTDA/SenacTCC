@@ -35,6 +35,10 @@ namespace Pathfinder.Abstraction
     }
     public abstract class AbstractCrossover : ICrossover
     {
+        public AbstractCrossover(double rate)
+        {
+            CrossoverRate = rate;
+        }
         protected double CrossoverRate { get; set; }
         CrossoverOperation Operation { get; set; }
         public abstract CrossoverOperation Calc(CrossoverOperation Operation);

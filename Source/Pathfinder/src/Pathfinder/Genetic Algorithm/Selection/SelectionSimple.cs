@@ -10,7 +10,9 @@ namespace Pathfinder.Selection
     {
         public IGenome Select(List<IGenome> listnode)
         {
-            return listnode[0];
+            var ind = Settings.Random.Next(0, listnode.Count);
+
+            return listnode[ind];
         }
     }
 }
