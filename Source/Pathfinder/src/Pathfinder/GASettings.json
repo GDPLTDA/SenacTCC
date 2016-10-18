@@ -6,5 +6,6 @@
   "CrossoverAlgorithn": 1, // 0=Simple 1=OBX 2=PBX
   "PopulationSize": 100,
   "FitnessAlgorithn": 0, // 0=Simple
-  "SelectionAlgorithn": 0 // 0=Simple
+  "SelectionAlgorithn": 0, // 0=Simple
+  "BestSolution": 1
 }

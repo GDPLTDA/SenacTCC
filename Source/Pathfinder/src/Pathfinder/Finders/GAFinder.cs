@@ -47,6 +47,9 @@ namespace Pathfinder.Finders
                 CalcFitness();
                 Populations = Populations.OrderBy(o => o.Fitness).ToList();
 
+                for (int j = 0; j < setting.BestSolution; j++)
+                    newpopulations.Add(new Genome(Populations[j]));
+
                 var best = Populations[0].ListNodes;
                 _endNode = best.Last();
 
@@ -56,7 +59,7 @@ namespace Pathfinder.Finders
                     return true;
                 }
                 _openList = best;
-            
+                
                 while (newpopulations.Count < Populations.Count)
                 {
                     // Selection

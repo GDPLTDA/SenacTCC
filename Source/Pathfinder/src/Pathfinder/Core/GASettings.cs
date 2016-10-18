@@ -19,9 +19,10 @@ namespace Pathfinder
         public int PopulationSize { get; set; }
         public int MutationAlgorithn { get; set; }
         public int CrossoverAlgorithn { get; set; }
-
         public int SelectionAlgorithn { get; set; }
         public int FitnessAlgorithn { get; set; }
+        public int BestSolution { get; set; }
+
         public GASettings()
         {
             var builder = new ConfigurationBuilder()
@@ -38,6 +39,7 @@ namespace Pathfinder
             CrossoverAlgorithn = int.Parse(Configuration[nameof(CrossoverAlgorithn)]);
             FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
             SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
+            BestSolution = int.Parse(Configuration[nameof(BestSolution)]);
         }
         public ICrossover GetCrossover()
         {

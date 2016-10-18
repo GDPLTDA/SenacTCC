@@ -29,7 +29,7 @@ namespace Pathfinder
         public int MapViwer { get; set; }
         public int MapOrigin { get; set; }
         public int Heuristic { get; set; }
-        public int Algorithn { get; set; }
+        public int Algorithm { get; set; }
         public Constants.DiagonalMovement AllowDiagonal { get; set; }
 
         public double RandomSeed { get; set; }
@@ -65,7 +65,7 @@ namespace Pathfinder
             MapViwer = int.Parse(Configuration[nameof(MapViwer)]);
             MapOrigin = int.Parse(Configuration[nameof(MapOrigin)]);
             Heuristic = int.Parse(Configuration[nameof(Heuristic)]);
-            Algorithn = int.Parse(Configuration[nameof(Algorithn)]);
+            Algorithm = int.Parse(Configuration[nameof(Algorithm)]);
             IDAStarFinderTimeOut = int.Parse(Configuration[nameof(IDAStarFinderTimeOut)]);
             IDATrackRecursion = bool.Parse(Configuration[nameof(IDATrackRecursion)]);
             AllowDiagonal = (Constants.DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
@@ -105,7 +105,7 @@ namespace Pathfinder
         {
             IFinder ret = null;
 
-            var opt = option >= 0 ? option : Algorithn;
+            var opt = option >= 0 ? option : Algorithm;
             switch (opt)
             {
                 case 0:
