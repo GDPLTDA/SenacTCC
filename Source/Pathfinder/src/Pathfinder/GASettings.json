@@ -7,5 +7,5 @@
   "PopulationSize": 100,
   "FitnessAlgorithn": 0, // 0=Simple
   "SelectionAlgorithn": 0, // 0=Simple
-  "BestSolution": 1
+  "BestSolution": 10
 }
