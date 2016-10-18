@@ -54,6 +54,7 @@ namespace Pathfinder.Finders
 
                 if (node == _endNode)
                 {
+                    //_endNode = node;
                     OnEnd(BuildArgs(step, true));
                     return true;
                 }

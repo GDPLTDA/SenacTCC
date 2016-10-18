@@ -50,7 +50,7 @@ namespace Pathfinder
                     listnode.Add(node);
 
                 var dir = RandomDirection();
-                var newnode = Map.GetDirectionNode(node);
+                var newnode = Map.GetDirectionNode(node, dir, false);
 
                 // verifica se teve colisão ou se encontrou o fim
                 run = newnode != null;

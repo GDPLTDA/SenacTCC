@@ -69,13 +69,13 @@ namespace Pathfinder
             return IsInside(x, y) && Nodes[y,x].Walkable;
         }
 
-        public Node GetDirectionNode(Node node)
+        public Node GetDirectionNode(Node node, bool ByRef = true)
         {
             var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
-            return GetDirectionNode(node, dir);
+            return GetDirectionNode(node, dir, ByRef);
         }
 
-        public Node GetDirectionNode(Node node, DirectionMovement direction)
+        public Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef = true)
         {
             int x = node.X, y = node.Y;
             Node newnode = null;
@@ -116,7 +116,11 @@ namespace Pathfinder
                     break;
             }
 
-            return newnode == null ? null : new Node(newnode, node, direction);
+
+            if (newnode == null)
+                return null;
+
+            return ByRef ? newnode : new Node(newnode, node, direction);
         }
 
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag)
@@ -197,7 +201,7 @@ namespace Pathfinder
             if (d3 && newnode != null)
                 neighbors.Add(newnode);
 
-            if (neighbors.Any(e => !e.Walkable))
+            if (neighbors.Any(e => e == null || !e.Walkable ))
                 throw new Exception("NO!!");
 
             return neighbors;
