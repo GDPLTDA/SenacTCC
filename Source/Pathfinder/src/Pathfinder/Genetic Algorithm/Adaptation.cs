@@ -22,7 +22,7 @@ namespace Pathfinder
 
             for (int i = 1; i < listnode.Count; i++)
             {
-                var coor = Map.GetDirectionNode(newbaby.Last(), listnode[i].Direction);
+                var coor = Map.GetDirectionNode(newbaby.Last(), listnode[i].Direction, false);
 
                 if (coor!=null && !newbaby.Exists(x => x.Equals(coor)))
                     newbaby.Add(coor);
@@ -34,7 +34,7 @@ namespace Pathfinder
             if (newbaby.Last().Equals(Map.EndNode))
                 return new Genome(Map, newbaby);
 
-            var newcoor = Map.GetDirectionNode(newbaby.Last());
+            var newcoor = Map.GetDirectionNode(newbaby.Last(),false);
 
             if(newcoor == null)
                 return new Genome(Map, newbaby);
