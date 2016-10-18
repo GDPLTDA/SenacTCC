@@ -21,13 +21,9 @@ namespace Pathfinder.Finders
             // When diagonal movement is allowed the manhattan heuristic is not
             //admissible. It should be octile instead
             if ( DiagonalMovement == DiagonalMovement.Never)
-            {
                 Heuristic = heuristic ?? HeuristicFactory.GetManhattamImplementation();
-            }
             else
-            {
                 Heuristic = heuristic ?? HeuristicFactory.GetOctileImplementation();
-            }
         }
 
         public virtual double CalcH(int dx, int dy)

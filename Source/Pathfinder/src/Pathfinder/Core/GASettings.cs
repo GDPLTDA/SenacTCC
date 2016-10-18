@@ -39,47 +39,47 @@ namespace Pathfinder
             FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
             SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
         }
-        public ICrossover GetCrossover(double rate)
+        public ICrossover GetCrossover()
         {
             ICrossover ret = null;
             switch (CrossoverAlgorithn)
             {
                 case 0:
-                    ret = CrossoverFactory.GetSimpleImplementation(rate);
+                    ret = CrossoverFactory.GetSimpleImplementation();
                     break;
                 case 1:
-                    ret = CrossoverFactory.GetOBXImplementation(rate);
+                    ret = CrossoverFactory.GetOBXImplementation();
                     break;
                 case 2:
-                    ret = CrossoverFactory.GetPBXImplementation(rate);
+                    ret = CrossoverFactory.GetPBXImplementation();
                     break;
             }
 
             return ret;
 
         }
-        public IMutate GetMutate(double rate)
+        public IMutate GetMutate()
         {
             IMutate ret = null;
             switch (MutationAlgorithn)
             {
                 case 0:
-                    ret = MutateFactory.GetSimpleImplementation(rate);
+                    ret = MutateFactory.GetSimpleImplementation();
                     break;
                 case 1:
-                    ret = MutateFactory.GetDIVMImplementation(rate);
+                    ret = MutateFactory.GetDIVMImplementation();
                     break;
                 case 2:
-                    ret = MutateFactory.GetDMImplementation(rate);
+                    ret = MutateFactory.GetDMImplementation();
                     break;
                 case 3:
-                    ret = MutateFactory.GetIMImplementation(rate);
+                    ret = MutateFactory.GetIMImplementation();
                     break;
                 case 4:
-                    ret = MutateFactory.GetIVMImplementation(rate);
+                    ret = MutateFactory.GetIVMImplementation();
                     break;
                 case 5:
-                    ret = MutateFactory.GetSMImplementation(rate);
+                    ret = MutateFactory.GetSMImplementation();
                     break;
             }
 

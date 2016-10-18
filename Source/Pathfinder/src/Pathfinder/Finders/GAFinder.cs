@@ -20,8 +20,8 @@ namespace Pathfinder.Finders
             Name = "Genetic Algorithm";
             setting = new GASettings();
 
-            Mutate = setting.GetMutate(setting.MutationRate);
-            Crossover = setting.GetCrossover(setting.CrossoverRate);
+            Mutate = setting.GetMutate();
+            Crossover = setting.GetCrossover();
             Fitness = setting.GetFitness();
             Selection = setting.GetSelection();
         }
@@ -36,7 +36,6 @@ namespace Pathfinder.Finders
 
             for (int i = 0; i < setting.PopulationSize; i++)
                 Populations.Add(new Genome(map));
-            Populations = Populations.OrderByDescending(i => i.ListNodes.Count).ToList();
 
             int step = 0;
             OnStart(BuildArgs(step));
@@ -46,8 +45,18 @@ namespace Pathfinder.Finders
                 var newpopulations = new List<IGenome>();
 
                 CalcFitness();
-                Populations = Populations.OrderByDescending(o => o.Fitness).ToList();
+                Populations = Populations.OrderBy(o => o.Fitness).ToList();
 
+                var best = Populations[0].ListNodes;
+                _endNode = best.Last();
+
+                if (_endNode.Equals(map.EndNode))
+                {
+                    OnEnd(BuildArgs(step, true));
+                    return true;
+                }
+                _openList = best;
+            
                 while (newpopulations.Count < Populations.Count)
                 {
                     // Selection
@@ -65,9 +74,7 @@ namespace Pathfinder.Finders
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);
                 }
-                Populations = newpopulations.Select(o => (IGenome)new Genome(o)).OrderByDescending(o => o.ListNodes.Count).ToList();
-
-                _openList = Populations[0].ListNodes;
+                Populations = newpopulations.Select(o => (IGenome)new Genome(o)).ToList();
                 OnStep(BuildArgs(step++));
             }
             OnEnd(BuildArgs(step, false));

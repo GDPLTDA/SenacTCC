@@ -13,7 +13,7 @@ namespace Pathfinder
         public IMap Map { get; set; }
         public List<Node> ListNodes { get; set; }
         public double Fitness { get; set; }
-
+        Settings setting { get; set; }
         public Genome()
         {
         }
@@ -38,6 +38,7 @@ namespace Pathfinder
 
         public List<Node> RouteFinding()
         {
+            setting = new Settings();
             var listnode = new List<Node>();
             bool run = true;
             var node = new Node(Map.StartNode);
@@ -48,7 +49,7 @@ namespace Pathfinder
                 if (!listnode.Exists(o => o.X == node.X && o.Y == node.Y))
                     listnode.Add(node);
 
-                var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
+                var dir = RandomDirection();
                 var newnode = Map.GetDirectionNode(node);
 
                 // verifica se teve colisão ou se encontrou o fim
@@ -59,6 +60,11 @@ namespace Pathfinder
             }
 
             return listnode;
+        }
+
+        DirectionMovement RandomDirection()
+        {
+            return (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
         }
 
         public bool IsEqual(IGenome genome)

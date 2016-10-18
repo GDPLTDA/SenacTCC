@@ -54,7 +54,7 @@ namespace Pathfinder
             Walkable = walkable;
             Direction = direction;
         }
-        public DirectionMovement Direction { get; set; }
+        public DirectionMovement Direction { get; set; } = DirectionMovement.None;
         public Node ParentNode { get; set; }
         public bool Walkable  { get; set; }
         public int X { get; set; }

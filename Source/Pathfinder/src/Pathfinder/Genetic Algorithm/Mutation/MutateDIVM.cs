@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Mutation
 {
-    public class MutateDIVM : IMutate
+    public class MutateDIVM : AbstractMutate
     {
-        public double MutationRate { get; set; }
-        public MutateDIVM(double rate)
-        {
-            MutationRate = rate;
-        }
-        public IGenome Calc(IGenome baby)
+        public override IGenome Calc(IGenome baby)
         {
             return baby;
         }

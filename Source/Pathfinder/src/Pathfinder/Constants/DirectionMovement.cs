@@ -7,6 +7,7 @@ namespace Pathfinder.Constants
 {
     public enum DirectionMovement
     {
+        None,
         Up,
         Down,
         Left,

@@ -19,7 +19,7 @@ namespace Pathfinder.Abstraction
         int Weight { get; set; }
         IList<Node> GetNodesInOpenedList();
         IList<Node> GetNodesInClosedList();
-        IList<Node> GetPath();
+        List<Node> GetPath();
         bool isOpen(Node e);
         bool isClosed(Node e);
 

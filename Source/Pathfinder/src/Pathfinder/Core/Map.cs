@@ -116,7 +116,7 @@ namespace Pathfinder
                     break;
             }
 
-            return newnode;
+            return newnode == null ? null : new Node(newnode, node, direction);
         }
 
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag)

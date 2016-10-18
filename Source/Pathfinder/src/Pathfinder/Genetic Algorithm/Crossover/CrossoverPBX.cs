@@ -8,10 +8,6 @@ namespace Pathfinder.Crossover
 {
     public class CrossoverPBX : AbstractCrossover
     {
-        public CrossoverPBX(double rate) : base(rate)
-        {
-
-        }
         public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
             return Operation;

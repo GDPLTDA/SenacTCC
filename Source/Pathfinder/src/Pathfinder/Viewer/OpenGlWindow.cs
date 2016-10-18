@@ -15,7 +15,7 @@ namespace Pathfinder.Viewer
         int BlockSize;
         int FPS = 30;
         public bool drawPath = false;
-        public IList<Node> path;
+        public List<Node> path;
         IFinder _finder;
         IMap GridMap;
         Thread finderThread;
@@ -92,7 +92,7 @@ namespace Pathfinder.Viewer
                         c = Color.Green;
                     else if (node == map.EndNode)
                         c = Color.Red;
-                    else if (showPath && path.Contains(node))
+                    else if (showPath && path.Exists(o=>o.Equals(node)))
                         c = Color.Yellow;
                     else if (!node.Walkable)
                         c = Color.DarkGray;

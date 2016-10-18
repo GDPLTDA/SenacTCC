@@ -95,7 +95,7 @@ namespace Pathfinder.Abstraction
 
 
         public abstract bool Find(IMap grid);
-        public virtual IList<Node> GetPath()
+        public virtual List<Node> GetPath()
         {
             var path = new List<Node>();
 

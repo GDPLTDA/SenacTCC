@@ -8,10 +8,6 @@ namespace Pathfinder.Crossover
 {
     public class CrossoverOBX : AbstractCrossover
     {
-        public CrossoverOBX(double rate) : base(rate)
-        {
-
-        }
         public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
             if (Settings.Random.NextDouble() > CrossoverRate || Operation.IsEqual())

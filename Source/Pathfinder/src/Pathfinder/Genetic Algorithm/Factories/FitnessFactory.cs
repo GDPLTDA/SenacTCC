@@ -11,7 +11,7 @@ namespace Pathfinder.Factories
     {
         public static IFitness GetSimpleImplementation()
         {
-            return new FitnessSimple();
+            return new FitnessHeuristic();
         }
     }
 }
