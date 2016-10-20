@@ -83,39 +83,62 @@ namespace Pathfinder
             {
                 case DirectionMovement.Up:
                     if (IsWalkableAt(y - 1, x))
+                    {
                         newnode = Nodes[y - 1, x];
+                        newnode.Direction = DirectionMovement.Up;
+                    }
                     break;
                 case DirectionMovement.Down:
                     if (IsWalkableAt(y + 1, x))
+                    {
                         newnode = Nodes[y + 1, x];
+                        newnode.Direction = DirectionMovement.Down;
+                    }
                     break;
                 case DirectionMovement.Left:
                     if (IsWalkableAt(y, x - 1))
+                    {
                         newnode = Nodes[y, x - 1];
+                        newnode.Direction = DirectionMovement.Left;
+                    }
                     break;
                 case DirectionMovement.Right:
                     if (IsWalkableAt(y, x + 1))
+                    {
                         newnode = Nodes[y, x + 1];
+                        newnode.Direction = DirectionMovement.Right;
+                    }
                     break;
                 // Diagonais
                 case DirectionMovement.UpLeft:
                     if (IsWalkableAt(y - 1, x - 1))
+                    {
                         newnode = Nodes[y - 1, x - 1];
+                        newnode.Direction = DirectionMovement.UpLeft;
+                    }
                     break;
                 case DirectionMovement.UpRight:
                     if (IsWalkableAt(y - 1, x + 1))
+                    {
                         newnode = Nodes[y - 1, x + 1];
+                        newnode.Direction = DirectionMovement.UpRight;
+                    }
                     break;
                 case DirectionMovement.DownLeft:
                     if (IsWalkableAt(y + 1, x - 1))
+                    {
                         newnode = Nodes[y + 1, x - 1];
+                        newnode.Direction = DirectionMovement.DownLeft;
+                    }
                     break;
                 case DirectionMovement.DownRight:
                     if (IsWalkableAt(y + 1, x + 1))
+                    {
                         newnode = Nodes[y + 1, x + 1];
+                        newnode.Direction = DirectionMovement.DownRight;
+                    }
                     break;
             }
-
 
             if (newnode == null)
                 return null;
@@ -123,6 +146,12 @@ namespace Pathfinder
             return ByRef ? newnode : new Node(newnode, node, direction);
         }
 
+        public IList<Node> GetNeighbors(Node node, bool ByRef = true)
+        {
+            var settings = new Settings();
+            return GetNeighbors(node, settings.AllowDiagonal, ByRef);
+        }
+        
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true)
         {
             Node newnode;

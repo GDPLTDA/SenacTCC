@@ -49,14 +49,15 @@ namespace Pathfinder
                 if (!listnode.Exists(o => o.X == node.X && o.Y == node.Y))
                     listnode.Add(node);
 
-                var dir = RandomDirection();
-                var newnode = Map.GetDirectionNode(node, dir, false);
+                var list = Map.GetNeighbors(node, false);
+                var ind = Settings.Random.Next(0, list.Count);
+                var newnode = list[ind];
 
                 // verifica se teve colisão ou se encontrou o fim
-                run = newnode != null;
+                run = !listnode.Exists(i => i.X == newnode.X && i.Y == newnode.Y && i.Direction == newnode.Direction);
 
                 if (newnode != null)
-                    node = new Node(newnode, node, dir);
+                    node = new Node(newnode, node, newnode.Direction);
             }
 
             return listnode;

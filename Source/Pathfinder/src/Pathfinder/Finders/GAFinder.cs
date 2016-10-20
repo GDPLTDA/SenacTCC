@@ -51,6 +51,7 @@ namespace Pathfinder.Finders
                     newpopulations.Add(new Genome(Populations[j]));
 
                 var best = Populations[0].ListNodes;
+                var best2 = Populations[1].ListNodes;
                 _endNode = best.Last();
 
                 if (_endNode.Equals(map.EndNode))
@@ -58,8 +59,9 @@ namespace Pathfinder.Finders
                     OnEnd(BuildArgs(step, true));
                     return true;
                 }
-                _openList = best;
-                
+                _closedList = best;
+                _openList = best2;
+
                 while (newpopulations.Count < Populations.Count)
                 {
                     // Selection

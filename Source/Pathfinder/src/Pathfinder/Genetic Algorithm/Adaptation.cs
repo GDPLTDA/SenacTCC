@@ -19,28 +19,39 @@ namespace Pathfinder
             var listnode = genome.ListNodes;
             var newbaby = new List<Node>();
             newbaby.Add(listnode.First());
-
+            var sqrt2 = Math.Sqrt(2);
+            double ng = 0;
+            Node lastcoor;
             for (int i = 1; i < listnode.Count; i++)
             {
-                var coor = Map.GetDirectionNode(newbaby.Last(), listnode[i].Direction, false);
+                lastcoor = newbaby.Last();
+                var coor = Map.GetDirectionNode(lastcoor, listnode[i].Direction, false);
 
-                if (coor!=null && !newbaby.Exists(x => x.Equals(coor)))
+                if (coor != null && !newbaby.Exists(x => x.Equals(coor)))
+                {
+                    ng = ng + ((lastcoor.X - coor.X == 0 || lastcoor.Y - coor.Y == 0) ? 1 : sqrt2);
+                    coor.G = ng;
                     newbaby.Add(coor);
+                }
 
                 if (newbaby.Last().Equals(Map.EndNode))
                     break;
             }
 
-            if (newbaby.Last().Equals(Map.EndNode))
+            lastcoor = newbaby.Last();
+            if (lastcoor.Equals(Map.EndNode))
                 return new Genome(Map, newbaby);
 
-            var newcoor = Map.GetDirectionNode(newbaby.Last(),false);
+            var list = Map.GetNeighbors(lastcoor, false);
+            var ind = Settings.Random.Next(0, list.Count);
+            var newnode = list[ind];
 
-            if(newcoor == null)
-                return new Genome(Map, newbaby);
-
-            if (!newbaby.Exists(i => i.Equals(newcoor)))
-                newbaby.Add(new Node(newcoor));
+            if (!newbaby.Exists(i => i.X == newnode.X && i.Y == newnode.Y && i.Direction == newnode.Direction))
+            {
+                ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
+                newnode.G = ng;
+                newbaby.Add(new Node(newnode));
+            }
 
             return new Genome(Map, newbaby);
         }
