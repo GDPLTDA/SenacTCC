@@ -26,6 +26,13 @@ namespace Pathfinder.Finders
             Selection = setting.GetSelection();
         }
 
+        protected override void UpdateMaxNodes()
+        {
+            var atualNodes = Populations.Sum(o => o.ListNodes.Count);
+            if (atualNodes >= _maxExpandedNodes)
+                _maxExpandedNodes = atualNodes;
+        }
+
         public override bool Find(IMap map)
         {
             var Adaptation = new Adaptation(map);
@@ -50,10 +57,10 @@ namespace Pathfinder.Finders
                 for (int j = 0; j < setting.BestSolution; j++)
                     newpopulations.Add(new Genome(Populations[j]));
 
-                var best = Populations[0].ListNodes;
-                var best2 = Populations[1].ListNodes;
+                var best = Populations.First().ListNodes;
+                var best2 = Populations.Last().ListNodes;
                 _endNode = best.Last();
-
+                
                 if (_endNode.Equals(map.EndNode))
                 {
                     OnEnd(BuildArgs(step, true));

@@ -109,7 +109,7 @@ namespace Pathfinder.Abstraction
             return path;
         }
 
-        protected void UpdateMaxNodes()
+        protected virtual void UpdateMaxNodes()
         {
             var atualNodes = _openList.Count + _closedList.Count;
             if (atualNodes >= _maxExpandedNodes)
