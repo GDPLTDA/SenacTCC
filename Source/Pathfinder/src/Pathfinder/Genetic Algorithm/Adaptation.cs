@@ -46,7 +46,7 @@ namespace Pathfinder
             var ind = Settings.Random.Next(0, list.Count);
             var newnode = list[ind];
 
-            if (!newbaby.Exists(i => i.X == newnode.X && i.Y == newnode.Y && i.Direction == newnode.Direction))
+            if (!newbaby.Exists(i=>i.EqualsAll(newnode)))
             {
                 ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
                 newnode.G = ng;

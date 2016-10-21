@@ -68,6 +68,10 @@ namespace Pathfinder
         {
             return X == other?.X && Y == other?.Y;
         }
+        public bool EqualsAll(Node other)
+        {
+            return X == other?.X && Y == other?.Y && Direction == other.Direction;
+        }
         public override int GetHashCode()
         {
             return base.GetHashCode();

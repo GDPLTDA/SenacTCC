@@ -11,36 +11,60 @@ namespace Pathfinder.Crossover
         public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
             if (Settings.Random.NextDouble() > CrossoverRate || Operation.IsEqual())
-            {
                 return Operation;
-            }
+
             var babymom = Operation.Copy(Operation.Mom);
             var babydad = Operation.Copy(Operation.Dad);
+
+            var lstTempCities = new List<Node>();
+            var lstPositions = new List<int>();
 
             var listmom = Operation.Mom.ListNodes;
             var listdad = Operation.Dad.ListNodes;
 
-            var listbabymom = babymom.ListNodes;
-            var listbabydad = babydad.ListNodes;
             var minindex = Math.Min(listmom.Count, listdad.Count);
 
-            var beg = Settings.Random.Next(0, minindex - 1);
+            var pos = Settings.Random.Next(0, minindex - 1);
 
-            var end = beg;
-
-            while (end < beg)
-                end = Settings.Random.Next(0, minindex);
-
-            for (int pos = beg; pos <= end; ++pos)
+            while (pos < minindex)
             {
-                var genemom = listmom[pos];
-                var genedad = listdad[pos];
+                lstPositions.Add(pos);
+                lstTempCities.Add(listmom[pos]);
+                pos += Settings.Random.Next(1, minindex - pos);
+            }
 
-                if (!genemom.Equals(genedad))
+            var cPos = 0;
+            for (int cit = 0; cit < minindex; ++cit)
+            {
+                for (int i = 0; i < lstTempCities.Count; ++i)
                 {
-                    var temp = listbabymom[pos];
-                    listbabymom[pos] = listdad[pos];
-                    listdad[pos] = temp;
+                    if (babydad.ListNodes[cit].EqualsAll(lstTempCities[i]))
+                    {
+                        babydad.ListNodes[cit] = lstTempCities[cPos];
+                        ++cPos;
+                        break;
+                    }
+                }
+            }
+            lstTempCities.Clear();
+            cPos = 0;
+
+            for (int i = 0; i < lstPositions.Count; ++i)
+            {
+                var x = Convert.ToInt32(lstPositions[i]);
+                lstTempCities.Add(listdad[x]);
+            }
+
+            for (int cit = 0; cit < minindex; ++cit)
+            {
+                for (int i = 0; i < lstTempCities.Count; ++i)
+                {
+                    if (babymom.ListNodes[cit].EqualsAll(lstTempCities[i]))
+                    {
+                        babymom.ListNodes[cit] = lstTempCities[cPos];
+                        ++cPos;
+                        break;
+                    }
                 }
             }
 

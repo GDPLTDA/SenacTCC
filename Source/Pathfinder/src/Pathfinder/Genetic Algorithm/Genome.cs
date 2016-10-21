@@ -54,7 +54,7 @@ namespace Pathfinder
                 var newnode = list[ind];
 
                 // verifica se teve colisão ou se encontrou o fim
-                run = !listnode.Exists(i => i.X == newnode.X && i.Y == newnode.Y && i.Direction == newnode.Direction);
+                run = !listnode.Exists(i => i.EqualsAll(newnode));
 
                 if (newnode != null)
                     node = new Node(newnode, node, newnode.Direction);
