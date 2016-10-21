@@ -57,8 +57,9 @@ namespace Pathfinder.Finders
                 for (int j = 0; j < setting.BestSolution; j++)
                     newpopulations.Add(new Genome(Populations[j]));
 
+                int ran = Settings.Random.Next(1, Populations.Count);
                 var best = Populations.First().ListNodes;
-                var best2 = Populations.Last().ListNodes;
+                var best2 = Populations[ran].ListNodes;
                 _endNode = best.Last();
                 
                 if (_endNode.Equals(map.EndNode))
