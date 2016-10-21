@@ -66,6 +66,7 @@ namespace Pathfinder.Finders
                     OnEnd(BuildArgs(step, true));
                     return true;
                 }
+
                 _closedList = best;
                 _openList = best2;
 
@@ -82,6 +83,7 @@ namespace Pathfinder.Finders
                     // Adaptation
                     nodemom = Adaptation.Calc(nodemom);
                     nodedad = Adaptation.Calc(nodedad);
+
                     // Add in new population
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);

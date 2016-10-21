@@ -34,8 +34,8 @@ namespace Pathfinder.Abstraction
         protected Node _endNode { get; set; }
         public string Name { get; set; }
         public int SleepUITimeInMs { get; set; }
-        public virtual bool isOpen (Node e) => _openList.Exists(i=>i.Equals(e));
-        public virtual bool isClosed(Node e) => _closedList.Exists(i => i.Equals(e));
+        public virtual bool isOpen (Node e) => _openList.Exists(i=> i != null && i.Equals(e));
+        public virtual bool isClosed(Node e) => _closedList.Exists(i => i != null && i.Equals(e));
         public virtual IList<Node> GetNodesInOpenedList() => _openList;
         public virtual IList<Node> GetNodesInClosedList() => _closedList;
         public virtual int GetMaxExpandedNodes() => _maxExpandedNodes;
