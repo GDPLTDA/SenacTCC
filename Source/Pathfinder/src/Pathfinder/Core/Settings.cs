@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Pathfinder;
 using Pathfinder.Abstraction;
 using Pathfinder.Factories;
 using System;
@@ -36,6 +37,7 @@ namespace Pathfinder
         public int Width { get; set; }
         public int Height { get; set; }
         public int MinimumPath { get; set; }
+        public int RandomBlock { get; set; }
 
         public string FileToLoad { get; set; }
         public string FolderToSaveMaps { get; set; }
@@ -74,6 +76,7 @@ namespace Pathfinder
             Width = int.Parse(Configuration[nameof(Width)]);
             Height = int.Parse(Configuration[nameof(Height)]);
             MinimumPath = int.Parse(Configuration[nameof(MinimumPath)]);
+            RandomBlock = int.Parse(Configuration[nameof(RandomBlock)]);
 
             FileToLoad = Configuration[nameof(FileToLoad)].ToString();
             FolderToSaveMaps = Configuration[nameof(FolderToSaveMaps)].ToString();
@@ -101,7 +104,7 @@ namespace Pathfinder
             throw new Exception("No app mode selected");
         }
 
-        public IFinder GetFinder(IHeuristic heuri, int option = -1)
+        public IFinder GetFinder(IHeuristic heuri, int option = -1, GASettings gasttings = null)
         {
             IFinder ret = null;
 
@@ -118,7 +121,7 @@ namespace Pathfinder
                     ret = FinderFactory.GetDijkstraImplementation(AllowDiagonal, heuri);
                     break;
                 case 4:
-                    ret = FinderFactory.GetGAImplementation(AllowDiagonal);
+                    ret = FinderFactory.GetGAImplementation(AllowDiagonal, gasttings);
                     break;
                 case 3:
                     ret = FinderFactory.GetIDAStarImplementation(AllowDiagonal, heuri);
@@ -170,6 +173,9 @@ namespace Pathfinder
 
                 case 2:
                     ret = MapGeneratorFactory.GetRandomMapGeneratorImplementation();
+                    break;
+                case 3:
+                    ret = MapGeneratorFactory.GetStandardMapGeneratorImplementation();
                     break;
             }
 

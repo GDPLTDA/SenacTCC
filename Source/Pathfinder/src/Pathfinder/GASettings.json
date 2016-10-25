@@ -5,7 +5,7 @@
   "CrossoverRate": 0.5,
   "CrossoverAlgorithn": 2, // 0=Simple 1=OBX 2=PBX
   "PopulationSize": 100,
-  "FitnessAlgorithn": 0, // 0=Simple
+  "FitnessAlgorithn": 0, // 0=Heuristic
   "SelectionAlgorithn": 0, // 0=Simple
   "BestSolution": 10
 }

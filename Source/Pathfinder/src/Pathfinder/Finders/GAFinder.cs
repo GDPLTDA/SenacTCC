@@ -15,10 +15,12 @@ namespace Pathfinder.Finders
         IMutate Mutate { get; set; }
         ICrossover Crossover { get; set; }
         ISelection Selection { get; set; }
-        public GAFinder(DiagonalMovement diag, int weight = 1) : base(diag, weight)
+        public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
         {
             Name = "Genetic Algorithm";
-            setting = new GASettings();
+            if(gasettings == null)
+                gasettings = new GASettings();
+            setting = gasettings;
 
             Mutate = setting.GetMutate();
             Crossover = setting.GetCrossover();

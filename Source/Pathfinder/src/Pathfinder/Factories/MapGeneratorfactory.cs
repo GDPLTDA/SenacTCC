@@ -23,5 +23,10 @@ namespace Pathfinder.Factories
         {
             return new RandomMapGenerator();
         }
+
+        public static IMapGenerator GetStandardMapGeneratorImplementation()
+        {
+            return new StandardMapGenerator();
+        }
     }
 }
