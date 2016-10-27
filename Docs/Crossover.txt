@@ -1,0 +1,12 @@
+Selection Simple
+- A seleção simples seleciona um numero aleatório entre 0 e o tamanho total da população, que é um indice da lista da população, e retorna o individuo do indice do resultado.
+
+CrossOver Simple
+- O crossover simples utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho  de cromossomos maximo entre os dois, que será removido do primeiro individuo e adicionado no segundo individuo, e a mesma quantidade de cromossomos do segunda individuo adiciona no primeiro. Fazendo uma troca de cromossomos de um tamanho aleatório.
+
+Crossover OBX
+- O crossover OBX(Order-Based Crossover) utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho  de cromossomos maximo entre os dois,
+
+
+Crossover PBX
+- O crossover PBX(Position-Based Crossover) utiliza os dois individuos da seleção
