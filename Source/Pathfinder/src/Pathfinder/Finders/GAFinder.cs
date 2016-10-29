@@ -7,14 +7,15 @@ using Pathfinder.Constants;
 
 namespace Pathfinder.Finders
 {
-    public class GAFinder : AbstractFinder
+    public class GAFinder : AbstractFinder, IGeneticAlgorithm
     {
         List<IGenome> Populations { get; set; } = new List<IGenome>();
         GASettings setting { get; set; }
-        IFitness Fitness { get; set; }
-        IMutate Mutate { get; set; }
-        ICrossover Crossover { get; set; }
-        ISelection Selection { get; set; }
+        public IFitness Fitness { get; set; }
+        public IMutate Mutate { get; set; }
+        public ICrossover Crossover { get; set; }
+        public ISelection Selection { get; set; }
+
         public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
         {
             Name = "Genetic Algorithm";
