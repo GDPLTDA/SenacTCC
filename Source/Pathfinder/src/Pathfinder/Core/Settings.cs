@@ -45,8 +45,11 @@ namespace Pathfinder
         public int AppMode { get; set; }
 
         public string Batch_folder { get; set; }
+        public int Batch_generate_pattern { get; set; }
         public int Batch_map_origin { get; set; }
         public int Batch_map_qtd_to_generate { get; set; }
+
+
         public Settings()
         {
             var builder = new ConfigurationBuilder()
@@ -84,6 +87,7 @@ namespace Pathfinder
 
             Batch_folder = Configuration[nameof(Batch_folder)].ToString();
             Batch_map_origin = int.Parse(Configuration[nameof(Batch_map_origin)].ToString());
+            Batch_generate_pattern = int.Parse(Configuration[nameof(Batch_generate_pattern)].ToString());
             Batch_map_qtd_to_generate = int.Parse(Configuration[nameof(Batch_map_qtd_to_generate)].ToString());
         }
 

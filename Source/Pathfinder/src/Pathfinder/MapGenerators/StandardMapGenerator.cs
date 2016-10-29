@@ -100,6 +100,7 @@ namespace Pathfinder.MapGenerators
 
                 }
                 GridMap = new List<Node>();
+                subgrid = new List<Node>();
             }
 
             if (settings.AppMode != 2)  // dont run if in batchmode

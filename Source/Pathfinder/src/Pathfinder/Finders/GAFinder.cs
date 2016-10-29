@@ -15,6 +15,7 @@ namespace Pathfinder.Finders
         public IMutate Mutate { get; set; }
         public ICrossover Crossover { get; set; }
         public ISelection Selection { get; set; }
+        public int Generations { get; set; }
 
         public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
         {
@@ -48,6 +49,7 @@ namespace Pathfinder.Finders
                 Populations.Add(new Genome(map));
 
             int step = 0;
+            
             OnStart(BuildArgs(step));
 
             for (int i = 0; i < setting.GenerationLimit; i++)
@@ -68,6 +70,7 @@ namespace Pathfinder.Finders
                 if (_endNode.Equals(map.EndNode))
                 {
                     OnEnd(BuildArgs(step, true));
+                    Generations = i;
                     return true;
                 }
 
@@ -95,6 +98,7 @@ namespace Pathfinder.Finders
                 Populations = newpopulations.Select(o => (IGenome)new Genome(o)).ToList();
                 OnStep(BuildArgs(step++));
             }
+            Generations = setting.GenerationLimit;
             OnEnd(BuildArgs(step, false));
 
             return false;
