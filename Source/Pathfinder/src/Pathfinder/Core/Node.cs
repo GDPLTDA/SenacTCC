@@ -56,7 +56,7 @@ namespace Pathfinder
         }
         public DirectionMovement Direction { get; set; } = DirectionMovement.None;
         public Node ParentNode { get; set; }
-        public bool Walkable  { get; set; }
+        public bool Walkable { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public double G { get; set; }
@@ -64,6 +64,8 @@ namespace Pathfinder
         public double Cost { get; set; }
         public bool Tested { get; set; }
         public int RetainCount { get; set; }
+        public bool Collision { get; set; }
+
         public bool Equals(Node other)
         {
             return X == other?.X && Y == other?.Y;

@@ -54,105 +54,86 @@ namespace Pathfinder
             set { Nodes[y, x] = value; }
         }
 
-        public bool IsInside(int x, int y)
+        public bool IsInside(int y, int x)
         {
             return (x >= 0 && x < this.Width) && (y >= 0 && y < this.Height);
         }
 
         public bool IsWalkableAt(Node node)
         {
-            return IsInside(node.X, node.Y) && node.Walkable;
+            return IsInside(node.Y, node.X) && node.Walkable;
         }
 
         public bool IsWalkableAt(int y, int x)
         {
-            return IsInside(x, y) && Nodes[y,x].Walkable;
+            return IsInside(y, x) && Nodes[y,x].Walkable;
         }
 
-        public Node GetDirectionNode(Node node, bool ByRef = true)
+        public Node GetDirectionNode(Node node, bool ByRef = true, bool valid = true)
         {
             var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
-            return GetDirectionNode(node, dir, ByRef);
+            return GetDirectionNode(node, dir, ByRef, valid);
         }
 
-        public Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef = true)
+        public Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef = true, bool valid = true)
         {
             int x = node.X, y = node.Y;
             Node newnode = null;
             switch (direction)
             {
                 case DirectionMovement.Up:
-                    if (IsWalkableAt(y - 1, x))
-                    {
+                    if (IsWalkableAt(y - 1, x) || (!valid && IsInside(y - 1, x)))
                         newnode = Nodes[y - 1, x];
-                        newnode.Direction = DirectionMovement.Up;
-                    }
+
                     break;
                 case DirectionMovement.Down:
-                    if (IsWalkableAt(y + 1, x))
-                    {
+                    if (IsWalkableAt(y + 1, x) || (!valid && IsInside(y + 1, x)))
                         newnode = Nodes[y + 1, x];
-                        newnode.Direction = DirectionMovement.Down;
-                    }
+
                     break;
                 case DirectionMovement.Left:
-                    if (IsWalkableAt(y, x - 1))
-                    {
+                    if (IsWalkableAt(y, x - 1) || (!valid && IsInside(y, x - 1)))
                         newnode = Nodes[y, x - 1];
-                        newnode.Direction = DirectionMovement.Left;
-                    }
+
                     break;
                 case DirectionMovement.Right:
-                    if (IsWalkableAt(y, x + 1))
-                    {
+                    if (IsWalkableAt(y, x + 1) || (!valid && IsInside(y, x + 1)))
                         newnode = Nodes[y, x + 1];
-                        newnode.Direction = DirectionMovement.Right;
-                    }
+
                     break;
                 // Diagonais
                 case DirectionMovement.UpLeft:
-                    if (IsWalkableAt(y - 1, x - 1))
-                    {
+                    if (IsWalkableAt(y - 1, x - 1) || (!valid && IsInside(y - 1, x - 1)))
                         newnode = Nodes[y - 1, x - 1];
-                        newnode.Direction = DirectionMovement.UpLeft;
-                    }
                     break;
                 case DirectionMovement.UpRight:
-                    if (IsWalkableAt(y - 1, x + 1))
-                    {
+                    if (IsWalkableAt(y - 1, x + 1) || (!valid && IsInside(y - 1, x + 1)))
                         newnode = Nodes[y - 1, x + 1];
-                        newnode.Direction = DirectionMovement.UpRight;
-                    }
                     break;
                 case DirectionMovement.DownLeft:
-                    if (IsWalkableAt(y + 1, x - 1))
-                    {
+                    if (IsWalkableAt(y + 1, x - 1) || (!valid && IsInside(y + 1, x - 1)))
                         newnode = Nodes[y + 1, x - 1];
-                        newnode.Direction = DirectionMovement.DownLeft;
-                    }
+
                     break;
                 case DirectionMovement.DownRight:
-                    if (IsWalkableAt(y + 1, x + 1))
-                    {
+                    if (IsWalkableAt(y + 1, x + 1) || (!valid && IsInside(y + 1, x + 1)))
                         newnode = Nodes[y + 1, x + 1];
-                        newnode.Direction = DirectionMovement.DownRight;
-                    }
                     break;
             }
 
             if (newnode == null)
                 return null;
-
+            newnode.Direction = direction;
             return ByRef ? newnode : new Node(newnode, node, direction);
         }
 
-        public IList<Node> GetNeighbors(Node node, bool ByRef = true)
+        public IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true)
         {
             var settings = new Settings();
-            return GetNeighbors(node, settings.AllowDiagonal, ByRef);
+            return GetNeighbors(node, settings.AllowDiagonal, ByRef, valid);
         }
         
-        public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true)
+        public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true, bool valid = true)
         {
             Node newnode;
             var neighbors = new List<Node>();
@@ -162,25 +143,25 @@ namespace Pathfinder
               s2 = false, d2 = false,
               s3 = false, d3 = false;
 
-            newnode = GetDirectionNode(node, DirectionMovement.Up, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.Up, ByRef, valid);
             if (newnode != null)
             {
                 neighbors.Add(newnode);
                 s0 = true;
             }
-            newnode = GetDirectionNode(node, DirectionMovement.Down, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.Down, ByRef, valid);
             if (newnode != null)
             {
                 neighbors.Add(newnode);
                 s2 = true;
             }
-            newnode = GetDirectionNode(node, DirectionMovement.Left, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.Left, ByRef, valid);
             if (newnode != null)
             {
                 neighbors.Add(newnode);
                 s1 = true;
             }
-            newnode = GetDirectionNode(node, DirectionMovement.Right, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.Right, ByRef, valid);
             if (newnode != null)
             {
                 neighbors.Add(newnode);
@@ -217,21 +198,21 @@ namespace Pathfinder
                 throw new Exception("Incorrect value of diagonalMovement");
             }
 
-            newnode = GetDirectionNode(node, DirectionMovement.UpLeft, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.UpLeft, ByRef, valid);
             if (d0 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.UpRight, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.UpRight, ByRef, valid);
             if (d1 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.DownRight, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.DownRight, ByRef, valid);
             if (d2 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.DownLeft, ByRef);
+            newnode = GetDirectionNode(node, DirectionMovement.DownLeft, ByRef, valid);
             if (d3 && newnode != null)
                 neighbors.Add(newnode);
 
-            if (neighbors.Any(e => e == null || !e.Walkable ))
-                throw new Exception("NO!!");
+            //if (neighbors.Any(e => e == null || !e.Walkable ))
+            //    throw new Exception("NO!!");
 
             return neighbors;
         }

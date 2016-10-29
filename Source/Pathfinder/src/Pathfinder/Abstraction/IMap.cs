@@ -12,10 +12,10 @@ namespace Pathfinder.Abstraction
         int Width { get; set; }
         Node[,] Nodes { get; set; }
         Node this[int x, int y] { get; set; }
-        Node GetDirectionNode(Node node, bool ByRef=true);
-        Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef=true);
-        IList<Node> GetNeighbors(Node node, bool ByRef = true);
-        IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true);
+        Node GetDirectionNode(Node node, bool ByRef=true, bool valid = true);
+        Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef=true, bool valid = true);
+        IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true);
+        IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true, bool valid = true);
         Node StartNode { get; set; }
         Node EndNode { get; set; }
         void DefineNode(Node node);

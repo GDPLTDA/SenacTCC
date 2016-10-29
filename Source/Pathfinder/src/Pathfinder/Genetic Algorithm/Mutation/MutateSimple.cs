@@ -15,11 +15,11 @@ namespace Pathfinder.Mutation
 
             int listcount = baby.ListNodes.Count;
             // Ignora o inicial
-            var pos1 = Settings.Random.Next(1, listcount);
+            var pos1 = Settings.Random.Next(0, listcount);
             var pos2 = pos1;
 
             while (pos1 == pos2)
-                pos2 = Settings.Random.Next(1, listcount); // Ignora o inicial
+                pos2 = Settings.Random.Next(0, listcount); // Ignora o inicial
 
             var temp = baby.ListNodes[pos1];
             baby.ListNodes[pos1] = baby.ListNodes[pos2];

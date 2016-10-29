@@ -13,5 +13,9 @@ namespace Pathfinder.Factories
         {
             return new FitnessHeuristic();
         }
+        public static IFitness GetSimpleWithCollisionDetectionImplementation()
+        {
+            return new FitnessWithCollisionDetection();
+        }
     }
 }

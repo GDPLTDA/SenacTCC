@@ -42,12 +42,16 @@ namespace Pathfinder
             if (lastcoor.Equals(Map.EndNode))
                 return new Genome(Map, newbaby);
 
-            var list = Map.GetNeighbors(lastcoor, false);
+            var list = Map.GetNeighbors(lastcoor, false, false);
             var ind = Settings.Random.Next(0, list.Count);
             var newnode = list[ind];
 
             if (!newbaby.Exists(i=>i.EqualsAll(newnode)))
             {
+                lastcoor.Collision = !newnode.Walkable;
+                if (lastcoor.Collision)
+                    return new Genome(Map, newbaby); ;
+
                 ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
                 newnode.G = ng;
                 newbaby.Add(new Node(newnode));
