@@ -105,7 +105,7 @@ namespace Pathfinder.MapGenerators
             {
                 int x = rand.Next(0, width);
                 int y = rand.Next(0, height);
-                p = new Node(x, y) { Walkable = !wall };
+                p = new Node(x, y, !wall, DirectionMovement.None);
             }
 
             return p;

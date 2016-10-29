@@ -22,6 +22,7 @@ namespace Pathfinder
         public int SelectionAlgorithn { get; set; }
         public int FitnessAlgorithn { get; set; }
         public int BestSolution { get; set; }
+        public double Penalty { get; set; }
 
         public GASettings()
         {
@@ -40,6 +41,7 @@ namespace Pathfinder
             FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
             SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
             BestSolution = int.Parse(Configuration[nameof(BestSolution)]);
+            Penalty = int.Parse(Configuration[nameof(Penalty)]);
         }
         public ICrossover GetCrossover()
         {
@@ -94,6 +96,9 @@ namespace Pathfinder
             {
                 case 0:
                     ret = FitnessFactory.GetSimpleImplementation();
+                    break;
+                case 1:
+                    ret = FitnessFactory.GetSimpleWithCollisionDetectionImplementation();
                     break;
             }
 

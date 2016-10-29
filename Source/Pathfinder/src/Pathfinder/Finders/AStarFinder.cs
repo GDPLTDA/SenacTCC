@@ -91,7 +91,6 @@ namespace Pathfinder.Finders
 
                 _openList = _openList.OrderByDescending(e => e.Cost).ToList();
                
-
                 OnStep(BuildArgs(step++));
             }
             
