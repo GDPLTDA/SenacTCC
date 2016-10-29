@@ -5,8 +5,17 @@ CrossOver Simple
 - O crossover simples utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho  de cromossomos maximo entre os dois, que será removido do primeiro individuo e adicionado no segundo individuo, e a mesma quantidade de cromossomos do segunda individuo adiciona no primeiro. Fazendo uma troca de cromossomos de um tamanho aleatório.
 
 Crossover OBX
-- O crossover OBX(Order-Based Crossover) utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho  de cromossomos maximo entre os dois,
-
+- O crossover OBX(Order-Based Crossover) utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho entre os dois cromossomos. Entre esse tamanho são definidas posições aleatórias e aguardas em uma lista. Para cada posição é trocado de um cromossomo para outro da mesma posição.
 
 Crossover PBX
-- O crossover PBX(Position-Based Crossover) utiliza os dois individuos da seleção
+- O crossover PBX(Position-Based Crossover) utiliza os dois individuos da seleção e define um tamanho aleatório de 0 ao menor tamanho entre os dois cromossomos. Entre esse tamanho são definidas posições aleatórias e aguardas em uma lista. Os individuos resultantes são zerado Para cada posição é trocado do cromossomo principal para o resultante o cromossomo de mesma posição outro da mesma posição. As posições não preenchidas são completadas com os cromossomos restante, seguindo a ordem do cromossomo e adicionado se ele não ja existir na lista.
+
+Adaptation
+- A adaptação é uma versão simplificada da adaptação do /cite{Ulysses}. Ela é utilizada para corrigir possíveis problemas gerados no crossover e mutação. Quando os cromossomos são reorganizados, o caminho novo gerado pode levar para um bloqueio, então seguindo as direções indicadas no gromossomo, a posição é recalcula e só adiciona a lista do individuo se for um caminho valido. Também são ignorados caminhos que voltam para o mesmo lugar.
+Para comprementar o caminho do individuo é adicionado uma direção valida a lista, fazendo com que cada interação de adaptação o caminho fique maior e mais proximo do destino.
+
+MutateSimple
+- A mutação simples é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos e o primeiro cromossomo inicial é ignorado. Então definido duas das posições aleatórias distintas, e seus valores trocados.
+
+MutateSM
+- A mutação simples é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos, primeiro cromossomo inicial é ignorado e tem um tamnho minimo de troca de 3 cromossomos. Então define um tamanho aleatório do limite ao tamanho da lista de cromossomos, e escolhe uma posição inicial aleatória e a posição final é o valor da posição inicial, mais o tamanho aleatório. Então faz um loop do tamanho do espaço entre inicial e final e de forma aleatória mistura os cromossomos mudando de posição.
