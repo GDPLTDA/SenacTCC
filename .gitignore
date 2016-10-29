@@ -213,3 +213,10 @@ FakesAssemblies/
 **/*.Server/GeneratedArtifacts
 **/*.Server/ModelManifest.xml
 _Pvt_Extensions
+
+
+#project especific data
+**/Pathfinder/Maps
+**/Pathfinder/Batch
+
+
