@@ -20,7 +20,7 @@ dotnet restore
 
 Run the program
 ```sh
-dotnet run -p TCC.OutPutConsole  
+dotnet run -p Pathfinder 
 ```
 
 Watch the magic happens... :)
