@@ -66,8 +66,9 @@ namespace Pathfinder
         public int RetainCount { get; set; }
         public bool Collision { get; set; }
 
-        public bool Equals(Node other)
+        public override bool Equals(object _other)
         {
+            var other = (Node)_other;
             return X == other?.X && Y == other?.Y;
         }
         public bool EqualsAll(Node other)

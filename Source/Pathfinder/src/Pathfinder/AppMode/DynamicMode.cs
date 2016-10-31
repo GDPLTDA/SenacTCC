@@ -12,7 +12,7 @@ namespace Pathfinder.AppMode
     {
         public void Run()
         {
-            var settings = Program.settings;
+            var settings = Program.Settings;
             int v = ReadInput(@"Select viewer( 0=Console 1=OpenGL ):", 0,1 );
             int m = ReadInput(@"Select map origin( 0=Static 1=FromFile 2=Random ):",0, 2);            
             int h = ReadInput(@"Select Heuristic ( 0=Manhatam 1=Euclidean 2=Octile 3=Chebyshev ):", 0, 3);
@@ -21,7 +21,7 @@ namespace Pathfinder.AppMode
 
             if (pf == 4)
             {
-                var gasettings = Program.gasettings;
+                var gasettings = Program.GASettings;
                 gasettings.GenerationLimit = ReadInput(@"Select generation limit:", 0, 10000);
                 gasettings.MutationRate = ReadInput(@"Select mutation rate percent:", 0, 100) / 100;
                 gasettings.MutationAlgorithn = ReadInput(@"Select algorithm mutation ( 0=Simple 1=DIVM 2=DM 3=IM 4=IVM 5=SM ):", 0, 5);

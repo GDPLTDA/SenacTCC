@@ -29,7 +29,7 @@ namespace Pathfinder.Finders
             Name = "IDA* (IDA Star)";
             SleepUITimeInMs = 30;
             
-            var set = Program.settings;
+            var set = Program.Settings;
             var ms = set.IDAStarFinderTimeOut;
 
             if (ms == 0)

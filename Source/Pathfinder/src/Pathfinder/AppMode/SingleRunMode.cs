@@ -10,7 +10,7 @@ namespace Pathfinder.AppMode
     {
         public void Run()
          {
-            var settings = Program.settings;
+            var settings = Program.Settings;
 
             var heuristic = settings.GetHeuristic();
             var finder = settings.GetFinder(heuristic);

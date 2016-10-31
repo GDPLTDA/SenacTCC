@@ -14,7 +14,7 @@ namespace Pathfinder
 
         public FileTool()
         {
-            settings = Program.settings;
+            settings = Program.Settings;
         }
 
         public string GetTextRepresentation(IMap map)

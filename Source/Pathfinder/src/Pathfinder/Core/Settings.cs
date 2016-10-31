@@ -48,7 +48,7 @@ namespace Pathfinder
         public int Batch_generate_pattern { get; set; }
         public int Batch_map_origin { get; set; }
         public int Batch_map_qtd_to_generate { get; set; }
-
+        public int Batch_GATimesToRunPerMap { get; set; }
 
         public Settings()
         {
@@ -89,6 +89,8 @@ namespace Pathfinder
             Batch_map_origin = int.Parse(Configuration[nameof(Batch_map_origin)].ToString());
             Batch_generate_pattern = int.Parse(Configuration[nameof(Batch_generate_pattern)].ToString());
             Batch_map_qtd_to_generate = int.Parse(Configuration[nameof(Batch_map_qtd_to_generate)].ToString());
+            Batch_GATimesToRunPerMap = int.Parse(Configuration[nameof(Batch_GATimesToRunPerMap)].ToString());
+            
         }
 
         public IAppMode GetAppMode( int option = -1)

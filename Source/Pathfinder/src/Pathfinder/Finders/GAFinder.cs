@@ -19,6 +19,8 @@ namespace Pathfinder.Finders
 
         public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
         {
+            SleepUITimeInMs = 30;
+
             Name = "Genetic Algorithm";
             if(gasettings == null)
                 gasettings = new GASettings();

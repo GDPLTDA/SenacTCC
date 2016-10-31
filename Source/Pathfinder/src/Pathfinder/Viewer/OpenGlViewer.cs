@@ -22,7 +22,7 @@ namespace Pathfinder.Viewer
 
         public void Run(IMap map)
         {
-            var set = Program.settings;
+            var set = Program.Settings;
             window = new OpenGlWindow(map, _finder,set.OpenGlBlockSize );
             window.Run();
         }

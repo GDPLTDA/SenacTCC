@@ -43,10 +43,11 @@ namespace Pathfinder
             BestSolution = int.Parse(Configuration[nameof(BestSolution)]);
             Penalty = int.Parse(Configuration[nameof(Penalty)]);
         }
-        public ICrossover GetCrossover()
+        public ICrossover GetCrossover(int option = -1)
         {
             ICrossover ret = null;
-            switch (CrossoverAlgorithn)
+            var opt = option >= 0 ? option : CrossoverAlgorithn;
+            switch (opt)
             {
                 case 0:
                     ret = CrossoverFactory.GetSimpleImplementation();
@@ -62,10 +63,12 @@ namespace Pathfinder
             return ret;
 
         }
-        public IMutate GetMutate()
+        public IMutate GetMutate(int option = -1)
         {
             IMutate ret = null;
-            switch (MutationAlgorithn)
+            var opt = option >= 0 ? option : MutationAlgorithn;
+
+            switch (opt)
             {
                 case 0:
                     ret = MutateFactory.GetSimpleImplementation();
@@ -89,10 +92,11 @@ namespace Pathfinder
 
             return ret;
         }
-        public IFitness GetFitness()
+        public IFitness GetFitness(int option = -1)
         {
             IFitness ret = null;
-            switch (FitnessAlgorithn)
+            var opt = option >= 0 ? option : FitnessAlgorithn;
+            switch (opt)
             {
                 case 0:
                     ret = FitnessFactory.GetSimpleImplementation();
@@ -104,10 +108,11 @@ namespace Pathfinder
 
             return ret;
         }
-        public ISelection GetSelection()
+        public ISelection GetSelection(int option = -1)
         {
             ISelection ret = null;
-            switch (SelectionAlgorithn)
+            var opt = option >= 0 ? option : SelectionAlgorithn;
+            switch (opt)
             {
                 case 0:
                     ret = SelectionFactory.GetSimpleImplementation();
