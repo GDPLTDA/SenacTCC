@@ -15,7 +15,19 @@ Adaptation
 Para comprementar o caminho do individuo é adicionado uma direção valida a lista, fazendo com que cada interação de adaptação o caminho fique maior e mais proximo do destino.
 
 MutateSimple
-- A mutação simples é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos e o primeiro cromossomo inicial é ignorado. Então definido duas das posições aleatórias distintas, e seus valores trocados.
+- A mutação EM (Exchange Mutation) é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos e o primeiro cromossomo inicial é ignorado. Então definido duas das posições aleatórias distintas, e seus valores trocados.
 
-MutateSM
-- A mutação simples é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos, primeiro cromossomo inicial é ignorado e tem um tamnho minimo de troca de 3 cromossomos. Então define um tamanho aleatório do limite ao tamanho da lista de cromossomos, e escolhe uma posição inicial aleatória e a posição final é o valor da posição inicial, mais o tamanho aleatório. Então faz um loop do tamanho do espaço entre inicial e final e de forma aleatória mistura os cromossomos mudando de posição.
+MutateSM 
+- A mutação SM (Scramble mutation) é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos, primeiro cromossomo inicial é ignorado e tem um tamnho minimo de troca de 3 cromossomos. Então define um tamanho aleatório do limite ao tamanho da lista de cromossomos, e escolhe uma posição inicial aleatória e a posição final é o valor da posição inicial, mais o tamanho aleatório. Então faz um loop do tamanho do espaço entre inicial e final e de forma aleatória mistura os cromossomos mudando de posição.
+
+MutateDM
+- A mutação DM (Displacement Mutation) 
+
+MutateIM
+- A mutação IM (Insertion Mutation) 
+
+MutateIVM
+- A mutação IVM (Inversion Mutation)
+
+MutateDIVM
+- A mutação DIVM(Displaced Inversion Mutation)
