@@ -1,5 +1,5 @@
 \Section Algoritmos Genéticos
-A busca utilizando o GA, segue as etapas seleção,cruzamento,adaptação e mutação. Para cada interação de geração, a função de aptidão é calculada para cada população e a população com o valor mais proximo de zero é escolha como a melhor.
+A busca utilizando o GA, segue as etapas seleção, cruzamento,adaptação e mutação. Para cada interação de geração, a função de aptidão é calculada para cada população e a população com o valor mais proximo de zero é escolha como a melhor.
 
 \SubSection Função de Aptidão
 FitnessHeuristic: Para cada individuo da população é calculada a função heuristica escolhida do ponto final da lista do individuo até o ponto destino do mapa, a soma de todos os rsultados é a função de aptidão da população.
@@ -25,16 +25,12 @@ Todas as mutações executam se o individuo tiver mais do que 3 cromossomos e não 
 
 MutateEM (Exchange Mutation): Define duas das posições aleatórias  distintas do segundo cromossomo até o ultimo, e troca os cromossomos do individuo.
 
-MutateSM (Scramble mutation): Define um tamanho aleatório do limite ao tamanho da lista de cromossomos, e escolhe uma posição inicial aleatória e a posição final é o valor da posição inicial, mais o tamanho aleatório. Então faz um loop do tamanho do espaço entre inicial e final e de forma aleatória mistura os cromossomos mudando de posição.
+MutateSM (Scramble Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e uma quantidade aleatória. Então faz um loop da quantidade aleatória e mistura os cromossomos que estão entre a posição inicial e final trocando aleatóriamente dois pontos entre eles.
 
-MutateDM
-- A mutação DM (Displacement Mutation) 
+MutateDM (Displacement Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca apatir de uma posição aleatória.
 
-MutateIM
-- A mutação IM (Insertion Mutation) 
+MutateIM (Insertion Mutation): Define uma posição aleatória, remove o cromossomo da posição, reorganiza os cromossomos e insere o cromossomo removido em uma nova posição aleatória.
 
-MutateIVM
-- A mutação IVM (Inversion Mutation)
+MutateIVM (Inversion Mutation): Define duas das posições aleatórias  distintas do segundo cromossomo até o ultimo, e inverte todos os cromossomos que está entre as posições.
 
-MutateDIVM
-- A mutação DIVM(Displaced Inversion Mutation)
+MutateDIVM DIVM(Displaced Inversion Mutation):Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca apatir de uma posição aleatória de forma invertida.
