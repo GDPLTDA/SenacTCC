@@ -1,12 +1,12 @@
 ﻿{
   "GenerationLimit": 10000,
   "MutationRate": 0.5,
-  "MutationAlgorithn": 5, // 0=Simple 1=DIVM 2=DM 3=IM 4=IVM 5=SM
+  "MutationAlgorithn": 5, // 0=Exchange Mutation 1=Displaced Inversion Mutation 2=Displacement Mutation 3=Insertion Mutation 4=Inversion Mutation 5=Scramble mutation
   "CrossoverRate": 0.5,
-  "CrossoverAlgorithn": 2, // 0=Simple 1=OBX 2=PBX
+  "CrossoverAlgorithn": 2, // 0=Simple 1=Order-Based Crossover 2=Position-Based Crossover
   "PopulationSize": 100,
   "FitnessAlgorithn": 1, // 0=Heuristic 1=WithCollisionDetection
-  "SelectionAlgorithn": 0, // 0=Simple
+  "SelectionAlgorithn": 0, // 0=Random
   "BestSolution": 10,
   "Penalty": 10000
 }

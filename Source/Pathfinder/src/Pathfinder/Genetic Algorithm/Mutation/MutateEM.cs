@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Mutation
 { 
-    public class MutateSimple : AbstractMutate
+    public class MutateEM : AbstractMutate
     {
         public override IGenome Calc(IGenome baby)
         {

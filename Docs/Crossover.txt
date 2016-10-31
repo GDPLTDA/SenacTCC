@@ -1,4 +1,4 @@
-Selection Simple
+Selection Random
 - A seleção simples seleciona um numero aleatório entre 0 e o tamanho total da população, que é um indice da lista da população, e retorna o individuo do indice do resultado.
 
 CrossOver Simple
@@ -14,7 +14,7 @@ Adaptation
 - A adaptação é uma versão simplificada da adaptação do /cite{Ulysses}. Ela é utilizada para corrigir possíveis problemas gerados no crossover e mutação. Quando os cromossomos são reorganizados, o caminho novo gerado pode levar para um bloqueio, então seguindo as direções indicadas no gromossomo, a posição é recalcula e só adiciona a lista do individuo se for um caminho valido. Também são ignorados caminhos que voltam para o mesmo lugar.
 Para comprementar o caminho do individuo é adicionado uma direção valida a lista, fazendo com que cada interação de adaptação o caminho fique maior e mais proximo do destino.
 
-MutateSimple
+MutateEM
 - A mutação EM (Exchange Mutation) é feita encima de um unico individuo, somente executando se existir mais de 3 cromossomos e o primeiro cromossomo inicial é ignorado. Então definido duas das posições aleatórias distintas, e seus valores trocados.
 
 MutateSM 
