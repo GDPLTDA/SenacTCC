@@ -52,7 +52,7 @@ namespace Pathfinder.AppMode
                     drawTextProgressBar(i, qtdMaps);
                     var map = generator.DefineMap(diagonal: diagonals[diagIndex]);
                     map.AllowDiagonal = diagonals[diagIndex];
-                    ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString() + ".txt"));
+                    ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
 
                     if ((i + 1) % divblock == 0)
                     {
@@ -70,12 +70,12 @@ namespace Pathfinder.AppMode
             var files = Directory.GetFiles(folder);
             var fileCount = files.Count();
 
-            var finders = new int[] { 0, 1, 2, 3, 4 };
+            var finders = new int[] { 0, 1,2,3,4 };
             var heuristics = new int[] { 0, 1, 2, 3 };
 
             var Mutation = new int[] { 0, 1, 2, 3, 4, 5 };
             var Crossover = new int[] { 0, 1, 2 };
-            var Fitness = new int[] { 0 };
+            var Fitness = new int[] { 0,1 };
             var Selection = new int[] { 0 };
 
             var csvFile = new StringBuilder();
@@ -103,18 +103,19 @@ namespace Pathfinder.AppMode
                         if (finder is IGeneticAlgorithm)
                         {
                             var GAFinder = ((IGeneticAlgorithm)finder);
-                            for (int j = 0; j < setting.Batch_GATimesToRunPerMap; j++)
-                                for (int cross = 0; cross < Crossover.Count(); cross++)
-                                    for (int mut = 0; mut < Mutation.Count(); mut++)
-                                        for (int fit = 0; fit < Fitness.Count(); fit++)
-                                            for (int sel = 0; sel < Selection.Count(); sel++)
+                            for (int cross = 0; cross < Crossover.Count(); cross++)
+                                for (int mut = 0; mut < Mutation.Count(); mut++)
+                                    for (int fit = 0; fit < Fitness.Count(); fit++)
+                                        for (int sel = 0; sel < Selection.Count(); sel++)
+                                            for (int j = 0; j < setting.Batch_GATimesToRunPerMap; j++)
                                             {
+
                                                 GAFinder.Crossover = GASettings.GetCrossover(cross);
-                                                GAFinder.Mutate    = GASettings.GetMutate(mut);
-                                                GAFinder.Fitness   = GASettings.GetFitness(fit);
+                                                GAFinder.Mutate = GASettings.GetMutate(mut);
+                                                GAFinder.Fitness = GASettings.GetFitness(fit);
                                                 GAFinder.Selection = GASettings.GetSelection(sel);
 
-                                                var helper =$"n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
+                                                var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
 
                                                 var csv = new TextWrapper();
                                                 csv = RunStep(csv, i, fileCount, map, h, finder, helper);
@@ -138,7 +139,7 @@ namespace Pathfinder.AppMode
                                                 };
 
                                                 csvGAFile.Append(csvGA.ToString());
-
+                                                GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
 
                                             }
 
@@ -164,7 +165,7 @@ namespace Pathfinder.AppMode
         }
 
 
-        private TextWrapper RunStep(TextWrapper baseScv, int i, int fileCount, IMap map, IHeuristic h, IFinder finder, string plus="")
+        private TextWrapper RunStep(TextWrapper baseScv, int i, int fileCount, IMap map, IHeuristic h, IFinder finder, string plus = "")
         {
             var csv = baseScv;
             csv.map = i.ToString();
@@ -210,13 +211,13 @@ namespace Pathfinder.AppMode
 
         class TextWrapper : BaseTextWrapper
         {
-            public string alg        { get; set; }
-            public string map        { get; set; }
-            public string heuristic  { get; set; }
-            public string diagonal   { get; set; }
-            public string solution   { get; set; }
-            public string time       { get; set; }
-            public string maxNodes   { get; set; }
+            public string alg { get; set; }
+            public string map { get; set; }
+            public string heuristic { get; set; }
+            public string diagonal { get; set; }
+            public string solution { get; set; }
+            public string time { get; set; }
+            public string maxNodes { get; set; }
             public string pathLength { get; set; }
         }
 
