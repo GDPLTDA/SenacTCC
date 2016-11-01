@@ -97,7 +97,9 @@ namespace Pathfinder.Finders
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);
                 }
-                Populations = newpopulations.Select(o => (IGenome)new Genome(o)).ToList();
+                Populations = null;
+                Populations = newpopulations.ToList();
+                
                 OnStep(BuildArgs(step++));
             }
             Generations = setting.GenerationLimit;
