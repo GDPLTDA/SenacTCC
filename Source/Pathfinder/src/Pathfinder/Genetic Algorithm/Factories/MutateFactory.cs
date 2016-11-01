@@ -11,7 +11,7 @@ namespace Pathfinder.Factories
     {
         public static IMutate GetSimpleImplementation()
         {
-            return new MutateSimple();
+            return new MutateEM();
         }
         public static IMutate GetDIVMImplementation()
         {
