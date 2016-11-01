@@ -198,16 +198,16 @@ namespace Pathfinder
                 throw new Exception("Incorrect value of diagonalMovement");
             }
 
-            newnode = GetDirectionNode(node, DirectionMovement.UpLeft, ByRef, valid);
+            newnode = GetDirectionNode(node, DirectionMovement.UpRight, ByRef, valid);
             if (d0 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.UpRight, ByRef, valid);
+            newnode = GetDirectionNode(node, DirectionMovement.UpLeft, ByRef, valid);
             if (d1 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.DownRight, ByRef, valid);
+            newnode = GetDirectionNode(node, DirectionMovement.DownLeft, ByRef, valid);
             if (d2 && newnode != null)
                 neighbors.Add(newnode);
-            newnode = GetDirectionNode(node, DirectionMovement.DownLeft, ByRef, valid);
+            newnode = GetDirectionNode(node, DirectionMovement.DownRight, ByRef, valid);
             if (d3 && newnode != null)
                 neighbors.Add(newnode);
 
