@@ -49,7 +49,7 @@ namespace Pathfinder.Finders
 
             for (int i = 0; i < setting.PopulationSize; i++)
                 Populations.Add(new Genome(map));
-
+            CalcFitness();
             int step = 0;
             
             OnStart(BuildArgs(step));
@@ -57,12 +57,14 @@ namespace Pathfinder.Finders
             for (int i = 0; i < setting.GenerationLimit; i++)
             {
                 var newpopulations = new List<IGenome>();
-
-                CalcFitness();
+                
                 Populations = Populations.OrderBy(o => o.Fitness).ToList();
 
                 for (int j = 0; j < setting.BestSolution; j++)
-                    newpopulations.Add(new Genome(Populations[j]));
+                {
+                    Populations[j].Fitness = Fitness.Calc(Populations[j]);
+                    newpopulations.Add(Populations[j]);
+                }
 
                 int ran = Settings.Random.Next(1, Populations.Count);
                 var best = Populations.First().ListNodes;
@@ -86,18 +88,23 @@ namespace Pathfinder.Finders
                     var nodedad = Selection.Select(Populations);
                     // CrossOver
                     var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
-                    // Mutation
+                    //// Mutation
                     nodemom = Mutate.Calc(cross.Mom);
                     nodedad = Mutate.Calc(cross.Dad);
                     // Adaptation
                     nodemom = Adaptation.Calc(nodemom);
                     nodedad = Adaptation.Calc(nodedad);
 
+                    nodemom.Fitness = Fitness.Calc(nodemom);
+                    nodedad.Fitness = Fitness.Calc(nodedad);
+
                     // Add in new population
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);
                 }
-                Populations = newpopulations.Select(o => (IGenome)new Genome(o)).ToList();
+                Populations = null;
+                Populations = newpopulations.ToList();
+                
                 OnStep(BuildArgs(step++));
             }
             Generations = setting.GenerationLimit;
