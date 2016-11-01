@@ -26,8 +26,7 @@ namespace Pathfinder.AppMode
             var dataFile = Path.Combine(folder, "_data.csv");
             var dataFileGA = Path.Combine(folder, "_dataGA.csv");
 
-            if (!Directory.Exists(folder))
-                Directory.CreateDirectory(folder);
+       
 
             var diags = Enum.GetValues(typeof(DiagonalMovement));
             var diagonals = new DiagonalMovement[diags.Length];
@@ -40,6 +39,9 @@ namespace Pathfinder.AppMode
 
             if (setting.Batch_map_origin == 0)
             {
+                if (!Directory.Exists(folder))
+                    Directory.CreateDirectory(folder);
+
                 //generate maps
                 var generator = setting.Batch_generate_pattern == 0 ?
                                     MapGeneratorFactory.GetRandomMapGeneratorImplementation() :
@@ -65,18 +67,20 @@ namespace Pathfinder.AppMode
             {
                 //if will load the map, use the configured root path
                 folder = setting.Batch_folder;
+                dataFile = Path.Combine(folder, $"_data_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
+                dataFileGA = Path.Combine(folder, $"_dataGA_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
             }
 
             var files = Directory.GetFiles(folder);
             var fileCount = files.Count();
 
-            var finders = new int[] { 0, 1,2,3,4 };
-            var heuristics = new int[] { 0, 1, 2, 3 };
+            var finders = setting.Batch_list_finders;
+            var heuristics = setting.Batch_list_heuristics;
 
-            var Mutation = new int[] { 0, 1, 2, 3, 4, 5 };
-            var Crossover = new int[] { 0, 1, 2 };
-            var Fitness = new int[] { 0,1 };
-            var Selection = new int[] { 0 };
+            var Mutation = setting.Batch_list_Mutation;
+            var Crossover = setting.Batch_list_Crossover;
+            var Fitness = setting.Batch_list_Fitness;
+            var Selection = setting.Batch_list_Selection ;
 
             var csvFile = new StringBuilder();
             var csvGAFile = new StringBuilder();
@@ -102,14 +106,16 @@ namespace Pathfinder.AppMode
 
                         if (finder is IGeneticAlgorithm)
                         {
-                            var GAFinder = ((IGeneticAlgorithm)finder);
+                            
                             for (int cross = 0; cross < Crossover.Count(); cross++)
                                 for (int mut = 0; mut < Mutation.Count(); mut++)
                                     for (int fit = 0; fit < Fitness.Count(); fit++)
                                         for (int sel = 0; sel < Selection.Count(); sel++)
                                             for (int j = 0; j < setting.Batch_GATimesToRunPerMap; j++)
                                             {
-
+                                                GC.Collect();
+                                                GC.WaitForPendingFinalizers();
+                                                var GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
                                                 GAFinder.Crossover = GASettings.GetCrossover(cross);
                                                 GAFinder.Mutate = GASettings.GetMutate(mut);
                                                 GAFinder.Fitness = GASettings.GetFitness(fit);
@@ -118,7 +124,7 @@ namespace Pathfinder.AppMode
                                                 var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
 
                                                 var csv = new TextWrapper();
-                                                csv = RunStep(csv, i, fileCount, map, h, finder, helper);
+                                                csv = RunStep(csv, i, fileCount, map, h, GAFinder, helper);
 
                                                 var csvGA = new TextGAWrapper()
                                                 {
@@ -139,7 +145,7 @@ namespace Pathfinder.AppMode
                                                 };
 
                                                 csvGAFile.Append(csvGA.ToString());
-                                                GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
+                                                
 
                                             }
 
