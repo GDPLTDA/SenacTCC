@@ -13,7 +13,6 @@ namespace Pathfinder
         public IMap Map { get; set; }
         public List<Node> ListNodes { get; set; }
         public double Fitness { get; set; }
-        Settings setting { get; set; }
         public Genome()
         {
         }
@@ -38,7 +37,7 @@ namespace Pathfinder
 
         public List<Node> RouteFinding()
         {
-            setting = new Settings();
+            var setting = new Settings();
             var listnode = new List<Node>();
             bool run = true;
             var node = new Node(Map.StartNode);

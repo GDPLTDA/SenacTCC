@@ -34,7 +34,7 @@ namespace Pathfinder
                     newbaby.Add(coor);
                 }
 
-                if (newbaby.Last().Equals(Map.EndNode))
+                if (lastcoor.Equals(Map.EndNode))
                     break;
             }
 

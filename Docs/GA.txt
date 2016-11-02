@@ -21,7 +21,7 @@ Adaptation: A adaptação é uma versão simplificada utilizada no /cite{Ulysses}. E
 Para comprementar o caminho do individuo, uma nova direção valida é adicionada e calculada, fazendo com que cada interação de adaptação, o caminho fique maior.
 
 \SubSection Mutação
-Todas as mutações executam se o individuo tiver mais do que 3 cromossomos e não afeta o primeiro cromossomo. O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lugar, o caminho é quebrado.
+Todas as mutações executam se o individuo tiver mais do que 3 cromossomos e não afeta o primeiro cromossomo. O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lugar, o caminho é quebrado. /cite{MatBuckland}
 
 MutateEM (Exchange Mutation): Define duas das posições aleatórias  distintas do segundo cromossomo até o ultimo, e troca os cromossomos do individuo.
 
