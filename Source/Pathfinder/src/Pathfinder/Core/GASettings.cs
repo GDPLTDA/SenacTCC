@@ -41,7 +41,7 @@ namespace Pathfinder
             FitnessAlgorithn = int.Parse(Configuration[nameof(FitnessAlgorithn)]);
             SelectionAlgorithn = int.Parse(Configuration[nameof(SelectionAlgorithn)]);
             BestSolution = int.Parse(Configuration[nameof(BestSolution)]);
-            Penalty = int.Parse(Configuration[nameof(Penalty)]);
+            Penalty = double.Parse(Configuration[nameof(Penalty)]);
         }
         public ICrossover GetCrossover(int option = -1)
         {

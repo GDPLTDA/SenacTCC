@@ -1,5 +1,5 @@
 ﻿{
-  "GenerationLimit": 10000,
+  "GenerationLimit": 1000,
   "MutationRate": 0.5,
   "MutationAlgorithn": 5, // 0=Exchange Mutation 1=Displaced Inversion Mutation 2=Displacement Mutation 3=Insertion Mutation 4=Inversion Mutation 5=Scramble mutation
   "CrossoverRate": 0.5,
@@ -8,5 +8,5 @@
   "FitnessAlgorithn": 1, // 0=Heuristic 1=WithCollisionDetection
   "SelectionAlgorithn": 0, // 0=Random
   "BestSolution": 10,
-  "Penalty": 10000
+  "Penalty": 9999999999999
 }
