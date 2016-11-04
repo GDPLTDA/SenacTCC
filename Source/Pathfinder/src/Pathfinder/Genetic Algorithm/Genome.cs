@@ -29,13 +29,13 @@ namespace Pathfinder
             ListNodes = Copy(genome.ListNodes);
         }
 
-        public Genome(IMap map)
+        public Genome(IMap map, DiagonalMovement diagonal)
         {
             Map = map;
-            ListNodes = RouteFinding();
+            ListNodes = RouteFinding(diagonal);
         }
 
-        public List<Node> RouteFinding()
+        public List<Node> RouteFinding(DiagonalMovement diagonal)
         {
             var setting = new Settings();
             var listnode = new List<Node>();
@@ -48,7 +48,7 @@ namespace Pathfinder
                 if (!listnode.Exists(o => o.X == node.X && o.Y == node.Y))
                     listnode.Add(node);
 
-                var list = Map.GetNeighbors(node, false);
+                var list = Map.GetNeighbors(node, diagonal, ByRef: false);
                 var ind = Settings.Random.Next(0, list.Count);
                 var newnode = list[ind];
 
@@ -88,6 +88,11 @@ namespace Pathfinder
                 returnnode.Add(new Node(item));
 
             return returnnode;
+        }
+
+        public override string ToString()
+        {
+            return $"F={Fitness}";
         }
     }
 }

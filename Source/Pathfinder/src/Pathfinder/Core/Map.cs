@@ -130,7 +130,7 @@ namespace Pathfinder
         public IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true)
         {
             var settings = new Settings();
-            return GetNeighbors(node, settings.AllowDiagonal, ByRef, valid);
+            return GetNeighbors(node, AllowDiagonal.HasValue ? AllowDiagonal.Value : settings.AllowDiagonal, ByRef, valid);
         }
         
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true, bool valid = true)

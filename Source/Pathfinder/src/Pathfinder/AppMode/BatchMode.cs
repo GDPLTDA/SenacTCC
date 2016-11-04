@@ -116,6 +116,7 @@ namespace Pathfinder.AppMode
                                                 GC.Collect();
                                                 GC.WaitForPendingFinalizers();
                                                 var GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
+                                                
                                                 GAFinder.Crossover = GASettings.GetCrossover(cross);
                                                 GAFinder.Mutate = GASettings.GetMutate(mut);
                                                 GAFinder.Fitness = GASettings.GetFitness(fit);

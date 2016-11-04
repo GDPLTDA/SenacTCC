@@ -6,7 +6,7 @@
   "CrossoverAlgorithn": 2, // 0=Simple 1=Order-Based Crossover 2=Position-Based Crossover
   "PopulationSize": 100,
   "FitnessAlgorithn": 1, // 0=Heuristic 1=WithCollisionDetection
-  "SelectionAlgorithn": 0, // 0=Random
+  "SelectionAlgorithn": 1, // 0=Random 1=Roulette Wheel Selection
   "BestSolution": 10,
   "Penalty": 99999999
 }
