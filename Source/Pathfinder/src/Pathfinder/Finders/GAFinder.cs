@@ -19,7 +19,7 @@ namespace Pathfinder.Finders
 
         public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
         {
-            SleepUITimeInMs = 30;
+            SleepUITimeInMs = 15;
 
             Name = "Genetic Algorithm";
             if(gasettings == null)
@@ -68,7 +68,7 @@ namespace Pathfinder.Finders
 
                 int ran = Settings.Random.Next(1, Populations.Count);
                 var best = Populations.First().ListNodes;
-                var best2 = Populations[ran].ListNodes;
+                var best2 = Selection.Select(Populations).ListNodes;
                 _endNode = best.Last();
                 
                 if (_endNode.Equals(map.EndNode))

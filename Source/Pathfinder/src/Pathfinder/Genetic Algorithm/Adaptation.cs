@@ -50,7 +50,7 @@ namespace Pathfinder
             {
                 lastcoor.Collision = !newnode.Walkable;
                 if (lastcoor.Collision)
-                    return new Genome(Map, newbaby); ;
+                    return new Genome(Map, newbaby); 
 
                 ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
                 newnode.G = ng;

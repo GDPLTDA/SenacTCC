@@ -88,6 +88,9 @@ namespace Pathfinder
                 case 5:
                     ret = MutateFactory.GetSMImplementation();
                     break;
+                case 6:
+                    ret = MutateFactory.GetBitwiseImplementation();
+                    break;
             }
 
             return ret;
