@@ -9,6 +9,8 @@ FitnessWithCollisionDetection: Para cada individuo da população é calculada a fu
 \SubSection Seleção
 Selection Random: Gera um numero aleatório entre 0 e o tamnho total da população e retorna o individuo do indice escolhido.
 
+Selection Roulette Wheel: 
+
 \SubSection Cruzamento
 CrossOver Simple: Utiliza dois individuos escolhidos na seleção, então define dois numeros aleatórios, de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro tem que ser menor que o segundo e não podem ser iguais. Esse tamanho é utilizado para trocar cromossomos entre os dois individuos, ou seja, adicionar todos os cromossomos do primeiro individuo do indice igual ao primeiro numero, até o indice segundo numero, e repete o processo contrario.
 

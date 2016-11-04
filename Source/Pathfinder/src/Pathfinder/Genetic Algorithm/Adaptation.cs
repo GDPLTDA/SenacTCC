@@ -25,7 +25,9 @@ namespace Pathfinder
             for (int i = 1; i < listnode.Count; i++)
             {
                 lastcoor = newbaby.Last();
-                var coor = Map.GetDirectionNode(lastcoor, listnode[i].Direction, false);
+                var neighbors = (List<Node>)Map.GetNeighbors(lastcoor, false, true);
+
+                var coor = neighbors.Find(o => o.Direction == listnode[i].Direction);
 
                 if (coor != null && !newbaby.Exists(x => x.Equals(coor)))
                 {
