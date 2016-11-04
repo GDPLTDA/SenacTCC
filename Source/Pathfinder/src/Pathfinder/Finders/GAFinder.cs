@@ -48,7 +48,7 @@ namespace Pathfinder.Finders
             _endNode = map.EndNode;
 
             for (int i = 0; i < setting.PopulationSize; i++)
-                Populations.Add(new Genome(map));
+                Populations.Add(new Genome(map, DiagonalMovement));
             CalcFitness();
             int step = 0;
             

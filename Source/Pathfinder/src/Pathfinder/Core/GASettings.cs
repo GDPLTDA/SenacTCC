@@ -117,6 +117,9 @@ namespace Pathfinder
                 case 0:
                     ret = SelectionFactory.GetSimpleImplementation();
                     break;
+                case 1:
+                    ret = SelectionFactory.GetRouletteWheelSelectionImplementation();
+                    break;
             }
 
             return ret;

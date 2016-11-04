@@ -13,5 +13,10 @@ namespace Pathfinder.Factories
         {
             return new SelectionRandom();
         }
+
+        public static ISelection GetRouletteWheelSelectionImplementation()
+        {
+            return new RouletteWheelSelection();
+        }
     }
 }
