@@ -13,7 +13,7 @@ namespace Pathfinder.Viewer
         
         int width, heght;
         int BlockSize;
-        int FPS = 30;
+        int FPS = 60;
         public bool drawPath = false;
         public List<Node> path;
         IFinder _finder;

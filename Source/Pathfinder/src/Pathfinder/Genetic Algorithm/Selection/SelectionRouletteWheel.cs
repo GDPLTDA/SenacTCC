@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Selection
 {
-    public class RouletteWheelSelection : ISelection
+    public class SelectionRouletteWheel : ISelection
     {
         public IGenome Select(List<IGenome> listnode)
         {

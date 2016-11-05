@@ -16,7 +16,7 @@ namespace Pathfinder.Factories
 
         public static ISelection GetRouletteWheelSelectionImplementation()
         {
-            return new RouletteWheelSelection();
+            return new SelectionRouletteWheel();
         }
     }
 }

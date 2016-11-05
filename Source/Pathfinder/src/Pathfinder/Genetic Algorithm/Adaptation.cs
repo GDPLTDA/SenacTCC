@@ -25,7 +25,9 @@ namespace Pathfinder
             for (int i = 1; i < listnode.Count; i++)
             {
                 lastcoor = newbaby.Last();
-                var coor = Map.GetDirectionNode(lastcoor, listnode[i].Direction, false);
+                var neighbors = (List<Node>)Map.GetNeighbors(lastcoor, false, true);
+
+                var coor = neighbors.Find(o => o.Direction == listnode[i].Direction);
 
                 if (coor != null && !newbaby.Exists(x => x.Equals(coor)))
                 {
@@ -50,7 +52,7 @@ namespace Pathfinder
             {
                 lastcoor.Collision = !newnode.Walkable;
                 if (lastcoor.Collision)
-                    return new Genome(Map, newbaby); ;
+                    return new Genome(Map, newbaby); 
 
                 ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
                 newnode.G = ng;

@@ -36,5 +36,11 @@ namespace Pathfinder.Factories
         {
             return new MutateSM();
         }
+        public static IMutate GetBitwiseImplementation()
+        {
+            return new MutateBitwise();
+        }
+
+
     }
 }
