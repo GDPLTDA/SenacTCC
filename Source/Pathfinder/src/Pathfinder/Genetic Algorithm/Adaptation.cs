@@ -44,7 +44,7 @@ namespace Pathfinder
             if (lastcoor.Equals(Map.EndNode))
                 return new Genome(Map, newbaby);
 
-            var list = Map.GetNeighbors(lastcoor, false, false);
+            var list = Map.GetNeighbors(lastcoor, false);
             var ind = Settings.Random.Next(0, list.Count);
             var newnode = list[ind];
 
@@ -58,9 +58,7 @@ namespace Pathfinder
                 newnode.G = ng;
                 newbaby.Add(new Node(newnode));
             }
-
             return new Genome(Map, newbaby);
         }
-
     }
 }

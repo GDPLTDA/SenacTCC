@@ -44,16 +44,14 @@ namespace Pathfinder
 
             while (run)
             {
-                // verfica se não está voltando para o mesmo no anterior
-                if (!listnode.Exists(o => o.X == node.X && o.Y == node.Y))
+                if (!listnode.Exists(i => i.EqualsAll(node)))
                     listnode.Add(node);
 
-                var list = Map.GetNeighbors(node, diagonal, ByRef: false);
+                var list = Map.GetNeighbors(node, diagonal, false, false);
                 var ind = Settings.Random.Next(0, list.Count);
                 var newnode = list[ind];
 
-                // verifica se teve colisão ou se encontrou o fim
-                run = !listnode.Exists(i => i.EqualsAll(newnode));
+                run = newnode != null && !listnode.Exists(i => i.EqualsAll(newnode));
 
                 if (newnode != null)
                     node = new Node(newnode, node, newnode.Direction);
