@@ -1,9 +1,9 @@
 ﻿{
   "GenerationLimit": 1000,
-  "MutationRate": 0.4,
-  "MutationAlgorithn": 1, // 0=Exchange Mutation 1=Displaced Inversion Mutation 2=Displacement Mutation 3=Insertion Mutation 4=Inversion Mutation 5=Scramble mutation 6=Bitwise
+  "MutationRate": 0.01,
+  "MutationAlgorithn": 0, // 0=Exchange Mutation 1=Displaced Inversion Mutation 2=Displacement Mutation 3=Insertion Mutation 4=Inversion Mutation 5=Scramble mutation 6=Bitwise
   "CrossoverRate": 0.7,
-  "CrossoverAlgorithn": 2, // 0=Simple 1=Order-Based Crossover 2=Position-Based Crossover
+  "CrossoverAlgorithn": 1, // 0=Simple 1=Order-Based Crossover 2=Position-Based Crossover
   "PopulationSize": 100,
   "FitnessAlgorithn": 0, // 0=Heuristic 1=WithCollisionDetection
   "SelectionAlgorithn": 1, // 0=Random 1=Roulette Wheel Selection
