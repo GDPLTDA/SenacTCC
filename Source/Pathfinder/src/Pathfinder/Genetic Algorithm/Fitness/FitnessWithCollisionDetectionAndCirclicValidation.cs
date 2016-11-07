@@ -4,15 +4,15 @@ using static System.Math;
 
 namespace Pathfinder.Fitness
 {
-    public class FitnessWithCollisionDetection : IFitness
+    public class FitnessWithCollisionDetectionAndCirclicValidation : IFitness
     {
         IHeuristic Heuristic;
-        GASettings gasettings;
+        GASettings GAsettings;
 
-        public FitnessWithCollisionDetection()
+        public FitnessWithCollisionDetectionAndCirclicValidation()
         {
             Heuristic = Program.Settings.GetHeuristic();
-            gasettings = Program.GASettings;
+            GAsettings = Program.GASettings;
         }
         public double Calc(IGenome genome)
         {
@@ -25,7 +25,20 @@ namespace Pathfinder.Fitness
 
             var penalty = (double)0;
             if (lastnode.Collision)
-                penalty = gasettings.Penalty * (HeuristicValue / HeuristicMaxDistance);
+                penalty += GAsettings.Penalty * (HeuristicValue / HeuristicMaxDistance);
+
+            var IsCirclic = genome
+                          .ListNodes
+                          .GroupBy(e => new { e.X, e.Y })
+                          .Select(e => new { e.Key.X, e.Key.Y, qtd = e.Count() })
+                          .Any(e => e.qtd > 1);
+
+           
+            if (IsCirclic)
+                penalty += GAsettings.Penalty * (HeuristicValue / HeuristicMaxDistance); 
+
+
+
 
             return penalty + HeuristicValue;
         }

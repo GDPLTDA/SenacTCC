@@ -60,49 +60,11 @@ namespace Pathfinder
             }
 
             var ret = new Genome(Map, newbaby);
-            //RealignGenome(ret);
+            
             return ret;
         }
 
 
-        public void RealignGenome(IGenome baby)
-        {
-            var nodes = baby.ListNodes;
-            var parent = nodes.First();
-            var nodeCount = nodes.Count();
-            for (int i = 1; i < nodeCount; i++)
-            {
-                var current = nodes[i];
-
-                current.ParentNode = parent;
-
-                if (current.Direction == Constants.DirectionMovement.Up ||
-                    current.Direction == Constants.DirectionMovement.UpLeft ||
-                    current.Direction == Constants.DirectionMovement.UpRight
-                    )
-                    current.Y = parent.Y - 1;
-
-                if (current.Direction == Constants.DirectionMovement.Down ||
-                    current.Direction == Constants.DirectionMovement.DownLeft ||
-                    current.Direction == Constants.DirectionMovement.DownRight
-                    )
-                    current.Y = parent.Y + 1;
-
-
-                if (current.Direction == Constants.DirectionMovement.Left ||
-                    current.Direction == Constants.DirectionMovement.DownLeft ||
-                    current.Direction == Constants.DirectionMovement.UpLeft
-                    )
-                    current.X = parent.X - 1;
-
-                if (current.Direction == Constants.DirectionMovement.Right ||
-                    current.Direction == Constants.DirectionMovement.DownRight ||
-                    current.Direction == Constants.DirectionMovement.UpRight
-                    )
-                    current.X = parent.X - 1;
-
-                parent = current;
-            }
-        }
+        
     }
 }

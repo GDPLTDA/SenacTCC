@@ -107,6 +107,12 @@ namespace Pathfinder
                 case 1:
                     ret = FitnessFactory.GetSimpleWithCollisionDetectionImplementation();
                     break;
+                case 2:
+                    ret = FitnessFactory.GetCirclicValidationImplementation();
+                    break;
+                case 3:
+                    ret = FitnessFactory.GetColisionDetectAndCirclicValidationImplementation();
+                    break;
             }
 
             return ret;

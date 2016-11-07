@@ -17,5 +17,15 @@ namespace Pathfinder.Factories
         {
             return new FitnessWithCollisionDetection();
         }
+
+        public static IFitness GetCirclicValidationImplementation()
+        {
+            return new FitnessWithCirclicValidation();
+        }
+
+        public static IFitness GetColisionDetectAndCirclicValidationImplementation()
+        {
+            return new FitnessWithCollisionDetectionAndCirclicValidation();
+        }
     }
 }
