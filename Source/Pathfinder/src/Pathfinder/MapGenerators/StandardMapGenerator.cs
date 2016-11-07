@@ -95,6 +95,7 @@ namespace Pathfinder.MapGenerators
                     if (path.Max(e => e.G) >= minPathLength) // verifica se o caminho sastifaz o tamanho minimo
                     {
                         IsAGoodMap = true;
+                        _map.Clear();
                         ret = _map;
                     }
 

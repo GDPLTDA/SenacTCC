@@ -251,5 +251,22 @@ namespace Pathfinder
                 for (int j = 0; j < Width; j++)
                     this[i, j] = new Node(j, i);
         }
+
+        public void Clear()
+        {
+            for (int i = 0; i < Width; i++)
+                for (int j = 0; j < Height; j++)
+                {
+                    var node = Nodes[i, j];
+                    node.Cost = 0;
+                    node.G = 0;
+                    node.H = 0;
+                    node.ParentNode = null;
+                    node.Tested = false;
+                    node.Collision = false;
+                    node.RetainCount = 0;
+                    node.Direction = DirectionMovement.None;
+                }
+        }
     }
 }

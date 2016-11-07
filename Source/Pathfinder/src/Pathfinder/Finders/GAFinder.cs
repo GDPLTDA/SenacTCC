@@ -42,7 +42,7 @@ namespace Pathfinder.Finders
         public override bool Find(IMap map)
         {
             var Adaptation = new Adaptation(map);
-
+             
             GridMap = map;
             _startNode = map.StartNode;
             _endNode = map.EndNode;

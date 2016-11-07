@@ -18,7 +18,8 @@ namespace Pathfinder.Mutation
             int qtdBits;
 
             var newDirection = -1;
-            while (newDirection > 9 || newDirection == -1){
+            while (newDirection > 9 || newDirection == -1 || newDirection==0)
+            {
                 
                 // choose the bit to swap                
                 qtdBits = (int)Math.Floor(3 * Settings.Random.NextDouble());
@@ -28,6 +29,7 @@ namespace Pathfinder.Mutation
             }
 
             baby.ListNodes[i].Direction = (DirectionMovement)newDirection;
+            
             return baby;
         }
     }

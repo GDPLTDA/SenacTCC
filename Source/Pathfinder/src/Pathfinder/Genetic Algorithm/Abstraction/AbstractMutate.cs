@@ -15,5 +15,12 @@ namespace Pathfinder.Abstraction
         public double MutationRate { get; set; }
 
         public abstract IGenome Calc(IGenome baby);
+
+       
+
+        }
+
     }
-}
+
+
+

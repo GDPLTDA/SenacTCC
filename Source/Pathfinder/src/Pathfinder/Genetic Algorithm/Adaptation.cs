@@ -48,17 +48,61 @@ namespace Pathfinder
             var ind = Settings.Random.Next(0, list.Count);
             var newnode = list[ind];
 
-            if (!newbaby.Exists(i=>i.EqualsAll(newnode)))
+            if (!newbaby.Exists(i => i.EqualsAll(newnode)))
             {
                 lastcoor.Collision = !newnode.Walkable;
                 if (lastcoor.Collision)
-                    return new Genome(Map, newbaby); 
+                    return new Genome(Map, newbaby);
 
                 ng = ng + ((lastcoor.X - newnode.X == 0 || lastcoor.Y - newnode.Y == 0) ? 1 : sqrt2);
                 newnode.G = ng;
                 newbaby.Add(new Node(newnode));
             }
-            return new Genome(Map, newbaby);
+
+            var ret = new Genome(Map, newbaby);
+            RealignGenome(ret);
+            return ret;
+        }
+
+
+        public void RealignGenome(IGenome baby)
+        {
+            var nodes = baby.ListNodes;
+            var parent = nodes.First();
+            var nodeCount = nodes.Count();
+            for (int i = 1; i < nodeCount; i++)
+            {
+                var current = nodes[i];
+
+                current.ParentNode = parent;
+
+                if (current.Direction == Constants.DirectionMovement.Up ||
+                    current.Direction == Constants.DirectionMovement.UpLeft ||
+                    current.Direction == Constants.DirectionMovement.UpRight
+                    )
+                    current.Y = parent.Y - 1;
+
+                if (current.Direction == Constants.DirectionMovement.Down ||
+                    current.Direction == Constants.DirectionMovement.DownLeft ||
+                    current.Direction == Constants.DirectionMovement.DownRight
+                    )
+                    current.Y = parent.Y + 1;
+
+
+                if (current.Direction == Constants.DirectionMovement.Left ||
+                    current.Direction == Constants.DirectionMovement.DownLeft ||
+                    current.Direction == Constants.DirectionMovement.UpLeft
+                    )
+                    current.X = parent.X - 1;
+
+                if (current.Direction == Constants.DirectionMovement.Right ||
+                    current.Direction == Constants.DirectionMovement.DownRight ||
+                    current.Direction == Constants.DirectionMovement.UpRight
+                    )
+                    current.X = parent.X - 1;
+
+                parent = current;
+            }
         }
     }
 }

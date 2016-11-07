@@ -99,7 +99,7 @@ namespace Pathfinder
         }
         public override string ToString()
         {
-            return $"{{{this.X},{this.Y},{(!Walkable?"Wall": "Walkable")},{Cost}}} {(Collision?" COLIDE!":"")}";
+            return $"{{{this.X},{this.Y},{(!Walkable?"Wall": "Walkable")},{Cost}}} {Direction} {(Collision?" COLIDE!":"")}";
         }
     }
 }

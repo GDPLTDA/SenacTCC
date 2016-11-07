@@ -37,7 +37,7 @@ namespace Pathfinder
 
         public List<Node> RouteFinding(DiagonalMovement diagonal)
         {
-            var setting = new Settings();
+            var setting = Program.Settings;
             var listnode = new List<Node>();
             bool run = true;
             var node = new Node(Map.StartNode);
