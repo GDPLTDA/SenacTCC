@@ -1,9 +1,5 @@
 ﻿using Pathfinder.Abstraction;
 using Pathfinder.Selection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
@@ -11,7 +7,7 @@ namespace Pathfinder.Factories
     {
         public static ISelection GetSimpleImplementation()
         {
-            return new SelectionRouletteWheel();
+            return new SelectionRandom();
         }
 
         public static ISelection GetRouletteWheelSelectionImplementation()

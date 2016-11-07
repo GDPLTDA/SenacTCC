@@ -102,7 +102,6 @@ namespace Pathfinder.Finders
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);
                 }
-                Populations = null;
                 Populations = newpopulations.ToList();
                 
                 OnStep(BuildArgs(step++));
