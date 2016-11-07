@@ -11,8 +11,7 @@ namespace Pathfinder.Fitness
 
         public FitnessWithCollisionDetection()
         {
-            var settings = new Settings();
-            Heuristic = settings.GetHeuristic();
+            Heuristic = Program.Settings.GetHeuristic();
             gasettings = new GASettings();
         }
         public double Calc(IGenome genome)

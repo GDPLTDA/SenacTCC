@@ -12,8 +12,7 @@ namespace Pathfinder.Fitness
     {
         public IHeuristic Heuristic;
         public FitnessHeuristic() {
-            var settings = new Settings();
-            Heuristic = settings.GetHeuristic();
+            Heuristic = Program.Settings.GetHeuristic();
         }
         public double Calc(IGenome genome)
         {

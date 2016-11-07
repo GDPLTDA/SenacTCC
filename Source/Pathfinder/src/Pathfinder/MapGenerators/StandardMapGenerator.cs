@@ -13,11 +13,10 @@ namespace Pathfinder.MapGenerators
 
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
-            Settings settings = new Settings();
-            int width = settings.Width, height = settings.Height;
-            double seed = settings.RandomSeed;
-            int minPathLength = settings.MinimumPath;
-            int blocksize = settings.RandomBlock;
+            int width = Program.Settings.Width, height = Program.Settings.Height;
+            double seed = Program.Settings.RandomSeed;
+            int minPathLength = Program.Settings.MinimumPath;
+            int blocksize = Program.Settings.RandomBlock;
             bool IsAGoodMap = false;
             IMap ret = null;
 
@@ -37,7 +36,7 @@ namespace Pathfinder.MapGenerators
                 }
             }
 
-            DiagonalMovement d = settings.AllowDiagonal;
+            DiagonalMovement d = Program.Settings.AllowDiagonal;
             if (diagonal.HasValue)
                 d = diagonal.Value;
 
@@ -104,7 +103,7 @@ namespace Pathfinder.MapGenerators
                 subgrid = new List<Node>();
             }
 
-            if (settings.AppMode != 2)  // dont run if in batchmode
+            if (Program.Settings.AppMode != 2)  // dont run if in batchmode
                 new FileTool().SaveFileFromMap(ret);
 
             return ret;

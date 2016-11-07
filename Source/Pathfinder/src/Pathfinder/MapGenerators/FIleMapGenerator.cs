@@ -13,10 +13,9 @@ namespace Pathfinder.MapGenerators
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
             var ft = new FileTool();
-            var set = new Settings();
             
             if (string.IsNullOrEmpty(argument))
-                argument = set.FileToLoad;
+                argument = Program.Settings.FileToLoad;
 
             var map = ft.ReadMapFromFile(argument);
 
