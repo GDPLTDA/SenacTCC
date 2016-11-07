@@ -6,12 +6,17 @@ namespace Pathfinder.Fitness
 {
     public class FitnessWithCollisionDetection : IFitness
     {
-        public double Calc(IGenome genome)
+        IHeuristic Heuristic;
+        GASettings gasettings;
+
+        public FitnessWithCollisionDetection()
         {
             var settings = new Settings();
-            var gasettings = new GASettings();
-
-            var Heuristic = settings.GetHeuristic();
+            Heuristic = settings.GetHeuristic();
+            gasettings = new GASettings();
+        }
+        public double Calc(IGenome genome)
+        {
             var _endNode = genome.Map.EndNode;
             var lastnode = genome.ListNodes.Last();
 

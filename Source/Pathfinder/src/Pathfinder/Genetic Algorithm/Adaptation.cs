@@ -25,7 +25,7 @@ namespace Pathfinder
             for (int i = 1; i < listnode.Count; i++)
             {
                 lastcoor = newbaby.Last();
-                var neighbors = (List<Node>)Map.GetNeighbors(lastcoor, false, true);
+                var neighbors = (List<Node>)Map.GetNeighbors(lastcoor, false);
 
                 var coor = neighbors.Find(o => o.Direction == listnode[i].Direction);
 
@@ -60,7 +60,7 @@ namespace Pathfinder
             }
 
             var ret = new Genome(Map, newbaby);
-            RealignGenome(ret);
+            //RealignGenome(ret);
             return ret;
         }
 

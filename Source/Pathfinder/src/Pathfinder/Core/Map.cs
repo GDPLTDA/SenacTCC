@@ -9,6 +9,7 @@ namespace Pathfinder
 {
     public class Map : IMap
     {
+        Settings settings = new Settings();
         public Node[,] Nodes { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -129,7 +130,6 @@ namespace Pathfinder
 
         public IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true)
         {
-            var settings = new Settings();
             return GetNeighbors(node, AllowDiagonal.HasValue ? AllowDiagonal.Value : settings.AllowDiagonal, ByRef, valid);
         }
         
