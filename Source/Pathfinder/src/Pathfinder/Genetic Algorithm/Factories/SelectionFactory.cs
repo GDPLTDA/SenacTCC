@@ -11,7 +11,7 @@ namespace Pathfinder.Factories
     {
         public static ISelection GetSimpleImplementation()
         {
-            return new SelectionRouletteWheel();
+            return new SelectionRandom();
         }
 
         public static ISelection GetRouletteWheelSelectionImplementation()
