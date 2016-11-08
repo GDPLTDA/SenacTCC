@@ -117,10 +117,10 @@ namespace Pathfinder.AppMode
                                                 GC.WaitForPendingFinalizers();
                                                 var GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
                                                 
-                                                GAFinder.Crossover = GASettings.GetCrossover(cross);
-                                                GAFinder.Mutate = GASettings.GetMutate(mut);
-                                                GAFinder.Fitness = GASettings.GetFitness(fit);
-                                                GAFinder.Selection = GASettings.GetSelection(sel);
+                                                GAFinder.Crossover = GASettings.GetCrossover(Crossover[cross]);
+                                                GAFinder.Mutate = GASettings.GetMutate(Mutation[mut]);
+                                                GAFinder.Fitness = GASettings.GetFitness(Fitness[fit]);
+                                                GAFinder.Selection = GASettings.GetSelection(Selection[sel]);
 
                                                 var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
 
