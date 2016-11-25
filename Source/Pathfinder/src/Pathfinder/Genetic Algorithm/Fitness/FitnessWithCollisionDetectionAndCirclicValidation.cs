@@ -1,4 +1,5 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.Genetic_Algorithm.Fitness;
 using System.Linq;
 using static System.Math;
 
@@ -25,8 +26,21 @@ namespace Pathfinder.Fitness
 
             var penalty = (double)0;
             if (lastnode.Collision)
-                penalty += GAsettings.Penalty * (HeuristicValue / HeuristicMaxDistance);
+            {
+                var xy = new xy() { x = lastnode.X, y = lastnode.Y };
 
+
+                var badPath = 0;
+                if (FinessHelper.RepeatControl.ContainsKey(xy))
+                {
+                    FinessHelper.RepeatControl[xy]++;
+                    badPath = FinessHelper.RepeatControl[xy];
+                }
+                else
+                    FinessHelper.RepeatControl.Add(xy, 1);
+
+                penalty += (GAsettings.Penalty * (HeuristicValue / HeuristicMaxDistance)) + (badPath*100);
+            }
             var IsCirclic = genome
                           .ListNodes
                           .GroupBy(e => new { e.X, e.Y })
