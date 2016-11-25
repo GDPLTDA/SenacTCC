@@ -15,14 +15,14 @@ namespace Pathfinder.AppMode
     {
         public void Run()
         {
-            var setting = Program.Settings;
-            var GASettings = Program.GASettings;
+            
+            
 
             var ft = new FileTool();
-            setting.IDATrackRecursion = false;
-            var qtdMaps = setting.Batch_map_qtd_to_generate;
+            Settings.IDATrackRecursion = false;
+            var qtdMaps = Settings.Batch_map_qtd_to_generate;
             var now = DateTime.Now;
-            var folder = Path.Combine(setting.Batch_folder, $"batch_{setting.Width}x{setting.Height}_{setting.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
+            var folder = Path.Combine(Settings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
             var dataFile = Path.Combine(folder, "_data.csv");
             var dataFileGA = Path.Combine(folder, "_dataGA.csv");
 
@@ -37,13 +37,13 @@ namespace Pathfinder.AppMode
             var divblock = Math.Ceiling((double)qtdMaps / (double)diagonals.Count());
             var diagIndex = 0;
 
-            if (setting.Batch_map_origin == 0)
+            if (Settings.Batch_map_origin == 0)
             {
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
 
                 //generate maps
-                var generator = setting.Batch_generate_pattern == 0 ?
+                var generator = Settings.Batch_generate_pattern == 0 ?
                                     MapGeneratorFactory.GetRandomMapGeneratorImplementation() :
                                     MapGeneratorFactory.GetStandardMapGeneratorImplementation();
 
@@ -66,7 +66,7 @@ namespace Pathfinder.AppMode
             else
             {
                 //if will load the map, use the configured root path
-                folder = setting.Batch_folder;
+                folder = Settings.Batch_folder;
                 dataFile = Path.Combine(folder, $"_data_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
                 dataFileGA = Path.Combine(folder, $"_dataGA_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
             }
@@ -74,13 +74,13 @@ namespace Pathfinder.AppMode
             var files = Directory.GetFiles(folder);
             var fileCount = files.Count();
 
-            var finders = setting.Batch_list_finders;
-            var heuristics = setting.Batch_list_heuristics;
+            var finders = Settings.Batch_list_finders;
+            var heuristics = Settings.Batch_list_heuristics;
 
-            var Mutation = setting.Batch_list_Mutation;
-            var Crossover = setting.Batch_list_Crossover;
-            var Fitness = setting.Batch_list_Fitness;
-            var Selection = setting.Batch_list_Selection ;
+            var Mutation = Settings.Batch_list_Mutation;
+            var Crossover = Settings.Batch_list_Crossover;
+            var Fitness = Settings.Batch_list_Fitness;
+            var Selection = Settings.Batch_list_Selection ;
 
             var csvFile = new StringBuilder();
             var csvGAFile = new StringBuilder();
@@ -100,10 +100,13 @@ namespace Pathfinder.AppMode
 
                     foreach (var _h in heuristics)
                     {
+                        var finderFactory = new FinderFactory();
+                        var heuristicFactory = new HeuristicFactory();
 
-                        var h = setting.GetHeuristic(_h);
-                        var finder = setting.GetFinder(h, _finder);
-
+                        var h = heuristicFactory.GetImplementation(_h);
+                        var finder = finderFactory.GetImplementation(_finder);
+                        finder.Heuristic = h;
+                            
                         if (finder is IGeneticAlgorithm)
                         {
                             
@@ -111,16 +114,18 @@ namespace Pathfinder.AppMode
                                 for (int mut = 0; mut < Mutation.Count(); mut++)
                                     for (int fit = 0; fit < Fitness.Count(); fit++)
                                         for (int sel = 0; sel < Selection.Count(); sel++)
-                                            for (int j = 0; j < setting.Batch_GATimesToRunPerMap; j++)
+                                            for (int j = 0; j < Settings.Batch_GATimesToRunPerMap; j++)
                                             {
                                                 GC.Collect();
                                                 GC.WaitForPendingFinalizers();
-                                                var GAFinder = (IGeneticAlgorithm)setting.GetFinder(h, _finder);
                                                 
-                                                GAFinder.Crossover = GASettings.GetCrossover(Crossover[cross]);
-                                                GAFinder.Mutate = GASettings.GetMutate(Mutation[mut]);
-                                                GAFinder.Fitness = GASettings.GetFitness(Fitness[fit]);
-                                                GAFinder.Selection = GASettings.GetSelection(Selection[sel]);
+                                                var GAFinder = (IGeneticAlgorithm)finderFactory.GetImplementation(_finder);
+                                                GAFinder.Heuristic = h;
+
+                                                GAFinder.Crossover = new CrossoverFactory().GetImplementation(Crossover[cross]) ;
+                                                GAFinder.Mutate    = new MutateFactory().GetImplementation(Mutation[mut]);
+                                                GAFinder.Fitness   = new FitnessFactory().GetImplementation(Fitness[fit]);
+                                                GAFinder.Selection = new SelectionFactory().GetImplementation(Selection[sel]);
 
                                                 var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
 

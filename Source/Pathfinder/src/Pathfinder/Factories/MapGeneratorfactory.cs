@@ -7,26 +7,51 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
-    public class MapGeneratorFactory
+    public class MapGeneratorFactory : IFactory<IMapGenerator>
     {
         public static IMapGenerator GetFileMapGeneratorImplementation()
-        {
-            return new FileMapGenerator();
-        }
+            => new FileMapGenerator();
+        
 
         public static IMapGenerator GetStaticMapGeneratorImplementation()
-        {
-            return new StaticMapGenerator();
-        }
+            => new StaticMapGenerator();
+        
 
         public static IMapGenerator GetRandomMapGeneratorImplementation()
-        {
-            return new RandomMapGenerator();
-        }
+            => new RandomMapGenerator();
+        
 
         public static IMapGenerator GetStandardMapGeneratorImplementation()
+            => new StandardMapGenerator();
+        
+
+        public IMapGenerator GetImplementation()
+            => Decide(Settings.MapOrigin);
+        
+
+        public IMapGenerator GetImplementation(int option)
+            => Decide((MapGeneratorEnum)option);
+        
+
+        private IMapGenerator Decide(MapGeneratorEnum option)
         {
-            return new StandardMapGenerator();
+            switch (option)
+            {
+                case MapGeneratorEnum.File:
+                    return GetFileMapGeneratorImplementation();
+                case MapGeneratorEnum.Static:
+                    return GetStaticMapGeneratorImplementation();
+
+                case MapGeneratorEnum.Random:
+                    return GetRandomMapGeneratorImplementation();
+                    
+                case MapGeneratorEnum.Standard:
+                    return GetStandardMapGeneratorImplementation();
+            }
+
+            throw new Exception("No generator selected");
+
         }
+
     }
 }

@@ -8,6 +8,6 @@ namespace Pathfinder.Abstraction
     public interface IViewer
     {
         void Run(IMap map);
-
+        void SetFinder(IFinder finder);
     }
 }

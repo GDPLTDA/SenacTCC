@@ -14,19 +14,21 @@ namespace Pathfinder.Viewer
         OpenGlWindow window;
         IFinder _finder;
 
-        public OpenGlViewer(IFinder finder)
+        public OpenGlViewer()
         {
-            _finder = finder;
+           
         }
 
 
         public void Run(IMap map)
         {
-            var set = Program.Settings;
-            window = new OpenGlWindow(map, _finder,set.OpenGlBlockSize );
+            window = new OpenGlWindow(map, _finder,Settings.OpenGlBlockSize );
             window.Run();
         }
 
-      
+        public void SetFinder(IFinder finder)
+        {
+            _finder = finder;
+        }
     }
 }

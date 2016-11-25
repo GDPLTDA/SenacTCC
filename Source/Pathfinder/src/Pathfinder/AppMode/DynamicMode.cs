@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Pathfinder.Abstraction;
 using static System.Console;
 using Pathfinder.Constants;
+using Pathfinder.Factories;
 
 namespace Pathfinder.AppMode
 {
@@ -12,7 +13,8 @@ namespace Pathfinder.AppMode
     {
         public void Run()
         {
-            var settings = Program.Settings;
+            
+
             int v = ReadInput(@"Select viewer( 0=Console 1=OpenGL ):", 0,1 );
             int m = ReadInput(@"Select map origin( 0=Static 1=FromFile 2=Random ):",0, 2);            
             int h = ReadInput(@"Select Heuristic ( 0=Manhatam 1=Euclidean 2=Octile 3=Chebyshev ):", 0, 3);
@@ -21,18 +23,18 @@ namespace Pathfinder.AppMode
 
             if (pf == 4)
             {
-                var gasettings = Program.GASettings;
-                gasettings.GenerationLimit = ReadInput(@"Select generation limit:", 0, 10000);
-                gasettings.MutationRate = ReadInput(@"Select mutation rate percent:", 0, 100) / 100;
-                gasettings.MutationAlgorithn = ReadInput(@"Select algorithm mutation ( 0=Simple 1=DIVM 2=DM 3=IM 4=IVM 5=SM ):", 0, 5);
 
-                gasettings.CrossoverRate = ReadInput(@"Select crossover rate percent:", 0, 100) / 100;
-                gasettings.CrossoverAlgorithn = ReadInput(@"Select algorithm crossover ( 0=Simple 1=OBX 2=PBX ):", 0, 2);
-                gasettings.PopulationSize = ReadInput(@"Select population size:", 0, 10000);
+                GASettings.GenerationLimit = ReadInput(@"Select generation limit:", 0, 10000);
+                GASettings.MutationRate = ReadInput(@"Select mutation rate percent:", 0, 100) / 100;
+                GASettings.MutationAlgorithm = (MutateEnum)ReadInput(@"Select algorithm mutation ( 0=Simple 1=DIVM 2=DM 3=IM 4=IVM 5=SM ):", 0, 5);
 
-                gasettings.FitnessAlgorithn = ReadInput(@"Select algorithm fitness ( 0=Heuristic):", 0, 0);
-                gasettings.SelectionAlgorithn = ReadInput(@"Select algorithm selection ( 0=Simple):", 0, 0);
-                gasettings.BestSolution = ReadInput(@"Select count best solution:", 0, gasettings.PopulationSize);
+                GASettings.CrossoverRate = ReadInput(@"Select crossover rate percent:", 0, 100) / 100;
+                GASettings.CrossoverAlgorithm = (CrossoverEnum)ReadInput(@"Select algorithm crossover ( 0=Simple 1=OBX 2=PBX ):", 0, 2);
+                GASettings.PopulationSize = ReadInput(@"Select population size:", 0, 10000);
+
+                GASettings.FitnessAlgorithm = (FitnessEnum)ReadInput(@"Select algorithm fitness ( 0=Heuristic):", 0, 0);
+                GASettings.SelectionAlgorithm = (SelectionEnum)ReadInput(@"Select algorithm selection ( 0=Simple):", 0, 0);
+                GASettings.BestSolutionToPick = ReadInput(@"Select count best solution:", 0, GASettings.PopulationSize);
             }
 
             string mapGenArgs=string.Empty;
@@ -47,15 +49,17 @@ namespace Pathfinder.AppMode
                 if (v==1)
                 {
                     int blocksize= ReadInput(@"block size in px:", 1, 100);
-                    settings.OpenGlBlockSize = blocksize;
+                    Settings.OpenGlBlockSize = blocksize;
                 }
             }
 
-            settings.AllowDiagonal = (DiagonalMovement)d;
-            var heuristic = settings.GetHeuristic(h);
-            var finder = settings.GetFinder(heuristic,pf);
-            var generator = settings.GetGenerator(m);
-            var viewer = settings.GetViewer(finder,v);
+            Settings.AllowDiagonal = (DiagonalMovement)d;
+            var heuristic = new HeuristicFactory().GetImplementation(h);
+            var finder = new FinderFactory().GetImplementation(pf);
+            finder.Heuristic = heuristic;
+            var generator = new MapGeneratorFactory().GetImplementation(m);
+            var viewer = new ViewerFactory().GetImplementation(v);
+            viewer.SetFinder(finder);
 
             viewer.Run(generator.DefineMap(mapGenArgs));
         }

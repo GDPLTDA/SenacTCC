@@ -9,16 +9,34 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
-    public class ViewerFactory
+    public class ViewerFactory : IFactory<IViewer>
     {
-        public static IViewer GetConsoleViewerImplementation(IFinder finder)
-        {
-            return new ConsoleViewer(finder);
-        }
+        public static IViewer GetConsoleViewerImplementation()
+         => new ConsoleViewer();
+        
+        public static IViewer GetOpenGlViewerImplementation()
+            => new OpenGlViewer();
+        
+        public IViewer GetImplementation()
+            => Decide(Settings.MapViwer);
 
-        public static IViewer GetOpenGlViewerImplementation(IFinder finder)
+        public IViewer GetImplementation(int option)
+            => Decide((ViewerEnum)option);
+
+        public IViewer Decide(ViewerEnum option)
         {
-            return new OpenGlViewer(finder);
+            switch (option)
+            {
+                case ViewerEnum.Console:
+                    return GetConsoleViewerImplementation();
+
+                case ViewerEnum.OpenGL:
+                    return GetOpenGlViewerImplementation();
+
+            }
+
+            throw new Exception("No viewer selected");
+
         }
     }
 }

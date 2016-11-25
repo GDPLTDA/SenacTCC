@@ -11,10 +11,7 @@ namespace Pathfinder.Viewer
     {
         IList<Node> path;
 
-        public ConsoleViewer(IFinder finder) : base(finder)
-        {
-        }
-
+    
         public override void Start()
         {
             Console.Clear();
@@ -52,19 +49,19 @@ namespace Pathfinder.Viewer
                     var node = map[i, j];
 
                     if (node == map.StartNode)
-                        c = Program.Settings.Start;
+                        c = Settings.Start;
                     else if (node == map.EndNode)
-                        c = Program.Settings.End;
+                        c = Settings.End;
                     else if (showPath && path.Contains(node))
-                        c = Program.Settings.Path;
+                        c = Settings.Path;
                     else if (!node.Walkable)
-                        c = Program.Settings.Wall;
+                        c = Settings.Wall;
                     else if (showOpenNodes && _finder.isClosed(node))
-                        c = Program.Settings.Closed;
+                        c = Settings.Closed;
                     else if (showOpenNodes && _finder.isOpen(node))
-                        c = Program.Settings.Opened;
+                        c = Settings.Opened;
                     else
-                        c = Program.Settings.Empty;
+                        c = Settings.Empty;
 
                     ret += c.ToString();
                 }

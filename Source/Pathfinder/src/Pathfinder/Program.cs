@@ -11,14 +11,10 @@ namespace Pathfinder
 {
     public class Program
     {
-        public static Settings Settings;
-        public static GASettings GASettings;
+        
         public static void Main(string[] args)
         {
-
-            Settings = new Settings();
-            GASettings = new GASettings();
-            var app = Settings.GetAppMode();
+            var app = Resolver.Resolve<IAppMode>();
             app.Run();
             
         }    

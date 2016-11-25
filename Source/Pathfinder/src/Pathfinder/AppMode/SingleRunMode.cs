@@ -10,14 +10,14 @@ namespace Pathfinder.AppMode
     {
         public void Run()
          {
-            var settings = Program.Settings;
-
-            var heuristic = settings.GetHeuristic();
-            var finder = settings.GetFinder(heuristic);
-            var generator = settings.GetGenerator();
-            var viewer = settings.GetViewer(finder);
-
+            
+            var heuristic = Resolver.Resolve<IHeuristic>();
+            var finder = Resolver.Resolve<IFinder>();
+            var generator = Resolver.Resolve<IMapGenerator>();
+            var viewer = Resolver.Resolve<IViewer>();
+            
             var map = generator.DefineMap();
+            viewer.SetFinder(finder);
             viewer.Run(map);
         }
     }

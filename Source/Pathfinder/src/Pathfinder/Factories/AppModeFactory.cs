@@ -7,21 +7,45 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
-    public class AppModeFactory
+    public class AppModeFactory : IFactory<IAppMode>
     {
-        public static IAppMode GetSingleRunImplementation()
+        public IAppMode GetSingleRunImplementation()
+            => new SingleRunMode();
+        
+
+        public IAppMode GetDynamicImplementation()
+             => new DynamicMode();
+        
+
+        public IAppMode GetBatchImplementation()
+            => new BatchMode();
+        
+
+        public IAppMode GetImplementation()
+            => DecideImplementation(Settings.AppMode);
+        
+
+
+        public IAppMode GetImplementation(int option)
+            => DecideImplementation((AppModeEnum)option);
+        
+
+        private IAppMode DecideImplementation(AppModeEnum mode)
         {
-            return new SingleRunMode();
+            switch (mode)
+            {
+                case AppModeEnum.SingleRun:
+                    return GetSingleRunImplementation();
+                case AppModeEnum.Dynamic:
+                    return GetDynamicImplementation();
+                case AppModeEnum.BatchMode:
+                    return GetBatchImplementation();
+            }
+
+
+
+            throw new Exception("No app mode selected");
         }
 
-        public static IAppMode GetDynamicImplementation()
-        {
-            return new DynamicMode();
-        }
-
-        public static IAppMode GetBatchImplementation()
-        {
-            return new BatchMode();
-        }
     }
 }

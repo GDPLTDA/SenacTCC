@@ -15,9 +15,11 @@ namespace Pathfinder.MapGenerators
 
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
-            int width = Program.Settings.Width, height = Program.Settings.Height;
-            double seed = Program.Settings.RandomSeed;
-            int minPathLength = Program.Settings.MinimumPath;
+            int width = Settings.Width, 
+                height = Settings.Height;
+
+            double seed = Settings.RandomSeed;
+            int minPathLength = Settings.MinimumPath;
             bool IsAGoodMap = false;
             IMap ret = null;
 
@@ -42,13 +44,13 @@ namespace Pathfinder.MapGenerators
             }
 
 
-            DiagonalMovement d = Program.Settings.AllowDiagonal; 
+            DiagonalMovement d = Settings.AllowDiagonal; 
             if (diagonal.HasValue)
                 d = diagonal.Value;
 
 
             // finder para valida se o mapa é passavel
-            IFinder AStar = FinderFactory.GetBFSImplementation(
+            IFinder AStar = new FinderFactory().GetBFSImplementation(
                                     d,
                                     HeuristicFactory.GetOctileImplementation()
                                 );
@@ -91,7 +93,7 @@ namespace Pathfinder.MapGenerators
                 GridMap = new List<Node>();
             }
 
-            if (Program.Settings.AppMode!=2)  // dont run if in batchmode
+            if (Settings.AppMode!=AppModeEnum.BatchMode)  // dont run if in batchmode
                 new FileTool().SaveFileFromMap(ret);
 
             return ret;

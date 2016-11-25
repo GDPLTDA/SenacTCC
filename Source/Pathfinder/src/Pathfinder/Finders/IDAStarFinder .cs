@@ -29,8 +29,8 @@ namespace Pathfinder.Finders
             Name = "IDA* (IDA Star)";
             SleepUITimeInMs = 30;
             
-            var set = Program.Settings;
-            var ms = set.IDAStarFinderTimeOut;
+            
+            var ms = Settings.IDAStarFinderTimeOut;
 
             if (ms == 0)
                 TimeLimit = double.PositiveInfinity;
@@ -38,7 +38,7 @@ namespace Pathfinder.Finders
                 TimeLimit = ms;
 
             nodesVisited = 0;
-            TrackRecursion = set.IDATrackRecursion;
+            TrackRecursion = Settings.IDATrackRecursion;
         }
 
 

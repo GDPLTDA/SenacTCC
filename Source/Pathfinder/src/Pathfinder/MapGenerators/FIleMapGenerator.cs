@@ -15,7 +15,7 @@ namespace Pathfinder.MapGenerators
             var ft = new FileTool();
             
             if (string.IsNullOrEmpty(argument))
-                argument = Program.Settings.FileToLoad;
+                argument = Settings.FileToLoad;
 
             var map = ft.ReadMapFromFile(argument);
 
