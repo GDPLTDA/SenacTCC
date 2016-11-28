@@ -30,7 +30,7 @@ namespace Pathfinder.Crossover
             {
                 lstPositions.Add(pos);
                 lstTempCities.Add(listmom[pos]);
-                pos += Settings.Random.Next(1, minindex - pos);
+                pos += Settings.Random.Next(0, minindex - pos);
             }
 
             var cPos = 0;
@@ -51,7 +51,7 @@ namespace Pathfinder.Crossover
 
             for (int i = 0; i < lstPositions.Count; ++i)
             {
-                var x = Convert.ToInt32(lstPositions[i]);
+                var x = lstPositions[i];
                 lstTempCities.Add(listdad[x]);
             }
 
