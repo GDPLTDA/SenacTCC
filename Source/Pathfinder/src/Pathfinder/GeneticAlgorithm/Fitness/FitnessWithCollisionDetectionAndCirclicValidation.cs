@@ -8,11 +8,11 @@ namespace Pathfinder.Fitness
     public class FitnessWithCollisionDetectionAndCirclicValidation : IFitness
     {
         IHeuristic Heuristic;
-        GASettings GAsettings;
+        
 
         public FitnessWithCollisionDetectionAndCirclicValidation()
         {
-            Heuristic = Resolver.Resolve<IHeuristic>();
+            Heuristic = Container.Resolve<IHeuristic>();
             
         }
         public double Calc(IGenome genome)

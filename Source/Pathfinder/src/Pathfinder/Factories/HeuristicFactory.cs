@@ -9,19 +9,19 @@ namespace Pathfinder.Factories
 {
     public class HeuristicFactory : IFactory<IHeuristic>
     {
-        public static IHeuristic GetManhattamImplementation()
+        public IHeuristic GetManhattamImplementation()
             => new Manhattan();
         
 
-        public static IHeuristic GetEuclideanImplementation()
+        public IHeuristic GetEuclideanImplementation()
             => new Euclidean();
         
 
-        public static IHeuristic GetOctileImplementation()
+        public IHeuristic GetOctileImplementation()
             => new Octile();
         
 
-        public static IHeuristic GetChebyshevImplementation()
+        public IHeuristic GetChebyshevImplementation()
             => new Chebyshev();
         
 

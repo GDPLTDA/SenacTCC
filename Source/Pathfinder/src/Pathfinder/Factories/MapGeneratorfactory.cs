@@ -9,19 +9,19 @@ namespace Pathfinder.Factories
 {
     public class MapGeneratorFactory : IFactory<IMapGenerator>
     {
-        public static IMapGenerator GetFileMapGeneratorImplementation()
+        public IMapGenerator GetFileMapGeneratorImplementation()
             => new FileMapGenerator();
         
 
-        public static IMapGenerator GetStaticMapGeneratorImplementation()
+        public IMapGenerator GetStaticMapGeneratorImplementation()
             => new StaticMapGenerator();
         
 
-        public static IMapGenerator GetRandomMapGeneratorImplementation()
+        public IMapGenerator GetRandomMapGeneratorImplementation()
             => new RandomMapGenerator();
         
 
-        public static IMapGenerator GetStandardMapGeneratorImplementation()
+        public IMapGenerator GetStandardMapGeneratorImplementation()
             => new StandardMapGenerator();
         
 

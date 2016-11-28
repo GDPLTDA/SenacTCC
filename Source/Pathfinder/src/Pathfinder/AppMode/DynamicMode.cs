@@ -54,11 +54,11 @@ namespace Pathfinder.AppMode
             }
 
             Settings.AllowDiagonal = (DiagonalMovement)d;
-            var heuristic = new HeuristicFactory().GetImplementation(h);
-            var finder = new FinderFactory().GetImplementation(pf);
+            var heuristic = Container.Resolve<IHeuristic>(h);
+            var finder = Container.Resolve<IFinder>(pf);
             finder.Heuristic = heuristic;
-            var generator = new MapGeneratorFactory().GetImplementation(m);
-            var viewer = new ViewerFactory().GetImplementation(v);
+            var generator = Container.Resolve<IMapGenerator>(m);
+            var viewer = Container.Resolve<IViewer>(v);
             viewer.SetFinder(finder);
 
             viewer.Run(generator.DefineMap(mapGenArgs));

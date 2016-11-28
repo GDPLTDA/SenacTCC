@@ -14,7 +14,7 @@ namespace Pathfinder
         
         public static void Main(string[] args)
         {
-            var app = Resolver.Resolve<IAppMode>();
+            var app = Container.Resolve<IAppMode>();
             app.Run();
             
         }    

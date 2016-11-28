@@ -10,7 +10,7 @@ namespace Pathfinder.Mutation
     {
         public override IGenome Calc(IGenome baby)
         {
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
             if (rand.NextDouble() > MutationRate || baby.ListNodes.Count < 3)
                 return baby;
 

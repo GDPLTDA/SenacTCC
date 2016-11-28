@@ -45,7 +45,7 @@ namespace Pathfinder.Factories
         private IFinder Decide(FinderEnum option)
         {
             var allowDiagonal = Settings.AllowDiagonal;
-            var heuri = Resolver.Resolve<IHeuristic>();
+            var heuri = Container.Resolve<IHeuristic>();
 
             switch (option)
             {

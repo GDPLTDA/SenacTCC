@@ -10,7 +10,7 @@ namespace Pathfinder
 {
     public class FileTool
     {
-        Settings settings;
+        
 
         public FileTool()
         {

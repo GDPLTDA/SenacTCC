@@ -37,7 +37,7 @@ namespace Pathfinder
 
         public List<Node> RouteFinding(DiagonalMovement diagonal)
         {
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
             var listnode = new List<Node>();
             bool run = true;
             var node = new Node(Map.StartNode);
@@ -62,7 +62,7 @@ namespace Pathfinder
 
         DirectionMovement RandomDirection()
         {
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
             return (DirectionMovement)rand.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
         }
 

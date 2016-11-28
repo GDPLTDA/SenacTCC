@@ -71,7 +71,7 @@ namespace Pathfinder
 
         public Node GetDirectionNode(Node node, bool ByRef = true, bool valid = true)
         {
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
             var dir = (DirectionMovement)rand.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
             return GetDirectionNode(node, dir, ByRef, valid);
         }

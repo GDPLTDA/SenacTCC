@@ -11,10 +11,10 @@ namespace Pathfinder.AppMode
         public void Run()
          {
             
-            var heuristic = Resolver.Resolve<IHeuristic>();
-            var finder = Resolver.Resolve<IFinder>();
-            var generator = Resolver.Resolve<IMapGenerator>();
-            var viewer = Resolver.Resolve<IViewer>();
+            var heuristic = Container.Resolve<IHeuristic>();
+            var finder = Container.Resolve<IFinder>();
+            var generator = Container.Resolve<IMapGenerator>();
+            var viewer = Container.Resolve<IViewer>();
             
             var map = generator.DefineMap();
             viewer.SetFinder(finder);

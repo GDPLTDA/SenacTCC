@@ -23,10 +23,10 @@ namespace Pathfinder.Finders
 
             Name = "Genetic Algorithm";
            
-            Mutate = GAResolver.Resolve<IMutate>();
-            Crossover = GAResolver.Resolve<ICrossover>();
-            Fitness = GAResolver.Resolve<IFitness>();
-            Selection = GAResolver.Resolve<ISelection>();
+            Mutate = Container.Resolve<IMutate>();
+            Crossover = Container.Resolve<ICrossover>();
+            Fitness = Container.Resolve<IFitness>();
+            Selection = Container.Resolve<ISelection>();
 
             
         }
@@ -41,7 +41,7 @@ namespace Pathfinder.Finders
         public override bool Find(IMap map)
         {
             var Adaptation = new Adaptation(map);
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
 
             GridMap = map;
             _startNode = map.StartNode;

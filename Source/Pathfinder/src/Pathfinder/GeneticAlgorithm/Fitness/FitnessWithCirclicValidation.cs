@@ -11,10 +11,9 @@ namespace Pathfinder.Fitness
     public class FitnessWithCirclicValidation : IFitness
     {
         IHeuristic Heuristic;
-        GASettings GASettings;
-
+        
         public FitnessWithCirclicValidation() {
-            Heuristic = Resolver.Resolve<IHeuristic>();
+            Heuristic = Container.Resolve<IHeuristic>();
             
         }
         public double Calc(IGenome genome)

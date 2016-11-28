@@ -7,7 +7,7 @@ namespace Pathfinder.Crossover
     {
         public override CrossoverOperation Calc(CrossoverOperation Operation)
         {
-            var rand = GAResolver.Resolve<IRandom>();
+            var rand = Container.Resolve<IRandom>();
             if (rand.NextDouble() > CrossoverRate || Operation.IsEqual())
                 return Operation;
 

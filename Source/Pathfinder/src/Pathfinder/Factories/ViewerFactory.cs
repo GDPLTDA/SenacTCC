@@ -11,10 +11,10 @@ namespace Pathfinder.Factories
 {
     public class ViewerFactory : IFactory<IViewer>
     {
-        public static IViewer GetConsoleViewerImplementation()
+        public IViewer GetConsoleViewerImplementation()
          => new ConsoleViewer();
         
-        public static IViewer GetOpenGlViewerImplementation()
+        public IViewer GetOpenGlViewerImplementation()
             => new OpenGlViewer();
         
         public IViewer GetImplementation()

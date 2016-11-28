@@ -12,7 +12,7 @@ namespace Pathfinder.Fitness
     {
         public IHeuristic Heuristic;
         public FitnessHeuristic() {
-            Heuristic = Resolver.Resolve<IHeuristic>();
+            Heuristic = Container.Resolve<IHeuristic>();
         }
         public double Calc(IGenome genome)
         {

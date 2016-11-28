@@ -49,11 +49,11 @@ namespace Pathfinder.MapGenerators
                 d = diagonal.Value;
 
 
-            // finder para valida se o mapa é passavel
-            IFinder AStar = new FinderFactory().GetBFSImplementation(
-                                    d,
-                                    HeuristicFactory.GetOctileImplementation()
-                                );
+            IFinder AStar = Container.Resolve<IFinder>();
+
+            AStar.DiagonalMovement = d;
+            AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
+
 
             while (!IsAGoodMap)
             {

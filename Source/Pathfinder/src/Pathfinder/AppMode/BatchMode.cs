@@ -44,8 +44,8 @@ namespace Pathfinder.AppMode
 
                 //generate maps
                 var generator = Settings.Batch_generate_pattern == 0 ?
-                                    MapGeneratorFactory.GetRandomMapGeneratorImplementation() :
-                                    MapGeneratorFactory.GetStandardMapGeneratorImplementation();
+                                    Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Random) :
+                                    Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Standard);
 
                 for (int i = 0; i < qtdMaps; i++)
                 {
@@ -100,11 +100,9 @@ namespace Pathfinder.AppMode
 
                     foreach (var _h in heuristics)
                     {
-                        var finderFactory = new FinderFactory();
-                        var heuristicFactory = new HeuristicFactory();
-
-                        var h = heuristicFactory.GetImplementation(_h);
-                        var finder = finderFactory.GetImplementation(_finder);
+                      
+                        var h = Container.Resolve<IHeuristic>(_h);
+                        var finder = Container.Resolve<IFinder>(_finder);
                         finder.Heuristic = h;
                             
                         if (finder is IGeneticAlgorithm)
@@ -119,13 +117,13 @@ namespace Pathfinder.AppMode
                                                 GC.Collect();
                                                 GC.WaitForPendingFinalizers();
                                                 
-                                                var GAFinder = (IGeneticAlgorithm)finderFactory.GetImplementation(_finder);
+                                                var GAFinder = (IGeneticAlgorithm)Container.Resolve<IFinder>(_finder);
                                                 GAFinder.Heuristic = h;
 
-                                                GAFinder.Crossover = new CrossoverFactory().GetImplementation(Crossover[cross]) ;
-                                                GAFinder.Mutate    = new MutateFactory().GetImplementation(Mutation[mut]);
-                                                GAFinder.Fitness   = new FitnessFactory().GetImplementation(Fitness[fit]);
-                                                GAFinder.Selection = new SelectionFactory().GetImplementation(Selection[sel]);
+                                                GAFinder.Crossover = Container.Resolve<ICrossover>(Crossover[cross]) ;
+                                                GAFinder.Mutate    = Container.Resolve<IMutate>(Mutation[mut]);
+                                                GAFinder.Fitness   = Container.Resolve<IFitness>(Fitness[fit]);
+                                                GAFinder.Selection = Container.Resolve<ISelection>(Selection[sel]);
 
                                                 var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
 

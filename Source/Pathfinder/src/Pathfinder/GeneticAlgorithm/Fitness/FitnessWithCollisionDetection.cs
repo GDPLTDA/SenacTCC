@@ -7,11 +7,11 @@ namespace Pathfinder.Fitness
     public class FitnessWithCollisionDetection : IFitness
     {
         IHeuristic Heuristic;
-        GASettings gasettings;
+        
 
         public FitnessWithCollisionDetection()
         {
-            Heuristic = Resolver.Resolve<IHeuristic>();
+            Heuristic = Container.Resolve<IHeuristic>();
             
         }
         public double Calc(IGenome genome)

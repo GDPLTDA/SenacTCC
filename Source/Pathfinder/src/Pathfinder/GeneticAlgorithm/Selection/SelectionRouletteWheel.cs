@@ -24,7 +24,7 @@ namespace Pathfinder.Selection
                 weight_sum += weight[i];
 
             // get a random value
-            double value = GAResolver.Resolve<IRandom>()
+            double value = Container.Resolve<IRandom>()
                             .NextDouble() * weight_sum;
 
             // locate the random value based on the weights
