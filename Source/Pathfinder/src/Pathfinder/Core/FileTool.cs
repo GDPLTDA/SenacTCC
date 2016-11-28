@@ -10,11 +10,11 @@ namespace Pathfinder
 {
     public class FileTool
     {
-        Settings settings;
+        
 
         public FileTool()
         {
-            settings = Program.Settings;
+            
         }
 
         public string GetTextRepresentation(IMap map)
@@ -29,13 +29,13 @@ namespace Pathfinder
                     var node = map[i, j];
 
                     if (node == map.StartNode)
-                        c = settings.Start;
+                        c = Settings.Start;
                     else if (node == map.EndNode)
-                        c = settings.End;
+                        c = Settings.End;
                     else if (!node.Walkable)
-                        c = settings.Wall;
+                        c = Settings.Wall;
                     else
-                        c = settings.Empty;
+                        c = Settings.Empty;
 
                     ret += c.ToString();
                 }
@@ -90,16 +90,16 @@ namespace Pathfinder
                         continue;
                     }
 
-                    if (chrDig == settings.Start)
+                    if (chrDig == Settings.Start)
                         startNode = new Node(x, y);
                     else
-                    if (chrDig == settings.End)
+                    if (chrDig == Settings.End)
                         endNode = new Node(x, y);
                     else
-                    if (chrDig == settings.Wall)
+                    if (chrDig == Settings.Wall)
                         nodes.Add(new Node(x, y) { Walkable = false });
                     else
-                    if (chrDig == settings.Empty)
+                    if (chrDig == Settings.Empty)
                         nodes.Add(new Node(x, y) { Walkable = true });
                     else
                         throw new Exception("invalid character " + chrDig.ToString());
@@ -150,7 +150,7 @@ namespace Pathfinder
         public void SaveFileFromMap(IMap map, string filename = "")
         {
             var text = GetTextRepresentation(map);
-            var folder = settings.FolderToSaveMaps;
+            var folder = Settings.FolderToSaveMaps;
 
             if (!Directory.Exists(folder))
                 Directory.CreateDirectory(folder);

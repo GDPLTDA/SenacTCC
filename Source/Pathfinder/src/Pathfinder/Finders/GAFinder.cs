@@ -10,26 +10,25 @@ namespace Pathfinder.Finders
     public class GAFinder : AbstractFinder, IGeneticAlgorithm
     {
         List<IGenome> Populations { get; set; } = new List<IGenome>();
-        GASettings setting { get; set; }
+        
         public IFitness Fitness { get; set; }
         public IMutate Mutate { get; set; }
         public ICrossover Crossover { get; set; }
         public ISelection Selection { get; set; }
         public int Generations { get; set; }
 
-        public GAFinder(DiagonalMovement diag, GASettings gasettings, int weight = 1) : base(diag, weight)
+        public GAFinder(DiagonalMovement diag, int weight = 1) : base(diag, weight)
         {
             SleepUITimeInMs = 200;
 
             Name = "Genetic Algorithm";
-            if(gasettings == null)
-                gasettings = new GASettings();
-            setting = gasettings;
+           
+            Mutate = Container.Resolve<IMutate>();
+            Crossover = Container.Resolve<ICrossover>();
+            Fitness = Container.Resolve<IFitness>();
+            Selection = Container.Resolve<ISelection>();
 
-            Mutate = setting.GetMutate();
-            Crossover = setting.GetCrossover();
-            Fitness = setting.GetFitness();
-            Selection = setting.GetSelection();
+            
         }
 
         protected override void UpdateMaxNodes()
@@ -42,31 +41,32 @@ namespace Pathfinder.Finders
         public override bool Find(IMap map)
         {
             var Adaptation = new Adaptation(map);
-             
+            var rand = Container.Resolve<IRandom>();
+
             GridMap = map;
             _startNode = map.StartNode;
             _endNode = map.EndNode;
 
-            for (int i = 0; i < setting.PopulationSize; i++)
+            for (int i = 0; i < GASettings.PopulationSize; i++)
                 Populations.Add(new Genome(map, DiagonalMovement));
             CalcFitness();
             int step = 0;
             
             OnStart(BuildArgs(step));
 
-            for (int i = 0; i < setting.GenerationLimit; i++)
+            for (int i = 0; i < GASettings.GenerationLimit; i++)
             {
                 var newpopulations = new List<IGenome>();
                 
                 Populations = Populations.OrderBy(o => o.Fitness).ToList();
 
-                for (int j = 0; j < setting.BestSolution; j++)
+                for (int j = 0; j < GASettings.BestSolutionToPick; j++)
                 {
                     Populations[j].Fitness = Fitness.Calc(Populations[j]);
                     newpopulations.Add(Populations[j]);
                 }
 
-                int ran = Settings.Random.Next(1, Populations.Count);
+                int ran = rand.Next(1, Populations.Count);
                 var best = Populations.First().ListNodes;
                 var best2 = Selection.Select(Populations).ListNodes;
                 _endNode = best.Last();
@@ -106,7 +106,7 @@ namespace Pathfinder.Finders
                 
                 OnStep(BuildArgs(step++));
             }
-            Generations = setting.GenerationLimit;
+            Generations = GASettings.GenerationLimit;
             OnEnd(BuildArgs(step, false));
 
             return false;

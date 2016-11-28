@@ -71,7 +71,8 @@ namespace Pathfinder
 
         public Node GetDirectionNode(Node node, bool ByRef = true, bool valid = true)
         {
-            var dir = (DirectionMovement)Settings.Random.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
+            var rand = Container.Resolve<IRandom>();
+            var dir = (DirectionMovement)rand.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
             return GetDirectionNode(node, dir, ByRef, valid);
         }
 
@@ -129,7 +130,7 @@ namespace Pathfinder
 
         public IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true)
         {
-            return GetNeighbors(node, AllowDiagonal.HasValue ? AllowDiagonal.Value : Program.Settings.AllowDiagonal, ByRef, valid);
+            return GetNeighbors(node, AllowDiagonal.HasValue ? AllowDiagonal.Value : Settings.AllowDiagonal, ByRef, valid);
         }
         
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true, bool valid = true)

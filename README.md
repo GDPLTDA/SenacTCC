@@ -20,7 +20,7 @@ dotnet restore
 
 Run the program
 ```sh
-dotnet run -p Pathfinder 
+dotnet run -p Pathfinder.UI 
 ```
 
 Watch the magic happens... :)

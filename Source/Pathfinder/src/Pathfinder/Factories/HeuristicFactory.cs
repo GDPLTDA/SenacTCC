@@ -7,28 +7,55 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
-    public class HeuristicFactory
+    public class HeuristicFactory : IFactory<IHeuristic>
     {
-        public static IHeuristic GetManhattamImplementation()
-        {
-            return new Manhattan();
-        }
+        public IHeuristic GetManhattamImplementation()
+            => new Manhattan();
+        
 
-        public static IHeuristic GetEuclideanImplementation()
-        {
-            return new Euclidean();
-        }
+        public IHeuristic GetEuclideanImplementation()
+            => new Euclidean();
+        
 
-        public static IHeuristic GetOctileImplementation()
-        {
-            return new Octile();
-        }
+        public IHeuristic GetOctileImplementation()
+            => new Octile();
+        
 
-        public static IHeuristic GetChebyshevImplementation()
-        {
-            return new Chebyshev();
-        }
+        public IHeuristic GetChebyshevImplementation()
+            => new Chebyshev();
+        
 
+        public IHeuristic GetImplementation()
+            => Decide(Settings.Heuristic);
+        
+
+        public IHeuristic GetImplementation(int option)
+            => Decide((HeuristicEnum)option);
+        
+
+        private IHeuristic Decide(HeuristicEnum option)
+        {
+            switch (option)
+            {
+                case HeuristicEnum.Manhattan:
+                    return GetManhattamImplementation();
+
+                case HeuristicEnum.Euclidean:
+                    return GetEuclideanImplementation();
+
+                case HeuristicEnum.Octile:
+                    return GetOctileImplementation();
+
+                case HeuristicEnum.Chebyshev:
+                    return GetChebyshevImplementation();
+
+            }
+
+            throw new Exception("No Heuristic selected");
+
+
+
+        }
 
     }
 }

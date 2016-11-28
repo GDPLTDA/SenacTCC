@@ -7,26 +7,51 @@ using System.Threading.Tasks;
 
 namespace Pathfinder.Factories
 {
-    public class MapGeneratorFactory
+    public class MapGeneratorFactory : IFactory<IMapGenerator>
     {
-        public static IMapGenerator GetFileMapGeneratorImplementation()
+        public IMapGenerator GetFileMapGeneratorImplementation()
+            => new FileMapGenerator();
+        
+
+        public IMapGenerator GetStaticMapGeneratorImplementation()
+            => new StaticMapGenerator();
+        
+
+        public IMapGenerator GetRandomMapGeneratorImplementation()
+            => new RandomMapGenerator();
+        
+
+        public IMapGenerator GetStandardMapGeneratorImplementation()
+            => new StandardMapGenerator();
+        
+
+        public IMapGenerator GetImplementation()
+            => Decide(Settings.MapOrigin);
+        
+
+        public IMapGenerator GetImplementation(int option)
+            => Decide((MapGeneratorEnum)option);
+        
+
+        private IMapGenerator Decide(MapGeneratorEnum option)
         {
-            return new FileMapGenerator();
+            switch (option)
+            {
+                case MapGeneratorEnum.File:
+                    return GetFileMapGeneratorImplementation();
+                case MapGeneratorEnum.Static:
+                    return GetStaticMapGeneratorImplementation();
+
+                case MapGeneratorEnum.Random:
+                    return GetRandomMapGeneratorImplementation();
+                    
+                case MapGeneratorEnum.Standard:
+                    return GetStandardMapGeneratorImplementation();
+            }
+
+            throw new Exception("No generator selected");
+
         }
 
-        public static IMapGenerator GetStaticMapGeneratorImplementation()
-        {
-            return new StaticMapGenerator();
-        }
-
-        public static IMapGenerator GetRandomMapGeneratorImplementation()
-        {
-            return new RandomMapGenerator();
-        }
-
-        public static IMapGenerator GetStandardMapGeneratorImplementation()
-        {
-            return new StandardMapGenerator();
-        }
     }
 }
