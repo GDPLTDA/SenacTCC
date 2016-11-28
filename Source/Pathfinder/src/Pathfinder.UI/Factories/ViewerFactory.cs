@@ -1,13 +1,12 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.Constants;
-using Pathfinder.Finders;
-using Pathfinder.Viewer;
+using Pathfinder.UI.Abstraction;
+using Pathfinder.UI.Viewer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Factories
+namespace Pathfinder.UI.Factories
 {
     public class ViewerFactory : IFactory<IViewer>
     {
@@ -18,7 +17,7 @@ namespace Pathfinder.Factories
             => new OpenGlViewer();
         
         public IViewer GetImplementation()
-            => Decide(Settings.MapViwer);
+            => Decide(UISettings.MapViwer);
 
         public IViewer GetImplementation(int option)
             => Decide((ViewerEnum)option);

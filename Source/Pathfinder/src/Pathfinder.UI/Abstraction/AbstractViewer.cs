@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Pathfinder.Abstraction;
+using Pathfinder.UI.Abstraction;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Abstraction
+namespace Pathfinder.UI.Abstraction
 {
     public abstract class AbstractViewer : IViewer
     {

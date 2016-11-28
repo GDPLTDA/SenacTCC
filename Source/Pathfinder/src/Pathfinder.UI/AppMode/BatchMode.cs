@@ -1,6 +1,5 @@
-﻿using Pathfinder.Abstraction;
+﻿using Pathfinder.UI.Abstraction;
 using Pathfinder.Constants;
-using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,8 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Pathfinder.Abstraction;
 
-namespace Pathfinder.AppMode
+namespace Pathfinder.UI.AppMode
 {
     public class BatchMode : IAppMode
     {
@@ -20,9 +20,9 @@ namespace Pathfinder.AppMode
 
             var ft = new FileTool();
             Settings.IDATrackRecursion = false;
-            var qtdMaps = Settings.Batch_map_qtd_to_generate;
+            var qtdMaps = UISettings.Batch_map_qtd_to_generate;
             var now = DateTime.Now;
-            var folder = Path.Combine(Settings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
+            var folder = Path.Combine(UISettings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
             var dataFile = Path.Combine(folder, "_data.csv");
             var dataFileGA = Path.Combine(folder, "_dataGA.csv");
 
@@ -37,13 +37,13 @@ namespace Pathfinder.AppMode
             var divblock = Math.Ceiling((double)qtdMaps / (double)diagonals.Count());
             var diagIndex = 0;
 
-            if (Settings.Batch_map_origin == 0)
+            if (UISettings.Batch_map_origin == 0)
             {
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
 
                 //generate maps
-                var generator = Settings.Batch_generate_pattern == 0 ?
+                var generator = UISettings.Batch_generate_pattern == 0 ?
                                     Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Random) :
                                     Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Standard);
 
@@ -66,7 +66,7 @@ namespace Pathfinder.AppMode
             else
             {
                 //if will load the map, use the configured root path
-                folder = Settings.Batch_folder;
+                folder = UISettings.Batch_folder;
                 dataFile = Path.Combine(folder, $"_data_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
                 dataFileGA = Path.Combine(folder, $"_dataGA_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
             }
@@ -74,13 +74,13 @@ namespace Pathfinder.AppMode
             var files = Directory.GetFiles(folder);
             var fileCount = files.Count();
 
-            var finders = Settings.Batch_list_finders;
-            var heuristics = Settings.Batch_list_heuristics;
+            var finders = UISettings.Batch_list_finders;
+            var heuristics = UISettings.Batch_list_heuristics;
 
-            var Mutation = Settings.Batch_list_Mutation;
-            var Crossover = Settings.Batch_list_Crossover;
-            var Fitness = Settings.Batch_list_Fitness;
-            var Selection = Settings.Batch_list_Selection ;
+            var Mutation = UISettings.Batch_list_Mutation;
+            var Crossover = UISettings.Batch_list_Crossover;
+            var Fitness = UISettings.Batch_list_Fitness;
+            var Selection = UISettings.Batch_list_Selection ;
 
             var csvFile = new StringBuilder();
             var csvGAFile = new StringBuilder();
@@ -112,7 +112,7 @@ namespace Pathfinder.AppMode
                                 for (int mut = 0; mut < Mutation.Count(); mut++)
                                     for (int fit = 0; fit < Fitness.Count(); fit++)
                                         for (int sel = 0; sel < Selection.Count(); sel++)
-                                            for (int j = 0; j < Settings.Batch_GATimesToRunPerMap; j++)
+                                            for (int j = 0; j < UISettings.Batch_GATimesToRunPerMap; j++)
                                             {
                                                 GC.Collect();
                                                 GC.WaitForPendingFinalizers();

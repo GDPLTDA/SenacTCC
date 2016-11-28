@@ -1,10 +1,11 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.UI.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.AppMode
+namespace Pathfinder.UI.AppMode
 {
     public class SingleRunMode : IAppMode
     {

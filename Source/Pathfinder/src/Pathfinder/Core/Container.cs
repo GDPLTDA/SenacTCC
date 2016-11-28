@@ -15,11 +15,8 @@ namespace Pathfinder
         static Container()
         {
             Register<IHeuristic, HeuristicFactory>();
-            Register<IAppMode, AppModeFactory>();
             Register<IMapGenerator, MapGeneratorFactory>();
-            Register<IViewer, ViewerFactory>();
             Register<IFinder, FinderFactory>();
-
 
             Register<ICrossover, CrossoverFactory>();
             Register<IMutate, MutateFactory>();

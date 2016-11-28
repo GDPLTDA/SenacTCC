@@ -6,8 +6,9 @@ using Pathfinder.Abstraction;
 using static System.Console;
 using Pathfinder.Constants;
 using Pathfinder.Factories;
+using Pathfinder.UI.Abstraction;
 
-namespace Pathfinder.AppMode
+namespace Pathfinder.UI.AppMode
 {
     public class DynamicMode : IAppMode
     {

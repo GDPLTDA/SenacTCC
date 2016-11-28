@@ -103,7 +103,7 @@ namespace Pathfinder.MapGenerators
                 subgrid = new List<Node>();
             }
 
-            if (Settings.AppMode != AppModeEnum.BatchMode)  // dont run if in batchmode
+            if (Settings.AutoSaveMaps)  // dont run if in batchmode
                 new FileTool().SaveFileFromMap(ret);
 
             return ret;

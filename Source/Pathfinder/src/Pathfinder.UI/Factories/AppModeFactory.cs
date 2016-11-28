@@ -1,11 +1,12 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.AppMode;
+using Pathfinder.UI.Abstraction;
+using Pathfinder.UI.AppMode;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Factories
+namespace Pathfinder.UI.Factories
 {
     public class AppModeFactory : IFactory<IAppMode>
     {
@@ -22,7 +23,7 @@ namespace Pathfinder.Factories
         
 
         public IAppMode GetImplementation()
-            => DecideImplementation(Settings.AppMode);
+            => DecideImplementation(UISettings.AppMode);
         
 
 

@@ -93,7 +93,7 @@ namespace Pathfinder.MapGenerators
                 GridMap = new List<Node>();
             }
 
-            if (Settings.AppMode!=AppModeEnum.BatchMode)  // dont run if in batchmode
+            if (Settings.AutoSaveMaps) 
                 new FileTool().SaveFileFromMap(ret);
 
             return ret;

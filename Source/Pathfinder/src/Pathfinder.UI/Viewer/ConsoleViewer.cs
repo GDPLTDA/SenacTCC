@@ -1,11 +1,12 @@
 ﻿using Pathfinder.Abstraction;
+using Pathfinder.UI.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Pathfinder.Viewer
+namespace Pathfinder.UI.Viewer
 {
     public class ConsoleViewer : AbstractViewer
     {

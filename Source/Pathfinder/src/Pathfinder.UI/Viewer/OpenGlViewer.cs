@@ -2,11 +2,12 @@
 
 using OpenTK.Graphics;
 using Pathfinder.Abstraction;
+using Pathfinder.UI.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Pathfinder.Viewer
+namespace Pathfinder.UI.Viewer
 {
     public class OpenGlViewer : IViewer
     {

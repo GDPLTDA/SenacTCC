@@ -7,7 +7,7 @@
 
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>7553a26b-13ae-40e6-af86-34fe4b57375d</ProjectGuid>
+    <ProjectGuid>18f37196-9fe8-4322-a369-d4fa5e6ec816</ProjectGuid>
     <RootNamespace>Pathfinder</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>

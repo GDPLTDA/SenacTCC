@@ -6,7 +6,9 @@ using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using System.Threading;
 using Pathfinder.Abstraction;
-namespace Pathfinder.Viewer
+using Pathfinder.UI.Abstraction;
+
+namespace Pathfinder.UI.Viewer
 {
     public class OpenGlWindow : GameWindow
     {
