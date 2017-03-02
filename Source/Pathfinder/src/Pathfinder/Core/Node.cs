@@ -12,11 +12,9 @@ namespace Pathfinder
     {
         public Node(Node node)
         {
-            Type type = node.GetType();
+            var type = node.GetType();
             foreach (var item in type.GetProperties())
-            {
                 item.SetValue(this, item.GetValue(node));
-            }
         }
         public Node(Node node, Node parent, DirectionMovement direction)
         {
