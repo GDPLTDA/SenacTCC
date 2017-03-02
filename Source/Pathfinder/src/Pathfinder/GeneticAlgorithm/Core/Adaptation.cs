@@ -46,15 +46,10 @@ namespace Pathfinder
                 return new Genome(Map, newbaby);
 
             var list = Map.GetNeighbors(lastcoor, false, false);
-<<<<<<< HEAD:Source/Pathfinder/src/Pathfinder/Genetic Algorithm/Adaptation.cs
-=======
-            var ind = rand.Next(0, list.Count);
-            var newnode = list[ind];
->>>>>>> d26f20955b51d73e64d1a6ad655b0c9ffc3886af:Source/Pathfinder/src/Pathfinder/GeneticAlgorithm/Core/Adaptation.cs
 
             if (list.Count > 0)
             {
-                var ind = Settings.Random.Next(0, list.Count);
+                var ind = rand.Next(0, list.Count);
                 var newnode = list[ind];
 
                 if (!newbaby.Exists(i => i.EqualsAll(newnode)))
