@@ -15,9 +15,6 @@ namespace Pathfinder.UI.AppMode
     {
         public void Run()
         {
-            
-            
-
             var ft = new FileTool();
             Settings.IDATrackRecursion = false;
             var qtdMaps = UISettings.Batch_map_qtd_to_generate;
@@ -52,14 +49,11 @@ namespace Pathfinder.UI.AppMode
                     Console.Clear();
                     Console.WriteLine("Generating maps...");
                     drawTextProgressBar(i, qtdMaps);
-                    var map = generator.DefineMap(diagonal: diagonals[diagIndex]);
-                    map.AllowDiagonal = diagonals[diagIndex];
-                    ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
+                    var map = generator.DefineMap(diagonal: diagonals[UISettings.Batch_map_diagonal]);
+                    map.AllowDiagonal = diagonals[UISettings.Batch_map_diagonal];
 
-                    if ((i + 1) % divblock == 0)
-                    {
-                        diagIndex++;
-                    }
+                    ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
+                                       
                 }
 
             }
@@ -82,18 +76,17 @@ namespace Pathfinder.UI.AppMode
             var Fitness = UISettings.Batch_list_Fitness;
             var Selection = UISettings.Batch_list_Selection ;
 
-            var csvFile = new StringBuilder();
-            var csvGAFile = new StringBuilder();
+            var csvFile = new StreamWriter(File.Open(dataFile, FileMode.OpenOrCreate),Encoding.UTF8, 4096, true); 
+            var csvGAFile = new StreamWriter(File.Open(dataFileGA, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
 
             Console.Clear();
-            csvFile.Append(new TextWrapper().GetHeader());
-            csvGAFile.Append(new TextGAWrapper().GetHeader());
+            csvFile.WriteLine (new TextWrapper().GetHeader());
+            csvGAFile.WriteLine( new TextGAWrapper().GetHeader());
 
             for (int i = 0; i < fileCount; i++)
             {
 
                 var map = ft.ReadMapFromFile(files[i]);
-
 
                 foreach (var _finder in finders)
                 {
@@ -148,7 +141,7 @@ namespace Pathfinder.UI.AppMode
                                                     Generations = GAFinder.Generations.ToString(),
                                                 };
 
-                                                csvGAFile.Append(csvGA.ToString());
+                                                csvGAFile.WriteLine(csvGA.ToString());
                                                 
 
                                             }
@@ -158,18 +151,19 @@ namespace Pathfinder.UI.AppMode
                         {
                             var csv = new TextWrapper();
                             csv = RunStep(csv, i, fileCount, map, h, finder);
-                            csvFile.Append(csv.ToString());
+                            csvFile.WriteLine(csv.ToString());
                         }
+                        csvFile.Flush();
                     }
                 }
             }
-
-
+            
 
             drawTextProgressBar(fileCount, fileCount);
 
-            File.WriteAllText(dataFile, csvFile.ToString());
-            File.WriteAllText(dataFileGA, csvGAFile.ToString());
+            csvFile.Dispose();
+            csvGAFile.Dispose();
+            
             Console.WriteLine("\n\nComplete...");
             Console.ReadKey();
         }
@@ -249,7 +243,7 @@ namespace Pathfinder.UI.AppMode
             {
                 var ret = new StringBuilder();
 
-                var props = typeof(TextWrapper).GetProperties();
+                var props = typeof(TextWrapper).GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy);
 
                 foreach (var item in props)
                 {

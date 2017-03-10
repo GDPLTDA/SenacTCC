@@ -31,6 +31,9 @@ namespace Pathfinder
 
         public static string Batch_folder { get; set; }
         public static int Batch_generate_pattern { get; set; }
+
+        public static int Batch_map_diagonal { get; set; }
+
         public static int Batch_map_origin { get; set; }
         public static int Batch_map_qtd_to_generate { get; set; }
         public static int Batch_GATimesToRunPerMap { get; set; }
@@ -50,6 +53,7 @@ namespace Pathfinder
             Batch_generate_pattern = int.Parse(Configuration[nameof(Batch_generate_pattern)].ToString());
             Batch_map_qtd_to_generate = int.Parse(Configuration[nameof(Batch_map_qtd_to_generate)].ToString());
             Batch_GATimesToRunPerMap = int.Parse(Configuration[nameof(Batch_GATimesToRunPerMap)].ToString());
+            Batch_map_diagonal = int.Parse(Configuration[nameof(Batch_map_diagonal)].ToString());
 
             Batch_list_finders      = Configuration.GetSection(nameof(Batch_list_finders)).GetChildren().Select(e=>int.Parse(e.Value)).ToArray();
             Batch_list_heuristics   = Configuration.GetSection(nameof(Batch_list_heuristics)).GetChildren().Select(e => int.Parse(e.Value)).ToArray();
@@ -57,8 +61,7 @@ namespace Pathfinder
             Batch_list_Crossover    = Configuration.GetSection(nameof(Batch_list_Crossover)).GetChildren().Select(e => int.Parse(e.Value)).ToArray();
             Batch_list_Fitness      = Configuration.GetSection(nameof(Batch_list_Fitness)).GetChildren().Select(e => int.Parse(e.Value)).ToArray();
             Batch_list_Selection    = Configuration.GetSection(nameof(Batch_list_Selection)).GetChildren().Select(e => int.Parse(e.Value)).ToArray();
-
-     
+            
 
         }
 
