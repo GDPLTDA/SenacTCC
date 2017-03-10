@@ -80,8 +80,8 @@ namespace Pathfinder.UI.AppMode
             var csvGAFile = new StreamWriter(File.Open(dataFileGA, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
 
             Console.Clear();
-            csvFile.WriteLine (new TextWrapper().GetHeader());
-            csvGAFile.WriteLine( new TextGAWrapper().GetHeader());
+            csvFile.Write(new TextWrapper().GetHeader());
+            csvGAFile.Write( new TextGAWrapper().GetHeader());
 
             for (int i = 0; i < fileCount; i++)
             {
@@ -141,7 +141,7 @@ namespace Pathfinder.UI.AppMode
                                                     Generations = GAFinder.Generations.ToString(),
                                                 };
 
-                                                csvGAFile.WriteLine(csvGA.ToString());
+                                                csvGAFile.Write(csvGA.ToString());
                                                 
 
                                             }
@@ -151,7 +151,7 @@ namespace Pathfinder.UI.AppMode
                         {
                             var csv = new TextWrapper();
                             csv = RunStep(csv, i, fileCount, map, h, finder);
-                            csvFile.WriteLine(csv.ToString());
+                            csvFile.Write(csv.ToString());
                         }
                         csvFile.Flush();
                     }
@@ -243,7 +243,7 @@ namespace Pathfinder.UI.AppMode
             {
                 var ret = new StringBuilder();
 
-                var props = typeof(TextWrapper).GetProperties(BindingFlags.Public | BindingFlags.FlattenHierarchy);
+                var props = GetType().GetProperties();
 
                 foreach (var item in props)
                 {
