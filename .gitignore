@@ -216,7 +216,7 @@ _Pvt_Extensions
 
 
 #project especific data
-**/Pathfinder/Maps
-**/Pathfinder/Batch
+**/Pathfinder/src/Pathfinder/Maps
+**/Pathfinder/src/Pathfinder.UI/Batch
 
 
