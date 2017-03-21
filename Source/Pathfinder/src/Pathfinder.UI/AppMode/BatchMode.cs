@@ -13,10 +13,13 @@ namespace Pathfinder.UI.AppMode
 {
     public class BatchMode : IAppMode
     {
+        MapGeneratorEnum mapType;
+
         public void Run()
         {
             var ft = new FileTool();
             Settings.IDATrackRecursion = false;
+            Settings.AutoSaveMaps = false;
             var qtdMaps = UISettings.Batch_map_qtd_to_generate;
             var now = DateTime.Now;
             var folder = Path.Combine(UISettings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
@@ -32,17 +35,17 @@ namespace Pathfinder.UI.AppMode
 
 
             var divblock = Math.Ceiling((double)qtdMaps / (double)diagonals.Count());
-            var diagIndex = 0;
-
+            
             if (UISettings.Batch_map_origin == 0)
             {
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
 
                 //generate maps
-                var generator = UISettings.Batch_generate_pattern == 0 ?
-                                    Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Random) :
-                                    Container.Resolve<IMapGenerator>((int)MapGeneratorEnum.Standard);
+                mapType = UISettings.Batch_generate_pattern == 0 ? MapGeneratorEnum.Random : MapGeneratorEnum.WithPattern;
+
+                var generator = Container.Resolve<IMapGenerator>((int)mapType);
+                                
 
                 for (int i = 0; i < qtdMaps; i++)
                 {
@@ -90,17 +93,14 @@ namespace Pathfinder.UI.AppMode
 
                 foreach (var _finder in finders)
                 {
-
                     foreach (var _h in heuristics)
-                    {
-                      
+                    {     
                         var h = Container.Resolve<IHeuristic>(_h);
                         var finder = Container.Resolve<IFinder>(_finder);
                         finder.Heuristic = h;
                             
                         if (finder is IGeneticAlgorithm)
-                        {
-                            
+                        {       
                             for (int cross = 0; cross < Crossover.Count(); cross++)
                                 for (int mut = 0; mut < Mutation.Count(); mut++)
                                     for (int fit = 0; fit < Fitness.Count(); fit++)
@@ -173,6 +173,7 @@ namespace Pathfinder.UI.AppMode
         {
             var csv = baseScv;
             csv.map = i.ToString();
+            csv.mapType = mapType.ToString();
             csv.alg = finder.Name;
             csv.heuristic = h.GetType().Name;
             csv.diagonal = map.AllowDiagonal.HasValue ? map.AllowDiagonal.Value.ToString() : finder.DiagonalMovement.ToString();
@@ -193,7 +194,7 @@ namespace Pathfinder.UI.AppMode
 
                 csv.pathLength = finder.GetPath().OrderBy(x => x.G).Last().G.ToString();
                 Console.ForegroundColor = ConsoleColor.Green;
-                csv.solution = "Yes (" + finder.GetProcessedTime().ToString() + "ms )";
+                csv.solution = "Yes";
 
             }
             else
@@ -207,7 +208,7 @@ namespace Pathfinder.UI.AppMode
 
             Console.CursorTop -= 1;
             Console.CursorLeft = 0;
-            Console.WriteLine(" " + csv.solution);
+            Console.WriteLine($"{csv.solution}-{csv.time}ms");
             Console.ForegroundColor = ConsoleColor.White;
 
             return csv;
@@ -217,6 +218,7 @@ namespace Pathfinder.UI.AppMode
         {
             public string alg { get; set; }
             public string map { get; set; }
+            public string mapType { get; set; }
             public string heuristic { get; set; }
             public string diagonal { get; set; }
             public string solution { get; set; }
