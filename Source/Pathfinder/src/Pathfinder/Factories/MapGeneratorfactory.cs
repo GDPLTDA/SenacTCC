@@ -45,7 +45,7 @@ namespace Pathfinder.Factories
                 case MapGeneratorEnum.Random:
                     return GetRandomMapGeneratorImplementation();
                     
-                case MapGeneratorEnum.Standard:
+                case MapGeneratorEnum.WithPattern:
                     return GetStandardMapGeneratorImplementation();
             }
 
