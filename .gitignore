@@ -21,6 +21,8 @@ build/
 bld/
 [Bb]in/
 [Oo]bj/
+Source/Pathfinder/src/Pathfinder.UI/Maps/
+Source/Pathfinder/src/Pathfinder.UI/Batch/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -216,7 +218,7 @@ _Pvt_Extensions
 
 
 #project especific data
-**/Pathfinder/Maps
-**/Pathfinder/Batch
+**/Pathfinder/src/Pathfinder/Maps
+**/Pathfinder/src/Pathfinder.UI/Batch
 
 

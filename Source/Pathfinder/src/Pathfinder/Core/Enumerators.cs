@@ -22,7 +22,7 @@
         File,
         Static,
         Random,
-        Standard,
+        WithPattern,
     }
 
    

@@ -52,7 +52,7 @@ namespace Pathfinder.MapGenerators
             {
                 var nodes = new List<Node>();
                 var _map = new Map(width, height);
-
+             //   _map.AllowDiagonal = d;
 
                 int size = Convert.ToInt32(blocksize * blocksize * seed);
 

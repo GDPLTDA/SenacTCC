@@ -49,10 +49,14 @@ namespace Pathfinder.MapGenerators
                 d = diagonal.Value;
 
 
-            IFinder AStar = Container.Resolve<IFinder>();
+            IFinder AStar = Container.Resolve<IFinder>((int)FinderEnum.AStar);
 
             AStar.DiagonalMovement = d;
-            AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
+
+            if (d == DiagonalMovement.Never)
+                AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Manhattan);
+            else
+                AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
 
 
             while (!IsAGoodMap)
