@@ -1,0 +1,55 @@
+Essa seção tem como objetivo descrever como foram implementados os algoritimos 
+
+Projeto de implementação de algoritimos de busca
+
+Foi desenvolvido um projeto de biblioteca que contem todas as implementações dos algoritimos de busca que temos como pretenção 
+comparar (A*, BFS, Dijkstra, IDA*, ALgoritimos geneticos).
+
+Também temos configuravel as heuristicas e que diagonais podem ser utilizadas no processo de busca para cada algoritimo.
+
+
+Estrutura do projeto:
+
+->Abstraction	
+->Constants
+->Core
+->Factories
+->Finders
+->GeneticAlgorithm
+->Heuristics
+->MapGenerators
+->project.json
+
+O 'project.json' é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
+relevantes a nossa implementação.
+
+
+Abstraction	
+
+Nesta pasta estão todos os arquivos a nivel de abstração dos algoritimos de busca padrão, esses são:
+
+IFactory : Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependencia necessaria.
+IMap : Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritimo de
+nossa implementação espera uma implementação de IMap para rodar.
+IHeuristic : Essa interface abstrai o comportamento das heuristicas
+IMapGenerator : Essa interface tem como objeto abstrair os gerador de mapas
+IFinder : Essa interface é a reponsavel por abstrair todo comportamento dos algoritimos de busca
+IGeneticAlgorithm : Essa interface herda de IFinder, ela compartilha a mesma assinatura de metodos, propriedades e eventos, porem acrescenta a abstração necessaria para
+o utlização de GA.
+
+
+Constants
+
+Nesta pasta são listados arquivos de contantantes e enumeradores:
+
+DiagonalMovement : Lista as opções de diagonais na movimentação 
+DirectionMovement : Lista as oito opções possiveis de se locover a partir de um ponto para seus vizinhos 
+(imagem)(cima,baixo,esquerda,direita,esquerda cima, esquerda baixo, direita cima, direita baixo)
+
+
+
+
+
+
+
+
