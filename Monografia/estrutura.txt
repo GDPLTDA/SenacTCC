@@ -1,8 +1,8 @@
 Essa seção tem como objetivo descrever como foram implementados os algoritimos 
 
-Projeto de implementação de algoritimos de busca
+Pathfinder - Projeto de implementação de algoritimos de busca
 
-Foi desenvolvido um projeto de biblioteca que contem todas as implementações dos algoritimos de busca que temos como pretenção 
+Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritimos de busca que temos como pretenção 
 comparar (A*, BFS, Dijkstra, IDA*, ALgoritimos geneticos).
 
 Também temos configuravel as heuristicas e que diagonais podem ser utilizadas no processo de busca para cada algoritimo.
@@ -46,10 +46,57 @@ DiagonalMovement : Lista as opções de diagonais na movimentação
 DirectionMovement : Lista as oito opções possiveis de se locover a partir de um ponto para seus vizinhos 
 (imagem)(cima,baixo,esquerda,direita,esquerda cima, esquerda baixo, direita cima, direita baixo)
 
+Core
+
+Nesta pasta são definidos as implementações e configurações bases
+
+Container : Esta classe é responsavel por registar e resolver as implementações conhecidas das interfaces
+Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
+Extensions : Arquivo com metodos auxiliares de lista para comportamento de uma estrutura de pilha.
+FileTools : Classe responsavel por toda manipiação de I/O de arquivos
+Map : Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritimos de busca.
+Node : Classe reponsavel por ser a representação de uma celula no mapa, ou seja, o mapa é uma matriz de "Node"
+Settings : Contem toda configuração estatica do projeto, do qual é carregado de um arquivo json chamado "appsettings.json"
+
+
+
+Factories
+Nesta Pasta temos os arquivos responsaveis pelo instanciamento de implementações de interfaces.
+
+FinderFactory : Classe responsavel por decidir e instanciar uma implementação IFinder
+HeuristicFactory : Classe responsavel por decidir e instanciar uma implementação IHeuristic
+MapGeneratorFactory : Classe responsavel por decidir e instanciar uma implementação IMapGenerator
+
+Finders:
+Nesta pasta temos definidas as implementaçoes de todos os algoritimos de busca de caminho
+
+AStarFinder : Implementação do algoritimo de busca de caminho A* implementada em cima da interface IFinder
+BestFirstSearchFinder : Implementação do algoritimo de busca de caminho Best First Search implementada em cima da interface IFinder
+DijkstraFinder : Implementação do algoritimo de busca de caminho Dijkstra implementada em cima da interface IFinder
+IDAStarFinder : Implementação do algoritimo de busca de caminho IDA* implementada em cima da interface IFinder
+GAFinder : Implementação de um algoritimo genético para busca de caminhos implementada em cima da interface IFinder e IGeneticAlgorithm
+
+
+Heuristics:
+
+Nesta pasta são definidas as implementações de IHeuristic, responsaveis pelos calculos de heuristica.
+
+Manhattan : implemtação da classe IHeuristic respnsavel por calcular a distancia manhattam
+Euclidean : implemtação da classe IHeuristic respnsavel por calcular a distancia euclideana
+Octile : implemtação da classe IHeuristic respnsavel por calcular a distancia octil
+Chebyshev : implemtação da classe IHeuristic respnsavel por calcular a distancia Chebyshev
+
+Genetic Algorithm:
+
+Nesta pasta são definidos todas as implementações referentes ao algoritimo genetico, pela complexidade 
+do algoritimo ele possui uma estrutura propria de pastas para definições e configurações de injeção de dependencia
 
 
 
 
+Projeto de UI
 
+Foi desenvovido um projeto com objetivo de consumir a biblioteca de busca de caminhos, 
+este possui tres modos que : 
 
 

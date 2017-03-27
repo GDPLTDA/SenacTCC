@@ -1,0 +1,138 @@
+﻿Essa seção tem como objetivo descrever como foram implementados os algoritimos 
+
+Pathfinder - Projeto de implementação de algoritimos de busca
+
+Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritimos de busca que temos como pretenção 
+comparar (A*, BFS, Dijkstra, IDA*, ALgoritimos geneticos).
+
+Também temos configuravel as heuristicas e que diagonais podem ser utilizadas no processo de busca para cada algoritimo.
+
+
+Estrutura do projeto:
+
+->Abstraction	
+->Constants
+->Core
+->Factories
+->Finders
+->GeneticAlgorithm
+->Heuristics
+->MapGenerators
+->project.json
+
+O 'project.json' é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
+relevantes a nossa implementação.
+
+
+Abstraction	
+
+Nesta pasta estão todos os arquivos a nivel de abstração dos algoritimos de busca padrão, esses são:
+
+IFactory : Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependencia necessaria.
+IMap : Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritimo de
+nossa implementação espera uma implementação de IMap para rodar.
+IHeuristic : Essa interface abstrai o comportamento das heuristicas
+IMapGenerator : Essa interface tem como objeto abstrair os gerador de mapas
+IFinder : Essa interface é a reponsavel por abstrair todo comportamento dos algoritimos de busca
+IGeneticAlgorithm : Essa interface herda de IFinder, ela compartilha a mesma assinatura de metodos, propriedades e eventos, porem acrescenta a abstração necessaria para
+o utlização de GA.
+
+
+Constants
+
+Nesta pasta são listados arquivos de contantantes e enumeradores:
+
+DiagonalMovement : Lista as opções de diagonais na movimentação 
+DirectionMovement : Lista as oito opções possiveis de se locover a partir de um ponto para seus vizinhos 
+(imagem)(cima,baixo,esquerda,direita,esquerda cima, esquerda baixo, direita cima, direita baixo)
+
+Core
+
+Nesta pasta são definidos as implementações e configurações bases
+
+Container : Esta classe é responsavel por registar e resolver as implementações conhecidas das interfaces
+Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
+Extensions : Arquivo com metodos auxiliares de lista para comportamento de uma estrutura de pilha.
+FileTools : Classe responsavel por toda manipiação de I/O de arquivos
+Map : Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritimos de busca.
+Node : Classe reponsavel por ser a representação de uma celula no mapa, ou seja, o mapa é uma matriz de "Node"
+Settings : Contem toda configuração estatica do projeto, do qual é carregado de um arquivo json chamado "appsettings.json"
+
+
+
+Factories
+Nesta Pasta temos os arquivos responsaveis pelo instanciamento de implementações de interfaces.
+
+FinderFactory : Classe responsavel por decidir e instanciar uma implementação IFinder
+HeuristicFactory : Classe responsavel por decidir e instanciar uma implementação IHeuristic
+MapGeneratorFactory : Classe responsavel por decidir e instanciar uma implementação IMapGenerator
+
+Finders:
+Nesta pasta temos definidas as implementaçoes de todos os algoritimos de busca de caminho
+
+AStarFinder : Implementação do algoritimo de busca de caminho A* implementada em cima da interface IFinder
+BestFirstSearchFinder : Implementação do algoritimo de busca de caminho Best First Search implementada em cima da interface IFinder
+DijkstraFinder : Implementação do algoritimo de busca de caminho Dijkstra implementada em cima da interface IFinder
+IDAStarFinder : Implementação do algoritimo de busca de caminho IDA* implementada em cima da interface IFinder
+GAFinder : Implementação de um algoritimo genético para busca de caminhos implementada em cima da interface IFinder e IGeneticAlgorithm
+
+
+Heuristics:
+
+Nesta pasta são definidas as implementações de IHeuristic, responsaveis pelos calculos de heuristica.
+
+Manhattan : implemtação da classe IHeuristic respnsavel por calcular a distancia manhattam
+Euclidean : implemtação da classe IHeuristic respnsavel por calcular a distancia euclideana
+Octile : implemtação da classe IHeuristic respnsavel por calcular a distancia octil
+Chebyshev : implemtação da classe IHeuristic respnsavel por calcular a distancia Chebyshev
+
+Genetic Algorithm:
+
+Nesta pasta são definidos todas as implementações referentes ao algoritimo genetico, pela complexidade 
+do algoritimo ele possui uma estrutura propria de pastas para definições e configurações de injeção de dependencia
+
+-Abstraction 
+    ISelection : interface é responsavel por abstrair os algoritimos de seleção
+    IGenome  : interface tem como funcionalidade abstrair a definição de genoma 
+    IFitness : interface tem como objetivo abstrair o calculo de fitness 
+    IMutate : inteface tem como objetivo abstrair os operadores de mutação
+    ICrossover :  inteface tem como objetivo abstrair os operadores de cruzamento
+    IRandom : inteface tem como objetivo abstrair a implementação de geração de numeros randomicos
+    AbstractMutate : implemnetação base para operador de mutação
+    AbstractCrossover : Implementação base para operador de cruzamento
+
+-Core
+    Adaptation : Classe responsavel para realizar a adaptação de um individuo novo apos ser gerado
+    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
+    GARandom : Implementação responsavel por gerar numeros randomicos, implementa IRandom
+    GASettings : Arquivo responsavel por carregar configuração estatica de GA, carrega do arquivo "GASettings.json"
+    Genome : classe responsavel por representar o genoma no algoritimo de GA, implementa a IGenome
+
+-Crossover
+    CrossoverOBX : implementação do operador de cruzamento OBX
+    CrossoverPBX : implementação do operador de cruzamento PBX
+    CrossoverSimple :  implemtação do operador de cruzamento simples
+
+-Selection
+    SelectionRandom : Implementação de seleção de individuos aleatorio
+    SelectionRouletteWheel : Implementação de seleção roleta
+
+-Mutation
+    MutateBitwise : implementação do operador de cruzamento Bitwise
+    MutateDIVM : implementação do operador de cruzamento DIVM
+    MutateDM : implementação do operador de cruzamento DM
+    MutateEM : implementação do operador de cruzamento EM
+    MutateIM : implementação do operador de cruzamento IM
+    MutateIVM : implementação do operador de cruzamento IVM
+    MutateSM : implementação do operador de cruzamento SM
+
+Projeto de UI
+
+Foi desenvovido um projeto com objetivo de consumir a biblioteca de busca de caminhos, 
+este possui tres modos que são:
+
+SingleRun : O programa sera executado e rodara uma vez usando as configurações do arquivo estatico
+Dynamic : O programa ira perguntar qual algortitimo, heuristica, tipo de diagonal, forma de visualição e cada operador do GA para rodar
+Batch : O software ira rodar N vezes cada algoritimo selecionado no arquivo de configuração, onde N tambem é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto 
+
+

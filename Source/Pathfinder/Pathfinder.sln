@@ -1,18 +1,12 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1259EAD0-45FC-456E-99F1-4AA95FD6E7DB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1324DE8-643D-4CAA-A07F-EE6D176023C9}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pathfinder", "src\Pathfinder\Pathfinder.csproj", "{A0A91A59-146A-4897-B028-7BA4367A97FA}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Pathfinder.UI", "src\Pathfinder.UI\Pathfinder.UI.xproj", "{28B95856-E5DD-4E63-ABFE-B02E496341C4}"
-EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Pathfinder", "src\Pathfinder\Pathfinder.xproj", "{97113F03-C615-4BDE-9030-2BF66A29B4B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pathfinder.UI", "src\Pathfinder.UI\Pathfinder.UI.csproj", "{A0806578-5D68-4CE9-BA2A-D381FD46F450}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,20 +14,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{28B95856-E5DD-4E63-ABFE-B02E496341C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{28B95856-E5DD-4E63-ABFE-B02E496341C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{28B95856-E5DD-4E63-ABFE-B02E496341C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{28B95856-E5DD-4E63-ABFE-B02E496341C4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97113F03-C615-4BDE-9030-2BF66A29B4B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97113F03-C615-4BDE-9030-2BF66A29B4B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97113F03-C615-4BDE-9030-2BF66A29B4B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97113F03-C615-4BDE-9030-2BF66A29B4B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A91A59-146A-4897-B028-7BA4367A97FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A91A59-146A-4897-B028-7BA4367A97FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A91A59-146A-4897-B028-7BA4367A97FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A91A59-146A-4897-B028-7BA4367A97FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0806578-5D68-4CE9-BA2A-D381FD46F450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0806578-5D68-4CE9-BA2A-D381FD46F450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0806578-5D68-4CE9-BA2A-D381FD46F450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0806578-5D68-4CE9-BA2A-D381FD46F450}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{28B95856-E5DD-4E63-ABFE-B02E496341C4} = {1259EAD0-45FC-456E-99F1-4AA95FD6E7DB}
-		{97113F03-C615-4BDE-9030-2BF66A29B4B4} = {1259EAD0-45FC-456E-99F1-4AA95FD6E7DB}
+		{A0A91A59-146A-4897-B028-7BA4367A97FA} = {1259EAD0-45FC-456E-99F1-4AA95FD6E7DB}
+		{A0806578-5D68-4CE9-BA2A-D381FD46F450} = {1259EAD0-45FC-456E-99F1-4AA95FD6E7DB}
 	EndGlobalSection
 EndGlobal
