@@ -1,14 +1,14 @@
-﻿\Section Algoritmos Genéticos
-A busca utilizando o GA, segue com as opeações base de todo GA, que são seleção, cruzamento, adaptação e mutação. 
-Para cada interação é gerada uma população, a função de aptidão é calculada para cada individuo da população, 
-desses o individuo com o valor mais próximo de zero é selecionado como o melhor.
+\Section Algoritmos Genéticos
+A busca utilizando o GA, segue com as operações base de todo GA, que são seleção, cruzamento, adaptação e mutação. 
+Para cada interação é gerada uma população, a função de aptidão é calculada para cada indivíduo da população, 
+desses o indivíduo com o valor mais próximo de zero é selecionado como o melhor.
 
 \SubSection Função de Aptidão
-FitnessHeuristic: Para cada indivíduo da população é calculada uma aptidão com base em uma função heurística (manhattam, octile, euclideana, chebyshev)
-previamente definida, o calculo é feito a partir do ponto final da lista do genoma do individuo até o ponto de destino do mapa
+FitnessHeuristic: Para cada indivíduo da população é calculada uma aptidão com base em uma função heurística (Manhattam, Octile, Euclideana, Chebyshev)
+previamente definida, o calculo é feito a partir do ponto final da lista do genoma do indivíduo até o ponto de destino do mapa
 a soma de todos os resultados é a função de aptidão da população.
 
-FitnessWithCollisionDetection: Para cada indivíduo da população é calculada a função de aptidão identica a FitnessHeuristic, porem no processo de adaptação adaptação os caminhos que aumentarem para um caminho inválido, que colidam ou saiam do mapa, são marcados,
+FitnessWithCollisionDetection: Para cada indivíduo da população é calculada a função de aptidão idêntica a FitnessHeuristic, porem no processo de adaptação adaptação os caminhos que aumentarem para um caminho inválido, que colidam ou saiam do mapa, são marcados,
   posteriormente todos os indivíduos marcados são penalizados com a  soma de  um valor alto para diminuir o valor de sua aptidão na população.
 
 
@@ -18,36 +18,36 @@ Selection Random: Gera um numero aleatório entre 0 e o tamanho total da popula�
 Selection Roulette Wheel: Faz a soma de todos os valores da função de aptidão da população, depois calcula a porcentagem de cada indivíduo referente ao total 
 e guarda em um vetor. Então é gerado um valor A aleatório entre 0 e 1 e multiplicado pelo valor total dos pesos. Para selecionar o indivíduo é feito um loop 
 nos pesos e seus valores somados até que o valor A seja igual ou menor que zero, o índice do peso que fez a condição acontecer, se o índice do indivíduo selecionado.
-Desta forma aumentando a possibilidade de selecionar um individuo com maior aptidão.
+Desta forma aumentando a possibilidade de selecionar um indivíduo com maior aptidão.
 
 \SubSection Cruzamento
 CrossOver Simple: Utiliza dois indivíduos selecionados,  define dois números aleatórios de 0 até menor tamanho da lista de cromossomos entre os dois, 
-sendo que o primeiro indice tem que ser menor que o segundo indice e os mesmos não podem ser iguais. 
+sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
 Esse tamanho é utilizado para trocar cromossomos entre os dois indivíduos, ou seja, adicionar todos os cromossomos do primeiro indivíduo do índice 
 igual ao primeiro numero, até o índice segundo numero, e repete o processo contrario.
 
 Crossover OBX (Order-Based Crossover): Utiliza dois indivíduos escolhidos na seleção, então define dois números aleatórios, de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro tem que ser menor que o segundo e não podem ser iguais. O primeiro numero até o segundo numero, são definidas posições aleatórias e são salvas em uma lista. Faz um loop na lista e troca o cromossomo da posição do primeiro indivíduo para o segundo e do segundo para o primeiro.
 
 Crossover PBX (Position-Based Crossover): Utiliza dois indivíduos selecionados, então define dois números aleatórios, 
-de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro indice tem que ser menor que o segundo indice e os mesmos não podem ser iguais. 
+de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
 Entre esse tamanho são definidas posições aleatórias e guardadas em uma lista. Os indivíduos resultantes são zerados, 
 e para cada posição é trocado do cromossomo principal para o resultante de mesma posição outro da mesma posição. 
 As posições não preenchidas são completadas com os cromossomos restante, seguindo a ordem do cromossomo e adicionado se ele não ja existir na lista.
 
 \SubSection Adaptação
 Adaptation: 
-Ela é importante para corrigir possíveis problemas nos individuos resultantes dos operadores de cruzamento ou mutação. Quando os cromossomos são reorganizados, 
+Ela é importante para corrigir possíveis problemas nos indivíduos resultantes dos operadores de cruzamento ou mutação. Quando os cromossomos são reorganizados, 
 o caminho novo que foi gerado pode levar para cima de um bloqueio ou para fora do mapa, então seguindo as direções indicadas no cromossomo, 
 a posição no mapa é recalcula e só adiciona o cromossomo do indivíduo se for uma posição valida ou que não voltam para o mesmo lugar.
 Para complementar o caminho do indivíduo, uma nova direção valida é adicionada e calculada, fazendo com que cada interação de adaptação, o caminho cresça.
 
 \SubSection Mutação
-Todas as mutações executam se o individuo tiver mais do que 3 cromossomos e não afeta o primeiro cromossomo.
+Todas as mutações executam se o indivíduo tiver mais do que 3 cromossomos e não afeta o primeiro cromossomo.
  O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lugar, o caminho é quebrado. /cite{MatBuckland}
 
-MutateEM (Exchange Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e troca os cromossomos do individuo.
+MutateEM (Exchange Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e troca os cromossomos do indivíduo.
 
-MutateSM (Scramble Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e uma quantidade aleatória. Então faz um loop da quantidade aleatória e mistura os cromossomos que estão entre a posição inicial e final trocando aleatóriamente dois pontos entre eles.
+MutateSM (Scramble Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e uma quantidade aleatória. Então faz um loop da quantidade aleatória e mistura os cromossomos que estão entre a posição inicial e final trocando aleatoriamente dois pontos entre eles.
 
 MutateDM (Displacement Mutation): Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória.
 
