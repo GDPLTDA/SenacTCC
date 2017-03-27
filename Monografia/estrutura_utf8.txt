@@ -128,11 +128,31 @@ do algoritimo ele possui uma estrutura propria de pastas para definições e con
 
 Projeto de UI
 
-Foi desenvovido um projeto com objetivo de consumir a biblioteca de busca de caminhos, 
-este possui tres modos que são:
-
-SingleRun : O programa sera executado e rodara uma vez usando as configurações do arquivo estatico
-Dynamic : O programa ira perguntar qual algortitimo, heuristica, tipo de diagonal, forma de visualição e cada operador do GA para rodar
-Batch : O software ira rodar N vezes cada algoritimo selecionado no arquivo de configuração, onde N tambem é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto 
+Foi desenvovido um projeto com objetivo de consumir a biblioteca de busca de caminhos, e poder visualiza-los
 
 
+Estrutura do projeto:
+
+Abstraction
+    IAppMode : Abstração que define de que forma o app ira rodar
+    IViewer : Abstração do tipo de visualizador
+
+AppMode 
+    SingleRunMode : O programa sera executado e rodara uma vez usando as configurações do arquivo estatico
+    DynamicMode : O programa ira perguntar qual algortitimo, heuristica, tipo de diagonal, forma de visualição e cada operador do GA para rodar
+    BatchMode : O software ira rodar N vezes cada algoritimo selecionado no arquivo de configuração, onde N tambem é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto 
+
+
+Core
+    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
+    RegisterConfig : Neste arquivo são configurados os binds do visualizador para injeção de dependencia
+    Settings : Onde são carregados as configurações estaticas do arquivo "appsettings.json", neste são configurações da forma de visualização e do Batch
+
+Factories
+    AppModeFactory : Classe responsavel por decidir e instanciar uma Implementação de IAppMode
+    ViwerFactory : Classe responsavel por decidir e instanciar uma Implementação de IViewer
+
+Viewer
+    ConsoleViewer : Classe responsavel por apresentar a busca de caminhos em ASC no Console da aplicação
+    OpenGLViewer : Classe responsavel por apresentar a busca em uma janela em OpenGL
+    OpenGLWindow : Classe que é utilizada pela OpenGLViewer para mostrar a janela com uma grid que mostra o andamento dos algoritimos
