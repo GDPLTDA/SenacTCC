@@ -1,11 +1,11 @@
-﻿Essa seção tem como objetivo descrever como foram implementados os algoritimos 
+Essa seção tem como objetivo descrever como foram implementados os algoritmos 
 
-Pathfinder - Projeto de implementação de algoritimos de busca
+PathFinder - Projeto de implementação de algoritmos de busca
 
-Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritimos de busca que temos como pretenção 
-comparar (A*, BFS, Dijkstra, IDA*, ALgoritimos geneticos).
+Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritmos de busca que temos como pretenção 
+comparar (A*, BFS, Dijkstra, IDA*, Algoritmos Genéticos).
 
-Também temos configuravel as heuristicas e que diagonais podem ser utilizadas no processo de busca para cada algoritimo.
+Também temos configurável as heurísticas e que diagonais podem ser utilizadas no processo de busca para cada algoritmo.
 
 
 Estrutura do projeto:
@@ -26,110 +26,109 @@ relevantes a nossa implementação.
 
 Abstraction	
 
-Nesta pasta estão todos os arquivos a nivel de abstração dos algoritimos de busca padrão, esses são:
+Nesta pasta estão todos os arquivos a nível de abstração dos algoritmos de busca padrão, esses são:
 
-IFactory : Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependencia necessaria.
-IMap : Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritimo de
+IFactory : Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependência necessária.
+IMap : Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritmo de
 nossa implementação espera uma implementação de IMap para rodar.
-IHeuristic : Essa interface abstrai o comportamento das heuristicas
+IHeuristic : Essa interface abstrai o comportamento das heurísticas
 IMapGenerator : Essa interface tem como objeto abstrair os gerador de mapas
-IFinder : Essa interface é a reponsavel por abstrair todo comportamento dos algoritimos de busca
-IGeneticAlgorithm : Essa interface herda de IFinder, ela compartilha a mesma assinatura de metodos, propriedades e eventos, porem acrescenta a abstração necessaria para
-o utlização de GA.
+IFinder : Essa interface é a responsável por abstrair todo comportamento dos algoritmos de busca
+IGeneticAlgorithm : Essa interface herda de IFinder, ela compartilha a mesma assinatura de métodos, propriedades e eventos, porem acrescenta a abstração necessária para
+o utilização de GA.
 
 
 Constants
 
-Nesta pasta são listados arquivos de contantantes e enumeradores:
+Nesta pasta são listados arquivos de constantes e enumeradores:
 
 DiagonalMovement : Lista as opções de diagonais na movimentação 
-DirectionMovement : Lista as oito opções possiveis de se locover a partir de um ponto para seus vizinhos 
-(imagem)(cima,baixo,esquerda,direita,esquerda cima, esquerda baixo, direita cima, direita baixo)
+DirectionMovement : Lista as oito opções possíveis de se locomover a partir de um ponto para seus vizinhos 
+(imagem)(cima, baixo, esquerda, direita, esquerda cima, esquerda baixo, direita cima, direita baixo)
 
 Core
 
 Nesta pasta são definidos as implementações e configurações bases
 
-Container : Esta classe é responsavel por registar e resolver as implementações conhecidas das interfaces
-Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
-Extensions : Arquivo com metodos auxiliares de lista para comportamento de uma estrutura de pilha.
-FileTools : Classe responsavel por toda manipiação de I/O de arquivos
-Map : Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritimos de busca.
-Node : Classe reponsavel por ser a representação de uma celula no mapa, ou seja, o mapa é uma matriz de "Node"
-Settings : Contem toda configuração estatica do projeto, do qual é carregado de um arquivo json chamado "appsettings.json"
+Container : Esta classe é responsável por registar e resolver as implementações conhecidas das interfaces
+Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código
+Extensions : Arquivo com métodos auxiliares de lista para comportamento de uma estrutura de pilha.
+FileTools : Classe responsável por toda manipulação de I/O de arquivos
+Map : Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritmos de busca.
+Node : Classe responsável por ser a representação de uma célula no mapa, ou seja, o mapa é uma matriz de "Node"
+Settings : Contem toda configuração estática do projeto, do qual é carregado de um arquivo Json chamado "appsettings.json"
 
 
 
 Factories
-Nesta Pasta temos os arquivos responsaveis pelo instanciamento de implementações de interfaces.
+Nesta Pasta temos os arquivos responsáveis pelo instanciar as implementações de interfaces.
 
 FinderFactory : Classe responsavel por decidir e instanciar uma implementação IFinder
 HeuristicFactory : Classe responsavel por decidir e instanciar uma implementação IHeuristic
 MapGeneratorFactory : Classe responsavel por decidir e instanciar uma implementação IMapGenerator
 
 Finders:
-Nesta pasta temos definidas as implementaçoes de todos os algoritimos de busca de caminho
+Nesta pasta temos definidas as implementações de todos os algoritmos de busca de caminho
 
-AStarFinder : Implementação do algoritimo de busca de caminho A* implementada em cima da interface IFinder
-BestFirstSearchFinder : Implementação do algoritimo de busca de caminho Best First Search implementada em cima da interface IFinder
-DijkstraFinder : Implementação do algoritimo de busca de caminho Dijkstra implementada em cima da interface IFinder
-IDAStarFinder : Implementação do algoritimo de busca de caminho IDA* implementada em cima da interface IFinder
-GAFinder : Implementação de um algoritimo genético para busca de caminhos implementada em cima da interface IFinder e IGeneticAlgorithm
+AStarFinder : Implementação do algoritmo de busca de caminho A* implementada em cima da interface IFinder
+BestFirstSearchFinder : Implementação do algoritmo de busca de caminho “Best First Search” implementada em cima da interface IFinder
+DijkstraFinder : Implementação do algoritmo de busca de caminho Dijkstra implementada em cima da interface IFinder
+IDAStarFinder : Implementação do algoritmo de busca de caminho IDA* implementada em cima da interface IFinder
+GAFinder : Implementação de um algoritmo genético para busca de caminhos implementada em cima da interface IFinder e IGeneticAlgorithm
 
 
 Heuristics:
 
-Nesta pasta são definidas as implementações de IHeuristic, responsaveis pelos calculos de heuristica.
+Nesta pasta são definidas as implementações de IHeuristic, responsáveis pelos cálculos de heurística.
 
-Manhattan : implemtação da classe IHeuristic respnsavel por calcular a distancia manhattam
-Euclidean : implemtação da classe IHeuristic respnsavel por calcular a distancia euclideana
-Octile : implemtação da classe IHeuristic respnsavel por calcular a distancia octil
-Chebyshev : implemtação da classe IHeuristic respnsavel por calcular a distancia Chebyshev
+Manhattan : Implementação da classe IHeuristic responsável por calcular a distancia Manhattam
+Euclidean : Implementação da classe IHeuristic responsável por calcular a distancia Euclideana
+Octile : Implementação da classe IHeuristic responsável por calcular a distancia Octil
+Chebyshev : Implementação da classe IHeuristic responsável por calcular a distancia Chebyshev
 
 Genetic Algorithm:
 
-Nesta pasta são definidos todas as implementações referentes ao algoritimo genetico, pela complexidade 
-do algoritimo ele possui uma estrutura propria de pastas para definições e configurações de injeção de dependencia
+Nesta pasta são definidos todas as implementações referentes ao algoritmo genético, pela complexidade 
+do algoritmo ele possui uma estrutura própria de pastas para definições e configurações de injeção de dependência
 
 -Abstraction 
-    ISelection : interface é responsavel por abstrair os algoritimos de seleção
-    IGenome  : interface tem como funcionalidade abstrair a definição de genoma 
-    IFitness : interface tem como objetivo abstrair o calculo de fitness 
-    IMutate : inteface tem como objetivo abstrair os operadores de mutação
-    ICrossover :  inteface tem como objetivo abstrair os operadores de cruzamento
-    IRandom : inteface tem como objetivo abstrair a implementação de geração de numeros randomicos
-    AbstractMutate : implemnetação base para operador de mutação
+    ISelection : Interface é responsável por abstrair os algoritmos de seleção
+    IGenome  : Interface tem como funcionalidade abstrair a definição de genoma 
+    IFitness : Interface tem como objetivo abstrair o calculo de fitness 
+    IMutate : Interface tem como objetivo abstrair os operadores de mutação
+    ICrossover :  Interface tem como objetivo abstrair os operadores de cruzamento
+    IRandom : Interface tem como objetivo abstrair a implementação de geração de números aleatórios
+    AbstractMutate : Implementação base para operador de mutação
     AbstractCrossover : Implementação base para operador de cruzamento
 
 -Core
-    Adaptation : Classe responsavel para realizar a adaptação de um individuo novo apos ser gerado
-    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
-    GARandom : Implementação responsavel por gerar numeros randomicos, implementa IRandom
-    GASettings : Arquivo responsavel por carregar configuração estatica de GA, carrega do arquivo "GASettings.json"
-    Genome : classe responsavel por representar o genoma no algoritimo de GA, implementa a IGenome
+    Adaptation : Classe responsável para realizar a adaptação de um indivíduo novo após ser gerado
+    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código
+    GARandom : Implementação responsável por gerar números aleatórios, implementa IRandom
+    GASettings : Arquivo responsável por carregar configuração estática de GA, carrega do arquivo "GASettings.json"
+    Genome : Classe responsável por representar o genoma no algoritmo de GA, implementa a IGenome
 
 -Crossover
-    CrossoverOBX : implementação do operador de cruzamento OBX
-    CrossoverPBX : implementação do operador de cruzamento PBX
-    CrossoverSimple :  implemtação do operador de cruzamento simples
+    CrossoverOBX : Implementação do operador de cruzamento OBX
+    CrossoverPBX : Implementação do operador de cruzamento PBX
+    CrossoverSimple :  Implementação do operador de cruzamento simples
 
 -Selection
-    SelectionRandom : Implementação de seleção de individuos aleatorio
+    SelectionRandom : Implementação de seleção de indivíduos aleatório
     SelectionRouletteWheel : Implementação de seleção roleta
 
 -Mutation
-    MutateBitwise : implementação do operador de cruzamento Bitwise
-    MutateDIVM : implementação do operador de cruzamento DIVM
-    MutateDM : implementação do operador de cruzamento DM
-    MutateEM : implementação do operador de cruzamento EM
-    MutateIM : implementação do operador de cruzamento IM
-    MutateIVM : implementação do operador de cruzamento IVM
-    MutateSM : implementação do operador de cruzamento SM
+    MutateBitwise : Implementação do operador de cruzamento Bitwise
+    MutateDIVM : Implementação do operador de cruzamento DIVM
+    MutateDM : Implementação do operador de cruzamento DM
+    MutateEM : Implementação do operador de cruzamento EM
+    MutateIM : Implementação do operador de cruzamento IM
+    MutateIVM : Implementação do operador de cruzamento IVM
+    MutateSM : Implementação do operador de cruzamento SM
 
 Projeto de UI
 
-Foi desenvovido um projeto com objetivo de consumir a biblioteca de busca de caminhos, e poder visualiza-los
-
+Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de caminhos, e poder visualiza-los
 
 Estrutura do projeto:
 
@@ -138,21 +137,21 @@ Abstraction
     IViewer : Abstração do tipo de visualizador
 
 AppMode 
-    SingleRunMode : O programa sera executado e rodara uma vez usando as configurações do arquivo estatico
-    DynamicMode : O programa ira perguntar qual algortitimo, heuristica, tipo de diagonal, forma de visualição e cada operador do GA para rodar
-    BatchMode : O software ira rodar N vezes cada algoritimo selecionado no arquivo de configuração, onde N tambem é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto 
+    SingleRunMode : O programa será executado e rodara uma vez usando as configurações do arquivo estático
+    DynamicMode : O programa ira perguntar qual algoritmo, heurística, tipo de diagonal, forma de visualização e cada operador do GA para rodar
+    BatchMode : O software ira rodar N vezes cada algoritmo selecionado no arquivo de configuração, onde N também é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto 
 
 
 Core
-    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invez de numeros avulsos no codigo
-    RegisterConfig : Neste arquivo são configurados os binds do visualizador para injeção de dependencia
-    Settings : Onde são carregados as configurações estaticas do arquivo "appsettings.json", neste são configurações da forma de visualização e do Batch
+    Enumerators : Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código
+    RegisterConfig : Neste arquivo são configurados os binds do visualizador para injeção de dependência
+    Settings : Onde são carregados as configurações estáticas do arquivo "appsettings.json", neste são configurações da forma de visualização e do Batch
 
 Factories
-    AppModeFactory : Classe responsavel por decidir e instanciar uma Implementação de IAppMode
-    ViwerFactory : Classe responsavel por decidir e instanciar uma Implementação de IViewer
+    AppModeFactory : Classe responsável por decidir e instanciar uma Implementação de IAppMode
+    ViwerFactory : Classe responsável por decidir e instanciar uma Implementação de IViewer
 
 Viewer
-    ConsoleViewer : Classe responsavel por apresentar a busca de caminhos em ASC no Console da aplicação
-    OpenGLViewer : Classe responsavel por apresentar a busca em uma janela em OpenGL
-    OpenGLWindow : Classe que é utilizada pela OpenGLViewer para mostrar a janela com uma grid que mostra o andamento dos algoritimos
+    ConsoleViewer : Classe responsável por apresentar a busca de caminhos em ASC no Console da aplicação
+    OpenGLViewer : Classe responsável por apresentar a busca em uma janela em OpenGL
+    OpenGLWindow : Classe que é utilizada pela OpenGLViewer para mostrar a janela com uma grid que mostra o andamento dos algoritmos
