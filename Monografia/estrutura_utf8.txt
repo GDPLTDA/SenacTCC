@@ -20,7 +20,7 @@ Estrutura do projeto:
 ->MapGenerators
 ->project.json
 
-O 'project.json' é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
+O 'project.csproj' é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
 relevantes a nossa implementação.
 
 
