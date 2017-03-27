@@ -8,7 +8,7 @@ FitnessHeuristic: Para cada indivíduo da população é calculada uma aptidão 
 previamente definida, o calculo é feito a partir do ponto final da lista do genoma do indivíduo até o ponto de destino do mapa
 a soma de todos os resultados é a função de aptidão da população.
 
-FitnessWithCollisionDetection: Para cada indivíduo da população é calculada a função de aptidão idêntica a FitnessHeuristic, porem no processo de adaptação adaptação os caminhos que aumentarem para um caminho inválido, que colidam ou saiam do mapa, são marcados,
+FitnessWithCollisionDetection: Para cada indivíduo da população é calculada a função de aptidão idêntica a FitnessHeuristic, porém no processo de adaptação adaptação os caminhos que aumentarem para um caminho inválido, que colidam ou saiam do mapa, são marcados,
   posteriormente todos os indivíduos marcados são penalizados com a  soma de  um valor alto para diminuir o valor de sua aptidão na população.
 
 
@@ -24,7 +24,7 @@ Desta forma aumentando a possibilidade de selecionar um indivíduo com maior apt
 CrossOver Simple: Utiliza dois indivíduos selecionados,  define dois números aleatórios de 0 até menor tamanho da lista de cromossomos entre os dois, 
 sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
 Esse tamanho é utilizado para trocar cromossomos entre os dois indivíduos, ou seja, adicionar todos os cromossomos do primeiro indivíduo do índice 
-igual ao primeiro numero, até o índice segundo numero, e repete o processo contrario.
+igual ao primeiro numero, até o índice segundo numeSAro, e repete o processo contrario.
 
 Crossover OBX (Order-Based Crossover): Utiliza dois indivíduos escolhidos na seleção, então define dois números aleatórios, de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro tem que ser menor que o segundo e não podem ser iguais. O primeiro numero até o segundo numero, são definidas posições aleatórias e são salvas em uma lista. Faz um loop na lista e troca o cromossomo da posição do primeiro indivíduo para o segundo e do segundo para o primeiro.
 
