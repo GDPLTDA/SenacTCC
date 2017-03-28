@@ -10,10 +10,282 @@ A linguagem escolhida foi C\#, a mesma possui todas as funcionalidades necessár
 
 Para os testes o ambiente base da implementação é um Maquina Virtual do Ubuntu 64 bits rodando no Vagrant.
 
-\section{Testes}
+Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritmos de busca que temos como pretenção 
+comparar (A*, BFS, Dijkstra, IDA*, Algoritmos Genéticos).
 
-Foi desenvolvida uma ferramenta  para exportar mapas  manualmente a partir de um simulador de uma biblioteca de Busca de caminhos em Java Script \cite{Xueqiao}. A modificação permite exportar os o modelo desenhado em ASCII na estrutura necessária para os nossos testes, a mesma pode ser encontrada em  \hyperref[]{'http://lucasteles.github.io/pf/visual/'}.
-Todos os testes seguem o mesmo modelo de mapa para exibição e leitura, para facilitar comparações.
+Também temos configurável as heurísticas e que diagonais podem ser utilizadas no processo de busca para cada algoritmo.
+
+\section{Estrutura do Projeto}
+Essa seção tem como objetivo descrever como foram implementados os algoritmos 
+
+\subsection {PathFinder}
+
+Projeto de implementação de algoritmos de busca
+
+->Abstraction
+
+->Constants
+
+->Core
+
+->Factories
+
+->Finders
+
+->GeneticAlgorithm
+
+->Heuristics
+
+->MapGenerators
+
+O \textbf{'project.csproj'} é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
+relevantes a nossa implementação.
+
+\subsection{Abstraction}	
+
+Nesta pasta estão todos os arquivos a nível de abstração dos algoritmos de busca padrão, esses são:
+
+\textbf{IFactory}: Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependência necessária.
+
+\textbf{IMap}: Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritmo de
+nossa implementação espera uma implementação de IMap para rodar.
+
+\textbf{IHeuristic}: Essa interface abstrai o comportamento das heurísticas.
+
+\textbf{IMapGenerator}: Essa interface tem como objeto abstrair os gerador de mapas.
+
+\textbf{IFinder}: Essa interface é a responsável por abstrair todo comportamento dos algoritmos de busca.
+
+\textbf{IGeneticAlgorithm}: Essa interface herda de IFinder, ela compartilha a mesma assinatura de métodos, propriedades e eventos, porem acrescenta a abstração necessária para
+o utilização de GA.
+
+\subsection{Constants}
+
+Nesta pasta são listados arquivos de constantes e enumeradores:
+
+\textbf{DiagonalMovement}: Lista as opções de diagonais na movimentação.
+
+\textbf{DirectionMovement}: Lista as oito opções possíveis de se locomover a partir de um ponto para seus vizinhos 
+(imagem)(cima, baixo, esquerda, direita, esquerda cima, esquerda baixo, direita cima, direita baixo).
+
+\subsection{Core}
+
+Nesta pasta são definidos as implementações e configurações bases
+
+\textbf{Container}: Esta classe é responsável por registar e resolver as implementações conhecidas das interfaces.
+
+\textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
+
+\textbf{Extensions}: Arquivo com métodos auxiliares de lista para comportamento de uma estrutura de pilha.
+
+\textbf{FileTools}: Classe responsável por toda manipulação de I/O de arquivos
+Map: Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritmos de busca.
+
+\textbf{Node}: Classe responsável por ser a representação de uma célula no mapa, ou seja, o mapa é uma matriz de \textbf{\textit{"Node"}}.
+
+\textbf{Settings}: Contém toda configuração estática do projeto, do qual é carregado de um arquivo Json chamado "appsettings.json"
+
+\subsection{Factories}
+
+Nesta Pasta temos os arquivos responsáveis pelo instanciar as implementações de interfaces.
+
+\textbf{FinderFactory}: Classe responsável por decidir e instanciar uma implementação IFinder.
+
+\textbf{HeuristicFactory}: Classe responsável por decidir e instanciar uma implementação IHeuristic.
+
+\textbf{MapGeneratorFactory}: Classe responsável por decidir e instanciar uma implementação IMapGenerator.
+
+\subsection{Finders}
+
+Nesta pasta temos definidas as implementações de todos os algoritmos de busca de caminho.
+
+\textbf{AStarFinder}: Implementação do algoritmo de busca de caminho A* implementada em cima da interface IFinder.
+
+\textbf{BestFirstSearchFinder}: Implementação do algoritmo de busca de caminho “Best First Search” implementada em cima da interface IFinder.
+
+\textbf{DijkstraFinder}: Implementação do algoritmo de busca de caminho Dijkstra implementada em cima da interface IFinder.
+
+\textbf{IDAStarFinder}: Implementação do algoritmo de busca de caminho IDA* implementada em cima da interface IFinder.
+
+\textbf{GAFinder}: Implementação de um algoritmo genético para busca de caminhos implementada em cima da interface IFinder e IGeneticAlgorithm.
+
+\subsection{Heuristics}
+
+Nesta pasta são definidas as implementações de IHeuristic, responsáveis pelos cálculos de heurística.
+
+\textbf{Manhattan}: Implementação da classe Manhattan implementada em cima da interface IHeuristic responsável por calcular a distancia Manhattam.
+
+\textbf{Euclidean}: Implementação da classe Euclidean implementada em cima da interface IHeuristic responsável por calcular a distancia Euclideana.
+
+\textbf{Octile}: Implementação da classe Octile implementada em cima da interface IHeuristic responsável por calcular a distancia Octile.
+
+\textbf{Chebyshev}: Implementação da classe Chebyshev implementada em cima da interface IHeuristic responsável por calcular a distancia Chebyshev.
+
+\section{Genetic Algorithm}
+
+Nesta pasta são definidos todas as implementações referentes ao algoritmo genético, pela complexidade.
+do algoritmo ele possui uma estrutura própria de pastas para definições e configurações de injeção de dependência.
+
+\subsection{Abstraction}
+
+\textbf{ISelection}: Interface é responsável por abstrair os algoritmos de seleção.
+
+\textbf{IGenome}: Interface tem como funcionalidade abstrair a definição de genoma.
+
+\textbf{IFitness}: Interface tem como objetivo abstrair o calculo de fitness.
+
+\textbf{IMutate}: Interface tem como objetivo abstrair os operadores de mutação.
+
+\textbf{ICrossover}:  Interface tem como objetivo abstrair os operadores de cruzamento.
+
+\textbf{IRandom}: Interface tem como objetivo abstrair a implementação de geração de números aleatórios.
+
+\textbf{AbstractMutate}: Implementação base para operador de mutação.
+
+\textbf{AbstractCrossover}: Implementação base para operador de cruzamento.
+
+\subsection{Core}
+
+\textbf{Adaptation}: Classe responsável para realizar a adaptação de um indivíduo novo após ser gerado.
+
+\textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
+
+\textbf{GARandom}: Implementação responsável por gerar números aleatórios, implementa IRandom.
+
+\textbf{GASettings}: Arquivo responsável por carregar configuração estática de GA, carrega do arquivo "GASettings.json”.
+
+\textbf{Genome}: Classe responsável por representar o genoma no algoritmo de GA, implementa a IGenome.
+
+\subsection{Crossover}
+\textbf{CrossoverOBX}: Implementação do operador de cruzamento OBX.
+
+\textbf{CrossoverPBX}: Implementação do operador de cruzamento PBX.
+
+\textbf{CrossoverSimple}:  Implementação do operador de cruzamento simples.
+
+\subsection{Selection}
+\textbf{SelectionRandom}: Implementação de seleção de indivíduos aleatório.
+\textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
+
+\subsection{Mutation}
+\textbf{MutateBitwise}: Implementação do operador de cruzamento Bitwise.
+
+\textbf{MutateDIVM}: Implementação do operador de cruzamento DIVM.
+
+\textbf{MutateDM}: Implementação do operador de cruzamento DM.
+
+\textbf{MutateEM}: Implementação do operador de cruzamento EM.
+
+\textbf{MutateIM}: Implementação do operador de cruzamento IM.
+
+\textbf{MutateIVM}: Implementação do operador de cruzamento IVM.
+
+\textbf{MutateSM}: Implementação do operador de cruzamento SM.
+
+
+\section{Projeto de UI}
+
+Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de caminhos, e poder visualiza-los.
+
+\subsection{Abstraction}
+\textbf{IAppMode}: Abstração que define de que forma o app ira rodar.
+
+\textbf{IViewer}: Abstração do tipo de visualizador.
+
+\subsection{AppMode}
+\textbf{SingleRunMode}: O programa será executado e rodara uma vez usando as configurações do arquivo estático.
+
+\textbf{DynamicMode}: O programa ira perguntar qual algoritmo, heurística, tipo de diagonal, forma de visualização e cada operador do GA para rodar.
+
+\textbf{BatchMode}: O software ira rodar N vezes cada algoritmo selecionado no arquivo de configuração, onde N também é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto.
+
+
+\subsection{Core}
+
+\textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
+
+\textbf{RegisterConfig}: Neste arquivo são configurados os binds do visualizador para injeção de dependência.
+
+\textbf{Settings}: Onde são carregados as configurações estáticas do arquivo "appsettings.json", neste são configurações da forma de visualização e do Batch.
+
+\subsection{Factories}
+\textbf{AppModeFactory}: Classe responsável por decidir e instanciar uma Implementação de IAppMode.
+
+\textbf{ViwerFactory}: Classe responsável por decidir e instanciar uma Implementação de IViewer.
+
+
+\subsection{Viewer}
+\textbf{ConsoleViewer}: Classe responsável por apresentar a busca de caminhos em ASC no Console da aplicação.
+
+\textbf{OpenGLViewer}: Classe responsável por apresentar a busca em uma janela em OpenGL.
+
+\textbf{OpenGLWindow}: Classe que é utilizada pela OpenGLViewer para mostrar a janela com uma grid que mostra o andamento dos algoritmos.
+
+\section{Estrutura do GA}
+A busca utilizando o GA, segue com as operações base de todo GA, que são seleção, cruzamento, adaptação e mutação. 
+Para cada interação é gerada uma população, a função de aptidão é calculada para cada indivíduo da população, 
+desses o indivíduo com o valor mais próximo de zero é selecionado como o melhor.
+
+\subsection{Função de Aptidão}
+
+\textbf{FitnessHeuristic}: Para cada indivíduo da população é calculada uma aptidão com base em uma função heurística (Manhattam, Octile, Euclideana, Chebyshev)
+previamente definida, o calculo é feito a partir do ponto final da lista do genoma do indivíduo até o ponto de destino do mapa
+a soma de todos os resultados é a função de aptidão da população.
+
+\textbf{FitnessWithCollisionDetection}: Para cada indivíduo da população é calculada a função de aptidão idêntica a FitnessHeuristic, porém no processo de adaptação adaptação os caminhos que aumentarem para um caminho inválido, que colidam ou saiam do mapa, são marcados,
+posteriormente todos os indivíduos marcados são penalizados com a  soma de  um valor alto para diminuir o valor de sua aptidão na população.
+
+\subsection{Seleção}
+
+\textbf{Selection Random}: Gera um numero aleatório entre 0 e o tamanho total da população e retorna o indivíduo do índice escolhido.
+
+\textbf{Selection Roulette Wheel}: Faz a soma de todos os valores da função de aptidão da população, depois calcula a porcentagem de cada indivíduo referente ao total 
+e guarda em um vetor. Então é gerado um valor A aleatório entre 0 e 1 e multiplicado pelo valor total dos pesos. Para selecionar o indivíduo é feito um loop 
+nos pesos e seus valores somados até que o valor A seja igual ou menor que zero, o índice do peso que fez a condição acontecer, se o índice do indivíduo selecionado.
+Desta forma aumentando a possibilidade de selecionar um indivíduo com maior aptidão.
+
+\subsection{Cruzamento}
+
+\textbf{CrossOver Simple}: Utiliza dois indivíduos selecionados,  define dois números aleatórios de 0 até menor tamanho da lista de cromossomos entre os dois, 
+sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
+Esse tamanho é utilizado para trocar cromossomos entre os dois indivíduos, ou seja, adicionar todos os cromossomos do primeiro indivíduo do índice 
+igual ao primeiro numero, até o índice segundo numeSAro, e repete o processo contrario.
+
+\textbf{Crossover OBX (Order-Based Crossover)}: Utiliza dois indivíduos escolhidos na seleção, então define dois números aleatórios, de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro tem que ser menor que o segundo e não podem ser iguais. O primeiro numero até o segundo numero, são definidas posições aleatórias e são salvas em uma lista. Faz um loop na lista e troca o cromossomo da posição do primeiro indivíduo para o segundo e do segundo para o primeiro.
+
+\textbf{Crossover PBX (Position-Based Crossover)}: Utiliza dois indivíduos selecionados, então define dois números aleatórios, 
+de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
+Entre esse tamanho são definidas posições aleatórias e guardadas em uma lista. Os indivíduos resultantes são zerados, 
+e para cada posição é trocado do cromossomo principal para o resultante de mesma posição outro da mesma posição. 
+As posições não preenchidas são completadas com os cromossomos restante, seguindo a ordem do cromossomo e adicionado se ele não ja existir na lista.
+
+\subsection{Adaptação}
+
+Ela é importante para corrigir possíveis problemas nos indivíduos resultantes dos operadores de cruzamento ou mutação. Quando os cromossomos são reorganizados, 
+o caminho novo que foi gerado pode levar para cima de um bloqueio ou para fora do mapa, então seguindo as direções indicadas no cromossomo, 
+a posição no mapa é recalcula e só adiciona o cromossomo do indivíduo se for uma posição valida ou que não voltam para o mesmo lugar.
+Para complementar o caminho do indivíduo, uma nova direção valida é adicionada e calculada, fazendo com que cada interação de adaptação, o caminho cresça.
+
+\subsection{Mutação}
+
+Todas as mutações executam se o indivíduo tiver mais do que 3 cromossomos e não afeta o primeiro cromossomo.
+O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lugar, o caminho é quebrado. /cite{MatBuckland}
+
+\textbf{MutateEM (Exchange Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e troca os cromossomos do indivíduo.
+
+\textbf{MutateSM (Scramble Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e uma quantidade aleatória. Então faz um loop da quantidade aleatória e mistura os cromossomos que estão entre a posição inicial e final trocando aleatoriamente dois pontos entre eles.
+
+\textbf{MutateDM (Displacement Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória.
+
+\textbf{MutateIM (Insertion Mutation)}: Define uma posição aleatória, remove o cromossomo da posição, reorganiza os cromossomos e insere o cromossomo removido em uma nova posição aleatória.
+
+\textbf{MutateIVM (Inversion Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e inverte todos os cromossomos que está entre as posições.
+
+\textbf{MutateDIVM DIVM(Displaced Inversion Mutation)}:Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória de forma invertida.
+
+\section{Modo Batch}
+
+O modo Batch do programa serve para poder gerar os dados necessários para a analise.
 
 \section{Teste de busca de caminho utilizando A*}
 
