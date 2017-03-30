@@ -30,7 +30,7 @@
 \contentsline {subsection}{\numberline {4.2.1}PathFinder}{27}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Abstraction}{28}{subsection.4.2.2}
 \contentsline {subsection}{\numberline {4.2.3}Constants}{28}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Core}{28}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.4}Core}{29}{subsection.4.2.4}
 \contentsline {subsection}{\numberline {4.2.5}Factories}{29}{subsection.4.2.5}
 \contentsline {subsection}{\numberline {4.2.6}Finders}{29}{subsection.4.2.6}
 \contentsline {subsection}{\numberline {4.2.7}Heuristics}{30}{subsection.4.2.7}

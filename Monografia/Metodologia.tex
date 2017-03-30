@@ -4,18 +4,24 @@ Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos
 
 \section{Tecnologia}
 
-O projeto de implementação do modelo esta sendo desenvolvido em .NET, o principal Framework da Microsoft para desenvolvimento de softwares, permitindo desenvolver para multiplataformas, e oferece ferramentas satisfatórias de testes dos resultados e performance. A versão escolhida é a .NET Core RC2, que permite uso simples entre múltiplas plataformas utilizando o mesmo código fonte.
+Foi desenvolvido o projeto principal Pathfinder em C\# utilizando a .NET Standard Library 1.6 este projeto contem todas as implementações dos algoritmos de busca que temos como pretensão comparar.
 
-A linguagem escolhida foi C\#, a mesma possui todas as funcionalidades necessárias para implementação do nosso modelo, além de ser a que melhor implementa todas as funcionalidades do Framework .NET, e também nos da a opção futura de integração com ferramentas gráficas como por exemplo o Unity.
+\begin{itemize}
+\item A* 
+\item BFS
+\item Dijkstra
+\item IDA*
+\item Algoritmos Genéticos
+\end{itemize}
 
-Para os testes o ambiente base da implementação é um Maquina Virtual do Ubuntu 64 bits rodando no Vagrant.
+Temos configurável as heurísticas e diagonais que podem ser utilizadas no processo de busca para cada um dos algoritmo.
 
-Foi desenvolvido um projeto de biblioteca em .NET Standard Library 1.6 que contem todas as implementações dos algoritmos de busca que temos como pretenção 
-comparar (A*, BFS, Dijkstra, IDA*, Algoritmos Genéticos).
+O projeto secundário Pathfinder.UI tem como objetivo exibir e coletar os dados do projeto Pathfinder. Foi desenvolvido em C\# utilizando o .NET Core 1.1, dessa forma podendo rodar tanto em sistemas Windows quanto *nix. 
 
-Também temos configurável as heurísticas e que diagonais podem ser utilizadas no processo de busca para cada algoritmo.
+Para os testes o ambiente utilizado foi um Container docker Ubuntu x64  rodando uma imagem com .NET Core 1.1 instalado.
 
 \section{Estrutura do Projeto}
+
 Essa seção tem como objetivo descrever como foram implementados os algoritmos 
 
 \subsection {PathFinder}
