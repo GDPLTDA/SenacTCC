@@ -1,11 +1,11 @@
 \chapter[Metodologia]{Metodologia}
 
-Desenvolvemos uma ferramenta para geração de mapas de forma automática, aonde escolhemos se queremos um mapa totalmente aleatório, o tamanho minimo do caminho e se gostaria de aplicar um padrão de repetição.
+Desenvolvemos uma ferramenta para geração de mapas de forma automática, aonde escolhemos se queremos um mapa totalmente aleatório, o tamanho minimo do caminho e se gostaria de aplicar um padrão de repetição na criação do mapa.
 
-O tamanho dos mapas gerados foi de 30x30, para os mapas com padrão utilizamos um padrão de repetição de tamanho 5x5.
+O tamanho dos mapas gerados foi de 100x100, para os mapas com padrão utilizamos um padrão de repetição de tamanho 5x5.
 
 Foram gerados 800 mapas para realizar a coleta de dados, sendo uma metade mapas com padrão e outra sem,
-cada metade se divide em mais 4 aonde dessas 100 mapas são com solução para diagonal "Nunca", 100 para "Apenas sem obstáculos", 100 para "No máximo um obstaculo"  e 100 para "Sempre".
+cada metade se divide em mais 4 aonde dessas 100 mapas são com solução para diagonal "Nunca", 100 para "Apenas sem obstáculos", 100 para "No máximo um obstaculo" e 100 para "Sempre".
 
 Os algoritmos de busca que utilizamos na ferramenta são A\*, BFS, Dijkstra, IDA\*, todos foram rodados pelo uma vez para cada heurística selecionadas para testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
 
