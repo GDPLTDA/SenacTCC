@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Pathfinder.Abstraction;
 using static System.Console;
-using Pathfinder.Constants;
+
 using Pathfinder.Factories;
 using Pathfinder.UI.Abstraction;
 

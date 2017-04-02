@@ -25,7 +25,7 @@ namespace Pathfinder.Crossover
             var minindex = Math.Min(listmom.Count, listdad.Count);
 
             for (int i = 0; i < minindex; i++)
-                babymom.ListNodes[i] = babydad.ListNodes[i] = new Node(-1, -1,Constants.DirectionMovement.None);
+                babymom.ListNodes[i] = babydad.ListNodes[i] = new Node(-1, -1,DirectionMovement.None);
 
             var Pos = rand.Next(0, minindex - 1);
 

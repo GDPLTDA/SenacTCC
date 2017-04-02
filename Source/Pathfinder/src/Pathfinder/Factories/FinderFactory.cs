@@ -1,5 +1,5 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.Constants;
+
 using Pathfinder.Finders;
 using System;
 using System.Collections.Generic;

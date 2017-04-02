@@ -31,7 +31,7 @@ namespace Pathfinder
         public static MapGeneratorEnum MapOrigin { get; set; }
         public static HeuristicEnum Heuristic { get; set; }
         public static FinderEnum Algorithm { get; set; }
-        public static Constants.DiagonalMovement AllowDiagonal { get; set; }
+        public static DiagonalMovement AllowDiagonal { get; set; }
 
       
 
@@ -68,7 +68,7 @@ namespace Pathfinder
             Algorithm = (FinderEnum)int.Parse(Configuration[nameof(Algorithm)]);
             IDAStarFinderTimeOut = int.Parse(Configuration[nameof(IDAStarFinderTimeOut)]);
             IDATrackRecursion = bool.Parse(Configuration[nameof(IDATrackRecursion)]);
-            AllowDiagonal = (Constants.DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
+            AllowDiagonal = (DiagonalMovement)int.Parse(Configuration[nameof(AllowDiagonal)]);
 
             RandomSeed = double.Parse(Configuration[nameof(RandomSeed)]);
             Width = int.Parse(Configuration[nameof(Width)]);

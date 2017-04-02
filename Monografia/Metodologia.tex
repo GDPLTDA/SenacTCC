@@ -1,6 +1,20 @@
 \chapter[Metodologia]{Metodologia}
 
+Desenvolvemos uma ferramenta para geração de mapas de forma automática, aonde escolhemos se queremos um mapa totalmente aleatório, o tamanho minimo do caminho e se gostaria de aplicar um padrão de repetição.
 
+O tamanho dos mapas gerados foi de 30x30, para os mapas com padrão utilizamos um padrão de repetição de tamanho 5x5.
+
+Foram gerados 800 mapas para realizar a coleta de dados, sendo uma metade mapas com padrão e outra sem,
+cada metade se divide em mais 4 aonde dessas 100 mapas são com solução para diagonal "Nunca", 100 para "Apenas sem obstáculos", 100 para "No máximo um obstaculo"  e 100 para "Sempre".
+
+Os algoritmos de busca que utilizamos na ferramenta são A\*, BFS, Dijkstra, IDA\*, todos foram rodados pelo uma vez para cada heurística selecionadas para testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+
+Para o GA utilizamos uma função de aptidão baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos quanto encontro com paredes. 
+Para operação de seleção utilizamos o algoritmo de Roleta, para operação de cruzamento utilizamos os Simples, OBX, PBX e para o operador de mutação foram implementados Bitwise, DIVM, DM, EM, IM,IVM, SM.
+O GA foi rodado 10 vezes para cada configuração possível, levando em consideração heurística, aptidão, seleção e cruzamento. Depois utilizamos a media dos valores para comparar com algoritmos clássicos de busca
+
+Coletamos os resultados de tempo, nós abertos e tamanho do caminho obtido para cada algoritmo de busca.
+Depois realizamos uma comparação entre o comportamento de cada algorítimo, heurística e tipo de mapa. 
 
 
 \chapter[Implementação]{Implementação}
@@ -8,7 +22,7 @@
 Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes do modelo proposto.
 
 \section{Tecnologias}
-O projeto é separado em Pathfinder e Pathfinder.UI foram desenvolvidos na linguagem C# utilizando o .NET Standard Library 1.6. Pathfinder estão todas a =s implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo exibir e utilizar o projeto Pathfinder. Ambos rodam em sistemas Windows e Unix utilizando o .Net Core 1.1 para a compilação.
+O projeto é separado em Pathfinder e Pathfinder.UI foram desenvolvidos na linguagem C\# utilizando o .NET Standard Library 1.6. Pathfinder estão todas a =s implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo exibir e utilizar o projeto Pathfinder. Ambos rodam em sistemas Windows e Unix utilizando o .Net Core 1.1 para a compilação.
 
 \section{Estrutura do Projeto}
 
