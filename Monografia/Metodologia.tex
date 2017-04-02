@@ -7,23 +7,8 @@
 
 Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes do modelo proposto.
 
-\section{Tecnologia}
-
-Foi desenvolvido o projeto principal Pathfinder em C\# utilizando a .NET Standard Library 1.6 este projeto contem todas as implementações dos algoritmos de busca que temos como pretensão comparar.
-
-\begin{itemize}
-\item A* 
-\item BFS
-\item Dijkstra
-\item IDA*
-\item Algoritmos Genéticos
-\end{itemize}
-
-Temos configurável as heurísticas e diagonais que podem ser utilizadas no processo de busca para cada um dos algoritmo.
-
-O projeto secundário Pathfinder.UI tem como objetivo exibir e coletar os dados do projeto Pathfinder. Foi desenvolvido em C\# utilizando o .NET Core 1.1, dessa forma podendo rodar tanto em sistemas Windows quanto *nix. 
-
-Para os testes o ambiente utilizado foi um Container docker Ubuntu x64  rodando uma imagem com .NET Core 1.1 instalado.
+\section{Tecnologias}
+O projeto é separado em Pathfinder e Pathfinder.UI foram desenvolvidos na linguagem C# utilizando o .NET Standard Library 1.6. Pathfinder estão todas a =s implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo exibir e utilizar o projeto Pathfinder. Ambos rodam em sistemas Windows e Unix utilizando o .Net Core 1.1 para a compilação.
 
 \section{Estrutura do Projeto}
 
@@ -31,35 +16,18 @@ Essa seção tem como objetivo descrever como foram implementados os algoritmos
 
 \subsection {PathFinder}
 
-Projeto de implementação de algoritmos de busca
+Projeto de implementação de algoritmos de busca.
+Sua estrutura de pastas está organizada em Abstraction, Constants, Core, Factories, Finders, GeneticAlgorithm, Heuristics e MapGenerators.
 
-->Abstraction
-
-->Constants
-
-->Core
-
-->Factories
-
-->Finders
-
-->GeneticAlgorithm
-
-->Heuristics
-
-->MapGenerators
-
-O \textbf{'project.csproj'} é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações
-relevantes a nossa implementação.
+O \textbf{'project.csproj'} é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações relevantes a nossa implementação.
 
 \subsection{Abstraction}	
 
-Nesta pasta estão todos os arquivos a nível de abstração dos algoritmos de busca padrão, esses são:
+Nesta pasta estão todos os arquivos a nível de abstração dos algoritmos de busca, esses são:
 
 \textbf{IFactory}: Essa interface tem como objetivo padronizar as "fabricas", ferramentas que decidir e instanciar toda dependência necessária.
 
-\textbf{IMap}: Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritmo de
-nossa implementação espera uma implementação de IMap para rodar.
+\textbf{IMap}: Essa interface tem como objetivo abstrair o comportamento da classe de mapa utilizada nos arquivos de busca, assim sendo por padrão todo algoritmo espera uma implementação de IMap para rodar.
 
 \textbf{IHeuristic}: Essa interface abstrai o comportamento das heurísticas.
 
@@ -72,7 +40,7 @@ o utilização de GA.
 
 \subsection{Constants}
 
-Nesta pasta são listados arquivos de constantes e enumeradores:
+Nesta pasta são listados arquivos de constantes e enumeradores.
 
 \textbf{DiagonalMovement}: Lista as opções de diagonais na movimentação.
 
@@ -81,7 +49,7 @@ Nesta pasta são listados arquivos de constantes e enumeradores:
 
 \subsection{Core}
 
-Nesta pasta são definidos as implementações e configurações bases
+Nesta pasta são definidos as implementações e configurações bases.
 
 \textbf{Container}: Esta classe é responsável por registar e resolver as implementações conhecidas das interfaces.
 
@@ -90,7 +58,8 @@ Nesta pasta são definidos as implementações e configurações bases
 \textbf{Extensions}: Arquivo com métodos auxiliares de lista para comportamento de uma estrutura de pilha.
 
 \textbf{FileTools}: Classe responsável por toda manipulação de I/O de arquivos
-Map: Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritmos de busca.
+
+\textbf{Map}: Implementação do IMap, tem como objetivo ser a estrutura de mapa base dos algoritmos de busca.
 
 \textbf{Node}: Classe responsável por ser a representação de uma célula no mapa, ou seja, o mapa é uma matriz de \textbf{\textit{"Node"}}.
 
@@ -139,6 +108,8 @@ do algoritmo ele possui uma estrutura própria de pastas para definições e con
 
 \subsection{Abstraction}
 
+Nesta pasta estão todos os arquivos a nível de abstração das etapas do algoritmo genético.
+
 \textbf{ISelection}: Interface é responsável por abstrair os algoritmos de seleção.
 
 \textbf{IGenome}: Interface tem como funcionalidade abstrair a definição de genoma.
@@ -167,18 +138,28 @@ do algoritmo ele possui uma estrutura própria de pastas para definições e con
 
 \textbf{Genome}: Classe responsável por representar o genoma no algoritmo de GA, implementa a IGenome.
 
+
+\subsection{Selection}
+
+Nesta pasta estão todas as implementações dos algoritmos de seleção.
+
+\textbf{SelectionRandom}: Implementação de seleção de indivíduos aleatório.
+\textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
+
 \subsection{Crossover}
+
+Nesta pasta estão todas as implementações dos algoritmos de cruzamento.
+
 \textbf{CrossoverOBX}: Implementação do operador de cruzamento OBX.
 
 \textbf{CrossoverPBX}: Implementação do operador de cruzamento PBX.
 
 \textbf{CrossoverSimple}:  Implementação do operador de cruzamento simples.
 
-\subsection{Selection}
-\textbf{SelectionRandom}: Implementação de seleção de indivíduos aleatório.
-\textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
-
 \subsection{Mutation}
+
+Nesta pasta estão todas as implementações dos algoritmos de mutação.
+
 \textbf{MutateBitwise}: Implementação do operador de cruzamento Bitwise.
 
 \textbf{MutateDIVM}: Implementação do operador de cruzamento DIVM.
@@ -199,11 +180,17 @@ do algoritmo ele possui uma estrutura própria de pastas para definições e con
 Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de caminhos, e poder visualiza-los.
 
 \subsection{Abstraction}
+
+Nesta pasta estão todos os arquivos a nível de abstração.
+
 \textbf{IAppMode}: Abstração que define de que forma o app ira rodar.
 
 \textbf{IViewer}: Abstração do tipo de visualizador.
 
 \subsection{AppMode}
+
+Pode-se configurar diferentes modos de rodar os algoritmo, nesse pasta estão a implementação das diferentes formas.
+
 \textbf{SingleRunMode}: O programa será executado e rodara uma vez usando as configurações do arquivo estático.
 
 \textbf{DynamicMode}: O programa ira perguntar qual algoritmo, heurística, tipo de diagonal, forma de visualização e cada operador do GA para rodar.
@@ -213,6 +200,8 @@ Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de ca
 
 \subsection{Core}
 
+Nesta pasta são definidos as implementações e configurações bases.
+
 \textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
 
 \textbf{RegisterConfig}: Neste arquivo são configurados os binds do visualizador para injeção de dependência.
@@ -220,12 +209,17 @@ Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de ca
 \textbf{Settings}: Onde são carregados as configurações estáticas do arquivo "appsettings.json", neste são configurações da forma de visualização e do Batch.
 
 \subsection{Factories}
+
+Nesta Pasta temos os arquivos responsáveis pelo instanciar as implementações de interfaces.
+
 \textbf{AppModeFactory}: Classe responsável por decidir e instanciar uma Implementação de IAppMode.
 
 \textbf{ViwerFactory}: Classe responsável por decidir e instanciar uma Implementação de IViewer.
 
-
 \subsection{Viewer}
+
+Nesta pasta estão as diferentes formas de exibir os resultados das buscas.
+
 \textbf{ConsoleViewer}: Classe responsável por apresentar a busca de caminhos em ASC no Console da aplicação.
 
 \textbf{OpenGLViewer}: Classe responsável por apresentar a busca em uma janela em OpenGL.
@@ -233,11 +227,14 @@ Foi desenvolvido um projeto com objetivo de consumir a biblioteca de busca de ca
 \textbf{OpenGLWindow}: Classe que é utilizada pela OpenGLViewer para mostrar a janela com uma grid que mostra o andamento dos algoritmos.
 
 \section{Estrutura do GA}
+
 A busca utilizando o GA, segue com as operações base de todo GA, que são seleção, cruzamento, adaptação e mutação. 
 Para cada interação é gerada uma população, a função de aptidão é calculada para cada indivíduo da população, 
 desses o indivíduo com o valor mais próximo de zero é selecionado como o melhor.
 
 \subsection{Função de Aptidão}
+
+Nesta pasta estão as implementações das funções fitness.
 
 \textbf{FitnessHeuristic}: Para cada indivíduo da população é calculada uma aptidão com base em uma função heurística (Manhattam, Octile, Euclideana, Chebyshev)
 previamente definida, o calculo é feito a partir do ponto final da lista do genoma do indivíduo até o ponto de destino do mapa
@@ -261,7 +258,3 @@ O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lug
 \section{Modo Batch}
 
 O modo Batch do programa serve para poder gerar os dados necessários para a analise.
-
-\section{Teste de busca de caminho utilizando A*}
-
-\section{Teste de busca de caminho utilizando Algoritmos Genéticos}

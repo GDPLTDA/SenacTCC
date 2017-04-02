@@ -154,22 +154,20 @@ Inspirado na maneira como o seleção natural explica o processo de evolução d
 	\label{fig:EstruturaAG}
 \end{minipage}
 
-\subsection{Etapas do GA}
 
-Cada etapa do AG funciona da seguinte forma:
-
-\textbf{Inicialização}: Criar uma população de possíveis respostas para um problema. 
+\subsection{Inicialização}
+Criar uma população de possíveis respostas para um problema. 
 É comum fazer uso de funções aleatórias para gerar os indivíduos, sendo este um recurso simples que visa fornecer maior diversidade.
 
-\textbf{Avaliação}: Avalia-se a aptidão das soluções, os indivíduos da população, então é feita uma análise para que se estabeleça quão bem elas respondem ao problema proposto.
+\subsection{Avaliação}
+Avalia-se a aptidão das soluções, os indivíduos da população, então é feita uma análise para que se estabeleça quão bem elas respondem ao problema proposto.
 A função de avaliação também pode ser chamada de função objetivo. Ela pode variar de acordo com problema,  
 Calcular com exatidão completa o grau de adaptação dos indivíduos pode ser uma tarefa complexa em muitos casos, e se levarmos em conta que esta operação é repetida varias vezes ao longo do processo de evolução, seu custo pode ser consideravelmente alto. Em tais situações é comum o uso de funções não determinísticas, que não avaliam a totalidade das características do indivíduo, operando apenas sobre uma amostragem destas.
 
-\textbf{Seleção}: Ela é a responsável pela perpetuação de boas características na espécie. 
+\subsection{Seleção}
+Ela é a responsável pela perpetuação de boas características na espécie. 
 Neste estágio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
 O grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
-
-Algoritmos de Seleção:
 
 \textbf{Selection Random}: Gera um numero aleatório entre 0 e o tamanho total da população e retorna o indivíduo do índice escolhido.
 
@@ -178,10 +176,8 @@ e guarda em um vetor. Então é gerado um valor A aleatório entre 0 e 1 e multi
 nos pesos e seus valores somados até que o valor A seja igual ou menor que zero, o índice do peso que fez a condição acontecer, se o índice do indivíduo selecionado.
 Desta forma aumentando a possibilidade de selecionar um indivíduo com maior aptidão.
 
-
-\textbf{Cruzamento}: Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
-
-Algoritmos de Cruzamento:
+\subsection{Cruzamento}
+Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
 
 \textbf{CrossOver Simple}: Utiliza dois indivíduos selecionados,  define dois números aleatórios de 0 até menor tamanho da lista de cromossomos entre os dois, 
 sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
@@ -196,10 +192,9 @@ Entre esse tamanho são definidas posições aleatórias e guardadas em uma list
 e para cada posição é trocado do cromossomo principal para o resultante de mesma posição outro da mesma posição. 
 As posições não preenchidas são completadas com os cromossomos restante, seguindo a ordem do cromossomo e adicionado se ele não ja existir na lista.
 
-\textbf{Mutação}: Características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
+\subsection{Mutação}
+Características dos indivíduos resultantes do processo de reprodução são alteradas, acrescentando assim variedade a população.
 A mutação opera sobre os indivíduos resultantes do processo de cruzamento e com uma probabilidade pré-determinada efetua algum tipo de alteração em sua  estrutura. A importância desta operação é o fato de que uma vez bem escolhido seu modo de atuar, é garantido que diversas alternativas serão exploradas.
-
-Algoritmos de Mutação:
 
 \textbf{MutateEM (Exchange Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e troca os cromossomos do indivíduo.
 
@@ -211,15 +206,17 @@ Algoritmos de Mutação:
 
 \textbf{MutateIVM (Inversion Mutation)}: Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e inverte todos os cromossomos que está entre as posições.
 
-\textbf{MutateDIVM DIVM(Displaced Inversion Mutation)}:Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória de forma invertida.
+\textbf{MutateDIVM (Displaced Inversion Mutation)}:Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória de forma invertida.
 
-\textbf{Atualização}: Os indivíduos criados no processo de reprodução e mutação são inseridos na população.
+\subsection{Atualização}
+Os indivíduos criados no processo de reprodução e mutação são inseridos na população.
 
 Na forma mais tradicional deste a população mantém um tamanho fixo e os indivíduos são criados em mesmo número que seus antecessores e os substituem por completo. 
 
 Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser menor ou o tamanho da população pode sofrer variações e o critério de inserção pode variar, por exemplo, nos casos em que os filhos substituem os pais, ou em que estes só são inseridos se possuírem maior aptidão que o cromossomo que sera substituído, ou o manter sempre o conjunto dos n melhores indivíduos. 
 
-\textbf{Finalização}: É testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
+\subsection{Finalização}
+É testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
 
 Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
 
