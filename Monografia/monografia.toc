@@ -18,47 +18,46 @@
 \contentsline {section}{\numberline {2.2}Algoritmo paralelo de busca}{14}{section.2.2}
 \contentsline {section}{\numberline {2.3}Algoritmos gen\IeC {\'e}ticos}{15}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Funcionamento}{15}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}Aplica\IeC {\c c}\IeC {\~o}es}{18}{subsection.2.3.2}
-\contentsline {section}{\numberline {2.4}Algoritmos gen\IeC {\'e}ticos para busca de caminhos}{20}{section.2.4}
-\contentsline {section}{\numberline {2.5}Algoritmos gen\IeC {\'e}ticos paralelos ou distribu\IeC {\'\i }dos para busca de caminhos}{23}{section.2.5}
+\contentsline {subsection}{\numberline {2.3.2}Etapas do GA}{15}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Aplica\IeC {\c c}\IeC {\~o}es}{20}{subsection.2.3.3}
+\contentsline {section}{\numberline {2.4}Algoritmos gen\IeC {\'e}ticos para busca de caminhos}{21}{section.2.4}
+\contentsline {section}{\numberline {2.5}Algoritmos gen\IeC {\'e}ticos paralelos ou distribu\IeC {\'\i }dos para busca de caminhos}{25}{section.2.5}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Proposta}}{26}{chapter.3}
+\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Proposta}}{28}{chapter.3}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{27}{chapter.4}
-\contentsline {section}{\numberline {4.1}Tecnologia}{27}{section.4.1}
-\contentsline {section}{\numberline {4.2}Estrutura do Projeto}{27}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}PathFinder}{27}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Abstraction}{28}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Constants}{28}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Core}{29}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Factories}{29}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Finders}{29}{subsection.4.2.6}
-\contentsline {subsection}{\numberline {4.2.7}Heuristics}{30}{subsection.4.2.7}
-\contentsline {section}{\numberline {4.3}Genetic Algorithm}{30}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Abstraction}{30}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Core}{31}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}Crossover}{31}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Selection}{31}{subsection.4.3.4}
-\contentsline {subsection}{\numberline {4.3.5}Mutation}{31}{subsection.4.3.5}
-\contentsline {section}{\numberline {4.4}Projeto de UI}{32}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Abstraction}{32}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}AppMode}{32}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Core}{32}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Factories}{32}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Viewer}{32}{subsection.4.4.5}
-\contentsline {section}{\numberline {4.5}Estrutura do GA}{33}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Fun\IeC {\c c}\IeC {\~a}o de Aptid\IeC {\~a}o}{33}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Sele\IeC {\c c}\IeC {\~a}o}{33}{subsection.4.5.2}
-\contentsline {subsection}{\numberline {4.5.3}Cruzamento}{34}{subsection.4.5.3}
-\contentsline {subsection}{\numberline {4.5.4}Adapta\IeC {\c c}\IeC {\~a}o}{34}{subsection.4.5.4}
-\contentsline {subsection}{\numberline {4.5.5}Muta\IeC {\c c}\IeC {\~a}o}{34}{subsection.4.5.5}
-\contentsline {section}{\numberline {4.6}Modo Batch}{35}{section.4.6}
-\contentsline {section}{\numberline {4.7}Teste de busca de caminho utilizando A*}{35}{section.4.7}
-\contentsline {section}{\numberline {4.8}Teste de busca de caminho utilizando Algoritmos Gen\IeC {\'e}ticos}{35}{section.4.8}
+\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}Tecnologia}{29}{section.4.1}
+\contentsline {section}{\numberline {4.2}Estrutura do Projeto}{29}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}PathFinder}{29}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Abstraction}{30}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Constants}{30}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Core}{31}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Factories}{31}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Finders}{31}{subsection.4.2.6}
+\contentsline {subsection}{\numberline {4.2.7}Heuristics}{32}{subsection.4.2.7}
+\contentsline {section}{\numberline {4.3}Genetic Algorithm}{32}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Abstraction}{32}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Core}{33}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Crossover}{33}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Selection}{33}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Mutation}{33}{subsection.4.3.5}
+\contentsline {section}{\numberline {4.4}Projeto de UI}{34}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Abstraction}{34}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}AppMode}{34}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Core}{34}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Factories}{34}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Viewer}{34}{subsection.4.4.5}
+\contentsline {section}{\numberline {4.5}Estrutura do GA}{35}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Fun\IeC {\c c}\IeC {\~a}o de Aptid\IeC {\~a}o}{35}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Adapta\IeC {\c c}\IeC {\~a}o}{35}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}Muta\IeC {\c c}\IeC {\~a}o}{35}{subsection.4.5.3}
+\contentsline {section}{\numberline {4.6}Modo Batch}{36}{section.4.6}
+\contentsline {section}{\numberline {4.7}Teste de busca de caminho utilizando A*}{36}{section.4.7}
+\contentsline {section}{\numberline {4.8}Teste de busca de caminho utilizando Algoritmos Gen\IeC {\'e}ticos}{36}{section.4.8}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclus\IeC {\~a}o}}{36}{chapter.5}
-\contentsline {section}{\numberline {5.1}Resultados}{36}{section.5.1}
-\contentsline {section}{\numberline {5.2}Trabalhos futuros}{36}{section.5.2}
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Conclus\IeC {\~a}o}}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Resultados}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Trabalhos futuros}{37}{section.5.2}
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {Refer\^encias}}{37}{section*.7}
+\contentsline {chapter}{\uppercase {Refer\^encias}}{38}{section*.7}
