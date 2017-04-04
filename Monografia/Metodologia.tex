@@ -1,21 +1,20 @@
 \chapter[Metodologia]{Metodologia}
 
-Desenvolvemos uma ferramenta para geração de mapas de forma automática, aonde escolhemos se queremos um mapa totalmente aleatório, o tamanho minimo do caminho e se gostaria de aplicar um padrão de repetição na criação do mapa.
+Desenvolvemos uma ferramenta para geração de forma automática mapas aleatórios ou com uma repetição de padrão, sendo definido um caminho minimo do percusso. O percusso minimo evita que gere mapas onde o ponto inicial e final estão muito próximos.
+Os mapas gerados são de tamanho 100x100, com um padrão de 5x5 gerado de forma aleatória e um percusso minimo de 15.
 
-O tamanho dos mapas gerados foi de 100x100, para os mapas com padrão utilizamos um padrão de repetição de tamanho 5x5.
+No total foram gerados 800 mapas, sendo divido em 400 aleatórios e 400 com um padrão de repetição. 
+Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, ou seja, dependendo de como a rotina de busca vai ser executada, o mapa deve ser verifico para ser solucionado. 
+Movimentação "Nunca" não permite andar nas verticais, podendo somente ir para cima, baixa, direita e esquerda.
+Movimentação "Sempre" permite ir para qual direção.
+Movimentação "No máximo um obstaculo" é permitidos seguir na vertical, se um dos lados estiver livre.
+Movimentação "Apenas sem obstáculos" é permitidos seguir na vertical, se os dois dos lados estiver livre.
 
-Foram gerados 800 mapas para realizar a coleta de dados, sendo uma metade mapas com padrão e outra sem,
-cada metade se divide em mais 4 aonde dessas 100 mapas são com solução para diagonal "Nunca", 100 para "Apenas sem obstáculos", 100 para "No máximo um obstaculo" e 100 para "Sempre".
+Os algoritmos de busca utilizados para os teste são A\*, BFS, Dijkstra e IDA\*, sendo executados uma vez para uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
 
-Os algoritmos de busca que utilizamos na ferramenta são A\*, BFS, Dijkstra, IDA\*, todos foram rodados pelo uma vez para cada heurística selecionadas para testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+Para o GA cada configuração diferente é gerada 10 vezes, e o resultado é a média das 10 tentativas. As possíveis configurações são definidas por todos algoritmos de cruzamento, mutação, seleção, aptidão e heurísticas.No cruzamento são executados uma forma simples, OBX e o PBX. Na Mutação Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão uma função de aptidão baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos quanto encontro com paredes. 
 
-Para o GA utilizamos uma função de aptidão baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos quanto encontro com paredes. 
-Para operação de seleção utilizamos o algoritmo de Roleta, para operação de cruzamento utilizamos os Simples, OBX, PBX e para o operador de mutação foram implementados Bitwise, DIVM, DM, EM, IM,IVM, SM.
-O GA foi rodado 10 vezes para cada configuração possível, levando em consideração heurística, aptidão, seleção e cruzamento. Depois utilizamos a media dos valores para comparar com algoritmos clássicos de busca
-
-Coletamos os resultados de tempo, nós abertos e tamanho do caminho obtido para cada algoritmo de busca.
-Depois realizamos uma comparação entre o comportamento de cada algorítimo, heurística e tipo de mapa. 
-
+Os dados coletados são acumulados de duas forma, uma forma consolidada que mistura os algoritmo de busca com os dados do GA para comparação e uma forma especifica para o GA, para analisar as configurações do GA para as diferentes situações.
 
 \chapter[Implementação]{Implementação}
 
