@@ -128,6 +128,7 @@ namespace Pathfinder.UI.AppMode
                                                     alg = csv.alg,
                                                     map = csv.map,
                                                     heuristic = csv.heuristic,
+                                                    mapType = csv.mapType,
                                                     diagonal = csv.diagonal,
                                                     solution = csv.solution,
                                                     time = csv.time,
