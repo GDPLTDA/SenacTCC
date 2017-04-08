@@ -1,27 +1,56 @@
 \chapter[Metodologia]{Metodologia}
 
-Desenvolvemos uma ferramenta para geração de forma automática mapas aleatórios ou com uma repetição de padrão, sendo definido um caminho minimo do percusso. O percusso minimo evita que gere mapas onde o ponto inicial e final estão muito próximos.
-Os mapas gerados são de tamanho 100x100, com um padrão de 5x5 gerado de forma aleatória e um percusso minimo de 15.
+Foi desenvoldido uma ferramenta para geração de forma automática de mapas aleatórios ou com uma repetição de padrão. Pode ser definido um percurso minimo para evitar seja gerados mapas onde o ponto inicial e final estão muito próximos.
+Os mapas gerados para analise são de tamanho 100x100, com um padrão de repetição de 5x5 que é gerado de forma aleatória, para todos os mapas o percurso minimo de 15 passos.
 
-No total foram gerados 800 mapas, sendo divido em 400 aleatórios e 400 com um padrão de repetição. 
-Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, ou seja, dependendo de como a rotina de busca vai ser executada, o mapa deve ser verifico para ser solucionado. 
-Movimentação "Nunca" não permite andar nas verticais, podendo somente ir para cima, baixa, direita e esquerda.
-Movimentação "Sempre" permite ir para qual direção.
-Movimentação "No máximo um obstaculo" é permitidos seguir na vertical, se um dos lados estiver livre.
-Movimentação "Apenas sem obstáculos" é permitidos seguir na vertical, se os dois dos lados estiver livre.
+No total foram gerados 800 mapas, sendo dividos em 400 aleatórios e 400 com repetição de padrão.
+Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, isso deve pelo motivo que dependendo do tipo movimentação diagonal do mapa, ele pode ou nar ter uma solução.
 
-Os algoritmos de busca utilizados para os teste são A\*, BFS, Dijkstra e IDA\*, sendo executados uma vez para uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+As movimentações diagonais possiveis são:
 
-Para o GA cada configuração diferente é gerada 10 vezes, e o resultado é a média das 10 tentativas. As possíveis configurações são definidas por todos algoritmos de cruzamento, mutação, seleção, aptidão e heurísticas.No cruzamento são executados uma forma simples, OBX e o PBX. Na Mutação Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão uma função de aptidão baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos quanto encontro com paredes. 
+\textbf{Nunca}: não permite andar nas verticais, podendo somente se movimentar para cima, baixo, direita e esquerda.
 
-Os dados coletados são acumulados de duas forma, uma forma consolidada que mistura os algoritmo de busca com os dados do GA para comparação e uma forma especifica para o GA, para analisar as configurações do GA para as diferentes situações.
+\textbf{Sempre}: permite ir para qual direção.
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth][c]{
+        \includegraphics[keepaspectratio=true,scale=1]{ibagens/d_aways.png}}
+    \captionof{figure}{Movimentação diagonal Sempre}
+    \label{fig:d_aways}
+\end{minipage}
+
+\textbf{No máximo um obstaculo}: é permitidos seguir na vertical, se um dos lados estiver livre.
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth][c]{
+        \includegraphics[keepaspectratio=true,scale=1]{ibagens/d_one.png}}
+    \captionof{figure}{Movimentação diagonal Apenas um obstaculo}
+    \label{fig:d_one}
+\end{minipage}
+
+
+\textbf{Apenas sem obstáculos}: é permitidos seguir na vertical, se os dois dos lados estiver livre.
+
+\begin{minipage}{\linewidth}
+    \makebox[\linewidth][c]{
+        \includegraphics[keepaspectratio=true,scale=1]{ibagens/d_noobstacle.png}}
+    \captionof{figure}{Movimentação diagonal Sem obstaculo}
+    \label{fig:d_noobstacle}
+\end{minipage}
+
+
+Os algoritmos de busca utilizados para os teste são A\**, BFS, Dijkstra e IDA\**, sendo executados uma vez para cada uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+
+Para o GA cada resultado de cada configuração é gerado 10 vezes, depois é realizado uma média dessas tentativas para comparação posterior com os algoritimos classicos. As possíveis configurações são definidas por todos operadores de cruzamento, mutação, seleção, aptidão e heurísticas.Os operados de cruzamento são simples, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é uma função baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos cíclicos quanto encontro com paredes.
+
+Os dados coletados são acumulados de duas formas, uma forma consolidada que mistura os algoritmo de busca com os dados do GA para comparação, e uma forma especifica para o GA, para analisar as configurações do GA para as diferentes situações.
 
 \chapter[Implementação]{Implementação}
 
-Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes do modelo proposto.
+Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes  e implemetações dos modelos de busca de caminho.
 
 \section{Tecnologias}
-O projeto é separado em Pathfinder e Pathfinder.UI foram desenvolvidos na linguagem C\# utilizando o .NET Standard Library 1.6. Pathfinder estão todas a =s implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo exibir e utilizar o projeto Pathfinder. Ambos rodam em sistemas Windows e Unix utilizando o .Net Core 1.1 para a compilação.
+O projeto é separado em Pathfinder e Pathfinder.UI ambos desenvolvidos na linguagem C\# o primeiro utilizando o .NET Standard Library 1.6 e o segundo no .NET Core. No projeto Pathfinder estão todas a  implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo consumir os recusursos do projeto Pathfinder, dando opções de visualização ou geração de dados. Ambos rodam em sistemas Windows e \**nix utilizando o .Net Core CLI 1.1 para execução.
 
 \section{Estrutura do Projeto}
 
@@ -30,7 +59,7 @@ Essa seção tem como objetivo descrever como foram implementados os algoritmos
 \subsection {PathFinder}
 
 Projeto de implementação de algoritmos de busca.
-Sua estrutura de pastas está organizada em Abstraction, Constants, Core, Factories, Finders, GeneticAlgorithm, Heuristics e MapGenerators.
+Sua estrutura de pastas está organizada em Abstraction, Core, Factories, Finders, GeneticAlgorithm, Heuristics e MapGenerators.
 
 O \textbf{'project.csproj'} é o arquivo onde é definido as bibliotecas utilizadas e a versão do .NET Framework, as outras pastas agregam arquivos com informações relevantes a nossa implementação.
 
@@ -51,14 +80,6 @@ Nesta pasta estão todos os arquivos a nível de abstração dos algoritmos de b
 \textbf{IGeneticAlgorithm}: Essa interface herda de IFinder, ela compartilha a mesma assinatura de métodos, propriedades e eventos, porem acrescenta a abstração necessária para
 o utilização de GA.
 
-\subsection{Constants}
-
-Nesta pasta são listados arquivos de constantes e enumeradores.
-
-\textbf{DiagonalMovement}: Lista as opções de diagonais na movimentação.
-
-\textbf{DirectionMovement}: Lista as oito opções possíveis de se locomover a partir de um ponto para seus vizinhos 
-(imagem)(cima, baixo, esquerda, direita, esquerda cima, esquerda baixo, direita cima, direita baixo).
 
 \subsection{Core}
 
@@ -204,9 +225,9 @@ Nesta pasta estão todos os arquivos a nível de abstração.
 
 Pode-se configurar diferentes modos de rodar os algoritmo, nesse pasta estão a implementação das diferentes formas.
 
-\textbf{SingleRunMode}: O programa será executado e rodara uma vez usando as configurações do arquivo estático.
+\textbf{SingleRunMode}: O programa será executado e rodara uma vez usando as configurações do arquivo estático "appsettings.json" que é lido pela classe UISettings.
 
-\textbf{DynamicMode}: O programa ira perguntar qual algoritmo, heurística, tipo de diagonal, forma de visualização e cada operador do GA para rodar.
+\textbf{DynamicMode}: O programa ira perguntar qual algoritmo, heurística, tipo de diagonal, forma de visualização e cada operador do GA antes de rodar.
 
 \textbf{BatchMode}: O software ira rodar N vezes cada algoritmo selecionado no arquivo de configuração, onde N também é definido neste arquivo, ao final ira salvar os resultados e cada mapa numa pasta na raiz do projeto.
 
@@ -271,3 +292,120 @@ O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lug
 \section{Modo Batch}
 
 O modo Batch do programa serve para poder gerar os dados necessários para a analise.
+
+Para iniciar o processo do batch é necessario o mudar o \textit{AppMode} no arquivo "appsettings.json" para 2 e iniciar a aplicação Pathfinder.UI.
+
+
+\subsection{Configuração}
+
+A definição das configurações para o Batch ficam no arquivo "appsettings.json" onde são carregadas na classe UISettings posteriormente na aplicação. As chaves que interessam ao modo batch são:
+
+\textbf{Width}: Tamanho em largura dos mapas.
+
+\textbf{Height}: Tamanho em altura dos mapas.
+
+\textbf{MinimumPath}: Tamanho minimo entre o ponto inicial e final dos mapas.
+
+\textbf{RandomBlock}: Tamanho que sera usado para gerar aleatoriamente uma parte do mapa e se repetira para completar os mapas com padrão.
+
+\textbf{Batch\_map\_origin}: Define se você quer carregar os mapas previamente gerados ou gerar mapas novos para a execução.
+
+\textbf{Batch\_map\_qtd\_to\_generate}: Quantidade de mapas que serão gerados para o teste.
+
+\textbf{Batch\_generate\_pattern}: Este campo define se os mapas gerados automaticamentes serão aleatorios (0) ou se terão algum padrão de repeticão (1).
+
+\textbf{Batch\_map\_diagonal}: Define qual tipo de movimentação diagonal sera usada na geração dos mapas, onde Never(0), OnlyWhenNoObstacles(1), IfAtMostOneObstacle(2), Always(3).
+
+\textbf{Batch\_GATimesToRunPerMap}: Define a quantidade de vezes que o GA ira rodar para cada configuração.
+
+\textbf{Batch\_folder}: Pasta aonde serão gerados os mapas e arquivo de log do batch.
+
+\textbf{Batch\_list\_finders}: Uma lista que define quais algoritimos de busca serão rodados no modo batch, as opçoes são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
+
+\textbf{Batch\_list\_heuristics}: Uma lista que define quais heuristicas serão rodados no modo batch, as opçoes são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
+
+\textbf{Batch\_list\_Mutation}: Uma lista que define quais operadores de mutação serão utilizados pelo GA no modo batch, as opçoes são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
+
+\textbf{Batch\_list\_Crossover}: Uma lista que define quais operadores de cruzamento serão utilizados pelo GA no modo batch, as opçoes são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
+
+\textbf{Batch\_list\_Fitness}: Uma lista que define quais funções de aptidão serão utilizados pelo GA no modo batch, as opçoes são Heuristica(0), Heuristica com penalidade em caminho ciclico(1), Heuristica com penalidade em caminhos que coliden(2) e Heuristica com penalidade em caminho ciclico e colisão(3).
+
+\textbf{Batch\_list\_Selection}: Uma lista que define quais funções de seleção serão utilizados pelo GA no modo batch, as opçoes são  Aleatorio(0) e \textit{Roulette Wheel Selection}(1).
+
+\section{Modo Visual}
+
+O modo Visual do programa serve para poder rodar um algoritimo em um mapa especifico e acompanhar visualmente como ele se comporta.
+
+Para iniciar o modo visual é necessario o mudar o \textit{AppMode} no arquivo "appsettings.json" para 0 e iniciar a aplicação Pathfinder.UI.
+
+
+\subsection{Configuração}
+
+
+A definição das configurações para o modo visual ficam no arquivo "appsettings.json" e "GASettings.json" onde são carregadas na classe UISettings posteriormente na aplicação. As chaves que interessam ao modo visual são:
+
+
+\textbf{MapViwer}: Define o tipo de visualização que sera utilizada onde as opções são Console(0) e OpenGL(1).
+
+\textbf{MapOrigin}: Define a origem do mapa utilizado no programa, onde as opções são Estatico(0), De um arquivo(1), Aleatorio(2), Com padrão(3).
+
+\textbf{Heuristic}: Define qual heuristica sera rodado no modo visual, as opçoes são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
+
+\textbf{AllowDiagonal}: Define qual tipo de movimentação diagonal sera usada, onde Never(0), OnlyWhenNoObstacles(1), IfAtMostOneObstacle(2), Always(3).
+
+\textbf{Algorithm}: Define qual algoritmo de busca sera rodar no modo visual, as opçoes são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
+ 
+\textbf{IDAStarFinderTimeOut}: Define em quanto tempo em milisegundos o IDA\** ira parar caso não encontre o caminho.
+
+\textbf{IDATrackRecursion}: Define se ira mostrar todos os passos recursivos do IDA\** (pode demorar).
+ 
+\textbf{RandomSeed}: Seed utilizada no gerador aleatorio de mapas.
+
+\textbf{Width}: Tamanho em largura do mapa.
+
+\textbf{Height}: Tamanho em altura do mapa.
+
+\textbf{MinimumPath}: Tamanho minimo entre o ponto inicial e final do mapa.
+
+\textbf{RandomBlock}: Tamanho que sera usado para gerar aleatoriamente uma parte do mapa e se repetira para completar o mapa com padrão.
+
+\textbf{FileToLoad}: Arquivo de mapa que sera carregado caso escolhe o MapOrigin de arquivo.
+
+\textbf{FolderToSaveMaps}: Pasta onde serão salvas altomaticamente os arquivos de mapas gerados.
+
+\textbf{Start}: Define o caractere de ponto inicial no modo de visualização console.
+
+\textbf{End}: Define o caractere de ponto final no modo de visualização console.
+
+\textbf{Empty}: Define o caractere de caminho livre no modo de visualização console.
+
+\textbf{Wall}: Define o caractere de parede no modo de visualização console.
+
+\textbf{Path}: Define o caractere de caminho no modo de visualização console.
+
+\textbf{Closed}: Define o caractere de nó fechado no modo de visualização console.
+
+\textbf{Opened}: Define o caractere de nó aberto no modo de visualização console.
+
+\textbf{OpenGlBlockSize}: Tamanho em pixel dos blocos no modo OpenGL.
+
+
+\textbf{GenerationLimit}: Define o numero maximo de gerações do GA antes de abortar o processo.
+
+\textbf{MutationRate}: Chance de ocorrer mutação em cada individuo de uma nova população.
+
+\textbf{MutationAlgorithm}:  Define qual operador de mutação sera utilizados pelo GA no modo visual, as opçoes são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
+
+\textbf{CrossoverRate}: Chance de ocorrer cruzamento em cada par de individuos de uma nova população.
+
+\textbf{CrossoverAlgorithm}: Define qual operador de cruzamento serão utilizados pelo GA no modo visual, as opçoes são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
+
+\textbf{PopulationSize}: Quantidade de individuos em cada nova população.
+
+\textbf{FitnessAlgorithm}: Define qual função de aptidão sera utilizado pelo GA no modo visual, as opçoes são Heuristica(0), Heuristica com penalidade em caminho ciclico(1), Heuristica com penalidade em caminhos que coliden(2) e Heuristica com penalidade em caminho ciclico e colisão(3).
+
+\textbf{SelectionAlgorithm}: Define qual função de seleção sera utilizado pelo GA no modo visual, as opçoes são  Aleatorio(0) e \textit{Roulette Wheel Selection}(1).
+
+\textbf{BestSolutionToPick}: Quantidade de individuos mais bem avaliados a serem colocados em uma nova geração a partir da anterios.
+
+\textbf{Penalty}: Valor de penalidade usado nas funções de aptdão.
