@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Pathfinder.Abstraction
 {
     public interface IMap
@@ -23,7 +22,6 @@ namespace Pathfinder.Abstraction
         void DefineAllNodes();
         bool ValidMap();
         void Clear();
-
         DiagonalMovement? AllowDiagonal { get; set; }
     }
 }

@@ -5,32 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Pathfinder.UI.Factories
 {
     public class AppModeFactory : IFactory<IAppMode>
     {
         public IAppMode GetSingleRunImplementation()
             => new SingleRunMode();
-        
-
         public IAppMode GetDynamicImplementation()
              => new DynamicMode();
-        
-
         public IAppMode GetBatchImplementation()
             => new BatchMode();
-        
-
         public IAppMode GetImplementation()
             => DecideImplementation(UISettings.AppMode);
-        
-
-
         public IAppMode GetImplementation(int option)
             => DecideImplementation((AppModeEnum)option);
-        
-
         private IAppMode DecideImplementation(AppModeEnum mode)
         {
             switch (mode)
@@ -42,11 +30,7 @@ namespace Pathfinder.UI.Factories
                 case AppModeEnum.BatchMode:
                     return GetBatchImplementation();
             }
-
-
-
             throw new Exception("No app mode selected");
         }
-
     }
 }

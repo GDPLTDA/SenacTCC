@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using System.Reflection;
-
 namespace Pathfinder
 {
     public class Node
@@ -26,7 +24,6 @@ namespace Pathfinder
             ParentNode = parent;
             Direction = direction;
         }
-
         public Node(int x, int y)
         {
             X = x;
@@ -63,7 +60,6 @@ namespace Pathfinder
         public bool Tested { get; set; }
         public int RetainCount { get; set; }
         public bool Collision { get; set; }
-
         public override bool Equals(object _other)
         {
             var other = (Node)_other;
@@ -83,12 +79,10 @@ namespace Pathfinder
             {
                 return object.ReferenceEquals(node2, null);
             }
-
             return node1.Equals(node2);
         }
         public static bool operator !=(Node node1, Node node2)
         {
-
             if (object.ReferenceEquals(node1, null))
             {
                 return !object.ReferenceEquals(node2, null);

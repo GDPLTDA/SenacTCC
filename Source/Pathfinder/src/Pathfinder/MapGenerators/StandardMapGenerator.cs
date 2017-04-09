@@ -1,16 +1,13 @@
 ﻿using Pathfinder.Abstraction;
-
 using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace Pathfinder.MapGenerators
 {
     public class StandardMapGenerator : IMapGenerator
     {
         public List<Node> GridMap { get; set; } = new List<Node>();
-
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
             var width = Settings.Width;
@@ -20,7 +17,6 @@ namespace Pathfinder.MapGenerators
             var blocksize = Settings.RandomBlock;
             var IsAGoodMap = false;
             IMap ret = null;
-
             if (argument != string.Empty)
             {
                 var param = argument.Split('|');
@@ -36,32 +32,24 @@ namespace Pathfinder.MapGenerators
                     throw new Exception("Ivalid random map parameters!");
                 }
             }
-
             var d = Settings.AllowDiagonal;
             if (diagonal.HasValue)
                 d = diagonal.Value;
-
             // finder para valida se o mapa é passavel
             var AStar = Container.Resolve<IFinder>();
-
             AStar.DiagonalMovement = d;
             AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
-
             var subgrid = new List<Node>();
-
             while (!IsAGoodMap)
             {
                 var nodes = new List<Node>();
                 var _map = new Map(width, height);
              //   _map.AllowDiagonal = d;
-
                 var size = Convert.ToInt32(blocksize * blocksize * seed);
-
                 var rand = new Random();
                 while (size > 0)
                 {
                     var p = RandNode(rand, blocksize, blocksize, true);
-
                     subgrid.Add(p);
                     size--;
                 }
@@ -81,14 +69,11 @@ namespace Pathfinder.MapGenerators
                         }
                     }
                 }
-
                 _map.DefineAllNodes(GridMap);
                 _map.StartNode = RandNode(rand, width, height, false);
                 _map.EndNode = RandNode(rand, width, height, false);
-
                 if (!_map.ValidMap())
                     throw new Exception("Invalid map configuration");
-
                 if (AStar.Find(_map)) // verifica se o mapa possui um caminho
                 {
                     var path = AStar.GetPath();
@@ -98,31 +83,24 @@ namespace Pathfinder.MapGenerators
                         _map.Clear();
                         ret = _map;
                     }
-
                 }
                 GridMap = new List<Node>();
                 subgrid = new List<Node>();
             }
-
             if (Settings.AutoSaveMaps)  // dont run if in batchmode
                 FileTool.SaveFileFromMap(ret);
-
             return ret;
         }
         private Node RandNode(Random rand, int width, int height, bool wall)
         {
             Node p = null;
-
             while (p == null || GridMap.Exists(i => i.Equals(p)))
             {
                 var x = rand.Next(0, width);
                 var y = rand.Next(0, height);
                 p = new Node(x, y, !wall, DirectionMovement.None);
             }
-
             return p;
         }
-
-
     }
 }

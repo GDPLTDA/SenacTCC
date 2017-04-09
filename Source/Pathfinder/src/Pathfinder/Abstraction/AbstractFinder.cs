@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace Pathfinder.Abstraction
 {
     public abstract class AbstractFinder : IFinder
@@ -12,14 +11,11 @@ namespace Pathfinder.Abstraction
         public event EventHandler Step;
         public event EventHandler End;
         public event EventHandler Start;
-
         private IMap _map;
-
         protected IMap GridMap { get { return _map; }
             set {
                 if (value?.AllowDiagonal.HasValue ?? false)
                     DiagonalMovement = value.AllowDiagonal.Value;
-
                 _map = value;
             }
         }
@@ -40,7 +36,6 @@ namespace Pathfinder.Abstraction
         public virtual IList<Node> GetNodesInClosedList() => _closedList;
         public virtual int GetMaxExpandedNodes() => _maxExpandedNodes;
         public virtual long GetProcessedTime() => _stopwatch.ElapsedMilliseconds;
-
         protected AbstractFinder(
              DiagonalMovement diag,
              int weight = 1
@@ -78,47 +73,36 @@ namespace Pathfinder.Abstraction
         }
         public virtual void StepConfig()
         {
-
         }
-
         protected virtual void OnEnd(FinderEventArgs e)
         {
             _stopwatch.Stop();
             End?.Invoke(this, e);
         }
-
         protected virtual void OnStart(FinderEventArgs e)
         {
             Start?.Invoke(this, e);
             _stopwatch.Reset();
             _stopwatch.Start();
         }
-
-
         public abstract bool Find(IMap grid);
         public virtual List<Node> GetPath()
         {
             var path = new List<Node>();
-
             var node = _endNode;
             while (node != null || node == _startNode)
             {
                 path.Add(node);
                 node = node.ParentNode;
             }
-
             return path;
         }
-
         protected virtual void UpdateMaxNodes()
         {
             var atualNodes = _openList.Count + _closedList.Count;
             if (atualNodes >= _maxExpandedNodes)
                 _maxExpandedNodes = atualNodes;
-
         }
-
-
         protected FinderEventArgs BuildArgs(int i, bool finded = false)
         {
             var args = new FinderEventArgs
@@ -131,7 +115,5 @@ namespace Pathfinder.Abstraction
             };
             return args;
         }
-
-
     }
 }

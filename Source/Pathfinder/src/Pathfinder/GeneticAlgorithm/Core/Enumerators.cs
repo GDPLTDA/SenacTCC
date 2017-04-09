@@ -6,8 +6,6 @@
         OBX,
         PBX
     }
-
-
     public enum MutateEnum
     {
         EM,
@@ -17,15 +15,12 @@
         IVM,
         SM,
         Bitwise
-
     }
-
     public enum SelectionEnum
     {
         Random,
         RouletteWheel
     }
-
     public enum FitnessEnum
     {
         Heuristic,
@@ -33,5 +28,4 @@
         CirclicValidation,
         CollisionDetectionAndCirclicValidation
     }
-
 }

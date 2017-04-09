@@ -7,7 +7,6 @@
         Octile,
         Chebyshev
     }
-
     public enum FinderEnum
     {
         AStar,
@@ -16,7 +15,6 @@
         Dijkstra,
         GA,
     }
-
     public enum MapGeneratorEnum
     {
         File,
@@ -24,7 +22,6 @@
         Random,
         WithPattern,
     }
-
     public enum DirectionMovement
     {
         None,
@@ -37,7 +34,6 @@
         DownRight,
         DownLeft
     }
-
     public enum DiagonalMovement : byte
     {
         Never = 0,
@@ -45,5 +41,4 @@
         IfAtMostOneObstacle = 2,
         Always = 3
     }
-
 }
