@@ -10,50 +10,55 @@ namespace Pathfinder
 {
     public class FileTool
     {
-        
+
 
         public FileTool()
         {
-            
+
         }
 
-        public string GetTextRepresentation(IMap map)
+        public static string GetTextRepresentation(IMap map)
         {
             var ret = string.Empty;
+            var builderRet = new System.Text.StringBuilder();
+            builderRet.Append(ret);
 
             for (int i = 0; i < map.Height; i++)
             {
+                var builder = new System.Text.StringBuilder();
+                builder.Append(ret);
                 for (int j = 0; j < map.Width; j++)
                 {
-                    char c = ' ';
+                    var c = ' ';
                     var node = map[i, j];
 
                     if (node == map.StartNode)
                         c = Settings.Start;
                     else if (node == map.EndNode)
                         c = Settings.End;
-                    else if (!node.Walkable)
-                        c = Settings.Wall;
-                    else
-                        c = Settings.Empty;
+                    else c = !node.Walkable ? Settings.Wall : Settings.Empty;
 
-                    ret += c.ToString();
+                    builder.Append(c.ToString());
                 }
-                ret += "\n";
+                ret = builder.ToString();
+                builderRet.Append("\n");
             }
+            ret = builderRet.ToString();
 
             ret = ret.Remove(ret.LastIndexOf("\n"));
             return ret;
         }
 
-        public IMap ReadMapFromFile(string fileName)
+        public static IMap ReadMapFromFile(string fileName)
         {
 
-            int width = 0, height = 0;
+            var width = 0;
+            var height = 0;
             var nodes = new List<Node>();
             Node startNode = null;
             Node endNode = null;
-            int x = 0, y = 0;
+            var x = 0;
+            var y = 0;
             byte dig;
             DiagonalMovement? d = null;
 
@@ -62,61 +67,64 @@ namespace Pathfinder
 
             using (var fs = new FileStream(fileName, FileMode.Open))
             {
-                var reader = new BinaryReader(fs);
-
-                while (!(reader.BaseStream.Position == reader.BaseStream.Length))
+                using (var reader = new BinaryReader(fs))
                 {
-                    dig = reader.ReadByte();
-
-                    if (dig == 13)
-                        continue;
-
-                    if (dig == 10)
+                    while (!(reader.BaseStream.Position == reader.BaseStream.Length))
                     {
-                        y++;
-                        x = 0;
-                        continue;
+                        dig = reader.ReadByte();
+
+                        if (dig == 13)
+                            continue;
+
+                        if (dig == 10)
+                        {
+                            y++;
+                            x = 0;
+                            continue;
+                        }
+
+                        var chrDig = (char)dig;
+
+                        if (chrDig == '?')
+                        {
+                            var line = new List<char>();
+                            while (chrDig != 10)
+                                line.Add(chrDig = reader.ReadChar());
+
+                            ReadMapSettings(string.Join("", line), out d);
+                            continue;
+                        }
+
+                        if (chrDig == Settings.Start)
+                            startNode = new Node(x, y);
+                        else
+                        if (chrDig == Settings.End)
+                            endNode = new Node(x, y);
+                        else
+                        if (chrDig == Settings.Wall)
+                            nodes.Add(new Node(x, y) { Walkable = false });
+                        else
+                        if (chrDig == Settings.Empty)
+                            nodes.Add(new Node(x, y) { Walkable = true });
+                        else
+                            throw new Exception("invalid character " + chrDig.ToString());
+
+                        x++;
                     }
-
-                    var chrDig = (char)dig;
-                    
-                    if (chrDig == '?')
-                    {
-                        var line = new List<char>();
-                        while (chrDig!=10)
-                            line.Add(chrDig = reader.ReadChar());
-
-                        ReadMapSettings(string.Join("",line), out d);
-                        continue;
-                    }
-
-                    if (chrDig == Settings.Start)
-                        startNode = new Node(x, y);
-                    else
-                    if (chrDig == Settings.End)
-                        endNode = new Node(x, y);
-                    else
-                    if (chrDig == Settings.Wall)
-                        nodes.Add(new Node(x, y) { Walkable = false });
-                    else
-                    if (chrDig == Settings.Empty)
-                        nodes.Add(new Node(x, y) { Walkable = true });
-                    else
-                        throw new Exception("invalid character " + chrDig.ToString());
-
-                    x++;
+                    y++;
                 }
-                y++;
             }
 
             width = x;
             height = y;
 
-            var ret = new Map(width, height);
+            var ret = new Map(width, height)
+            {
+                StartNode = startNode,
+                EndNode = endNode,
+                AllowDiagonal = d
+            };
 
-            ret.StartNode = startNode;
-            ret.EndNode = endNode;
-            ret.AllowDiagonal = d;
             ret.DefineAllNodes(nodes);
             ret.DefineNode(ret.StartNode);
             ret.DefineNode(ret.EndNode);
@@ -127,14 +135,14 @@ namespace Pathfinder
             return ret;
         }
 
-        private void ReadMapSettings(string line, out DiagonalMovement? d)
+        private static void ReadMapSettings(string line, out DiagonalMovement? d)
         {
-            var diagvar = "diagonal=";
+            const string diagvar = "diagonal=";
             d = null;
 
             if (line.Contains(diagvar))
             {
-                string diag = line.Substring(line.IndexOf(diagvar)+ diagvar.Length);
+                var diag = line.Substring(line.IndexOf(diagvar)+ diagvar.Length);
                 diag = diag.Substring(0, diag.IndexOf(";"));
 
                 var diags = Enum.GetValues(typeof(DiagonalMovement));
@@ -147,7 +155,7 @@ namespace Pathfinder
         }
 
 
-        public void SaveFileFromMap(IMap map, string filename = "")
+        public static void SaveFileFromMap(IMap map, string filename = "")
         {
             var text = GetTextRepresentation(map);
             var folder = Settings.FolderToSaveMaps;

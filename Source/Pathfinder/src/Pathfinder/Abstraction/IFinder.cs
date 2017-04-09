@@ -13,15 +13,15 @@ namespace Pathfinder.Abstraction
         int SleepUITimeInMs { get; set; }
 
         bool Find(IMap grid);
-        
+
         DiagonalMovement DiagonalMovement { get; set; }
         IHeuristic Heuristic { get; set; }
         int Weight { get; set; }
         IList<Node> GetNodesInOpenedList();
         IList<Node> GetNodesInClosedList();
         List<Node> GetPath();
-        bool isOpen(Node e);
-        bool isClosed(Node e);
+        bool IsOpen(Node e);
+        bool IsClosed(Node e);
 
         long GetProcessedTime();
         int GetMaxExpandedNodes();

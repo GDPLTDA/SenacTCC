@@ -78,7 +78,8 @@ namespace Pathfinder
 
         public Node GetDirectionNode(Node node, DirectionMovement direction, bool ByRef = true, bool valid = true)
         {
-            int x = node.X, y = node.Y;
+            var x = node.X;
+            var y = node.Y;
             Node newnode = null;
             switch (direction)
             {
@@ -130,18 +131,22 @@ namespace Pathfinder
 
         public IList<Node> GetNeighbors(Node node, bool ByRef = true, bool valid = true)
         {
-            return GetNeighbors(node, AllowDiagonal.HasValue ? AllowDiagonal.Value : Settings.AllowDiagonal, ByRef, valid);
+            return GetNeighbors(node, AllowDiagonal ?? Settings.AllowDiagonal, ByRef, valid);
         }
-        
+
         public IList<Node> GetNeighbors(Node node, DiagonalMovement diag, bool ByRef = true, bool valid = true)
         {
             Node newnode;
             var neighbors = new List<Node>();
 
-            bool s0 = false, d0 = false,
-              s1 = false, d1 = false,
-              s2 = false, d2 = false,
-              s3 = false, d3 = false;
+            var s0 = false;
+            var d0 = false;
+            var s1 = false;
+            var d1 = false;
+            var s2 = false;
+            var d2 = false;
+            var s3 = false;
+            var d3 = false;
 
             newnode = GetDirectionNode(node, DirectionMovement.Up, ByRef, valid);
             if (newnode != null)
@@ -167,35 +172,34 @@ namespace Pathfinder
                 neighbors.Add(newnode);
                 s3 = true;
             }
-            
+
             if (diag == DiagonalMovement.Never)
             {
                 return neighbors;
             }
 
-            if (diag == DiagonalMovement.OnlyWhenNoObstacles)
+            switch (diag)
             {
-                d0 = s3 && s0;
-                d1 = s0 && s1;
-                d2 = s1 && s2;
-                d3 = s2 && s3;
-            }
-            else if (diag == DiagonalMovement.IfAtMostOneObstacle) {
-                d0 = s3 || s0;
-                d1 = s0 || s1;
-                d2 = s1 || s2;
-                d3 = s2 || s3;
-            }
-            else if (diag == DiagonalMovement.Always)
-            {
-                d0 = true;
-                d1 = true;
-                d2 = true;
-                d3 = true;
-            }
-            else
-            {
-                throw new Exception("Incorrect value of diagonalMovement");
+                case DiagonalMovement.OnlyWhenNoObstacles:
+                    d0 = s3 && s0;
+                    d1 = s0 && s1;
+                    d2 = s1 && s2;
+                    d3 = s2 && s3;
+                    break;
+                case DiagonalMovement.IfAtMostOneObstacle:
+                    d0 = s3 || s0;
+                    d1 = s0 || s1;
+                    d2 = s1 || s2;
+                    d3 = s2 || s3;
+                    break;
+                case DiagonalMovement.Always:
+                    d0 = true;
+                    d1 = true;
+                    d2 = true;
+                    d3 = true;
+                    break;
+                default:
+                    throw new Exception("Incorrect value of diagonalMovement");
             }
 
             newnode = GetDirectionNode(node, DirectionMovement.UpRight, ByRef, valid);
@@ -231,7 +235,7 @@ namespace Pathfinder
                         return false;
                     else if (this[i, j].X != j || this[i, j].Y != i)
                         return false;
-                    
+
 
             if (StartNode == null || EndNode == null)
                 return false;

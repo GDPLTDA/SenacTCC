@@ -13,11 +13,12 @@ namespace Pathfinder.MapGenerators
 
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
-            int width = Settings.Width, height = Settings.Height;
-            double seed = Settings.RandomSeed;
-            int minPathLength = Settings.MinimumPath;
-            int blocksize = Settings.RandomBlock;
-            bool IsAGoodMap = false;
+            var width = Settings.Width;
+            var height = Settings.Height;
+            var seed = Settings.RandomSeed;
+            var minPathLength = Settings.MinimumPath;
+            var blocksize = Settings.RandomBlock;
+            var IsAGoodMap = false;
             IMap ret = null;
 
             if (argument != string.Empty)
@@ -36,12 +37,12 @@ namespace Pathfinder.MapGenerators
                 }
             }
 
-            DiagonalMovement d = Settings.AllowDiagonal;
+            var d = Settings.AllowDiagonal;
             if (diagonal.HasValue)
                 d = diagonal.Value;
 
             // finder para valida se o mapa é passavel
-            IFinder AStar = Container.Resolve<IFinder>();
+            var AStar = Container.Resolve<IFinder>();
 
             AStar.DiagonalMovement = d;
             AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
@@ -54,7 +55,7 @@ namespace Pathfinder.MapGenerators
                 var _map = new Map(width, height);
              //   _map.AllowDiagonal = d;
 
-                int size = Convert.ToInt32(blocksize * blocksize * seed);
+                var size = Convert.ToInt32(blocksize * blocksize * seed);
 
                 var rand = new Random();
                 while (size > 0)
@@ -104,7 +105,7 @@ namespace Pathfinder.MapGenerators
             }
 
             if (Settings.AutoSaveMaps)  // dont run if in batchmode
-                new FileTool().SaveFileFromMap(ret);
+                FileTool.SaveFileFromMap(ret);
 
             return ret;
         }
@@ -114,8 +115,8 @@ namespace Pathfinder.MapGenerators
 
             while (p == null || GridMap.Exists(i => i.Equals(p)))
             {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, height);
+                var x = rand.Next(0, width);
+                var y = rand.Next(0, height);
                 p = new Node(x, y, !wall, DirectionMovement.None);
             }
 

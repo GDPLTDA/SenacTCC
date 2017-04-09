@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Abstraction;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,15 +11,16 @@ namespace Pathfinder.MapGenerators
     {
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
-            int width = 7, height = 5;
+            const int width = 7;
+            const int height = 5;
             var nodes = new List<Node>();
             var ret = new Map(width, height);
             
             if (argument=="")
             {
-                int choose = 0;
-                
-                while(choose < 49 || choose >51)
+                var choose = 0;
+
+                while (choose < 49 || choose >51)
                 {
                     Console.Clear();
                     Console.Write("Choose the map: \n 1=Without Wall\n 2=Wall with gap\n 3=Wall without gap\n=>");
@@ -64,7 +64,8 @@ namespace Pathfinder.MapGenerators
         /// <summary>
         /// Creates a clear map with a start and end point and sets up the search parameters
         /// </summary>
-        private void WallSimple(IMap map)
+        /// <param name="map"> 
+        private static void WallSimple(IMap map)
         {
             //  □ □ □ □ □ □ □
             //  □ □ □ □ □ □ □
@@ -81,7 +82,8 @@ namespace Pathfinder.MapGenerators
         /// <summary>
         /// Create an L-shaped wall between S and F
         /// </summary>
-        private void WallWithGap(IMap map)
+        /// <param name="map">
+        private static void WallWithGap(IMap map)
         {
             //  □ □ □ ■ □ □ □
             //  □ □ □ ■ □ □ □
@@ -106,7 +108,8 @@ namespace Pathfinder.MapGenerators
         /// <summary>
         /// Create a closed barrier between S and F
         /// </summary>
-        private void WallWithoutGap(IMap map)
+        /// <param name="map">
+        private static void WallWithoutGap(IMap map)
         {
             //  □ □ □ ■ □ □ □
             //  □ □ □ ■ □ □ □

@@ -9,31 +9,31 @@ namespace Pathfinder.Factories
 {
     public class MapGeneratorFactory : IFactory<IMapGenerator>
     {
-        public IMapGenerator GetFileMapGeneratorImplementation()
+        public static IMapGenerator GetFileMapGeneratorImplementation()
             => new FileMapGenerator();
-        
 
-        public IMapGenerator GetStaticMapGeneratorImplementation()
+
+        public static IMapGenerator GetStaticMapGeneratorImplementation()
             => new StaticMapGenerator();
-        
 
-        public IMapGenerator GetRandomMapGeneratorImplementation()
+
+        public static IMapGenerator GetRandomMapGeneratorImplementation()
             => new RandomMapGenerator();
-        
 
-        public IMapGenerator GetStandardMapGeneratorImplementation()
+
+        public static IMapGenerator GetStandardMapGeneratorImplementation()
             => new StandardMapGenerator();
-        
+
 
         public IMapGenerator GetImplementation()
             => Decide(Settings.MapOrigin);
-        
+
 
         public IMapGenerator GetImplementation(int option)
             => Decide((MapGeneratorEnum)option);
-        
 
-        private IMapGenerator Decide(MapGeneratorEnum option)
+
+        private static IMapGenerator Decide(MapGeneratorEnum option)
         {
             switch (option)
             {
@@ -44,7 +44,7 @@ namespace Pathfinder.Factories
 
                 case MapGeneratorEnum.Random:
                     return GetRandomMapGeneratorImplementation();
-                    
+
                 case MapGeneratorEnum.WithPattern:
                     return GetStandardMapGeneratorImplementation();
             }

@@ -18,7 +18,7 @@ namespace Pathfinder
         }
         public Node(Node node, Node parent, DirectionMovement direction)
         {
-            Type type = node.GetType();
+            var type = node.GetType();
             foreach (var item in type.GetProperties())
             {
                 item.SetValue(this, item.GetValue(node));
@@ -97,7 +97,7 @@ namespace Pathfinder
         }
         public override string ToString()
         {
-            return $"{{{this.X},{this.Y},{(!Walkable?"Wall": "Walkable")},{Cost}}} {Direction} {(Collision?" COLIDE!":"")}";
+            return $"{{{this.X},{this.Y},{(!Walkable?"Wall": nameof(Walkable))},{Cost}}} {Direction} {(Collision?" COLIDE!":"")}";
         }
     }
 }

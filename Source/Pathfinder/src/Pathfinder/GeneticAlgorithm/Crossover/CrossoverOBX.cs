@@ -14,8 +14,8 @@ namespace Pathfinder.Crossover
             if (rand.NextDouble() > CrossoverRate || Operation.IsEqual())
                 return Operation;
 
-            var babymom = Operation.Copy(Operation.Mom);
-            var babydad = Operation.Copy(Operation.Dad);
+            var babymom = CrossoverOperation.Copy(Operation.Mom);
+            var babydad = CrossoverOperation.Copy(Operation.Dad);
 
             var lstTempCities = new List<Node>();
             var lstPositions = new List<int>();

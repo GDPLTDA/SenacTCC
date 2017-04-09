@@ -12,8 +12,8 @@ namespace Pathfinder.Finders
     public class IDAStarFinder : AbstractFinder
     {
 
-        bool TrackRecursion;
-        double TimeLimit;
+        readonly bool TrackRecursion;
+        readonly double TimeLimit;
         int nodesVisited;
         
         
@@ -32,10 +32,7 @@ namespace Pathfinder.Finders
             
             var ms = Settings.IDAStarFinderTimeOut;
 
-            if (ms == 0)
-                TimeLimit = double.PositiveInfinity;
-            else
-                TimeLimit = ms;
+            TimeLimit = ms == 0 ? double.PositiveInfinity : ms;
 
             nodesVisited = 0;
             TrackRecursion = Settings.IDATrackRecursion;
@@ -47,7 +44,7 @@ namespace Pathfinder.Finders
             return Heuristic.Calc(Abs(b.X - a.X), Abs(b.Y - a.Y));
         }
 
-        private double Cost(Node a, Node b)
+        private static double Cost(Node a, Node b)
         {
             return (a.X == b.X || a.Y == b.Y) ? 1 : Sqrt(2);
         }
@@ -104,7 +101,7 @@ namespace Pathfinder.Finders
             
             Tuple<Node, double> t;
             Node neighbour;
-            int x = 0;
+            var x = 0;
 
             for (x = 0; x < neighbours.Count; x++)
             {
@@ -167,7 +164,7 @@ namespace Pathfinder.Finders
 
             OnStart(BuildArgs(0));
             
-            int k = 0;
+            var k = 0;
             for (k = 0; true; k++)
             {           
 

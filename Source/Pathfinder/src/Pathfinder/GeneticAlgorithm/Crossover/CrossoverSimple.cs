@@ -11,8 +11,8 @@ namespace Pathfinder.Crossover
             if (rand.NextDouble() > CrossoverRate || Operation.IsEqual())
                 return Operation;
 
-            var babymom = Operation.Copy(Operation.Mom);
-            var babydad = Operation.Copy(Operation.Dad);
+            var babymom = CrossoverOperation.Copy(Operation.Mom);
+            var babydad = CrossoverOperation.Copy(Operation.Dad);
 
             var listmom = Operation.Mom.ListNodes;
             var listdad = Operation.Dad.ListNodes;

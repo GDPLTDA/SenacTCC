@@ -34,7 +34,7 @@ namespace Pathfinder.Factories
             => Decide((FitnessEnum)option);
         
 
-        private IFitness Decide(FitnessEnum option)
+        private static IFitness Decide(FitnessEnum option)
         {
             switch (option)
             {

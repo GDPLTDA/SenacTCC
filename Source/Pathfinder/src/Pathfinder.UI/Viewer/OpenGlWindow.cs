@@ -98,9 +98,9 @@ namespace Pathfinder.UI.Viewer
                         c = Color.Yellow;
                     else if (!node.Walkable)
                         c = Color.DarkGray;
-                    else if (_finder.isClosed(node))
+                    else if (_finder.IsClosed(node))
                         c = Color.LightGreen;
-                    else if (_finder.isOpen(node))
+                    else if (_finder.IsOpen(node))
                         c = Color.LightBlue;
 
 

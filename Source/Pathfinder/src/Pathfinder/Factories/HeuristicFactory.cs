@@ -9,31 +9,31 @@ namespace Pathfinder.Factories
 {
     public class HeuristicFactory : IFactory<IHeuristic>
     {
-        public IHeuristic GetManhattamImplementation()
+        public static IHeuristic GetManhattamImplementation()
             => new Manhattan();
-        
 
-        public IHeuristic GetEuclideanImplementation()
+
+        public static IHeuristic GetEuclideanImplementation()
             => new Euclidean();
-        
 
-        public IHeuristic GetOctileImplementation()
+
+        public static IHeuristic GetOctileImplementation()
             => new Octile();
-        
 
-        public IHeuristic GetChebyshevImplementation()
+
+        public static IHeuristic GetChebyshevImplementation()
             => new Chebyshev();
-        
+
 
         public IHeuristic GetImplementation()
             => Decide(Settings.Heuristic);
-        
+
 
         public IHeuristic GetImplementation(int option)
             => Decide((HeuristicEnum)option);
-        
 
-        private IHeuristic Decide(HeuristicEnum option)
+
+        private static IHeuristic Decide(HeuristicEnum option)
         {
             switch (option)
             {

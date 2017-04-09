@@ -54,8 +54,7 @@ namespace Pathfinder.UI.AppMode
                     drawTextProgressBar(i, qtdMaps);
                     var map = generator.DefineMap(diagonal: diagonals[UISettings.Batch_map_diagonal]);
                     map.AllowDiagonal = diagonals[UISettings.Batch_map_diagonal];
-
-                    ft.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
+                    FileTool.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
                                        
                 }
 
@@ -89,7 +88,7 @@ namespace Pathfinder.UI.AppMode
             for (int i = 0; i < fileCount; i++)
             {
 
-                var map = ft.ReadMapFromFile(files[i]);
+                var map = FileTool.ReadMapFromFile(files[i]);
 
                 foreach (var _finder in finders)
                 {
@@ -123,7 +122,7 @@ namespace Pathfinder.UI.AppMode
                                                 var csv = new TextWrapper();
                                                 csv = RunStep(csv, i, fileCount, map, h, GAFinder, helper);
 
-                                                var csvGA = new TextGAWrapper()
+                                                var csvGA = new TextGAWrapper
                                                 {
                                                     alg = csv.alg,
                                                     map = csv.map,
@@ -277,7 +276,7 @@ namespace Pathfinder.UI.AppMode
 
         private static void drawTextProgressBar(int progress, int total, int barLength = 30, int left = 0, ConsoleColor color = ConsoleColor.Green)
         {
-            char loadCchar = ' ';
+            const char loadCchar = ' ';
             Console.CursorLeft = left;
             Console.Write("[");
             Console.CursorLeft = barLength + left + 1;
@@ -286,7 +285,7 @@ namespace Pathfinder.UI.AppMode
             var step = ((double)barLength / total);
 
             //draw filled part
-            int position = 1;
+            var position = 1;
             for (int i = 0; i < step * progress; i++)
             {
                 Console.BackgroundColor = color;

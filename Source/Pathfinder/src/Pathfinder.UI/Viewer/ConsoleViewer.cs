@@ -57,9 +57,9 @@ namespace Pathfinder.UI.Viewer
                         c = Settings.Path;
                     else if (!node.Walkable)
                         c = Settings.Wall;
-                    else if (showOpenNodes && _finder.isClosed(node))
+                    else if (showOpenNodes && _finder.IsClosed(node))
                         c = Settings.Closed;
-                    else if (showOpenNodes && _finder.isOpen(node))
+                    else if (showOpenNodes && _finder.IsOpen(node))
                         c = Settings.Opened;
                     else
                         c = Settings.Empty;

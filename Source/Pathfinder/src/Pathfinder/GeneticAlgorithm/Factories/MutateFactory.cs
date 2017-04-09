@@ -10,25 +10,25 @@ namespace Pathfinder.Factories
 {
     public class MutateFactory  : IFactory<IMutate>
     {
-        public IMutate GetEMImplementation()
+        public static IMutate GetEMImplementation()
             => new MutateEM();
 
-        public IMutate GetDIVMImplementation()
+        public static IMutate GetDIVMImplementation()
             => new MutateDIVM();
         
-        public IMutate GetDMImplementation()
+        public static IMutate GetDMImplementation()
             => new MutateDM();
       
-        public IMutate GetIMImplementation()
+        public static IMutate GetIMImplementation()
             => new MutateIM();
         
-        public IMutate GetIVMImplementation()
+        public static IMutate GetIVMImplementation()
             => new MutateIVM();
 
-        public IMutate GetSMImplementation()
+        public static IMutate GetSMImplementation()
             => new MutateSM();
         
-        public IMutate GetBitwiseImplementation()
+        public static IMutate GetBitwiseImplementation()
             => new MutateBitwise();
         
 
@@ -39,7 +39,7 @@ namespace Pathfinder.Factories
         public IMutate GetImplementation(int option)
             => Decide((MutateEnum)option);
 
-        private IMutate Decide(MutateEnum option)
+        private static IMutate Decide(MutateEnum option)
         {
             switch (option)
             {

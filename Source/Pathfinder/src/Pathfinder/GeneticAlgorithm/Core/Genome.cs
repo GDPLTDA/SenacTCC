@@ -39,7 +39,7 @@ namespace Pathfinder
         {
             var rand = Container.Resolve<IRandom>();
             var listnode = new List<Node>();
-            bool run = true;
+            var run = true;
             var node = new Node(Map.StartNode);
 
             while (run)
@@ -60,12 +60,6 @@ namespace Pathfinder
             return listnode;
         }
 
-        DirectionMovement RandomDirection()
-        {
-            var rand = Container.Resolve<IRandom>();
-            return (DirectionMovement)rand.Next(1, Enum.GetNames(typeof(DirectionMovement)).Length);
-        }
-
         public bool IsEqual(IGenome genome)
         {
             if (ListNodes.Count != genome.ListNodes.Count)
@@ -79,7 +73,7 @@ namespace Pathfinder
             return true;
         }
 
-        private List<Node> Copy(List<Node> listnode)
+        private static List<Node> Copy(List<Node> listnode)
         {
             var returnnode = new List<Node>();
 

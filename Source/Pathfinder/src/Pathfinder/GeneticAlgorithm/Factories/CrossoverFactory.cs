@@ -28,7 +28,7 @@ namespace Pathfinder.Factories
             => Decide((CrossoverEnum)option);
         
 
-        private ICrossover Decide(CrossoverEnum option)
+        private static ICrossover Decide(CrossoverEnum option)
         {
             switch (option)
             {

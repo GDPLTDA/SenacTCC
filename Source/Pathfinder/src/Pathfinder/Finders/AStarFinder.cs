@@ -44,7 +44,7 @@ namespace Pathfinder.Finders
 
             _openList.Add(_startNode);
 
-            int step = 0;
+            var step = 0;
             OnStart(BuildArgs(step));
             
             while (!_openList.Count.Equals(0))
@@ -65,7 +65,7 @@ namespace Pathfinder.Finders
                 {
                     var neighbor = neighbors[i];
 
-                    if (isClosed(neighbor))
+                    if (IsClosed(neighbor))
                         continue;
 
                     var x = neighbor.X;
@@ -77,14 +77,14 @@ namespace Pathfinder.Finders
 
                     // check if the neighbor has not been inspected yet, or
                     // can be reached with smaller cost from the current node
-                    if (! isOpen(neighbor) || ng < neighbor.G)
+                    if (! IsOpen(neighbor) || ng < neighbor.G)
                     {
                         neighbor.G = ng;
                         neighbor.H = Weight * CalcH( Abs(x - _endNode.X), Abs(y - _endNode.Y));
                         neighbor.Cost = neighbor.G + neighbor.H;
                         neighbor.ParentNode = node;
 
-                        if (!isOpen(neighbor))
+                        if (!IsOpen(neighbor))
                             _openList.Push(neighbor);
                     }
                 }

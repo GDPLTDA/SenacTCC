@@ -50,8 +50,8 @@ namespace Pathfinder.Finders
             for (int i = 0; i < GASettings.PopulationSize; i++)
                 Populations.Add(new Genome(map, DiagonalMovement));
             CalcFitness();
-            int step = 0;
-            
+            var step = 0;
+
             OnStart(BuildArgs(step));
 
             for (int i = 0; i < GASettings.GenerationLimit; i++)
@@ -66,7 +66,7 @@ namespace Pathfinder.Finders
                     newpopulations.Add(Populations[j]);
                 }
 
-                int ran = rand.Next(1, Populations.Count);
+                var ran = rand.Next(1, Populations.Count);
                 var best = Populations.First().ListNodes;
                 var best2 = Selection.Select(Populations).ListNodes;
                 _endNode = best.Last();
@@ -86,11 +86,14 @@ namespace Pathfinder.Finders
                     // Selection
                     var nodemom = Selection.Select(Populations);
                     var nodedad = Selection.Select(Populations);
+                    
                     // CrossOver
                     var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
-                    //// Mutation
+                    
+                    // Mutation
                     nodemom = Mutate.Calc(cross.Mom);
                     nodedad = Mutate.Calc(cross.Dad);
+                    
                     // Adaptation
                     nodemom = Adaptation.Calc(nodemom);
                     nodedad = Adaptation.Calc(nodedad);

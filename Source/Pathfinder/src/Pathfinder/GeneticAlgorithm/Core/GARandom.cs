@@ -6,7 +6,7 @@ namespace Pathfinder
 {
     public class GARandom : IRandom
     {
-        private Random me;
+        private readonly Random me;
         public  GARandom()
         {
             me = new Random(); 

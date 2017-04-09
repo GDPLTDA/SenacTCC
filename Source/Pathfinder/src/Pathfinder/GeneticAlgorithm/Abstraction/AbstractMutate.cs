@@ -7,7 +7,7 @@ namespace Pathfinder.Abstraction
 {
     public abstract class AbstractMutate : IMutate
     {
-        public AbstractMutate()
+        protected AbstractMutate()
         {
             MutationRate = GASettings.MutationRate;
         }

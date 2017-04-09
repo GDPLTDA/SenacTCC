@@ -28,18 +28,19 @@ namespace Pathfinder.Abstraction
         {
             return Mom.Equals(Dad);
         }
-        public IGenome Copy(IGenome genome)
+        public static IGenome Copy(IGenome genome)
         {
             return new Genome(genome);
         }
     }
     public abstract class AbstractCrossover : ICrossover
     {
-        public AbstractCrossover()
+        protected AbstractCrossover()
         {
             
             CrossoverRate = GASettings.CrossoverRate;
         }
+
         protected double CrossoverRate { get; set; }
         CrossoverOperation Operation { get; set; }
         public abstract CrossoverOperation Calc(CrossoverOperation Operation);

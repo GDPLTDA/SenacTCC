@@ -19,12 +19,12 @@ namespace Pathfinder.Selection
 
             var index = -1;
             
-            double weight_sum = 0;
+            var weight_sum = 0d;
             for (int i = 0; i < weight.Length; i++)
                 weight_sum += weight[i];
 
             // get a random value
-            double value = Container.Resolve<IRandom>()
+            var value = Container.Resolve<IRandom>()
                             .NextDouble() * weight_sum;
 
             // locate the random value based on the weights

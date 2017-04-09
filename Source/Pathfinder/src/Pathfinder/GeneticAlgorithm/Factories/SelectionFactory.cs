@@ -9,10 +9,10 @@ namespace Pathfinder.Factories
 {
     public class SelectionFactory : IFactory<ISelection>
     {
-        public ISelection GetRandomImplementation()
+        public static ISelection GetRandomImplementation()
             => new SelectionRandom();
         
-        public ISelection GetRouletteWheelSelectionImplementation()
+        public static ISelection GetRouletteWheelSelectionImplementation()
             => new SelectionRouletteWheel();
         
         public ISelection GetImplementation()
@@ -21,7 +21,7 @@ namespace Pathfinder.Factories
         public ISelection GetImplementation(int option)
             => Decide((SelectionEnum)option);
 
-        private ISelection Decide(SelectionEnum option)
+        private static ISelection Decide(SelectionEnum option)
         {
             switch (option)
             {

@@ -14,7 +14,7 @@ namespace Pathfinder.Mutation
             if (rand.NextDouble() > MutationRate || baby.ListNodes.Count < 3)
                 return baby;
 
-            int listcount = baby.ListNodes.Count;
+            var listcount = baby.ListNodes.Count;
             const int minSpanSize = 3;
 
             if (listcount <= minSpanSize)

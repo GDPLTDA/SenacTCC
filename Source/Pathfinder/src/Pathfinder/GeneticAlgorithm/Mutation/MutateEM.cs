@@ -14,7 +14,7 @@ namespace Pathfinder.Mutation
             if (rand.NextDouble() > MutationRate || baby.ListNodes.Count < 3)
                 return baby;
 
-            int listcount = baby.ListNodes.Count;
+            var listcount = baby.ListNodes.Count;
             // Ignora o inicial
             var pos1 = rand.Next(0, listcount);
             var pos2 = pos1;

@@ -9,7 +9,7 @@ namespace Pathfinder
 {
     public static class Container
     {
-        private static Dictionary<Type, Type> _factories = new Dictionary<Type, Type>(); 
+        static readonly Dictionary<Type, Type> _factories = new Dictionary<Type, Type>();
 
 
         static Container()
@@ -24,7 +24,7 @@ namespace Pathfinder
             Register<ISelection, SelectionFactory>();
             Register<IRandom, RandomFactory>();
 
-            
+
         }
 
         public static T Resolve<T>()
@@ -41,12 +41,12 @@ namespace Pathfinder
 
         }
 
-        public static void Register<T, TFactory>() where TFactory : IFactory<T> 
+        public static void Register<T, TFactory>() where TFactory : IFactory<T>
         {
             _factories.Add(typeof(T), typeof(TFactory));
         }
-        
 
-        
+
+
     }
 }

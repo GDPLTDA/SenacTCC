@@ -15,12 +15,13 @@ namespace Pathfinder.MapGenerators
 
         public IMap DefineMap(string argument, DiagonalMovement? diagonal = null)
         {
-            int width = Settings.Width, 
-                height = Settings.Height;
+            var width = Settings.Width;
+            var height = Settings.Height;
 
-            double seed = Settings.RandomSeed;
-            int minPathLength = Settings.MinimumPath;
-            bool IsAGoodMap = false;
+            var seed = Settings.RandomSeed;
+            var minPathLength = Settings.MinimumPath;
+            var IsAGoodMap = false;
+
             IMap ret = null;
 
             if (argument!=string.Empty)
@@ -44,12 +45,12 @@ namespace Pathfinder.MapGenerators
             }
 
 
-            DiagonalMovement d = Settings.AllowDiagonal; 
+            var d = Settings.AllowDiagonal;
             if (diagonal.HasValue)
                 d = diagonal.Value;
 
 
-            IFinder AStar = Container.Resolve<IFinder>((int)FinderEnum.AStar);
+            var AStar = Container.Resolve<IFinder>((int)FinderEnum.AStar);
 
             AStar.DiagonalMovement = d;
 
@@ -65,7 +66,7 @@ namespace Pathfinder.MapGenerators
                 var _map = new Map(width, height);
 
 
-                int size = Convert.ToInt32((width * height) * seed);
+                var size = Convert.ToInt32((width * height) * seed);
 
                 var rand = new Random();
                 while (size > 0)
@@ -97,8 +98,8 @@ namespace Pathfinder.MapGenerators
                 GridMap = new List<Node>();
             }
 
-            if (Settings.AutoSaveMaps) 
-                new FileTool().SaveFileFromMap(ret);
+            if (Settings.AutoSaveMaps)
+                FileTool.SaveFileFromMap(ret);
 
             return ret;
         }
@@ -108,8 +109,8 @@ namespace Pathfinder.MapGenerators
 
             while (p == null || GridMap.Exists(i => i.Equals(p)))
             {
-                int x = rand.Next(0, width);
-                int y = rand.Next(0, height);
+                var x = rand.Next(0, width);
+                var y = rand.Next(0, height);
                 p = new Node(x, y, !wall, DirectionMovement.None);
             }
 

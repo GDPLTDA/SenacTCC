@@ -14,7 +14,7 @@ namespace Pathfinder
     {
 
         public static IConfigurationRoot Configuration { get; set; }
-      
+
         public static char Start { get; set; }
         public static char End { get; set; }
         public static char Empty { get; set; }
@@ -27,13 +27,13 @@ namespace Pathfinder
         public static int IDAStarFinderTimeOut { get; set; }
         public static bool IDATrackRecursion { get; set; }
 
-        
+
         public static MapGeneratorEnum MapOrigin { get; set; }
         public static HeuristicEnum Heuristic { get; set; }
         public static FinderEnum Algorithm { get; set; }
         public static DiagonalMovement AllowDiagonal { get; set; }
 
-      
+
 
         public static double RandomSeed { get; set; }
         public static int Width { get; set; }
@@ -44,7 +44,7 @@ namespace Pathfinder
         public static string FileToLoad { get; set; }
         public static string FolderToSaveMaps { get; set; }
         public static bool AutoSaveMaps { get; set; } = true;
-  
+
 
         static Settings()
         {
@@ -78,10 +78,10 @@ namespace Pathfinder
 
             FileToLoad = Configuration[nameof(FileToLoad)].ToString();
             FolderToSaveMaps = Configuration[nameof(FolderToSaveMaps)].ToString();
-            
+
         }
 
-                
+
 
     }
 }
