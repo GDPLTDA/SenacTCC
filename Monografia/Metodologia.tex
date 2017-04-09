@@ -293,7 +293,7 @@ O primeiro cromossomo é a ligação com o ponto inicial e se for trocado de lug
 
 O modo Batch do programa serve para poder gerar os dados necessários para a analise.
 
-Para iniciar o processo do batch é necessario o mudar o \textit{AppMode} no arquivo "appsettings.json" para 2 e iniciar a aplicação Pathfinder.UI.
+Para iniciar o processo do batch é necessário o mudar o \textit{AppMode} no arquivo "appsettings.json" para 2 e iniciar a aplicação Pathfinder.UI.
 
 
 \subsection{Configuração}
@@ -312,7 +312,7 @@ A definição das configurações para o Batch ficam no arquivo "appsettings.jso
 
 \textbf{Batch\_map\_qtd\_to\_generate}: Quantidade de mapas que serão gerados para o teste.
 
-\textbf{Batch\_generate\_pattern}: Este campo define se os mapas gerados automaticamentes serão aleatorios (0) ou se terão algum padrão de repeticão (1).
+\textbf{Batch\_generate\_pattern}: Este campo define se os mapas gerados automaticamente serão aleatórios (0) ou se terão algum padrão de repetição (1).
 
 \textbf{Batch\_map\_diagonal}: Define qual tipo de movimentação diagonal sera usada na geração dos mapas, onde Never(0), OnlyWhenNoObstacles(1), IfAtMostOneObstacle(2), Always(3).
 
@@ -320,23 +320,23 @@ A definição das configurações para o Batch ficam no arquivo "appsettings.jso
 
 \textbf{Batch\_folder}: Pasta aonde serão gerados os mapas e arquivo de log do batch.
 
-\textbf{Batch\_list\_finders}: Uma lista que define quais algoritimos de busca serão rodados no modo batch, as opçoes são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
+\textbf{Batch\_list\_finders}: Uma lista que define quais algorítimos de busca serão rodados no modo batch, as opções são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
 
-\textbf{Batch\_list\_heuristics}: Uma lista que define quais heuristicas serão rodados no modo batch, as opçoes são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
+\textbf{Batch\_list\_heuristics}: Uma lista que define quais heurísticas serão rodados no modo batch, as opções são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
 
-\textbf{Batch\_list\_Mutation}: Uma lista que define quais operadores de mutação serão utilizados pelo GA no modo batch, as opçoes são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
+\textbf{Batch\_list\_Mutation}: Uma lista que define quais operadores de mutação serão utilizados pelo GA no modo batch, as opções são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
 
-\textbf{Batch\_list\_Crossover}: Uma lista que define quais operadores de cruzamento serão utilizados pelo GA no modo batch, as opçoes são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
+\textbf{Batch\_list\_Crossover}: Uma lista que define quais operadores de cruzamento serão utilizados pelo GA no modo batch, as opções são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
 
-\textbf{Batch\_list\_Fitness}: Uma lista que define quais funções de aptidão serão utilizados pelo GA no modo batch, as opçoes são Heuristica(0), Heuristica com penalidade em caminho ciclico(1), Heuristica com penalidade em caminhos que coliden(2) e Heuristica com penalidade em caminho ciclico e colisão(3).
+\textbf{Batch\_list\_Fitness}: Uma lista que define quais funções de aptidão serão utilizados pelo GA no modo batch, as opçoes são Heuristica(0), Heuristica com penalidade em caminho cíclico(1), Heurística com penalidade em caminhos que colidem(2) e Heurística com penalidade em caminho cíclico e colisão(3).
 
-\textbf{Batch\_list\_Selection}: Uma lista que define quais funções de seleção serão utilizados pelo GA no modo batch, as opçoes são  Aleatorio(0) e \textit{Roulette Wheel Selection}(1).
+\textbf{Batch\_list\_Selection}: Uma lista que define quais funções de seleção serão utilizados pelo GA no modo batch, as opções são  Aleatório(0) e \textit{Roulette Wheel Selection}(1).
 
 \section{Modo Visual}
 
-O modo Visual do programa serve para poder rodar um algoritimo em um mapa especifico e acompanhar visualmente como ele se comporta.
+O modo Visual do programa serve para poder rodar um algorítimo em um mapa especifico e acompanhar visualmente como ele se comporta.
 
-Para iniciar o modo visual é necessario o mudar o \textit{AppMode} no arquivo "appsettings.json" para 0 e iniciar a aplicação Pathfinder.UI.
+Para iniciar o modo visual é necessário o mudar o \textit{AppMode} no arquivo "appsettings.json" para 0 e iniciar a aplicação Pathfinder.UI.
 
 
 \subsection{Configuração}
@@ -349,17 +349,17 @@ A definição das configurações para o modo visual ficam no arquivo "appsettin
 
 \textbf{MapOrigin}: Define a origem do mapa utilizado no programa, onde as opções são Estatico(0), De um arquivo(1), Aleatorio(2), Com padrão(3).
 
-\textbf{Heuristic}: Define qual heuristica sera rodado no modo visual, as opçoes são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
+\textbf{Heuristic}: Define qual heurística sera rodado no modo visual, as opções são Manhatam(0), Euclidean(1), Octile(2), Chebyshev(3).
 
 \textbf{AllowDiagonal}: Define qual tipo de movimentação diagonal sera usada, onde Never(0), OnlyWhenNoObstacles(1), IfAtMostOneObstacle(2), Always(3).
 
-\textbf{Algorithm}: Define qual algoritmo de busca sera rodar no modo visual, as opçoes são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
+\textbf{Algorithm}: Define qual algoritmo de busca sera rodar no modo visual, as opções são  A\**(0), BFS(1), IDA\**(2), Dijkstra(3), GA(4).
  
-\textbf{IDAStarFinderTimeOut}: Define em quanto tempo em milisegundos o IDA\** ira parar caso não encontre o caminho.
+\textbf{IDAStarFinderTimeOut}: Define em quanto tempo em milissegundos o IDA\** ira parar caso não encontre o caminho.
 
 \textbf{IDATrackRecursion}: Define se ira mostrar todos os passos recursivos do IDA\** (pode demorar).
  
-\textbf{RandomSeed}: Seed utilizada no gerador aleatorio de mapas.
+\textbf{RandomSeed}: Seed utilizada no gerador aleatório de mapas.
 
 \textbf{Width}: Tamanho em largura do mapa.
 
@@ -371,7 +371,7 @@ A definição das configurações para o modo visual ficam no arquivo "appsettin
 
 \textbf{FileToLoad}: Arquivo de mapa que sera carregado caso escolhe o MapOrigin de arquivo.
 
-\textbf{FolderToSaveMaps}: Pasta onde serão salvas altomaticamente os arquivos de mapas gerados.
+\textbf{FolderToSaveMaps}: Pasta onde serão salvas automaticamente os arquivos de mapas gerados.
 
 \textbf{Start}: Define o caractere de ponto inicial no modo de visualização console.
 
@@ -390,22 +390,22 @@ A definição das configurações para o modo visual ficam no arquivo "appsettin
 \textbf{OpenGlBlockSize}: Tamanho em pixel dos blocos no modo OpenGL.
 
 
-\textbf{GenerationLimit}: Define o numero maximo de gerações do GA antes de abortar o processo.
+\textbf{GenerationLimit}: Define o numero máximo de gerações do GA antes de abortar o processo.
 
 \textbf{MutationRate}: Chance de ocorrer mutação em cada individuo de uma nova população.
 
-\textbf{MutationAlgorithm}:  Define qual operador de mutação sera utilizados pelo GA no modo visual, as opçoes são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
+\textbf{MutationAlgorithm}:  Define qual operador de mutação sera utilizados pelo GA no modo visual, as opções são  \textit{Exchange(0)}, \textit{Displaced Inversion}(1), \textit{Displacement}(2), \textit{Insertion}(3), \textit{Inversion}(4), \textit{Scramble}(5) e \textit{Bitwise}(6).
 
-\textbf{CrossoverRate}: Chance de ocorrer cruzamento em cada par de individuos de uma nova população.
+\textbf{CrossoverRate}: Chance de ocorrer cruzamento em cada par de indivíduos de uma nova população.
 
-\textbf{CrossoverAlgorithm}: Define qual operador de cruzamento serão utilizados pelo GA no modo visual, as opçoes são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
+\textbf{CrossoverAlgorithm}: Define qual operador de cruzamento serão utilizados pelo GA no modo visual, as opções são  \textit{Simple}(0), \textit{Order-Based Crossover}(1), \textit{Position-Based Crossover}(2).
 
-\textbf{PopulationSize}: Quantidade de individuos em cada nova população.
+\textbf{PopulationSize}: Quantidade de indivíduos em cada nova população.
 
-\textbf{FitnessAlgorithm}: Define qual função de aptidão sera utilizado pelo GA no modo visual, as opçoes são Heuristica(0), Heuristica com penalidade em caminho ciclico(1), Heuristica com penalidade em caminhos que coliden(2) e Heuristica com penalidade em caminho ciclico e colisão(3).
+\textbf{FitnessAlgorithm}: Define qual função de aptidão sera utilizado pelo GA no modo visual, as opções são Heurística(0), Heuristica com penalidade em caminho cíclico(1), Heurística com penalidade em caminhos que colidem(2) e Heurística com penalidade em caminho cíclico e colisão(3).
 
-\textbf{SelectionAlgorithm}: Define qual função de seleção sera utilizado pelo GA no modo visual, as opçoes são  Aleatorio(0) e \textit{Roulette Wheel Selection}(1).
+\textbf{SelectionAlgorithm}: Define qual função de seleção sera utilizado pelo GA no modo visual, as opções são  Aleatório(0) e \textit{Roulette Wheel Selection}(1).
 
-\textbf{BestSolutionToPick}: Quantidade de individuos mais bem avaliados a serem colocados em uma nova geração a partir da anterios.
+\textbf{BestSolutionToPick}: Quantidade de indivíduos mais bem avaliados a serem colocados em uma nova geração a partir da anterios.
 
-\textbf{Penalty}: Valor de penalidade usado nas funções de aptdão.
+\textbf{Penalty}: Valor de penalidade usado nas funções de aptidão.
