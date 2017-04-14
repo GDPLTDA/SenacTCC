@@ -1,12 +1,12 @@
 \chapter[Metodologia]{Metodologia}
 
-Foi desenvoldido uma ferramenta para geração de forma automática de mapas aleatórios ou com uma repetição de padrão. Pode ser definido um percurso minimo para evitar seja gerados mapas onde o ponto inicial e final estão muito próximos.
+Foi desenvolvido uma ferramenta para geração de forma automática de mapas aleatórios ou com uma repetição de padrão. Pode ser definido um percurso minimo para evitar seja gerados mapas onde o ponto inicial e final estão muito próximos.
 Os mapas gerados para analise são de tamanho 100x100, com um padrão de repetição de 5x5 que é gerado de forma aleatória, para todos os mapas o percurso minimo de 15 passos.
 
-No total foram gerados 800 mapas, sendo dividos em 400 aleatórios e 400 com repetição de padrão.
-Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, isso deve pelo motivo que dependendo do tipo movimentação diagonal do mapa, ele pode ou nar ter uma solução.
+No total foram gerados 800 mapas, sendo divididos em 400 aleatórios e 400 com repetição de padrão.
+Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, isso deve pelo motivo que dependendo do tipo movimentação diagonal do mapa, ele pode ou não ter uma solução.
 
-As movimentações diagonais possiveis são:
+As movimentações diagonais possíveis são:
 
 \textbf{Nunca}: não permite andar nas verticais, podendo somente se movimentar para cima, baixo, direita e esquerda.
 
@@ -41,16 +41,16 @@ As movimentações diagonais possiveis são:
 
 Os algoritmos de busca utilizados para os teste são A\**, BFS, Dijkstra e IDA\**, sendo executados uma vez para cada uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
 
-Para o GA cada resultado de cada configuração é gerado 10 vezes, depois é realizado uma média dessas tentativas para comparação posterior com os algoritimos classicos. As possíveis configurações são definidas por todos operadores de cruzamento, mutação, seleção, aptidão e heurísticas.Os operados de cruzamento são simples, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é uma função baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos cíclicos quanto encontro com paredes.
+Para o GA cada resultado de cada configuração é gerado 10 vezes, depois é realizado uma média dessas tentativas para comparação posterior com os algorítimos clássicos. As possíveis configurações são definidas por todos operadores de cruzamento, mutação, seleção, aptidão e heurísticas.Os operados de cruzamento são simples, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é uma função baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos cíclicos quanto encontro com paredes.
 
 Os dados coletados são acumulados de duas formas, uma forma consolidada que mistura os algoritmo de busca com os dados do GA para comparação, e uma forma especifica para o GA, para analisar as configurações do GA para as diferentes situações.
 
 \chapter[Implementação]{Implementação}
 
-Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes  e implemetações dos modelos de busca de caminho.
+Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes  e implementações dos modelos de busca de caminho.
 
 \section{Tecnologias}
-O projeto é separado em Pathfinder e Pathfinder.UI ambos desenvolvidos na linguagem C\# o primeiro utilizando o .NET Standard Library 1.6 e o segundo no .NET Core. No projeto Pathfinder estão todas a  implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo consumir os recusursos do projeto Pathfinder, dando opções de visualização ou geração de dados. Ambos rodam em sistemas Windows e \**nix utilizando o .Net Core CLI 1.1 para execução.
+O projeto é separado em Pathfinder e Pathfinder.UI ambos desenvolvidos na linguagem C\# o primeiro utilizando o .NET Standard Library 1.6 e o segundo no .NET Core. No projeto Pathfinder estão todas a  implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo consumir os recursos do projeto Pathfinder, dando opções de visualização ou geração de dados. Ambos rodam em sistemas Windows e \**nix utilizando o .Net Core CLI 1.1 para execução.
 
 \section{Estrutura do Projeto}
 
