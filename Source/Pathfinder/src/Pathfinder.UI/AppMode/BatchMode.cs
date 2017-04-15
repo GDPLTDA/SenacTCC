@@ -1,46 +1,57 @@
-﻿using Pathfinder.UI.Abstraction;
+﻿using Pathfinder.Abstraction;
+using Pathfinder.UI.Abstraction;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
-using Pathfinder.Abstraction;
 namespace Pathfinder.UI.AppMode
 {
     public class BatchMode : IAppMode
     {
-        MapGeneratorEnum mapType;
         public void Run()
+        {
+            var mapTypes = UISettings.Batch_list_generate_pattern.Select(
+                t => t == 0 ? MapGeneratorEnum.Random : MapGeneratorEnum.WithPattern
+            );
+
+            var diagonals = Enum.GetValues(typeof(DiagonalMovement)).Cast<DiagonalMovement>()
+                                .Where(d => UISettings.Batch_list_map_diagonal.Contains((int)d));
+
+            foreach (var type in mapTypes)
+                foreach (var diag in diagonals)
+                    Process(diag, type);
+
+            Console.WriteLine("\n\nComplete...");
+            Console.ReadKey();
+        }
+
+
+        static void Process(DiagonalMovement movement, MapGeneratorEnum mapType)
         {
             var ft = new FileTool();
             Settings.IDATrackRecursion = false;
             Settings.AutoSaveMaps = false;
             var qtdMaps = UISettings.Batch_map_qtd_to_generate;
             var now = DateTime.Now;
-            var folder = Path.Combine(UISettings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
+            var folder = Path.Combine(UISettings.Batch_folder, $"batch_{Settings.Width}x{Settings.Height}_{mapType}_{movement}_{Settings.RandomSeed * 100}_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}");
             var dataFile = Path.Combine(folder, "_data.csv");
             var dataFileGA = Path.Combine(folder, "_dataGA.csv");
-            var diags = Enum.GetValues(typeof(DiagonalMovement));
-            var diagonals = new DiagonalMovement[diags.Length];
-            for (int i = 0; i < diags.Length; i++)
-                diagonals[i] = (DiagonalMovement)diags.GetValue(i);
-            var divblock = Math.Ceiling((double)qtdMaps / (double)diagonals.Count());
+
             if (UISettings.Batch_map_origin == 0)
             {
                 if (!Directory.Exists(folder))
                     Directory.CreateDirectory(folder);
+
                 //generate maps
-                mapType = UISettings.Batch_generate_pattern == 0 ? MapGeneratorEnum.Random : MapGeneratorEnum.WithPattern;
                 var generator = Container.Resolve<IMapGenerator>((int)mapType);
                 for (int i = 0; i < qtdMaps; i++)
                 {
                     Console.Clear();
-                    Console.WriteLine("Generating maps...");
-                    drawTextProgressBar(i, qtdMaps);
-                    var map = generator.DefineMap(diagonal: diagonals[UISettings.Batch_map_diagonal]);
-                    map.AllowDiagonal = diagonals[UISettings.Batch_map_diagonal];
+                    Console.WriteLine($"Generating maps({movement},{mapType})...");
+                    DrawTextProgressBar(i, qtdMaps);
+                    var map = generator.DefineMap(diagonal: movement);
+                    map.AllowDiagonal = movement;
                     FileTool.SaveFileFromMap(map, Path.Combine(folder, i.ToString().PadLeft(qtdMaps.ToString().Length, '0') + ".txt"));
                 }
             }
@@ -58,12 +69,12 @@ namespace Pathfinder.UI.AppMode
             var Mutation = UISettings.Batch_list_Mutation;
             var Crossover = UISettings.Batch_list_Crossover;
             var Fitness = UISettings.Batch_list_Fitness;
-            var Selection = UISettings.Batch_list_Selection ;
-            var csvFile = new StreamWriter(File.Open(dataFile, FileMode.OpenOrCreate),Encoding.UTF8, 4096, true);
+            var Selection = UISettings.Batch_list_Selection;
+            var csvFile = new StreamWriter(File.Open(dataFile, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
             var csvGAFile = new StreamWriter(File.Open(dataFileGA, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
             Console.Clear();
             csvFile.Write(new TextWrapper().GetHeader());
-            csvGAFile.Write( new TextGAWrapper().GetHeader());
+            csvGAFile.Write(new TextGAWrapper().GetHeader());
             for (int i = 0; i < fileCount; i++)
             {
                 var map = FileTool.ReadMapFromFile(files[i]);
@@ -86,27 +97,27 @@ namespace Pathfinder.UI.AppMode
                                                 GC.WaitForPendingFinalizers();
                                                 var GAFinder = (IGeneticAlgorithm)Container.Resolve<IFinder>(_finder);
                                                 GAFinder.Heuristic = h;
-                                                GAFinder.Crossover = Container.Resolve<ICrossover>(Crossover[cross]) ;
-                                                GAFinder.Mutate    = Container.Resolve<IMutate>(Mutation[mut]);
-                                                GAFinder.Fitness   = Container.Resolve<IFitness>(Fitness[fit]);
+                                                GAFinder.Crossover = Container.Resolve<ICrossover>(Crossover[cross]);
+                                                GAFinder.Mutate = Container.Resolve<IMutate>(Mutation[mut]);
+                                                GAFinder.Fitness = Container.Resolve<IFitness>(Fitness[fit]);
                                                 GAFinder.Selection = Container.Resolve<ISelection>(Selection[sel]);
                                                 var helper = $"\n                n:{j},cx:{GAFinder.Crossover.GetType().Name},m:{GAFinder.Mutate.GetType().Name},f:{GAFinder.Fitness.GetType().Name},s:{GAFinder.Selection.GetType().Name}";
                                                 var csv = new TextWrapper();
-                                                csv = RunStep(csv, i, fileCount, map, h, GAFinder, helper);
+                                                csv = RunStep(csv, i, fileCount, map, h, GAFinder, mapType, helper);
                                                 var csvGA = new TextGAWrapper
                                                 {
-                                                    alg = csv.alg,
-                                                    map = csv.map,
-                                                    heuristic = csv.heuristic,
-                                                    mapType = csv.mapType,
-                                                    diagonal = csv.diagonal,
-                                                    solution = csv.solution,
-                                                    time = csv.time,
-                                                    maxNodes = csv.maxNodes,
-                                                    pathLength = csv.pathLength,
+                                                    Alg = csv.Alg,
+                                                    Map = csv.Map,
+                                                    Heuristic = csv.Heuristic,
+                                                    MapType = csv.MapType,
+                                                    Diagonal = csv.Diagonal,
+                                                    Solution = csv.Solution,
+                                                    Time = csv.Time,
+                                                    MaxNodes = csv.MaxNodes,
+                                                    PathLength = csv.PathLength,
                                                     Crossover = GAFinder.Crossover.GetType().Name,
                                                     Mutation = GAFinder.Mutate.GetType().Name,
-                                                    fitness = GAFinder.Fitness.GetType().Name,
+                                                    Fitness = GAFinder.Fitness.GetType().Name,
                                                     Selection = GAFinder.Selection.GetType().Name,
                                                     Generations = GAFinder.Generations.ToString(),
                                                 };
@@ -116,70 +127,71 @@ namespace Pathfinder.UI.AppMode
                         else
                         {
                             var csv = new TextWrapper();
-                            csv = RunStep(csv, i, fileCount, map, h, finder);
+                            csv = RunStep(csv, i, fileCount, map, h, finder, mapType);
                             csvFile.Write(csv.ToString());
                         }
                         csvFile.Flush();
                     }
                 }
             }
-            drawTextProgressBar(fileCount, fileCount);
+            DrawTextProgressBar(fileCount, fileCount);
             csvFile.Dispose();
             csvGAFile.Dispose();
-            Console.WriteLine("\n\nComplete...");
-            Console.ReadKey();
+
         }
-        private TextWrapper RunStep(TextWrapper baseScv, int i, int fileCount, IMap map, IHeuristic h, IFinder finder, string plus = "")
+
+
+        static TextWrapper RunStep(TextWrapper baseScv, int i, int fileCount, IMap map, IHeuristic h, IFinder finder, MapGeneratorEnum mapType, string plus = "")
         {
             var csv = baseScv;
-            csv.map = i.ToString();
-            csv.mapType = mapType.ToString();
-            csv.alg = finder.Name;
-            csv.heuristic = h.GetType().Name;
-            csv.diagonal = map.AllowDiagonal.HasValue ? map.AllowDiagonal.Value.ToString() : finder.DiagonalMovement.ToString();
+            csv.Map = i.ToString();
+            csv.MapType = mapType.ToString();
+            csv.Alg = finder.Name;
+            csv.Heuristic = h.GetType().Name;
+            csv.Diagonal = map.AllowDiagonal.HasValue ? map.AllowDiagonal.Value.ToString() : finder.DiagonalMovement.ToString();
             Console.CursorLeft = 0;
             if (Console.CursorTop > 0)
             {
                 Console.Write(new string(' ', 80));
                 Console.CursorLeft = 0;
             }
-            Console.WriteLine($"            ({i}) {csv.alg} - { csv.heuristic } - {csv.diagonal} ({plus})");
-            drawTextProgressBar(i, fileCount);
+            Console.WriteLine($"            ({i}) {csv.Alg} - { csv.Heuristic } - {csv.Diagonal} ({plus})");
+            DrawTextProgressBar(i, fileCount);
             if (finder.Find(map))
             {
-                csv.pathLength = finder.GetPath().OrderBy(x => x.G).Last().G.ToString();
+                csv.PathLength = finder.GetPath().OrderBy(x => x.G).Last().G.ToString();
                 Console.ForegroundColor = ConsoleColor.Green;
-                csv.solution = "Yes";
+                csv.Solution = "Yes";
             }
             else
             {
-                csv.solution = "No";
-                csv.pathLength = "-1";
+                csv.Solution = "No";
+                csv.PathLength = "-1";
                 Console.ForegroundColor = ConsoleColor.Red;
             }
-            csv.time = finder.GetProcessedTime().ToString();
-            csv.maxNodes = finder.GetMaxExpandedNodes().ToString();
+            csv.Time = finder.GetProcessedTime().ToString();
+            csv.MaxNodes = finder.GetMaxExpandedNodes().ToString();
             Console.CursorTop -= 1;
             Console.CursorLeft = 0;
-            Console.WriteLine($"{csv.solution}-{csv.time}ms");
+            Console.WriteLine($"{csv.Solution}-{csv.Time}ms");
             Console.ForegroundColor = ConsoleColor.White;
             return csv;
         }
         class TextWrapper : BaseTextWrapper
         {
-            public string alg { get; set; }
-            public string map { get; set; }
-            public string mapType { get; set; }
-            public string heuristic { get; set; }
-            public string diagonal { get; set; }
-            public string solution { get; set; }
-            public string time { get; set; }
-            public string maxNodes { get; set; }
-            public string pathLength { get; set; }
+            public string Alg { get; set; }
+            public string Map { get; set; }
+            public string MapType { get; set; }
+            public string Heuristic { get; set; }
+            public string Diagonal { get; set; }
+            public string Solution { get; set; }
+            public string Time { get; set; }
+            public string MaxNodes { get; set; }
+            public string PathLength { get; set; }
         }
         class TextGAWrapper : TextWrapper
         {
-            public string fitness { get; set; }
+            public string Fitness { get; set; }
             public string Mutation { get; set; }
             public string Crossover { get; set; }
             public string Selection { get; set; }
@@ -212,7 +224,7 @@ namespace Pathfinder.UI.AppMode
                 return ret.ToString() + "\n";
             }
         }
-        private static void drawTextProgressBar(int progress, int total, int barLength = 30, int left = 0, ConsoleColor color = ConsoleColor.Green)
+        static void DrawTextProgressBar(int progress, int total, int barLength = 30, int left = 0, ConsoleColor color = ConsoleColor.Green)
         {
             const char loadCchar = ' ';
             Console.CursorLeft = left;

@@ -1,24 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using OpenTK;
+﻿using OpenTK;
 using OpenTK.Graphics.OpenGL;
-using System.Threading;
 using Pathfinder.Abstraction;
 using Pathfinder.UI.Abstraction;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 namespace Pathfinder.UI.Viewer
 {
     public class OpenGlWindow : GameWindow
     {
         int width, heght;
         int BlockSize;
-        int FPS = 60;
-        public bool drawPath = false;
+        readonly int FPS = 60;
+        public bool drawPath;
         public List<Node> path;
         IFinder _finder;
         IMap GridMap;
-        Thread finderThread;
+        readonly Thread finderThread;
         public OpenGlWindow(IMap map, IFinder finder, int blocksize)
              : base(map.Width * blocksize, map.Height * blocksize)
         {
@@ -29,7 +27,9 @@ namespace Pathfinder.UI.Viewer
             _finder = finder;
             _finder.Step += LoopWraper;
             _finder.End += EndWraper;
-            _finder.Start += StartWraper;
+
+
+
             GridMap = map;
             finderThread = new Thread(e => { _finder.Find(map); });
             finderThread.Start();
@@ -50,11 +50,9 @@ namespace Pathfinder.UI.Viewer
                 path = _finder.GetPath();
                 drawPath = true;
             }
-            AbstractViewer.ShowEndLog(_finder,path, e);
+            AbstractViewer.ShowEndLog(_finder, path, e);
         }
-        private void StartWraper(object sender, EventArgs e)
-        {
-        }
+
         protected override void OnLoad(EventArgs e)
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
@@ -69,12 +67,12 @@ namespace Pathfinder.UI.Viewer
                 for (int j = 0; j < map.Width; j++)
                 {
                     var node = map[i, j];
-                    Color c = Color.White;
+                    var c = Color.White;
                     if (node == map.StartNode)
                         c = Color.Green;
                     else if (node == map.EndNode)
                         c = Color.Red;
-                    else if (showPath && path.Exists(o=>o.Equals(node)))
+                    else if (showPath && path.Exists(o => o.Equals(node)))
                         c = Color.Yellow;
                     else if (!node.Walkable)
                         c = Color.DarkGray;
@@ -107,7 +105,7 @@ namespace Pathfinder.UI.Viewer
             GL.Vertex2(tX2, tY2);
             GL.End();
         }
-        int tx = 0, ty = 0;
+        int tx = 0, ty;
         void DrawGrid()
         {
             for (float i = 0; i < heght; i += BlockSize)

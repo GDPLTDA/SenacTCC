@@ -1,12 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Pathfinder;
-using Pathfinder.Abstraction;
-using Pathfinder.Factories;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder
 {
     public class Settings
@@ -39,6 +32,7 @@ namespace Pathfinder
             var builder = new ConfigurationBuilder()
               .SetBasePath(Directory.GetCurrentDirectory())
               .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
             Configuration = builder.Build();
             Start = Configuration[nameof(Start)].ToString()[0];
             End = Configuration[nameof(End)].ToString()[0];
@@ -48,7 +42,7 @@ namespace Pathfinder
             Opened = Configuration[nameof(Opened)].ToString()[0];
             Closed = Configuration[nameof(Closed)].ToString()[0];
             OpenGlBlockSize = int.Parse(Configuration[nameof(OpenGlBlockSize)]);
-            MapOrigin =(MapGeneratorEnum) int.Parse(Configuration[nameof(MapOrigin)]);
+            MapOrigin = (MapGeneratorEnum)int.Parse(Configuration[nameof(MapOrigin)]);
             Heuristic = (HeuristicEnum)int.Parse(Configuration[nameof(Heuristic)]);
             Algorithm = (FinderEnum)int.Parse(Configuration[nameof(Algorithm)]);
             IDAStarFinderTimeOut = int.Parse(Configuration[nameof(IDAStarFinderTimeOut)]);

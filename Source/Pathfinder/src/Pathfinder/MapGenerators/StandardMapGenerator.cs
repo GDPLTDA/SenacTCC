@@ -1,5 +1,4 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,15 +35,19 @@ namespace Pathfinder.MapGenerators
             if (diagonal.HasValue)
                 d = diagonal.Value;
             // finder para valida se o mapa é passavel
-            var AStar = Container.Resolve<IFinder>();
+            var AStar = Container.Resolve<IFinder>((int)FinderEnum.AStar);
+
             AStar.DiagonalMovement = d;
             AStar.Heuristic = Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
             var subgrid = new List<Node>();
             while (!IsAGoodMap)
             {
                 var nodes = new List<Node>();
-                var _map = new Map(width, height);
-             //   _map.AllowDiagonal = d;
+                var _map = new Map(width, height)
+                {
+                    AllowDiagonal = d
+                };
+
                 var size = Convert.ToInt32(blocksize * blocksize * seed);
                 var rand = new Random();
                 while (size > 0)
@@ -53,9 +56,9 @@ namespace Pathfinder.MapGenerators
                     subgrid.Add(p);
                     size--;
                 }
-                for (int i = 0; i < width; i+= blocksize)
+                for (int i = 0; i < width; i += blocksize)
                 {
-                    for (int j = 0; j < height; j+= blocksize)
+                    for (int j = 0; j < height; j += blocksize)
                     {
                         foreach (var item in subgrid)
                         {

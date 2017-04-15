@@ -1,16 +1,14 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.UI.Abstraction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder.UI.Abstraction
 {
     public abstract class AbstractViewer : IViewer
     {
         protected IFinder _finder;
         public abstract void Run(IMap map);
-        public AbstractViewer()
+        protected AbstractViewer()
         {
         }
         public void SetFinder(IFinder finder)
@@ -43,7 +41,7 @@ namespace Pathfinder.UI.Abstraction
         }
         public static void ShowEndLog(IFinder finder, IList<Node> path, FinderEventArgs e)
         {
-            if (path?.Any(x => !x.Walkable)??false)
+            if (path?.Any(x => !x.Walkable) ?? false)
                 throw new Exception("Why is there a wall on the path?");
             Console.WriteLine($"Alg={finder.Name}\nDiagonal={finder.DiagonalMovement.ToString()}\nMax Expanded Nodes = {finder.GetMaxExpandedNodes()}\nProcess Time = {finder.GetProcessedTime()} ms\nSteps|Generation:{e.Step}");
             if (e.Finded)

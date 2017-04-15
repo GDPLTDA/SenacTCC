@@ -22,8 +22,11 @@ namespace Pathfinder
         }
         public static T Resolve<T>()
             => GetFactory<T>().GetImplementation();
+
         public static T Resolve<T>(int option)
             => GetFactory<T>().GetImplementation(option);
+
+
         public static IFactory<T> GetFactory<T>()
         {
             var fType = _factories[typeof(T)];

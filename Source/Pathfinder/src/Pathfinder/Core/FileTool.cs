@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder
 {
     public class FileTool
@@ -31,8 +29,8 @@ namespace Pathfinder
                     else c = !node.Walkable ? Settings.Wall : Settings.Empty;
                     builder.Append(c.ToString());
                 }
-                ret = builder.ToString();
-                builderRet.Append("\n");
+                builder.Append("\n");
+                builderRet.Append(builder.ToString());
             }
             ret = builderRet.ToString();
             ret = ret.Remove(ret.LastIndexOf("\n"));
@@ -114,7 +112,7 @@ namespace Pathfinder
             d = null;
             if (line.Contains(diagvar))
             {
-                var diag = line.Substring(line.IndexOf(diagvar)+ diagvar.Length);
+                var diag = line.Substring(line.IndexOf(diagvar) + diagvar.Length);
                 diag = diag.Substring(0, diag.IndexOf(";"));
                 var diags = Enum.GetValues(typeof(DiagonalMovement));
                 for (int i = 0; i < diags.Length; i++)
@@ -136,7 +134,7 @@ namespace Pathfinder
                 filename = $"map_{map.Width}x{map.Height}_{now.Year}{now.Month}{now.Day}_{now.Hour}-{now.Minute}-{now.Second}.txt";
                 filename = Path.Combine(folder, filename);
             }
-            if (map.AllowDiagonal!=null)
+            if (map.AllowDiagonal != null)
                 text = $"?diagonal={map.AllowDiagonal};\n{text}";
             File.WriteAllText(filename, text);
         }

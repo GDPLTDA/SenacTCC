@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Pathfinder.Abstraction;
-using static System.Console;
-using Pathfinder.Factories;
+﻿using Pathfinder.Abstraction;
 using Pathfinder.UI.Abstraction;
+using static System.Console;
+
 namespace Pathfinder.UI.AppMode
 {
     public class DynamicMode : IAppMode
     {
         public void Run()
         {
-            int v = ReadInput(@"Select viewer( 0=Console 1=OpenGL ):", 0,1 );
-            int m = ReadInput(@"Select map origin( 0=Static 1=FromFile 2=Random ):",0, 2);
-            int h = ReadInput(@"Select Heuristic ( 0=Manhatam 1=Euclidean 2=Octile 3=Chebyshev ):", 0, 3);
-            int d = ReadInput(@"Allow Diagonal? ( 0=Never 1=OnlyWhenNoObstacles 2=IfAtMostOneObstacle 3=Always ):",0, 3);
-            int pf = ReadInput(@"Select algorithm ( 0=AStar 1=BFS 2=Dijkstra 3=IDA* 4=GA ):",0, 4);
+            var v = ReadInput(@"Select viewer( 0=Console 1=OpenGL ):", 0, 1);
+            var m = ReadInput(@"Select map origin( 0=Static 1=FromFile 2=Random ):", 0, 2);
+            var h = ReadInput(@"Select Heuristic ( 0=Manhatam 1=Euclidean 2=Octile 3=Chebyshev ):", 0, 3);
+            var d = ReadInput(@"Allow Diagonal? ( 0=Never 1=OnlyWhenNoObstacles 2=IfAtMostOneObstacle 3=Always ):", 0, 3);
+            var pf = ReadInput(@"Select algorithm ( 0=AStar 1=BFS 2=Dijkstra 3=IDA* 4=GA ):", 0, 4);
             if (pf == 4)
             {
                 GASettings.GenerationLimit = ReadInput(@"Select generation limit:", 0, 10000);
@@ -29,17 +25,17 @@ namespace Pathfinder.UI.AppMode
                 GASettings.SelectionAlgorithm = (SelectionEnum)ReadInput(@"Select algorithm selection ( 0=Simple):", 0, 0);
                 GASettings.BestSolutionToPick = ReadInput(@"Select count best solution:", 0, GASettings.PopulationSize);
             }
-            string mapGenArgs=string.Empty;
-            if (m==2)
+            var mapGenArgs = string.Empty;
+            if (m == 2)
             {
-                int mapWidth = ReadInput(@"Map width:", 1, 300);
-                int mapHeight = ReadInput(@"Map height:", 1, 300);
-                int mapGranu = ReadInput(@"Map wall percent:", 1, 100);
-                int minPath = ReadInput(@"Min path length:", 1, 100);
+                var mapWidth = ReadInput(@"Map width:", 1, 300);
+                var mapHeight = ReadInput(@"Map height:", 1, 300);
+                var mapGranu = ReadInput(@"Map wall percent:", 1, 100);
+                var minPath = ReadInput(@"Min path length:", 1, 100);
                 mapGenArgs = $"{mapWidth}|{mapHeight}|{mapGranu}|{minPath}";
-                if (v==1)
+                if (v == 1)
                 {
-                    int blocksize= ReadInput(@"block size in px:", 1, 100);
+                    var blocksize = ReadInput(@"block size in px:", 1, 100);
                     Settings.OpenGlBlockSize = blocksize;
                 }
             }
@@ -52,10 +48,10 @@ namespace Pathfinder.UI.AppMode
             viewer.SetFinder(finder);
             viewer.Run(generator.DefineMap(mapGenArgs));
         }
-        public int ReadInput(string message, int min, int max)
+        public static int ReadInput(string message, int min, int max)
         {
-            int ret=-1;
-            while(ret < min || ret >max)
+            var ret = -1;
+            while (ret < min || ret > max)
             {
                 Write(message);
                 if (!int.TryParse((ReadLine()).ToString(), out ret))

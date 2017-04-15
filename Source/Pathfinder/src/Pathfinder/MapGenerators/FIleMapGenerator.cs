@@ -1,9 +1,4 @@
 ﻿using Pathfinder.Abstraction;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder.MapGenerators
 {
     public class FileMapGenerator : IMapGenerator
@@ -18,3 +13,6 @@ namespace Pathfinder.MapGenerators
         }
     }
 }
+
+
+
