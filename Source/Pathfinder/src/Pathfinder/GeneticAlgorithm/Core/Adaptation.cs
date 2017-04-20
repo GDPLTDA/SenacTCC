@@ -27,10 +27,16 @@ namespace Pathfinder
             {
                 lastcoor = newbaby.Last();
                 var neighbors = (List<Node>)Map.GetNeighbors(lastcoor, false);
+
                 var coor = neighbors.Find(o => o.Direction == listnode[i].Direction);
+
                 if (coor != null && !newbaby.Exists(x => x.Equals(coor)))
                 {
-                    ng = ng + ((lastcoor.X - coor.X == 0 || lastcoor.Y - coor.Y == 0) ? 1 : sqrt2);
+                    var dx = lastcoor.X - coor.X;
+                    var dy = lastcoor.Y - coor.Y;
+
+                    var g = ((dx == 0 || dy == 0) ? 1 : sqrt2);
+                    ng = ng + g;
                     coor.G = ng;
                     newbaby.Add(coor);
                 }
