@@ -1,7 +1,7 @@
 \chapter[Metodologia]{Metodologia}
 
-Foi desenvolvido uma ferramenta para geração de forma automática de mapas aleatórios ou com uma repetição de padrão. Pode ser definido um percurso minimo para evitar seja gerados mapas onde o ponto inicial e final estão muito próximos.
-Os mapas gerados para analise são de tamanho 100x100, com um padrão de repetição de 5x5 que é gerado de forma aleatória, para todos os mapas o percurso minimo de 15 passos.
+Foi desenvolvido uma ferramenta para geração de forma automática de mapas aleatórios ou com uma repetição de padrão. Pode ser definido um percurso mínimo para evitar seja gerado mapas onde o ponto inicial e final estão muito próximos.
+Os mapas gerados para analise são de tamanho 100x100, com um padrão de repetição de 5x5 que é gerado de forma aleatória, para todos os mapas o percurso mínimo de 15 passos.
 
 No total foram gerados 800 mapas, sendo divididos em 400 aleatórios e 400 com repetição de padrão.
 Os 400 mapas de cada são divididos em 100 para cada tipo de diagonal, isso deve pelo motivo que dependendo do tipo movimentação diagonal do mapa, ele pode ou não ter uma solução.
@@ -39,7 +39,7 @@ As movimentações diagonais possíveis são:
 \end{minipage}
 
 
-Os algoritmos de busca utilizados para os teste são A\**, BFS, Dijkstra e IDA\**, sendo executados uma vez para cada uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+Os algoritmos de busca utilizados para os testes são A\**, BFS, Dijkstra e IDA\**, sendo executados uma vez para cada uma das heurística selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
 
 Para o GA cada resultado de cada configuração é gerado 10 vezes, depois é realizado uma média dessas tentativas para comparação posterior com os algorítimos clássicos. As possíveis configurações são definidas por todos operadores de cruzamento, mutação, seleção, aptidão e heurísticas.Os operados de cruzamento são simples, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é uma função baseada nas heurísticas implementadas, uma sem nenhuma alteração, outra penalizando caminhos cíclicos, outra penalizando encontro com paredes e mais uma penalizando tanto caminhos cíclicos quanto encontro com paredes.
 
