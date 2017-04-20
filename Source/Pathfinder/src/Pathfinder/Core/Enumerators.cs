@@ -17,8 +17,8 @@
     }
     public enum MapGeneratorEnum
     {
-        File,
         Static,
+        File,
         Random,
         WithPattern,
     }

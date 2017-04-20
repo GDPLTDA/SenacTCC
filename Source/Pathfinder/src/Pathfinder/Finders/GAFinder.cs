@@ -1,8 +1,6 @@
 ﻿using Pathfinder.Abstraction;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder.Finders
 {
     public class GAFinder : AbstractFinder, IGeneticAlgorithm
@@ -59,8 +57,9 @@ namespace Pathfinder.Finders
                     Generations = i;
                     return true;
                 }
-                _closedList = best;
-                _openList = best2;
+                UpdateClosedList(best);
+                UpdateOpenList(best2);
+
                 while (newpopulations.Count < Populations.Count)
                 {
                     // Selection

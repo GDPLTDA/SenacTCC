@@ -1,8 +1,6 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.Factories;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using static System.Math;
 namespace Pathfinder.Finders
@@ -16,7 +14,7 @@ namespace Pathfinder.Finders
             DiagonalMovement diag,
             IHeuristic heuristic,
             int weight = 1
-          ) : base(diag,heuristic,weight)
+          ) : base(diag, heuristic, weight)
         {
             Name = "IDA* (IDA Star)";
             SleepUITimeInMs = 30;
@@ -25,7 +23,7 @@ namespace Pathfinder.Finders
             nodesVisited = 0;
             TrackRecursion = Settings.IDATrackRecursion;
         }
-        private double H(Node a,Node b)
+        private double H(Node a, Node b)
         {
             return Heuristic.Calc(Abs(b.X - a.X), Abs(b.Y - a.Y));
         }
@@ -37,18 +35,19 @@ namespace Pathfinder.Finders
         {
             if (GridMap == null || !TrackRecursion)
                 return;
-            _openList = new List<Node>();
+
+            UpdateOpenList(new List<Node>());
             for (int i = 0; i < GridMap.Height; i++)
                 for (int j = 0; j < GridMap.Width; j++)
                     if (GridMap[i, j].Tested)
-                        _openList.Add(GridMap[i, j]);
+                        AddInOpenList(GridMap[i, j]);
         }
-        private Tuple<Node,double> Search(Node node,double g,double cutoff, Dictionary<int,Node> route, int depth, Node end, int k)
+        private Tuple<Node, double> Search(Node node, double g, double cutoff, Dictionary<int, Node> route, int depth, Node end, int k)
         {
             nodesVisited++;
             // Enforce timelimit:
             if (_stopwatch.ElapsedMilliseconds > 0 &&
-                _stopwatch.ElapsedMilliseconds  > TimeLimit)
+                _stopwatch.ElapsedMilliseconds > TimeLimit)
             {
                 // Enforced as "path-not-found".
                 return null;
@@ -84,10 +83,11 @@ namespace Pathfinder.Finders
                         neighbour.Tested = true;
                     OnStep(BuildArgs(k));
                 }
-                t = Search(neighbour, g + Cost(node, neighbour), cutoff, route, depth + 1, end,k);
+                t = Search(neighbour, g + Cost(node, neighbour), cutoff, route, depth + 1, end, k);
                 if (t == null)
                     return null;
-                if (t.Item1!=null) {
+                if (t.Item1 != null)
+                {
                     if (route.ContainsKey(depth))
                         route[depth] = node;
                     else
@@ -122,29 +122,30 @@ namespace Pathfinder.Finders
             {
                 route = new Dictionary<int, Node>();
                 t = Search(start, 0, cutOff, route, 0, end, k);
-                if (t==null || t.Item2 == double.PositiveInfinity)
+                if (t == null || t.Item2 == double.PositiveInfinity)
                 {
                     OnEnd(BuildArgs(k, false));
                     return false;
                 }
-                if (t.Item1!=null) {
-                    var lis = route.OrderByDescending(e => e.Key).Select(e=>e.Value).ToList();
+                if (t.Item1 != null)
+                {
+                    var lis = route.OrderByDescending(e => e.Key).Select(e => e.Value).ToList();
                     for (int i = 1; i < lis.Count; i++)
                     {
-                        lis[i-1].ParentNode = lis[i];
+                        lis[i - 1].ParentNode = lis[i];
                     }
                     OnEnd(BuildArgs(k, true));
                     return true;
                 }
                 cutOff = t.Item2;
             }
-           // OnEnd(BuildArgs(0, false));
-           // return false;
+            // OnEnd(BuildArgs(0, false));
+            // return false;
         }
-        public void UpdateOpenList(Dictionary<int, Node> route )
+        public void UpdateOpenList(Dictionary<int, Node> route)
         {
             var lis = route.OrderByDescending(e => e.Key).Select(e => e.Value).ToList();
-            _openList = lis;
+            UpdateOpenList(lis);
         }
     }
 }

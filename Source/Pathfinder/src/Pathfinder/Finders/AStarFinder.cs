@@ -1,7 +1,4 @@
 ﻿using Pathfinder.Abstraction;
-using Pathfinder.Factories;
-using System;
-using System.Linq;
 using static System.Math;
 namespace Pathfinder.Finders
 {
@@ -11,13 +8,13 @@ namespace Pathfinder.Finders
             DiagonalMovement diag,
             IHeuristic heuristic,
             int weight = 1
-          ) : base(diag,heuristic,weight)
+          ) : base(diag, heuristic, weight)
         {
             Name = "A* (A Star)";
             SleepUITimeInMs = 200;
             // When diagonal movement is allowed the manhattan heuristic is not
             //admissible. It should be octile instead
-            if ( DiagonalMovement == DiagonalMovement.Never)
+            if (DiagonalMovement == DiagonalMovement.Never)
                 Heuristic = heuristic ?? Container.Resolve<IHeuristic>((int)HeuristicEnum.Manhattan);
             else
                 Heuristic = heuristic ?? Container.Resolve<IHeuristic>((int)HeuristicEnum.Octile);
@@ -35,13 +32,13 @@ namespace Pathfinder.Finders
             _endNode = grid.EndNode;
             _startNode.Cost = 0;
             _endNode.Cost = 0;
-            _openList.Add(_startNode);
+            AddInOpenList(_startNode);
             var step = 0;
             OnStart(BuildArgs(step));
-            while (!_openList.Count.Equals(0))
+            while (OpenListCount() != 0)
             {
-                var node = _openList.Pop();
-                _closedList.Add(node);
+                var node = PopOpenList();
+                AddInClosedList(node);
                 if (node == _endNode)
                 {
                     //_endNode = node;
@@ -61,17 +58,17 @@ namespace Pathfinder.Finders
                     var ng = node.G + ((x - node.X == 0 || y - node.Y == 0) ? 1 : sqrt2);
                     // check if the neighbor has not been inspected yet, or
                     // can be reached with smaller cost from the current node
-                    if (! IsOpen(neighbor) || ng < neighbor.G)
+                    if (!IsOpen(neighbor) || ng < neighbor.G)
                     {
                         neighbor.G = ng;
-                        neighbor.H = Weight * CalcH( Abs(x - _endNode.X), Abs(y - _endNode.Y));
+                        neighbor.H = Weight * CalcH(Abs(x - _endNode.X), Abs(y - _endNode.Y));
                         neighbor.Cost = neighbor.G + neighbor.H;
                         neighbor.ParentNode = node;
                         if (!IsOpen(neighbor))
-                            _openList.Push(neighbor);
+                            PushInOpenList(neighbor);
                     }
                 }
-                _openList = _openList.OrderByDescending(e => e.Cost).ToList();
+                OrderOpenList(e => e.Cost);
                 OnStep(BuildArgs(step++));
             }
             OnEnd(BuildArgs(step, false));

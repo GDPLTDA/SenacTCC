@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 namespace Pathfinder.Abstraction
 {
     public abstract class AbstractFinder : IFinder
@@ -12,8 +11,14 @@ namespace Pathfinder.Abstraction
         public event EventHandler End;
         public event EventHandler Start;
         private IMap _map;
-        protected IMap GridMap { get { return _map; }
-            set {
+        readonly object _lockClosed = new object();
+        readonly object _lockOpen = new object();
+
+        protected IMap GridMap
+        {
+            get { return _map; }
+            set
+            {
                 if (value?.AllowDiagonal.HasValue ?? false)
                     DiagonalMovement = value.AllowDiagonal.Value;
                 _map = value;
@@ -24,18 +29,17 @@ namespace Pathfinder.Abstraction
         public int Weight { get; set; }
         protected int _maxExpandedNodes { get; set; } = 0;
         protected Stopwatch _stopwatch { get; set; }
-        protected IList<Node> _openList { get; set; }
-        protected IList<Node> _closedList { get; set; }
+        private IList<Node> _openList { get; set; }
+        private IList<Node> _closedList { get; set; }
         protected Node _startNode { get; set; }
         protected Node _endNode { get; set; }
         public string Name { get; set; }
         public int SleepUITimeInMs { get; set; }
-        public virtual bool IsOpen (Node e) => _openList.ToList().Exists(i=> i != null && i.Equals(e));
-        public virtual bool IsClosed(Node e) => _closedList.ToList().Exists(i => i != null && i.Equals(e));
-        public virtual IList<Node> GetNodesInOpenedList() => _openList;
         public virtual IList<Node> GetNodesInClosedList() => _closedList;
         public virtual int GetMaxExpandedNodes() => _maxExpandedNodes;
         public virtual long GetProcessedTime() => _stopwatch.ElapsedMilliseconds;
+        public virtual IList<Node> GetNodesInOpenedList() => _openList;
+
         protected AbstractFinder(
              DiagonalMovement diag,
              int weight = 1
@@ -45,6 +49,92 @@ namespace Pathfinder.Abstraction
             Weight = weight;
             Clear();
         }
+
+        protected void AddInOpenList(Node node)
+        {
+            lock (_lockOpen)
+                _openList.Add(node);
+        }
+        protected void AddInClosedList(Node node)
+        {
+            lock (_lockClosed)
+                _closedList.Add(node);
+        }
+
+
+        protected IEnumerable<Node> NodesInOpenList()
+        {
+            lock (_lockOpen)
+                foreach (var item in _openList)
+                    yield return item;
+
+        }
+
+        protected IEnumerable<Node> NodesInClosedLit()
+        {
+            lock (_lockClosed)
+                foreach (var item in _closedList)
+                    yield return item;
+        }
+
+
+        protected int OpenListCount()
+        {
+            lock (_lockOpen)
+                return _openList.Count();
+        }
+
+
+        protected int ClosedListCount()
+        {
+            lock (_lockClosed)
+                return _closedList.Count();
+        }
+
+        protected Node PopOpenList()
+        {
+            lock (_lockOpen)
+                return _openList.Pop();
+
+        }
+
+        protected void PushInOpenList(Node node)
+        {
+            lock (_lockOpen)
+                _openList.Push(node);
+
+        }
+
+        protected void OrderOpenList(Func<Node, object> predicate)
+        {
+            _openList = _openList.OrderByDescending(predicate).ToList();
+        }
+
+
+        protected void UpdateOpenList(IList<Node> newList)
+        {
+            lock (_lockOpen)
+                _openList = newList;
+        }
+
+        protected void UpdateClosedList(IList<Node> newList)
+        {
+            lock (_lockClosed)
+                _closedList = newList;
+        }
+        public virtual bool IsOpen(Node e)
+        {
+            lock (_lockOpen)
+                return _openList.ToList().Exists(i => i != null && i.Equals(e));
+        }
+        public virtual bool IsClosed(Node e)
+        {
+            lock (_lockClosed)
+                return _closedList.ToList().Exists(i => i != null && i.Equals(e));
+        }
+
+
+
         protected AbstractFinder(
              DiagonalMovement diag,
              IHeuristic heuristic,
