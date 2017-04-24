@@ -35,6 +35,14 @@ namespace Pathfinder
                     var dx = lastcoor.X - coor.X;
                     var dy = lastcoor.Y - coor.Y;
 
+                    if(Math.Abs(dx) > 1 || Math.Abs(dy) > 1)
+                    {
+                        int f = 0;
+                        f = 1;
+                        var j = f;
+                    }
+
+
                     var g = ((dx == 0 || dy == 0) ? 1 : sqrt2);
                     ng = ng + g;
                     coor.G = ng;

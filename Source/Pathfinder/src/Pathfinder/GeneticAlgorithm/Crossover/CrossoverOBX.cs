@@ -33,7 +33,8 @@ namespace Pathfinder.Crossover
                 {
                     if (babydad.ListNodes[cit].EqualsAll(lstTempCities[i]))
                     {
-                        babydad.ListNodes[cit] = lstTempCities[cPos];
+                        if (lstTempCities.Count < cPos)
+                            babydad.ListNodes[cit] = lstTempCities[cPos];
                         ++cPos;
                         break;
                     }
@@ -52,7 +53,8 @@ namespace Pathfinder.Crossover
                 {
                     if (babymom.ListNodes[cit].EqualsAll(lstTempCities[i]))
                     {
-                        babymom.ListNodes[cit] = lstTempCities[cPos];
+                        if(lstTempCities.Count < cPos)
+                            babymom.ListNodes[cit] = lstTempCities[cPos];
                         ++cPos;
                         break;
                     }
