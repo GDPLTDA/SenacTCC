@@ -16,9 +16,13 @@ namespace Pathfinder
         {
             var rand = Container.Resolve<IRandom>();
             var listnode = genome.ListNodes;
+
+            var startnode = listnode.First();
+            if (!startnode.Equals(Map.StartNode))
+                startnode = Map.StartNode;
             var newbaby = new List<Node>
             {
-                listnode.First()
+                startnode
             };
             var sqrt2 = Math.Sqrt(2);
             double ng = 0;

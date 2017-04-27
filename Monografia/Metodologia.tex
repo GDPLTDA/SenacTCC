@@ -1,46 +1,45 @@
  \chapter[Metodologia]{Metodologia}
  
- Para realizar os testes precisamos de uma grande quantidade de mapas. Para isso desenvolvemos uma ferramenta que os gera de forma automática a partir de parâmetros previamente definidos.
+Para realizar os testes precisamos de uma grande quantidade de mapas. Para isso desenvolvemos uma ferramenta que os gera de forma automática a partir de parâmetros previamente definidos.
  
- Nestes parâmetros definimos um tamanho $N\times M$ para o mapa, o nível de granularidade que define o percentual do mapa que será coberto por obstáculos, se haverá ou não movimentação diagonal e se queremos um mapa gerado de forma totalmente aleatória ou que seja gerado repetindo um padrão de bloco de tamanho $L\times L$. 
+Nestes parâmetros definimos um tamanho $N\times M$ para o mapa, a densidade percentual que o mapa será coberto por obstáculos, se haverá ou não movimentação diagonal e se queremos um mapa gerado de forma totalmente aleatória ou que seja gerado repetindo um padrão de bloco de tamanho $L\times L$.  
+O tamanho L do bloco que será repetido também é definido na configuração do gerador, é gerado de forma aleatória nos mesmos padrões do mapa totalmente aleatório. 
  
- O tamanho L do bloco que será repetido também é definido na configuração do gerador, é gerado de forma aleatória nos mesmos padrões do mapa totalmente aleatório. 
+Também é definido o tamanho mínimo do caminho solução do mapa, ou seja, o tamanho do caminho entre o ponto inicial e final.
+Cada mapa gerado é utilizado o algoritmo A* para verificar se é solúvel e o tamanho do caminho maior ou igual ao tamanho de caminho mínimo  definido nos parâmetros. O caminho mínimo é importante para evitar que seja gerado mapas onde o ponto inicial e final estão muito próximos.
  
- Também é definido o tamanho mínimo do caminho solução do mapa, ou seja, o tamanho do caminho entre o ponto inicial e final.
- Para cada mapa gerado é utilizado o algoritmo A* para verificar se o mapa é solúvel e o tamanho do caminho solução. O caminho mínimo é importante para evitar que seja gerado mapas onde o ponto inicial e final estão muito próximos.
+Para a análise foram gerados mapas de tamanho  $100\times 100$  com um caminho mínimo mínimo de 15 passos e uma densidade de obstáculos de 30\%.
+No total foram gerados 400 mapas, sendo divididos em 200 gerados a partir de um padrão e 200 gerados aleatoriamente. Para cada mapa com padrão é gerado aleatoriamente um bloco de $5\times 5$ que é repetido até completar o tamanho total do mapa.
  
- Para a análise foram gerados mapas de tamanho  $100\times 100$  com um percurso mínimo de 15 passos e uma granularidade de 30\%.
- No total serão gerados 400 mapas, sendo divididos em 200 gerados a partir de um padrão e 200 gerados aleatoriamente. Para cada mapa com padrão é gerado aleatoriamente um bloco de $5\times 5$ que é repetido até completar o tamanho total do mapa.
+Os 200 mapas de cada tipo são divididos em 2, de forma que sejam 100 mapas para que permitem movimentação diagonal (figura:\ref{fig:with_diagonals}) e 100 que não permitem (figura:\ref{fig:no_diagonals}).
  
- Os 200 mapas de cada tipo são divididos em 2, de forma que sejam 100 mapas para que permitem movimentação diagonal (figura:\ref{fig:with_diagonals}) e 100 que não permitem (figura:\ref{fig:no_diagonals}).
+A configuração de movimentação diagonal interfere diretamente na heurística utilizada e na geração do mapa, o mesmo pode ou não ter uma solução dependendo do tipo de diagonal. Logo o mapa deve ser gerado levando isso em consideração.
  
- A configuração de movimentação diagonal interfere diretamente na heurística utilizada e na geração do mapa, o mesmo pode ou não ter uma solução dependendo do tipo de diagonal. Logo o mapa deve ser gerado levando isso em consideração.
- 
- Os algoritmos clássicos de busca que utilizamos para comparação são A\**, BFS, Dijkstra e IDA*, sendo executados uma vez para cada uma das heurísticas selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
- 
- \begin{minipage}{\linewidth}
- 	\makebox[\linewidth][c]{
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth][c]{
  		\includegraphics[keepaspectratio=true,scale=0.3]{ibagens/no_diagonals.png}}
  	\captionof{figure}{Não permite andar nas verticais, podendo somente se movimentar para cima, baixo, direita e esquerda.}
  	\label{fig:no_diagonals}
- \end{minipage}
+\end{minipage}
  
- \begin{minipage}{\linewidth}
+\begin{minipage}{\linewidth}
  	\makebox[\linewidth][c]{
  		\includegraphics[keepaspectratio=true,scale=0.3]{ibagens/with_diagonals.png}}
  	\captionof{figure}{É permitidos seguir na vertical, se um dos lados estiver livre.}
  	\label{fig:with_diagonals}
- \end{minipage}
+\end{minipage}
+
+Os algoritmos clássicos de busca que utilizamos para comparação são A\**, BFS, Dijkstra e IDA*, sendo executados uma vez para cada uma das heurísticas selecionadas para os testes, essas são Manhattam, Euclideana, Octil e Chebyshev.
+  
+Devido à natureza não determinística do Algoritmo genético rodamos ele 5 vezes para cada mapa, e calculamos a média de tempo, custo de memória e tamanho de caminho resultado para comparação com os algoritmos clássicos.
  
- Devido à natureza não determinística do Algoritmo genético rodamos ele 5 vezes para cada mapa, e calculamos a média de tempo, custo de memória e tamanho de caminho resultado para comparação com os algoritmos clássicos.
+As possíveis configurações do GA dependem dos operadores de cruzamento, mutação e seleção, alem da função de aptidão e a heurísticas utilizada por ela. Os operados de cruzamento implementados para a analise são \textit{"Simples"}, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é baseada nas heurísticas implementadas, sendo uma a heurística sem nenhuma alteração, outra implementando a heurística e penalizando caminhos cíclicos, outra implementando a heurística e penalizando encontro com paredes e a ultima implementando a heurística e penalizando tanto caminhos cíclicos quanto encontro com paredes.
  
-  As possíveis configurações do GA dependem dos operadores de cruzamento, mutação e seleção, alem da função de aptidão e a heurísticas utilizada por ela. Os operados de cruzamento implementados para a analise são \textit{"Simples"}, OBX e o PBX. Os operadores de Mutação são Bitwise, DIVM, DM, EM, IM,IVM e SM. Na seleção utilizamos o algoritmo de Roleta. A função de aptidão é baseada nas heurísticas implementadas, sendo uma a heurística sem nenhuma alteração, outra implementando a heurística e penalizando caminhos cíclicos, outra implementando a heurística e penalizando encontro com paredes e a ultima implementando a heurística e penalizando tanto caminhos cíclicos quanto encontro com paredes.
+Para os testes de GA, utilizamos a heurística Manhattam para movimentação sem diagonal, e Octile para movimentação com diagonal, a escolha é devido ao fato da heurística ser fortemente ligada a forma de movimentação como é citado no artigo \cite{GameProgrammingHeuristics}, as heurísticas selecionadas garantem melhor resultado para cada movimentação selecionada.
  
- Para os testes de GA, utilizamos a heurística Manhattam para movimentação sem diagonal, e Octile para movimentação com diagonal, a escolha é devido ao fato da heurística ser fortemente ligada a forma de movimentação como é citado no artigo \cite{GameProgrammingHeuristics}, as heurísticas selecionadas garantem melhor resultado para cada movimentação selecionada.
+\chapter[Implementação]{Implementação}
  
- \chapter[Implementação]{Implementação}
- 
- Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes  e implementações dos modelos de busca de caminho.
+Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para realizar os testes  e implementações dos modelos de busca de caminho.
  
  \section{Tecnologias}
  O projeto é separado em Pathfinder e Pathfinder.UI ambos desenvolvidos na linguagem C\# o primeiro utilizando o .NET Standard Library 1.6 e o segundo no .NET Core. No projeto Pathfinder estão todas a  implementações dos algoritmos de busca que temos para a comparação. Pathfinder.UI tem como objetivo consumir os recursos do projeto Pathfinder, dando opções de visualização ou geração de dados. Ambos rodam em sistemas Windows e \**nix utilizando o .Net Core CLI 1.1 para execução.

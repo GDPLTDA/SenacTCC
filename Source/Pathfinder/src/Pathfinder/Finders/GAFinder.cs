@@ -53,6 +53,12 @@ namespace Pathfinder.Finders
                 _endNode = best.Last();
                 if (_endNode.Equals(map.EndNode))
                 {
+                    if (!best.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+
+                    }
+
                     OnEnd(BuildArgs(step, true));
                     Generations = i;
                     return true;
@@ -67,14 +73,44 @@ namespace Pathfinder.Finders
                     var nodedad = Selection.Select(Populations);
                     // CrossOver
                     var cross = Crossover.Calc(new CrossoverOperation(nodemom, nodedad));
+
+                    if (!cross.Mom.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+                    if (!cross.Dad.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+
                     // Mutation
                     nodemom = Mutate.Calc(cross.Mom);
                     nodedad = Mutate.Calc(cross.Dad);
+
+                    if (!nodemom.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+                    if (!nodedad.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+
                     // Adaptation
                     nodemom = Adaptation.Calc(nodemom);
                     nodedad = Adaptation.Calc(nodedad);
                     nodemom.Fitness = Fitness.Calc(nodemom);
                     nodedad.Fitness = Fitness.Calc(nodedad);
+
+                    if (!nodemom.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+                    if (!nodedad.ListNodes.First().Equals(map.StartNode))
+                    {
+                        int c = 0;
+                    }
+
                     // Add in new population
                     newpopulations.Add(nodemom);
                     newpopulations.Add(nodedad);

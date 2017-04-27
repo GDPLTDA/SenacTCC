@@ -226,6 +226,9 @@ namespace Pathfinder.UI.AppMode
         }
         static void DrawTextProgressBar(int progress, int total, int barLength = 30, int left = 0, ConsoleColor color = ConsoleColor.Green)
         {
+            if (total == 0)
+                return;
+
             const char loadCchar = ' ';
             Console.CursorLeft = left;
             Console.Write("[");
