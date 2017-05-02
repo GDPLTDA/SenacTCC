@@ -62,7 +62,7 @@ namespace Pathfinder.UI.AppMode
                 dataFile = Path.Combine(folder, $"_data_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
                 dataFileGA = Path.Combine(folder, $"_dataGA_{now.Year}{now.Month}{now.Day}_{now.Hour}{now.Minute}.csv");
             }
-            var files = Directory.GetFiles(folder);
+            var files = Directory.GetFiles(folder, "*.txt");
             var fileCount = files.Count();
             var finders = UISettings.Batch_list_finders;
             var heuristics = UISettings.Batch_list_heuristics;
@@ -70,8 +70,8 @@ namespace Pathfinder.UI.AppMode
             var Crossover = UISettings.Batch_list_Crossover;
             var Fitness = UISettings.Batch_list_Fitness;
             var Selection = UISettings.Batch_list_Selection;
-            var csvFile = new StreamWriter(File.Open(dataFile, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
-            var csvGAFile = new StreamWriter(File.Open(dataFileGA, FileMode.OpenOrCreate), Encoding.UTF8, 4096, true);
+            var csvFile = new StreamWriter(File.Open(dataFile, FileMode.OpenOrCreate), Encoding.UTF8, 4096, false);
+            var csvGAFile = new StreamWriter(File.Open(dataFileGA, FileMode.OpenOrCreate), Encoding.UTF8, 4096, false);
             Console.Clear();
             csvFile.Write(new TextWrapper().GetHeader());
             csvGAFile.Write(new TextGAWrapper().GetHeader());
@@ -131,10 +131,12 @@ namespace Pathfinder.UI.AppMode
                             csvFile.Write(csv.ToString());
                         }
                         csvFile.Flush();
+                        csvGAFile.Flush();
                     }
                 }
             }
             DrawTextProgressBar(fileCount, fileCount);
+
             csvFile.Dispose();
             csvGAFile.Dispose();
 
