@@ -33,39 +33,39 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{29}{chapter.4}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Implementa\IeC {\c c}\IeC {\~a}o}}{31}{chapter.5}
-\contentsline {section}{\numberline {5.1}Tecnologias}{31}{section.5.1}
-\contentsline {section}{\numberline {5.2}Estrutura do Projeto}{31}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}PathFinder}{31}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Abstraction}{31}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Core}{32}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Factories}{32}{subsection.5.2.4}
-\contentsline {subsection}{\numberline {5.2.5}Finders}{33}{subsection.5.2.5}
-\contentsline {subsection}{\numberline {5.2.6}Heuristics}{33}{subsection.5.2.6}
-\contentsline {section}{\numberline {5.3}Genetic Algorithm}{33}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Abstraction}{33}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Core}{34}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Selection}{34}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Crossover}{34}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Mutation}{35}{subsection.5.3.5}
-\contentsline {section}{\numberline {5.4}Projeto de UI}{35}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Abstraction}{35}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}AppMode}{35}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Core}{35}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Factories}{36}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Viewer}{36}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Estrutura do GA}{36}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}Fun\IeC {\c c}\IeC {\~a}o de Aptid\IeC {\~a}o}{36}{subsection.5.5.1}
-\contentsline {subsection}{\numberline {5.5.2}Adapta\IeC {\c c}\IeC {\~a}o}{37}{subsection.5.5.2}
-\contentsline {subsection}{\numberline {5.5.3}Muta\IeC {\c c}\IeC {\~a}o}{37}{subsection.5.5.3}
-\contentsline {section}{\numberline {5.6}Modo Batch}{37}{section.5.6}
-\contentsline {subsection}{\numberline {5.6.1}Configura\IeC {\c c}\IeC {\~a}o}{37}{subsection.5.6.1}
-\contentsline {section}{\numberline {5.7}Modo Visual}{39}{section.5.7}
-\contentsline {subsection}{\numberline {5.7.1}Configura\IeC {\c c}\IeC {\~a}o}{39}{subsection.5.7.1}
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Implementa\IeC {\c c}\IeC {\~a}o}}{33}{chapter.5}
+\contentsline {section}{\numberline {5.1}Tecnologias}{33}{section.5.1}
+\contentsline {section}{\numberline {5.2}Estrutura do Projeto}{33}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}PathFinder}{33}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Abstraction}{33}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Core}{34}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Factories}{34}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Finders}{35}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}Heuristics}{35}{subsection.5.2.6}
+\contentsline {section}{\numberline {5.3}Genetic Algorithm}{35}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Abstraction}{35}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Core}{36}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Selection}{36}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Crossover}{36}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Mutation}{37}{subsection.5.3.5}
+\contentsline {section}{\numberline {5.4}Projeto de UI}{37}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Abstraction}{37}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}AppMode}{37}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Core}{37}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Factories}{38}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}Viewer}{38}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Estrutura do GA}{38}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}Fun\IeC {\c c}\IeC {\~a}o de Aptid\IeC {\~a}o}{38}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}Adapta\IeC {\c c}\IeC {\~a}o}{39}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}Muta\IeC {\c c}\IeC {\~a}o}{39}{subsection.5.5.3}
+\contentsline {section}{\numberline {5.6}Modo Batch}{39}{section.5.6}
+\contentsline {subsection}{\numberline {5.6.1}Configura\IeC {\c c}\IeC {\~a}o}{39}{subsection.5.6.1}
+\contentsline {section}{\numberline {5.7}Modo Visual}{41}{section.5.7}
+\contentsline {subsection}{\numberline {5.7.1}Configura\IeC {\c c}\IeC {\~a}o}{41}{subsection.5.7.1}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{41}{chapter.6}
-\contentsline {section}{\numberline {6.1}Resultados}{41}{section.6.1}
-\contentsline {section}{\numberline {6.2}Trabalhos futuros}{41}{section.6.2}
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}Resultados}{43}{section.6.1}
+\contentsline {section}{\numberline {6.2}Trabalhos futuros}{43}{section.6.2}
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {Refer\^encias}}{42}{section*.7}
+\contentsline {chapter}{\uppercase {Refer\^encias}}{44}{section*.11}
