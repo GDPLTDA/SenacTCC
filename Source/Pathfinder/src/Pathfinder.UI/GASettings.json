@@ -1,6 +1,6 @@
 ﻿{
   "GenerationLimit": 1000,
-  "MutationRate": 0.1,
+  "MutationRate": 0.01,
   "MutationAlgorithm": 1, // 0=Exchange Mutation 1=Displaced Inversion Mutation 2=Displacement Mutation 3=Insertion Mutation 4=Inversion Mutation 5=Scramble mutation 6=Bitwise
   "CrossoverRate": 0.7,
   "CrossoverAlgorithm": 1, // 0=Simple 1=Order-Based Crossover 2=Position-Based Crossover
