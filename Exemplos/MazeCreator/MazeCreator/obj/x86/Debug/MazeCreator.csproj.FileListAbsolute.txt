@@ -1,5 +1,0 @@
-C:\Users\rmendonca\Downloads\mazecreator_solution\MazeCreator\MazeCreator\bin\Debug\MazeCreator.dll
-C:\Users\rmendonca\Downloads\mazecreator_solution\MazeCreator\MazeCreator\bin\Debug\MazeCreator.pdb
-C:\Users\rmendonca\Downloads\mazecreator_solution\MazeCreator\MazeCreator\obj\x86\Debug\MazeCreator.csprojResolveAssemblyReference.cache
-C:\Users\rmendonca\Downloads\mazecreator_solution\MazeCreator\MazeCreator\obj\x86\Debug\MazeCreator.dll
-C:\Users\rmendonca\Downloads\mazecreator_solution\MazeCreator\MazeCreator\obj\x86\Debug\MazeCreator.pdb

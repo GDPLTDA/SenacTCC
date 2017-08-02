@@ -1,5 +1,0 @@
-C:\Users\rmendonca\Downloads\btl_GA\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.dll
-C:\Users\rmendonca\Downloads\btl_GA\GeneticAlgorithm\bin\Debug\GeneticAlgorithm.pdb
-C:\Users\rmendonca\Downloads\btl_GA\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.csprojResolveAssemblyReference.cache
-C:\Users\rmendonca\Downloads\btl_GA\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.dll
-C:\Users\rmendonca\Downloads\btl_GA\GeneticAlgorithm\obj\Debug\GeneticAlgorithm.pdb
