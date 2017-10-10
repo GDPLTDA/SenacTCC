@@ -1,16 +1,5 @@
-This is BibTeX, Version 0.99d (TeX Live 2015)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
-The top-level auxiliary file: monografia.aux
+This is BibTeX, Version 0.99dThe top-level auxiliary file: monografia.aux
 The style file: abntex2-alf.bst
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: mono.bib
 You're missing a field part---line 23 of file mono.bib
@@ -18,132 +7,32 @@ You're missing a field part---line 23 of file mono.bib
  : }
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--entry type for "GameProgrammingHeuristics" isn't style-file defined
---line 258 of file mono.bib
-Warning--entry type for "Janie_Chang" isn't style-file defined
---line 277 of file mono.bib
-Warning--entry type for "Jad" isn't style-file defined
---line 287 of file mono.bib
-Warning--entry type for "Xueqiao" isn't style-file defined
---line 372 of file mono.bib
-A bad cross reference---entry "Ulysses2"
-refers to entry "DBLP:conf/sbgames/2011", which doesn't exist
-A bad cross reference---entry "Demyen"
-refers to entry "conf/aaai/2006", which doesn't exist
-Warning--I didn't find a database entry for "DBLP:conf/sbgames/2011"
-Warning--I didn't find a database entry for "conf/aaai/2006"
-Reallocated singl_function (elt_size=4) to 100 items from 50.
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2091 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2091 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2091 of file abntex2-alf.bst
-Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
-Reallocated global_strs (elt_size=20001) to 20 items from 10.
-Reallocated glb_str_end (elt_size=4) to 20 items from 10.
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "S. Mounir Alaoui, O. Frieder, and T. El-Ghazawi" has a comma at the end for entry Alaoui
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2146 of file abntex2-alf.bst
-Too many commas in name 1 of "Jason D.Lohn, Silvano P. Colombano, Gary L. Haith t, Dimitris Stassinopoulos" for entry Jason
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "P. E. Hart, N. J. Nilsson, and B. Raphael" has a comma at the end for entry PEHart
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2146 of file abntex2-alf.bst
-Name 1 in "Ryan Leigh, S\\ hil J. Louis, and Chris Miles" has a comma at the end for entry Ryan
-while executing---line 2146 of file abntex2-alf.bst
+Warning--I didn't find a database entry for "Pontevia"
+Warning--I didn't find a database entry for "Ulysses"
+Warning--I didn't find a database entry for "Timothy"
+Warning--I didn't find a database entry for "WilliamMiller"
+Warning--I didn't find a database entry for "Botea"
+Warning--I didn't find a database entry for "KORF199341"
+Warning--I didn't find a database entry for "Kar72"
+Warning--I didn't find a database entry for "RatnerW86"
+Warning--I didn't find a database entry for "Burchardt"
+Warning--I didn't find a database entry for "UlyssesTCC"
+Warning--I didn't find a database entry for "PEHart"
+Warning--I didn't find a database entry for "Yngvi"
+Warning--I didn't find a database entry for "Ross_Graham"
+Warning--I didn't find a database entry for "Ulysses2"
+Warning--I didn't find a database entry for "Korf2000"
+Warning--I didn't find a database entry for "GameProgrammingHeuristics"
+Warning--I didn't find a database entry for "Ko-hsin"
+Warning--I didn't find a database entry for "Korf85"
+Warning--I didn't find a database entry for "Bjornsson"
+Warning--I didn't find a database entry for "Korf92"
+Warning--I didn't find a database entry for "Demyen"
+Warning--I didn't find a database entry for "JungTing"
+Warning--I didn't find a database entry for "Washington"
 +---------------------------------------------------------+
-| Estilo bibliográfico abntex2-alf.bst versão v-1.9.5           |
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.6           |
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 39 entries,
-            6714 wiz_defined-function locations,
-            1452 strings with 15495 characters,
-and the built_in function-call counts, 41066 in all, are:
-= -- 4222
-> -- 837
-< -- 730
-+ -- 1044
-- -- 264
-* -- 2567
-:= -- 5322
-add.period$ -- 158
-call.type$ -- 39
-change.case$ -- 327
-chr.to.int$ -- 61
-cite$ -- 38
-duplicate$ -- 3477
-empty$ -- 2319
-format.name$ -- 1250
-if$ -- 8703
-int.to.chr$ -- 2
-int.to.str$ -- 0
-missing$ -- 661
-newline$ -- 197
-num.names$ -- 192
-pop$ -- 863
-preamble$ -- 1
-purify$ -- 133
-quote$ -- 0
-skip$ -- 3596
-stack$ -- 1
-substring$ -- 1837
-swap$ -- 1303
-text.length$ -- 38
-text.prefix$ -- 0
-top$ -- 0
-type$ -- 8
-warning$ -- 0
-while$ -- 284
-width$ -- 0
-write$ -- 592
-(There were 35 error messages)
+(There was 1 error message)
