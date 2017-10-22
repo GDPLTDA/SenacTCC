@@ -6,9 +6,9 @@
 \contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdu\IeC {\c c}\IeC {\~a}o}}{5}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{5}{section.1.1}
 \contentsline {section}{\numberline {1.2}Objetivos}{5}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Objetivos Espec\IeC {\'\i }ficos}{5}{subsection.1.2.1}
-\contentsline {section}{\numberline {1.3}M\IeC {\'e}todo de trabalho}{5}{section.1.3}
-\contentsline {section}{\numberline {1.4}Organiza\IeC {\c c}\IeC {\~a}o do trabalho}{5}{section.1.4}
+\contentsline {subsection}{\numberline {1.2.1}Objetivos Espec\IeC {\'\i }ficos}{6}{subsection.1.2.1}
+\contentsline {section}{\numberline {1.3}M\IeC {\'e}todo de trabalho}{6}{section.1.3}
+\contentsline {section}{\numberline {1.4}Organiza\IeC {\c c}\IeC {\~a}o do trabalho}{6}{section.1.4}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Revis\IeC {\~a}o de Literatura}}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}Busca Heur\IeC {\'\i }stica}{7}{section.2.1}

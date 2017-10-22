@@ -5,23 +5,12 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.6 }
 
-<<<<<<< HEAD
-\bibitem[A. 2007]{RODRIGUES}
-\abntrefinfo{A.}{A.}{2007}
-{A., P.~R. Introdução aos sistemas de transporte do brasil e à logística
-  internacional.
+\bibitem[Cunha 2007]{CUNHA}
+\abntrefinfo{Cunha}{CUNHA}{2007}
+{CUNHA, C.~B. da. Aspectos práticos da aplicação de modelos de
+  roteirização de veículos a problemas reais. transportes.
 2007.}
 
-\bibitem[P. 2010]{DIAS}
-\abntrefinfo{P.}{P.}{2010}
-{P., M.~A. Administração de materiais: uma abordagem logística.
-2010.}
-
-\bibitem[S. 2007]{TSUDA}
-\abntrefinfo{S.}{S.}{2007}
-{S., D. Modelo de roteirização de veículos em uma empresa importadora de
-  produtos japoneses.
-=======
 \bibitem[Dias 2010]{DIAS}
 \abntrefinfo{Dias}{DIAS}{2010}
 {DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
@@ -36,7 +25,6 @@
 \abntrefinfo{Tsuda}{TSUDA}{2007}
 {TSUDA, D.~S. Modelo de roteirização de veículos em uma empresa importadora
   de produtos japoneses.
->>>>>>> 7b04f9a022e06b903305192bf3ec77d6419b1bf1
 2007.}
 
 \end{thebibliography}
