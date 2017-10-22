@@ -1,6 +1,10 @@
 \backcite {DIAS}{{5}{1.1}{section.1.1}}
 \backcite {RODRIGUES}{{5}{1.1}{section.1.1}}
 \backcite {TSUDA}{{5}{1.1}{section.1.1}}
+<<<<<<< HEAD
+=======
+\backcite {TSUDA}{{5}{1.1}{section.1.1}}
+>>>>>>> 7b04f9a022e06b903305192bf3ec77d6419b1bf1
 \backcite {Winston}{{7}{2.1}{section.2.1}}
 \backcite {KORF199341}{{7}{2.1}{section.2.1}}
 \backcite {JungTing}{{7}{2.1.1}{subsection.2.1.1}}

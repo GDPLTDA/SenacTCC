@@ -5,6 +5,7 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.6 }
 
+<<<<<<< HEAD
 \bibitem[A. 2007]{RODRIGUES}
 \abntrefinfo{A.}{A.}{2007}
 {A., P.~R. Introdução aos sistemas de transporte do brasil e à logística
@@ -20,6 +21,22 @@
 \abntrefinfo{S.}{S.}{2007}
 {S., D. Modelo de roteirização de veículos em uma empresa importadora de
   produtos japoneses.
+=======
+\bibitem[Dias 2010]{DIAS}
+\abntrefinfo{Dias}{DIAS}{2010}
+{DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
+  [S.l.: s.n.], 2010.}
+
+\bibitem[Rodrigues 2007]{RODRIGUES}
+\abntrefinfo{Rodrigues}{RODRIGUES}{2007}
+{RODRIGUES, P. R.~A. \emph{Introdução aos sistemas de transporte do Brasil e
+  à logística internacional}. [S.l.: s.n.], 2007.}
+
+\bibitem[Tsuda 2007]{TSUDA}
+\abntrefinfo{Tsuda}{TSUDA}{2007}
+{TSUDA, D.~S. Modelo de roteirização de veículos em uma empresa importadora
+  de produtos japoneses.
+>>>>>>> 7b04f9a022e06b903305192bf3ec77d6419b1bf1
 2007.}
 
 \end{thebibliography}

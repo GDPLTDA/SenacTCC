@@ -7,30 +7,47 @@
 
 No meio empresarial é essencial pensar na área logística, essa é a área que gerencia os recursos,
 matérias-primas, componentes, equipamentos, serviços e informação necessária para execução e 
-controle das atividades da empresa. Tem como foco orquestrar todos esses itens de forma a encontrar
-a melhor condição de operação no menor tempo possível. \cite{DIAS}
+controle das atividades da empresa. Ela tem como foco orquestrar estes itens de forma a encontrar
+a melhor condição de operação no menor tempo possível~\cite{DIAS}.
 
-um dos principais pontos dentro da logística é o transporte, onde chega a custar até 60% 
+Um dos principais pontos dentro da logística é o transporte, onde chega a custar até 60% 
 de seu custo total.\cite{RODRIGUES} Logo é de interesse das empresas conseguir minimizar o custo de escoamento de seus produtos.
 
 Graças a sua importância no processo produtivo a logística se tornou um grande fator competitivo entre empresas.
 Isso se deve ao fato que a cadeia de suprimento está relacionada com agregação de valores e disponibilidade dos seus bens e
-serviços para os clientes, fornecedores da empresa e os demais interessados. um serviço ou produto apenas tem valor quando 
-ele está disponível para ser consumindo independe do lugar que o interessado esteja \cite{TSUDA}.
+serviços para os clientes, fornecedores da empresa e os demais interessados. Independe do lugar que o interessado esteja um serviço ou produto apenas tem valor quando 
+ele está disponível para ser consumindo~\cite{TSUDA}.
+
+No planejamento estratégico de logística o principal problema esta relacionado a roteirização de veículos~\cite{TSUDA} também conhecido como PRV, 
+para encontrar a rota menos custosa, é necessário calcular as possíveis combinações de um determinado problema. Contudo, dependendo do numero de combinações pode requerer um
+processamento muito elevado, levando muito tempo para encontrar a solução ótima. Esse problema se encaixa na categoria NP-Difícil~\cite{CUNHA}, Neste tipo de problema não existe
+uma nenhum algoritmo conhecido que consiga resolvê-lo em tempo polinomial.
 
 \section{Objetivos}
 
-
+Desenvolver uma solução que resolva o problema de PRV utilizando a meta-heurística algoritmos genéticos. Um sistema capaz de calcular uma rota entre vários destinos 
+levando em consideração restrições de tempo e notificando a quantidade de motoristas necessários para realizar todas as entregas ate uma data limite estipulada. Além de levar  
+em consideração o tempo de transito entre estes pontos, permitindo que um motorista possa recalcular a sua rota para otimizar o tempo a qualquer momento.
 
 \subsection{Objetivos Específicos}
+
 -Utilizar API do Google Maps para adquirir informações sobre endereços ou pontos no mapas
 -Desenvolver um algorítimo genético capas de minimizar a rota entre todos os pontos (caixeiro
 -Introduzir janelas de tempo nas entregas e adaptar algoritmo genético para levar essas janelas de tempo em consideração
 -Definir dia/hora limite e dividir entrega em mais de um entregador para respeitar essa hora/data limite
 -Criar um aplicativo capaz de consultar e recalcular a rota
-
+Utilizar uma API de terceiros para adquirir informações sobre endereços ou pontos no mapa, alem do tempo de locomoção entre os pontos.
+Implementar um algorítimo genético capas de minimizar a rota entre todos os pontos.
+Introduzir janelas de tempo nas entregas e adaptar o algoritmo genético para levar essas janelas de tempo em consideração.
+Definir fata/hora limite e dividir entrega em mais de um entregador para respeitar essa hora/data limite caso seja necessário.
+Criar um aplicativo capaz de consultar e recalcular a rota.
 
 \section{Método de trabalho}
+
+Desenvolver uma implementação de algoritmos genéticos capaz de calcular rotas entre pontos geográficos.
+Desenvolver uma aplicação Web capaz de receber uma quantidade N de pontos no mapa uma data limite, e a partir deles utilizar a implementação previa para calcular as rotas e 
+notificar o utilizador.
+Ter uma pagina onde um motorista possa recalcular sua rota em qualquer ponto.
 
 \section{Organização do trabalho}
 Este trabalho é dividido em 4 capítulos. O primeiro capitulo faz uma introdução geral do problema, descrever os objetivos e a motivação para a resolução do problema proposto.
