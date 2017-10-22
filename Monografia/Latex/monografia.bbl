@@ -5,45 +5,20 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.6 }
 
-\bibitem[Blum e Roli 2003]{Blum}
-\abntrefinfo{Blum e Roli}{BLUM; ROLI}{2003}
-{BLUM, C.; ROLI, A. Metaheuristics in combinatorial optimization: Overview and
-  conceptual comparison.
-\emph{ACM Comput. Surv.}, ACM, New York, NY, USA, v.~35, n.~3, p. 268--308,
-  set. 2003.
-ISSN 0360-0300.
-Dispon{\'\i}vel em: \url{http://doi.acm.org/10.1145/937503.937505}.}
+\bibitem[Dias 2010]{DIAS}
+\abntrefinfo{Dias}{DIAS}{2010}
+{DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
+  [S.l.: s.n.], 2010.}
 
-\bibitem[Holland 1975]{Holland1975}
-\abntrefinfo{Holland}{HOLLAND}{1975}
-{HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
-  MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
-  \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
+\bibitem[Rodrigues 2007]{RODRIGUES}
+\abntrefinfo{Rodrigues}{RODRIGUES}{2007}
+{RODRIGUES, P. R.~A. \emph{Introdução aos sistemas de transporte do Brasil e
+  à logística internacional}. [S.l.: s.n.], 2007.}
 
-\bibitem[Lucas 2002]{DiogoCLucas}
-\abntrefinfo{Lucas}{LUCAS}{2002}
-{LUCAS, D.~C. Algoritmos genéticos: uma introdução.
-Universidade Federal do Rio Grande do Sul, 2002.
-Dispon{\'\i}vel em:
-  \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
-
-\bibitem[Pollack 1960]{Pollack}
-\abntrefinfo{Pollack}{POLLACK}{1960}
-{POLLACK, W.~W. M. Solutions of the shortest-route problem-a review.
-\emph{Operations Research}, INFORMS, v.~8, n.~2, p. 224--230, 1960.
-ISSN 0030364X, 15265463.
-Dispon{\'\i}vel em: \url{http://www.jstor.org/stable/167205}.}
-
-\bibitem[Russell e Norvig 2003]{Russell}
-\abntrefinfo{Russell e Norvig}{RUSSELL; NORVIG}{2003}
-{RUSSELL, S.~J.; NORVIG, P. \emph{Artificial Intelligence: A Modern Approach}.
-  2. ed. [S.l.]: Pearson Education, 2003.
-ISBN 0137903952.}
-
-\bibitem[Winston 1992]{Winston}
-\abntrefinfo{Winston}{WINSTON}{1992}
-{WINSTON, P.~H. \emph{Artificial Intelligence (3rd Ed.)}. Boston, MA, USA:
-  Addison-Wesley Longman Publishing Co., Inc., 1992.
-ISBN 0-201-53377-4.}
+\bibitem[Tsuda 2007]{TSUDA}
+\abntrefinfo{Tsuda}{TSUDA}{2007}
+{TSUDA, D.~S. Modelo de roteirização de veículos em uma empresa importadora
+  de produtos japoneses.
+2007.}
 
 \end{thebibliography}
