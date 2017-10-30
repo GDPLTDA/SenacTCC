@@ -5,7 +5,19 @@
 
 Nesse capítulo é feita uma revisão no estado da arte dos algoritmos de roteamento de veículos, e a aplicação de algoritmos genéticos para mesma finalidade.
 
+\section{Roteamento de Veículos com Janelas de Tempo}
 
+Um dos problemas mais importantes de otimização combinatória e mais estudados na literatura de pesquisa operacional é o problema de Roteamento de Veículos com Janelas de Tempo (PRVJT).
+Nele consiste que tendo uma frota de veículos que deve partir de um depósito, deve atender a demanda de N consumidores e retornar ao depósito de forma que o custo total de viagem seja o mínimo. Levando em consideração que o atendimento aconteça dentro de um intervalo de tempo especificado para cada consumidor. Também deve-se respeitar a capacidade dos veículos.
+
+Na literatura existem vários objetivos abordados pelos autores para o PRVJT.\ Neste trabalho temos como objetivo a minimização da distancia total percorrida, que é o mais comum na literatura.~\cite{ROCHAT}
+
+\subsection{Formulação matemática}
+
+O PRVJT pode ser definido a partir um grafo completo orientado~\(G = (V,A)\) em que \(V = {0,\cdots,n+1}\) é um conjunto de vértices e \(G ={(i,j)|i,j \in V}\) é o conjunto de arcos.
+Cada arco (i,j) é associado a um tempo \(t_{ij}\) e um custo de travessia \(c_{ij}\).
+
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
 
 \section{Algoritmos genéticos}
 

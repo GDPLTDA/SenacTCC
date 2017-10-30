@@ -10,9 +10,18 @@
 {DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
   [S.l.: s.n.], 2010.}
 
-\bibitem[Moura 2007]{MOURA}
-\abntrefinfo{Moura}{MOURA}{2007}
-{MOURA, B. \emph{Logística: Conceitos e Tendências}. [S.l.: s.n.], 2007.}
+\bibitem[Holland 1975]{Holland1975}
+\abntrefinfo{Holland}{HOLLAND}{1975}
+{HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
+  MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
+  \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
+
+\bibitem[Lucas 2002]{DiogoCLucas}
+\abntrefinfo{Lucas}{LUCAS}{2002}
+{LUCAS, D.~C. Algoritmos genéticos: uma introdução.
+Universidade Federal do Rio Grande do Sul, 2002.
+Dispon{\'\i}vel em:
+  \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
 
 \bibitem[Rodrigues 2007]{RODRIGUES}
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
@@ -24,5 +33,11 @@
 {TSUDA, D.~S. Modelo de roteirização de veículos em uma empresa importadora
   de produtos japoneses.
 2007.}
+
+\bibitem[Yves Rochat 1995]{ROCHAT}
+\abntrefinfo{Yves Rochat}{YVES ROCHAT}{1995}
+{YVES ROCHAT, E. Probabilistic diversification and intensification in local
+  search for vehicle routing.
+1995.}
 
 \end{thebibliography}

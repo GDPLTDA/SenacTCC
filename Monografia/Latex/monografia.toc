@@ -5,14 +5,15 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdu\IeC {\c c}\IeC {\~a}o}}{5}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motiva\IeC {\c c}\IeC {\~a}o}{5}{section.1.1}
-\contentsline {section}{\numberline {1.2}Objetivos}{6}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Objetivos Espec\IeC {\'\i }ficos}{6}{subsection.1.2.1}
-\contentsline {section}{\numberline {1.3}M\IeC {\'e}todo de trabalho}{7}{section.1.3}
-\contentsline {section}{\numberline {1.4}Organiza\IeC {\c c}\IeC {\~a}o do trabalho}{7}{section.1.4}
+\contentsline {section}{\numberline {1.2}Motiva\IeC {\c c}\IeC {\~a}o}{5}{section.1.2}
+\contentsline {section}{\numberline {1.3}Objetivos}{6}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Objetivos Espec\IeC {\'\i }ficos}{6}{subsection.1.3.1}
+\contentsline {section}{\numberline {1.4}M\IeC {\'e}todo de trabalho}{7}{section.1.4}
+\contentsline {section}{\numberline {1.5}Organiza\IeC {\c c}\IeC {\~a}o do trabalho}{7}{section.1.5}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Revis\IeC {\~a}o de Literatura}}{8}{chapter.2}
-\contentsline {section}{\numberline {2.1}Log\IeC {\'\i }stica}{8}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}Get\IeC {\~a}o de transporte}{8}{subsection.2.1.1}
+\contentsline {section}{\numberline {2.1}Roteamento de Ve\IeC {\'\i }culos com Janelas de Tempo}{8}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Formula\IeC {\c c}\IeC {\~a}o matem\IeC {\'a}tica}{8}{subsection.2.1.1}
 \contentsline {section}{\numberline {2.2}Algoritmos gen\IeC {\'e}ticos}{8}{section.2.2}
 \contentsline {subsection}{\numberline {2.2.1}Funcionamento}{8}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Inicializa\IeC {\c c}\IeC {\~a}o}{9}{subsection.2.2.2}

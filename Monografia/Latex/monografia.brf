@@ -1,8 +1,10 @@
 \backcite {DIAS}{{5}{1}{chapter.1}}
 \backcite {RODRIGUES}{{5}{1.1}{section.1.1}}
-\backcite {TSUDA}{{5}{1.1}{section.1.1}}
-\backcite {TSUDA}{{5}{1.1}{section.1.1}}
-\backcite {MOURA}{{8}{2.1}{section.2.1}}
+\backcite {DIAS}{{5}{1.1}{section.1.1}}
+\backcite {RODRIGUES}{{5}{1.2}{section.1.2}}
+\backcite {TSUDA}{{5}{1.2}{section.1.2}}
+\backcite {TSUDA}{{5}{1.2}{section.1.2}}
+\backcite {ROCHAT}{{8}{2.1}{section.2.1}}
 \backcite {DiogoCLucas}{{8}{2.2}{section.2.2}}
 \backcite {Holland1975}{{8}{2.2.1}{subsection.2.2.1}}
 \backcite {DiogoCLucas}{{9}{1}{figure.2.1}}
