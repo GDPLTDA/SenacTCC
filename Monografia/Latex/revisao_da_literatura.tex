@@ -3,26 +3,21 @@
 %\addcontentsline{toc}{chapter}{Revisão de Literatura}
 % ----------------------------------------------------------
 
-Nesse capítulo é feita uma revisão no estado da arte dos algoritmos de busca de caminhos, e a aplicação de algoritmos genéticos para mesma finalidade.
+Nesse capítulo é feita uma revisão no estado da arte dos algoritmos de roteamento de veículos, e a aplicação de algoritmos genéticos para mesma finalidade.
 
-\section{Busca Heurística}
+\section{Roteamento de Veículos com Janelas de Tempo}
 
-Busca heurística de caminhos é um subgrupo de algoritmos de busca em grafos \cite{Winston}, é um mecanismo geral de solução de problemas no ramo de IA. A sequência de passos necessários para solução da maioria dos problemas de IA usualmente não é conhecida, mas deve ser determinada por uma exploração de alternativas através de mecanismos de tentativa e erro. Um problema de busca típico é o PCV, que consiste em encontrar o caminho mais curto que as visite cada cidade de um conjunto cidades e retorne para a cidade de partida. Os algoritmos BFS e o A* são otimo exemplos de busca heurística. \cite{KORF199341}
+Um dos problemas mais importantes de otimização combinatória e mais estudados na literatura de pesquisa operacional é o problema de Roteamento de Veículos com Janelas de Tempo (PRVJT).
+Nele consiste que tendo uma frota de veículos que deve partir de um depósito, deve atender a demanda de N consumidores e retornar ao depósito de forma que o custo total de viagem seja o mínimo. Levando em consideração que o atendimento aconteça dentro de um intervalo de tempo especificado para cada consumidor. Também deve-se respeitar a capacidade dos veículos.
 
-\subsection{Aplicações}
-Aplicações para os algoritmos de busca podem ser diversos, como por exemplo, em um simulador de carro corrida \cite{JungTing}. Utilizando o algoritmo do A* com duas modificações para encontrar o melhor caminho enquanto evita os obstáculos entre o ponto de início e o ponto de destino. 
-A primeira modificação consiste em utilizar o teorema de Pitágoras, onde primeira calcula a distância entre dois pontos(1 e 2), verifica se existe algum obstáculo dentre eles, se existir, utiliza o terceiro ponto para calcular a hipotenusa e verifica se existe obstáculo entre a hipotenusa, se não existir, remove o ponto 2 e começa a considerar o caminho do ponto 1 para o ponto 3. A segunda modificação consiste em somente ir para frente, isso significa, procura somente os pontos a frente do carro, direita, esquerda e frente, simulando um controle de carro.
+Na literatura existem vários objetivos abordados pelos autores para o PRVJT.\ Neste trabalho temos como objetivo a minimização da distancia total percorrida, que é o mais comum na literatura.~\cite{ROCHAT}
 
-O projeto utiliza 3 pistas reais de corrida da Formula 1, Peru, Itália e Hungria, sendo cada pista, uma imagem de escala 1280x782 \textit{pixels} retiradas do site oficial da Formula 1. O Carro é implementado em \textit{Microsoft XNA Game Studio}, plataforma usada para desenvolver jogos para \textit{Windows Phone, Xbox e Windows}. As Imagens das pistas são modificadas para serem mapas de detecção de colisão, a pista é pintada de preto, indicando onde o carro pode andar e o resto pintado de branco indicando os o carro não pode andar. O carro tem o tamanho de 18x12 \textit{pixels} e uma movimentação de 2 \textit{pixels} por segundo. Como o XNA trabalha com uma taxa de quadros de 60 quadros por segundo, o carro se movimenta a 120 \textit{pixels} por segundo.A Figura \ref{fig:GameCarPista} mostra um exemplo de rota gerada na pista do Peru.
+\subsection{Formulação matemática}
 
-\begin{minipage}{\linewidth}
-	\makebox[\linewidth][c]{
-		\includegraphics[keepaspectratio=true,scale=1.0]{ibagens/GameCarPista.png}}
-	\captionof{figure}{Pisca de formula 1 do Peru \cite{JungTing} }
-	\label{fig:GameCarPista}
-\end{minipage}
+O PRVJT pode ser definido a partir um grafo completo orientado~\(G = (V,A)\) em que \(V = {0,\cdots,n+1}\) é um conjunto de vértices e \(G ={(i,j)|i,j \in V}\) é o conjunto de arcos.
+Cada arco (i,j) é associado a um tempo \(t_{ij}\) e um custo de travessia \(c_{ij}\).
 
-Os resultados obtidos por \cite{JungTing} na primeira modificação conseguiu economizar ciclos de CPU, reduzindo o numero de pontos indicadores da pista em 97\%. A segunda modificação tem a vantagem de obter o tempo de volta mais curto, por que reduz o numero de nós do algoritmo A* de 4 para 3 nós]. A desvantagem é que o carro pode balançar em curvas acentuadas. Em geral, as modificações garantiram uma melhoria em performance, economizando o numero de ciclos de CPU.
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
 
 \section{Algoritmos genéticos}
 
@@ -204,5 +199,4 @@ Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem do
 
 A conclusão de \cite{Washington} é que a utilização de algoritmos genéticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
-\section{Algoritmos genéticos para busca de caminhos}
 
