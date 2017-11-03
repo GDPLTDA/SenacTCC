@@ -17,8 +17,68 @@ Na literatura existem vários objetivos abordados pelos autores para o PRVJT.\ N
 O PRVJT pode ser definido a partir um grafo completo orientado~\(G = (V,A)\) em que \(V = {0,\cdots,n+1}\) é um conjunto de vértices e \(G ={(i,j)|i,j \in V}\) é o conjunto de arcos.
 Cada arco (i,j) é associado a um tempo \(t_{ij}\) e um custo de travessia \(c_{ij}\).
 
-% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+É necessário uma definição precisa do termo \textit{custo de travessia}. Em casos práticos pode se considerar diversos fatores, tais como distancia, tempo, desgaste do veículo ao percorrer determinado caminho, entre outros fatores. Porem, quando se trata de problemas teóricos envolvendo janelas de tempo, é comum converter todas as medidas relevantes em unidades de tempo para fins de padronização e também para facilitar a comparação entre diferentes métodos. Por isso, adota-se aqui a mesma definição de custo que a maioria dos trabalhos teóricos da literatura, considerando que o custo de viagem consiste na distância convertida em unidades de tempo.
 
+Podemos descrever o problema como sendo um conjunto \(K\) de veículos com capacidade \(Q\), eles devem atender \(n\) clientes, representados pelos vértices \(1,\cdots,n\). Considera-se que \(N = V \{0, n + 1\}\) representa o conjunto de clientes. Os veículos devem partir do depósito e, após visitar todos os clientes, devem retornar ao mesmo local de onde partiram. Por conveniência, o deposito é representado por dois vértices, o vértice \(0\), que representa a origem, e o vértice \(n+1\) que representa o destino. A cada cliente \(i\), uma demanda \(q_i\) é associada, esta deve ser atendida por um único veículo. E todos os vértices possuem uma janela de tempo \([e_i,l_i]\), o serviço no vértice \(i\) deve ser iniciado dentro desse intervalo. Caso ocorra que a achegada ao cliente \(i\) aconteça antes do horário previsto \(e_i\), ele deve esperar a abertura da janela. O veículo não poderá chegar a \(i\) depois do instante \(l_i\), pois isso faria violar a restrição de tempo do problema. Esse tipo de restrição é conhecido na literatura como janela de tempo rígida. A cada vértice é também associado um tempo de serviço, denotado por \(s_i\). O objetivo é encontrar uma solução \(s\) de custo mínimo, de forma a minimizar a soma de todos os custos de viagem \(\sum_{(i,j) \in s} c_{ij}\) que são associados aos arcos \((i,j)\) presentes nas rotas que compõem essa solução.
+
+A formulação matemática do PRVJT, é apresentada pelas expressões:
+
+\begin{equation}  \label{eq:prvjt1}
+\min
+ \sum_{k \in K}\sum_{i \in V}\sum_{j \in V} c_{ij}x_{ijk}
+\end{equation}
+
+Sujeito as seguintes restrições:
+
+\begin{equation} \label{eq:prvjt2}
+\sum_{k \in K}\sum_{j \in V} x_{ijk} = 1, \forall i \in N
+\end{equation}
+
+\begin{equation} \label{eq:prvjt3}
+\sum_{j \in V} x_{0jk} = 1, \forall k \in K
+\end{equation}
+
+\begin{equation} \label{eq:prvjt4}
+\sum_{i \in V} x_{ijk} - \sum_{i \in V} x_{jik} = 0, \forall k \in K, \forall j \in N
+\end{equation}
+
+\begin{equation} \label{eq:prvjt5}
+\sum_{i \in V} x_{i(n+1)k} = 1, \forall k \in K
+\end{equation}
+
+\begin{equation} \label{eq:prvjt6}
+\sum_{i \in N} q_i \sum_{j \in V} x_{ijk} \leq Q, \forall k \in K
+\end{equation}
+
+\begin{equation} \label{eq:prvjt7}
+b_{ik} + s_i + t_{ij} -(1-x_{ijk})M_{ij} \leq b_{jk},\forall k \in K, \forall (i,j) \in A
+\end{equation}
+
+\begin{equation} \label{eq:prvjt8}
+e_i \leq b_{ik} \leq l_i,\forall k \in K,\forall i \in V
+\end{equation}
+
+\begin{equation} \label{eq:prvjt9}
+x_{ijk} \in \{0,1\},\forall k \in K,\forall (i,j) \in A
+\end{equation}
+
+A variável binária \(x_{ijk}\) assume valor 1 se o veículo \(k\) passa pelo arco (i,j) e 0, caso contrário.
+
+A função objetivo \ref{eq:prvjt1} expressa o custo total a ser minimizado. As restrições \ref{eq:prvjt2} asseguram que somente um veículo \(k\) parte de cada cliente \(i\). As restrições \ref{eq:prvjt3}, \ref{eq:prvjt4}, \ref{eq:prvjt5} garantem a continuidade do caminho a ser percorrido pelo veículo \(k\), ou seja, cada veículo parte do depósito, visita os clientes e em seguida retorna ao depósito. As restrições \ref{eq:prvjt6} fazem com que cada veículo \(k\) somente possa atender a um conjunto de clientes cuja demanda total não ultrapasse sua capacidade Q. As restrições \ref{eq:prvjt7}, \ref{eq:prvjt8} asseguram a viabilidade das rotas no que diz respeito as restrições de janelas de tempo, em que \(b_{ik}\) representa o tempo em que o veículo \(k\) começa a atender o cliente \(i\) e \(M_{ij}\) são constantes de valor suficientemente grande.  As restrições \ref{eq:prvjt9} definem o domínio das variáveis de decisão.~\cite{CORDEAU}
+
+
+\subsection{Complexidade}
+
+Encontrar a solução ótima do PRVJT implica em obter simultaneamente a solução de vários problemas NP-difíceis, dentre os quais citam-se o \textit{Problema do Caixeiro Viajante} (PCV) e o \textit{Problema da Mochila}. Sendo assim, tal tarefa é também NP-difícil. Além disso, encontrar uma simples solução viável para o PRVJT dispondo de um conjunto limitado de veículos é NP-difícil no sentido forte \cite{Kohl}. Porém, uma solução inicial viável é trivial caso o número de veículos seja ilimitado, bastando atender cada consumidor com um veículo.
+
+Os atuais resultados encontrados na literatura referentes ao PRVJT comprovam que os algoritmos exatos restringem-se à resolução de problemas-teste com tamanho reduzido e janelas de tempo apertadas. Embora hoje podemos resolver problemas com um tamanho que seja ligeiramente maior que o de alguns anos atrás, o crescimento da capacidade dos computadores e da eficiência dos algoritmos esta muito distante da curva exponencial representada por este problema. Pode-se dizer que os métodos exatos não são uma alternativa viável para situações onde a um número maior de consumidores, como ocorre na maioria dos casos reais. \cite{Chabrier}
+
+Abordagens heurísticas e algoritmos aproximativos também tem sido utilizadas na resolução do PRVJT. As Heurísticas buscam obter uma solução em tempo hábil. Este fato torna as estratégias heurísticas muito poderosas se comparadas com abordagens exatas, que focam exclusivamente na obtenção da solução ótima. Uma boa heurística deve ser capaz de encontrar soluções próximas da ótima, em tempo bem inferior ao necessário pelos métodos exatos. A qualidade da solução não deve variar demasiadamente ao aplica-la em diferentes ou ao mesmo problemas-teste.
+
+Os métodos aproximativos vem ao encontro destas características. Um método aproximativo é uma heurística com garantia de qualidade no resultado. A melhor solução encontrada por um algoritmo de aproximação esta sempre a uma distancia percentual previamente definida da solução ótima desconhecida. A "distancia do ótimo" é particular de cada algoritmo, podendo até não ser muito relevante em termos práticos. Um exemplo bem conhecido é o algoritmo PRIM, para árvore geradora mínima, que é capaz de oferecer uma solução viável para o PCV, que é no máximo duas vezes o ótimo em distancia total percorrida \cite{Alvarenga}.
+
+
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
 \section{Algoritmos genéticos}
 
 AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação. \cite{DiogoCLucas}

@@ -5,6 +5,31 @@
 \providecommand{\abntbstabout}[1]{}
 \abntbstabout{v-1.9.6 }
 
+\bibitem[Alvarenga 2005]{Alvarenga}
+\abntrefinfo{Alvarenga}{ALVARENGA}{2005}
+{ALVARENGA, G.~B. Um algoritmo híbrido para os problemas de roteamento de
+  veículos estático e dinâmico com janela de tempo.
+Universidade Federal de Minas Gerais, 2005.
+Dispon{\'\i}vel em:
+  \url{http://www.bibliotecadigital.ufmg.br/dspace/bitstream/handle/1843/RVMR-6EAKH8/guilherme\_bastos.pdf?sequence=1}.}
+
+\bibitem[Chabrier 2006]{Chabrier}
+\abntrefinfo{Chabrier}{CHABRIER}{2006}
+{CHABRIER, A. Vehicle routing problem with elementary shortest path based
+  column generation.
+\emph{Comput. Oper. Res.}, Elsevier Science Ltd., Oxford, UK, UK, v.~33, n.~10,
+  p. 2972--2990, out. 2006.
+ISSN 0305-0548.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1016/j.cor.2005.02.029}.}
+
+\bibitem[Cordeau et al.]{CORDEAU}
+\abntrefinfo{Cordeau et al.}{CORDEAU et al.}{}
+{CORDEAU, J.-F. et al. 7. vrp with time windows.
+In:  \underline{\ \ \ \ \ \ \ \ }. \emph{The Vehicle Routing Problem}. [s.n.].
+  p. 157--193.
+Dispon{\'\i}vel em:
+  \url{http://epubs.siam.org/doi/abs/10.1137/1.9780898718515.ch7}.}
+
 \bibitem[Dias 2010]{DIAS}
 \abntrefinfo{Dias}{DIAS}{2010}
 {DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
@@ -15,6 +40,13 @@
 {HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
   MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
   \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
+
+\bibitem[Kohl 1995]{Kohl}
+\abntrefinfo{Kohl}{KOHL}{1995}
+{KOHL, N. Exact methods for time constrained routing and related scheduling
+  problems.
+Richard Petersens Plads, Building 321, 2800 Kgs. Lyngby, p.~234, 1995.
+Dispon{\'\i}vel em: \url{http://www2.imm.dtu.dk/pubdb/p.php?2100}.}
 
 \bibitem[Lucas 2002]{DiogoCLucas}
 \abntrefinfo{Lucas}{LUCAS}{2002}
