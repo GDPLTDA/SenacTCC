@@ -41,6 +41,12 @@ Dispon{\'\i}vel em:
   MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
   \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
 
+\bibitem[Jepsen e Spoorendonk 2006]{Jepsen}
+\abntrefinfo{Jepsen e Spoorendonk}{JEPSEN; SPOORENDONK}{2006}
+{JEPSEN, M.; SPOORENDONK, S. A non-robust branch-and-cut-and-price algorithm
+  for the vehicle routing problem with time windows.
+01 2006.}
+
 \bibitem[Kohl 1995]{Kohl}
 \abntrefinfo{Kohl}{KOHL}{1995}
 {KOHL, N. Exact methods for time constrained routing and related scheduling
