@@ -1,9 +1,7 @@
 \backcite {DIAS}{{5}{1}{chapter.1}}
 \backcite {RODRIGUES}{{5}{1.1}{section.1.1}}
-\backcite {DIAS}{{5}{1.1}{section.1.1}}
-\backcite {RODRIGUES}{{5}{1.2}{section.1.2}}
-\backcite {TSUDA}{{5}{1.2}{section.1.2}}
-\backcite {TSUDA}{{5}{1.2}{section.1.2}}
+\backcite {TSUDA}{{5}{1.1}{section.1.1}}
+\backcite {TSUDA}{{5}{1.1}{section.1.1}}
 \backcite {ROCHAT}{{8}{2.1}{section.2.1}}
 \backcite {CORDEAU}{{10}{2.1.1}{equation.2.1.9}}
 \backcite {Kohl}{{10}{2.1.2}{subsection.2.1.2}}
@@ -17,4 +15,3 @@
 \backcite {Washington}{{17}{2.2.9}{subsection.2.2.9}}
 \backcite {Washington}{{17}{2}{figure.2.2}}
 \backcite {Washington}{{18}{2.2.9}{figure.2.2}}
-\backcite {GameProgrammingHeuristics}{{23}{4}{figure.4.4}}
