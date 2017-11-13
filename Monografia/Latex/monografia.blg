@@ -7,8 +7,9 @@ You're missing a field part---line 23 of file mono.bib
  : }
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--entry type for "TomTom" isn't style-file defined
+--line 169 of file mono.bib
 Warning--I didn't find a database entry for "Washington"
-Warning--I didn't find a database entry for "GameProgrammingHeuristics"
 Warning--campo year vazio ou faltando em CORDEAU
 +---------------------------------------------------------+
 | Estilo bibliográfico abntex2-alf.bst versão v-1.9.6           |

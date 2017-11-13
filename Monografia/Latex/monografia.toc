@@ -34,15 +34,17 @@
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
 \contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Metodologia}}{20}{chapter.4}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Implementa\IeC {\c c}\IeC {\~a}o}}{21}{chapter.5}
-\contentsline {section}{\numberline {5.1}O Projeto}{21}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Arquitetura}{21}{subsection.5.1.1}
-\contentsline {section}{\numberline {5.2}Organiza\IeC {\c c}\IeC {\~a}o}{21}{section.5.2}
-\contentsline {section}{\numberline {5.3}Funcionalidades}{21}{section.5.3}
-\contentsline {section}{\numberline {5.4}Testes}{21}{section.5.4}
+\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Implementa\IeC {\c c}\IeC {\~a}o}}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}O Projeto}{22}{section.5.1}
+\contentsline {section}{\numberline {5.2}Organiza\IeC {\c c}\IeC {\~a}o}{22}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}PathFinder}{22}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}PathFinder.Routes}{22}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}PathFinder.GeneticAlgorithm}{22}{subsection.5.2.3}
+\contentsline {section}{\numberline {5.3}Funcionalidades}{22}{section.5.3}
+\contentsline {section}{\numberline {5.4}Testes}{22}{section.5.4}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{22}{chapter.6}
-\contentsline {section}{\numberline {6.1}Trabalhos futuros}{22}{section.6.1}
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{23}{chapter.6}
+\contentsline {section}{\numberline {6.1}Trabalhos futuros}{23}{section.6.1}
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {Refer\^encias}}{23}{section*.7}
+\contentsline {chapter}{\uppercase {Refer\^encias}}{24}{section*.7}
