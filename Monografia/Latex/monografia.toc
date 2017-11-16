@@ -39,12 +39,18 @@
 \contentsline {section}{\numberline {5.2}Organiza\IeC {\c c}\IeC {\~a}o}{22}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}PathFinder}{22}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}PathFinder.Routes}{22}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}PathFinder.GeneticAlgorithm}{22}{subsection.5.2.3}
-\contentsline {section}{\numberline {5.3}Funcionalidades}{22}{section.5.3}
-\contentsline {section}{\numberline {5.4}Testes}{22}{section.5.4}
+\contentsline {subsection}{\numberline {5.2.3}PathFinder.GeneticAlgorithm}{23}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Abstraction}{23}{subsection.5.2.4}
+\contentsline {subsection}{\numberline {5.2.5}Core}{23}{subsection.5.2.5}
+\contentsline {subsection}{\numberline {5.2.6}Selection}{24}{subsection.5.2.6}
+\contentsline {subsection}{\numberline {5.2.7}Crossover}{24}{subsection.5.2.7}
+\contentsline {subsection}{\numberline {5.2.8}Mutation}{24}{subsection.5.2.8}
+\contentsline {subsection}{\numberline {5.2.9}Fitness}{24}{subsection.5.2.9}
+\contentsline {section}{\numberline {5.3}Funcionalidades}{25}{section.5.3}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{23}{chapter.6}
-\contentsline {section}{\numberline {6.1}Trabalhos futuros}{23}{section.6.1}
+\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclus\IeC {\~a}o}}{26}{chapter.6}
+\contentsline {section}{\numberline {6.1}Testes}{26}{section.6.1}
+\contentsline {section}{\numberline {6.2}Trabalhos futuros}{26}{section.6.2}
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\uppercase {Refer\^encias}}{24}{section*.7}
+\contentsline {chapter}{\uppercase {Refer\^encias}}{27}{section*.7}

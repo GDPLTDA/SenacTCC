@@ -26,8 +26,11 @@ Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos
  
 \section{O Projeto}
 O software é separado em três projetos, todos utilizando .Net Core 2.0 com a linguagem C\# no Visual Studio 2017 para plataforma Windows ou \**nix.
-O \textbf{PathFinder.Routes} nesse projeto estão os algoritmos de comunicação com o Google Maps e organização de rotas. 
+
+O \textbf{PathFinder.Routes} nesse projeto estão os algoritmos de comunicação com o Google Maps e organização de rotas.
+
 O \textbf{PathFinder.GeneticAlgorithm} nesse projeto estão as implementações para a utilização do algoritmo genético.
+
 O \textbf{PathFinder} projeto principal para inicialização do software e utiliza os dois outros projetos em sua implementação.
 
 \section{Organização}
@@ -43,9 +46,105 @@ Projeto de inicialização no modo console, todo progresso do software é exibid
 \textbf{TimeMeasure:} Configuração de registro/exibição do tempo de processamento.
 \subsection{PathFinder.Routes}
 
-\subsection{PathFinder.GeneticAlgorithm}
+Projeto de integração com o Google Mapas e classes de apoio do software.
 
+\textbf{GoogleMaps:} Classes de estrutura para serialização do Json de retorno da API do Google Maps.
+
+\textbf{MapPoint:} Classe com informações do ponto de destino com latitude, longitude e janela de tempo para a entrega.
+
+\textbf{Period:} Classe para a definição da janela de tempo.
+
+\textbf{Route:} Classe para definição da origem e destino de uma rota, contendo o tempo e a distância entra os pontos.
+
+\textbf{RouteMap:} Classe para a definição da rota completo e o armazém. A definição de cada caminho completo é controlado nessa classe. 
+
+\textbf{SearchRoute:} Classe para a integração com a API do Google maps.
+
+
+\subsection{PathFinder.GeneticAlgorithm}
+Neste projeto são definidos todas as implementações referentes ao algoritmo genético, pela complexidade do algoritmo ele possui uma estrutura própria de pastas para definições e configurações de injeção de dependência.
+
+\subsection{Abstraction}
+
+Nesta pasta estão todos os arquivos a nível de abstração das etapas do algoritmo genético.
+
+\textbf{ISelection}: Interface é responsável por abstrair os algoritmos de seleção.
+
+\textbf{IGenome}: Interface tem como funcionalidade abstrair a definição de genoma.
+
+\textbf{IFitness}: Interface tem como objetivo abstrair o calculo de fitness.
+
+\textbf{IMutate}: Interface tem como objetivo abstrair os operadores de mutação.
+
+\textbf{ICrossover}:  Interface tem como objetivo abstrair os operadores de cruzamento.
+
+\textbf{IRandom}: Interface tem como objetivo abstrair a implementação de geração de números aleatórios.
+
+\textbf{AbstractMutate}: Implementação base para operador de mutação.
+
+\textbf{AbstractCrossover}: Implementação base para operador de cruzamento.
+
+\subsection{Core}
+
+\textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
+
+\textbf{RandomAdapter}: Implementação responsável por gerar números aleatórios, implementa IRandom.
+
+\textbf{GASettings}: Arquivo responsável por carregar configuração estática de GA.
+
+\textbf{Genome}: Classe responsável por representar o genoma no algoritmo de GA, implementa a IGenome.
+
+\subsection{Selection}
+
+Nesta pasta estão todas as implementações dos algoritmos de seleção.
+
+\textbf{SelectionRandom}: Implementação de seleção de indivíduos aleatório.
+\textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
+
+\subsection{Crossover}
+
+Nesta pasta estão todas as implementações dos algoritmos de cruzamento.
+
+\textbf{CrossoverOBX}: Implementação do operador de cruzamento OBX.
+
+\textbf{CrossoverPBX}: Implementação do operador de cruzamento PBX.
+
+\textbf{CrossoverSimple}:  Implementação do operador de cruzamento simples.
+
+\subsection{Mutation}
+
+Nesta pasta estão todas as implementações dos algoritmos de mutação.
+
+\textbf{MutateBitwise}: Implementação do operador de cruzamento Bitwise.
+
+\textbf{MutateDIVM}: Implementação do operador de cruzamento DIVM.
+
+\textbf{MutateDM}: Implementação do operador de cruzamento DM.
+
+\textbf{MutateEM}: Implementação do operador de cruzamento EM.
+
+\textbf{MutateIM}: Implementação do operador de cruzamento IM.
+
+\textbf{MutateIVM}: Implementação do operador de cruzamento IVM.
+
+\textbf{MutateSM}: Implementação do operador de cruzamento SM.
+
+\subsection{Fitness}
+
+Nesta pasta estão todas as implementações dos algoritmos de fitness.
+
+\textbf{FitnessSmallPath}: Implementação do fitness que considera o menor caminho como a melhor solução.
+
+\textbf{FitnessTimePath}: Implementação do fitness que considera o menor caminho e o tempo, para chegar no destino dentro da janela de tempo como a melhor solução.
 
 \section{Funcionalidades}
+O software é composto por funcionalidade individuais que podem ser utilizadas separadamente se necessário e também entender cada uma, ajuda a entender o software por completo.
 
-\section{Testes}
+\textbf{Integração com a API do Google Maps:}
+Usando a classe SearchRoute do projeto PathFinder.Routes é possível procurar rotas e endereços do Google Maps e obter informação de coordenadas geográficas de um ponto usando o endereço, calcular rota entre dos dois usando o endereço ou com as coordenadas geográficas, obter um mapa estático de um ou vários pontos.
+
+
+
+
+
+
