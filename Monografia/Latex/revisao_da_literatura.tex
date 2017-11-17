@@ -75,9 +75,9 @@ As restrições \ref{eq:prvjt7}, \ref{eq:prvjt8} asseguram a viabilidade das rot
 
 Encontrar a solução ótima do PRVJT implica em obter simultaneamente a solução de vários problemas NP-difíceis, dentre os quais citam-se o \textit{Problema do Caixeiro Viajante} (PCV) e o \textit{Problema da Mochila}. Sendo assim, tal tarefa é também NP-difícil. Além disso, encontrar uma simples solução viável para o PRVJT dispondo de um conjunto limitado de veículos é NP-difícil no sentido forte \cite{Kohl}. Porém, uma solução inicial viável é trivial caso o número de veículos seja ilimitado, bastando atender cada consumidor com um veículo.
 
-Os atuais resultados encontrados na literatura referêntes ao PRVJT comprovam que os algoritmos exatos restringem-se à resolução de problemas-teste com tamanho reduzido e janelas de tempo apertadas. Embora hoje podemos resolver problemas com um tamanho que seja ligeiramente maior que o de alguns anos atrás, o crescimento da capacidade dos computadores e da eficiência dos algoritmos esta muito distante da curva exponencial representada por este problema. Pode-se dizer que os métodos exatos não são uma alternativa viável para situações onde a um número maior de consumidores, como ocorre na maioria dos casos reais. \cite{Chabrier}
+Os atuais resultados encontrados na literatura referentes ao PRVJT comprovam que os algoritmos exatos restringem-se à resolução de problemas-teste com tamanho reduzido e janelas de tempo apertadas. Embora hoje podemos resolver problemas com um tamanho que seja ligeiramente maior que o de alguns anos atrás, o crescimento da capacidade dos computadores e da eficiência dos algoritmos esta muito distante da curva exponencial representada por este problema. Pode-se dizer que os métodos exatos não são uma alternativa viável para situações onde a um número maior de consumidores, como ocorre na maioria dos casos reais. \cite{Chabrier}
 
-Abordagens heurísticas e algoritmos aproximativos também tem sido utilizadas na resolução do PRVJT. As Heurísticas buscam obter uma solução em tempo hábil. Este fato torna as estratégias heurísticas muito poderosas se comparadas com abordagens exatas, que focam exclusivamente na obtenção da solução ótima. Uma boa heurística deve ser capaz de encontrar soluções próximas da ótima, em tempo bem inferior ao necessário pelos métodos exatos. A qualidade da solução não deve variar demasiadamente ao aplica-la em diferentes ou ao mesmo problemas-teste. Até 2006, 45 do total de 56 problemas de Solomon tiveram uma solução ótima. Alguns casos foram gastos mais que cinco horas de processamento na resolução de algumas instancias, enquanto em outras puderam ser resolvidas em menos de um minuto. ~\cite{Jepsen}
+Abordagens heurísticas e algoritmos aproximativos também tem sido utilizadas na resolução do PRVJT. As Heurísticas buscam obter uma solução em tempo hábil. Este fato torna as estratégias heurísticas muito poderosas se comparadas com abordagens exatas, que focam exclusivamente na obtenção da solução ótima. Uma boa heurística deve ser capaz de encontrar soluções próximas da ótima, em tempo bem inferior ao necessário pelos métodos exatos. A qualidade da solução não deve variar demasiadamente ao aplicá-la em diferentes ou ao mesmo problemas-teste. Até 2006, 45 do total de 56 problemas de Solomon tiveram uma solução ótima. Alguns casos foram gastos mais que cinco horas de processamento na resolução de algumas instancias, enquanto em outras puderam ser resolvidas em menos de um minuto. ~\cite{Jepsen}
 
 Os métodos aproximativos vem ao encontro destas características. Um método aproximativo é uma heurística com garantia de qualidade no resultado. A melhor solução encontrada por um algoritmo de aproximação esta sempre a uma distancia percentual previamente definida da solução ótima desconhecida. A "distancia do ótimo" é particular de cada algoritmo, podendo até não ser muito relevante em termos práticos. Um exemplo bem conhecido é o algoritmo PRIM, para árvore geradora mínima, que é capaz de oferecer uma solução viável para o PCV, que é no máximo duas vezes o ótimo em distancia total percorrida \cite{Alvarenga}.
 
@@ -85,10 +85,19 @@ Dado essa complexidade, resolver esse problema utilizando de abordagens purament
 
 \subsection{Heurísticas}
 
-No contexto de otimização, heurísticas são procedimentos de busca que visam a obtenção de soluções de qualidade satisfatória em um tempo computacional aceitável. Tais procedimentos, no entanto, não garantem encontrar a solução ótima nem são capazes de mensurar o quão próxima a solução obtida está da ótima. Sera enumerado as ideias centrais de algumas heurísticas construtivas e de refinamento disponíveis na literatura.
-
+Heurísticas são procedimentos de busca que visam a obtenção de soluções com uma qualidade satisfatória em um tempo computacional aceitável. Porem tais procedimentos não garantem encontrar a solução ótima nem são capazes de mensurar o quão próxima a solução obtida está da ótima. Sera enumerado as ideias centrais de algumas heurísticas construtivas e de refinamento disponíveis na literatura.
 
 \subsubsection{Construção de rotas}
+
+Um dos trabalhos mais antigos sobre heurística para construção de rotas para PRVJT proposto por Baker \cite{Baker} em 1989, Foi criada a partir da ideia da heurística das economias de Clarke e Write \cite{Clarke} que foi proposta para criação de soluções para o PRV. O algoritmo funciona primeiramente criando uma rota partindo do depósito para cada cliente \textit{i}, para em seguida varias iterações ocorrerem, para cada o algoritmo calcula quais duas rotas que podem ser combinadas de forma a gerar a maior economia possível.
+
+Outra heurística proposta por \cite{VANLANDEGHEM} também baseada na heurística das economias é uma heurística de dois critérios, nesta as janelas de tempo são utilizadas para mensurar o quanto uma ligação entre dois clientes é boa em termos de tempo.
+
+De forma semelhante \cite{Solomon} desenvolveu um algoritmo baseado na ideia na heurística das economias para resolução do PRVJT. Devido a existência de janelas de tempo, deve-se considerar também a orientação da tora. Também deve-se checar as violações de janelas de tempo quando mais de uma rota é combinada. Ela de forma igual a heurística das Economias original possuem complexidade \(O^2 log n^2\).
+Nesta heurística toda rota é inicializada encontrando o cliente mais próximo ao depósito que ainda não pertença a nenhuma rota. A cada iteração subsequente o cliente mais próximo ao último adicionado à rota é considerado para inserção ao final da rota que está sendo gerado. Quando a busca falha, uma nova rota é inicializada.
+
+
+
 \subsubsection{Aprimoramento de rotas}
 \subsubsection{Estruturas de vizinhança}
 
@@ -104,10 +113,10 @@ AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenient
 Inspirado na maneira como o seleção natural explica o processo de evolução das espécies, Holland \cite{Holland1975} decompôs o funcionamento dos AG em sete etapas, essa são \textit{inicialização}, \textit{avaliação}, \textit{seleção}, \textit{cruzamento}, \textit{mutação}, \textit{atualização} e  \textit{finalização} conforme a Figura \ref{fig:EstruturaAG}. 
 
 \begin{minipage}{\linewidth}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/genetico1.png}}
-	\captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
-	\label{fig:EstruturaAG}
+    \makebox[\linewidth]{
+        \includegraphics[keepaspectratio=true,scale=0.45]{ibagens/genetico1.png}}
+    \captionof{figure}{Estrutura de um AG \cite{DiogoCLucas} }
+    \label{fig:EstruturaAG}
 \end{minipage}
 
 
@@ -185,22 +194,22 @@ Apesar de toda representação por parte do algoritmo ser baseada única e exclu
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \begin{table}[h]
-	\centering
+    \centering
 \vspace{0.5cm}
 \renewcommand{\arraystretch}{2.0}
 \caption{Exemplos de genótipos e fenótipos correspondentes em alguns tipos de problemas \cite{DiogoCLucas}}
-	\begin{tabular}{|C{4cm}|C{3.5cm}|C{7cm}|}
-		\hline
-		\textbf{Problema} & \textbf{Genótipo} & \textbf{ Fenótipo} \\
-		\hline                  
-		Otimização numérica & 0010101001110101 & 10869 \\
-		\hline
-		Caixeiro viajante & CGDEHABF & Comece pela cidade C, depois passe pelas cidades G, D, E, H, A, B e termine em F \\
-		\hline
-		Regras de aprendizado para agentes & C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & Se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)\\
-		\hline
-	\end{tabular}
-\end{table}	
+    \begin{tabular}{|C{4cm}|C{3.5cm}|C{7cm}|}
+        \hline
+        \textbf{Problema} & \textbf{Genótipo} & \textbf{ Fenótipo} \\
+        \hline                  
+        Otimização numérica & 0010101001110101 & 10869 \\
+        \hline
+        Caixeiro viajante & CGDEHABF & Comece pela cidade C, depois passe pelas cidades G, D, E, H, A, B e termine em F \\
+        \hline
+        Regras de aprendizado para agentes & C$_1$R$_4$C$_2$R$_6$C$_4$R$_1$ & Se condição 1 (C$_1$) execute regra 4 (R$_4$), se (C$_2$) execute (R$_6$), se (C$_4$) execute (R$_1$)\\
+        \hline
+    \end{tabular}
+\end{table} 
 
 Para cada indivíduo é calculado o seu grau de adaptação, a partir de uma função objetivo, comumente denotada como na formula \ref{eq:solve0}.
 
@@ -215,7 +224,7 @@ Também é calculado o grau de adaptação do indivíduo relativo aos outros mem
 
 
 \begin{equation} \label{eq:solve1}
-	f_A(x) = \frac{f_O(x)}{ \sum_{i=1}^{n}  f_O(i)  }  
+    f_A(x) = \frac{f_O(x)}{ \sum_{i=1}^{n}  f_O(i)  }  
 \end{equation}
 
 
@@ -265,10 +274,10 @@ V são todos os vértices que podem ser visitados e é composto pelo subconjunto
 O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as m rotas de veículos começam e terminam na base V$_0$, Tem exatamente m rotas, cada vértice de V pertence a no máximo uma rota, cada vértice de T pertence a exatamente uma rota, com exceção a base, cada vértice de W deve ter uma rota que passa por ele e em uma distancia C de um vértice V visitado, O modulo da diferença entre o número de vértices de diferentes rotas não pode exceder um determinado valor R. A Figura \ref{fig:GrafoVUW} mostra o grafo da relação de V com W.
 
 \begin{minipage}{\linewidth}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/grafoMPRC.png}}
-	\captionof{figure}{Exemplo de gráfo não direcionado para V U W. \cite{Washington} }
-	\label{fig:GrafoVUW}
+    \makebox[\linewidth]{
+        \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/grafoMPRC.png}}
+    \captionof{figure}{Exemplo de gráfo não direcionado para V U W. \cite{Washington} }
+    \label{fig:GrafoVUW}
 \end{minipage}
 
 Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solução; O AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
