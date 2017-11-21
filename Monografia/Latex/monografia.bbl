@@ -13,6 +13,14 @@ Universidade Federal de Minas Gerais, 2005.
 Dispon{\'\i}vel em:
   \url{http://www.bibliotecadigital.ufmg.br/dspace/bitstream/handle/1843/RVMR-6EAKH8/guilherme\_bastos.pdf?sequence=1}.}
 
+\bibitem[Baker e Schaffer 1986]{Baker}
+\abntrefinfo{Baker e Schaffer}{BAKER; SCHAFFER}{1986}
+{BAKER, E.~K.; SCHAFFER, J.~R. Solution improvement heuristics for the vehicle
+  routing and scheduling problem with time window constraints.
+\emph{American Journal of Mathematical and Management Sciences}, Taylor &
+  Francis, v.~6, n.~3-4, p. 261--300, 1986.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1080/01966324.1986.10737197}.}
+
 \bibitem[Chabrier 2006]{Chabrier}
 \abntrefinfo{Chabrier}{CHABRIER}{2006}
 {CHABRIER, A. Vehicle routing problem with elementary shortest path based
@@ -21,6 +29,13 @@ Dispon{\'\i}vel em:
   p. 2972--2990, out. 2006.
 ISSN 0305-0548.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1016/j.cor.2005.02.029}.}
+
+\bibitem[Clarke e Wright 1964]{Clarke}
+\abntrefinfo{Clarke e Wright}{CLARKE; WRIGHT}{1964}
+{CLARKE, G.; WRIGHT, J.~W. Scheduling of vehicles from a central depot to a
+  number of delivery points.
+\emph{Operations Research}, v.~12, n.~4, p. 568--581, 1964.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1287/opre.12.4.568}.}
 
 \bibitem[Cordeau et al.]{CORDEAU}
 \abntrefinfo{Cordeau et al.}{CORDEAU et al.}{}
@@ -54,6 +69,16 @@ Dispon{\'\i}vel em:
 Richard Petersens Plads, Building 321, 2800 Kgs. Lyngby, p.~234, 1995.
 Dispon{\'\i}vel em: \url{http://www2.imm.dtu.dk/pubdb/p.php?2100}.}
 
+\bibitem[Landeghem 1988]{VANLANDEGHEM}
+\abntrefinfo{Landeghem}{LANDEGHEM}{1988}
+{LANDEGHEM, H.~V. A bi-criteria heuristic for the vehicle routing problem with
+  time windows.
+\emph{European Journal of Operational Research}, v.~36, n.~2, p. 217 -- 226,
+  1988.
+ISSN 0377-2217.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/0377221788904286}.}
+
 \bibitem[Lucas 2002]{DiogoCLucas}
 \abntrefinfo{Lucas}{LUCAS}{2002}
 {LUCAS, D.~C. Algoritmos genéticos: uma introdução.
@@ -65,6 +90,13 @@ Dispon{\'\i}vel em:
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
 {RODRIGUES, P. R.~A. \emph{Introdução aos sistemas de transporte do Brasil e
   à logística internacional}. [S.l.: s.n.], 2007.}
+
+\bibitem[Solomon 1987]{Solomon}
+\abntrefinfo{Solomon}{SOLOMON}{1987}
+{SOLOMON, M.~M. Algorithms for the vehicle routing and scheduling problems with
+  time window constraints.
+\emph{Operations Research}, v.~35, n.~2, p. 254--265, 1987.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1287/opre.35.2.254}.}
 
 \bibitem[TomTom International BV 2017]{TomTom}
 \abntrefinfo{TomTom International BV}{TOMTOM INTERNATIONAL BV}{2017}
