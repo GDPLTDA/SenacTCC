@@ -20,7 +20,21 @@ O fluxograma a baixo demostra o funcionamento do software.
     \label{fig:FluxoSoftare}
 \end{minipage}
 
-Nos testes foram pré-definidas rotas base, para previnir possíveis problemas sera ignorado o transito atual. Ja que o mesmo altera dependendo das condições do clima ou horário do dia. Então utilizando o Google Maps, um cache inicial foi preparado e o software utiliza simulando uma buscar ao Google Maps, com isso, a informação é obtida mais rapidamente e sempre fixa para garantir a resposta pre-determinada do teste.
+O GA considera como um individuo um percurso inteiro, ponto do estoque, e todos os destinos.Uma rota aleatória é calculada para cada individuo como população inicial.
+
+A mutação e o cruzamento alterna os pontos de destino, mantendo o estoque sempre fixo.
+A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entra os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
+
+O GA foi configurado com o Numero de Gerações em 200, tamanho da População em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
+
+Os Testes foram configurados com um numero de 5 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 3 tipos de cruzamento, sendo Simples,PBX e OBX.
+Considerando o transito enviado pelo Google Mapas e ignorando, para poder demostrar o impacto do transito nos caminhos calculados.
+
+Tudo será rodado 10 vezes e será retirada uma média do valor de aptidão, por que, cada vez que roda o GA a resposta da solução pode mudar, por ele não ser determinístico.
+
+E uma base pré-definidas rotas, para prevenir possíveis problemas sera ignorado o transito atual. Ja que o mesmo altera dependendo das condições do clima ou horário do dia. Então utilizando o Google Maps, um cache inicial foi preparado e o software utiliza simulando uma buscar ao Google Maps, com isso, a informação é obtida mais rapidamente e sempre fixa para garantir a resposta pré-determinada do teste.
+Os parâmetros utilizados são
+
 
 \chapter{Implementação}
  
