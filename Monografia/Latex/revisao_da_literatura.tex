@@ -96,6 +96,20 @@ Outra heurística proposta por \cite{VANLANDEGHEM} também baseada na heurístic
 De forma semelhante \cite{Solomon} desenvolveu um algoritmo baseado na ideia na heurística das economias para resolução do PRVJT. Devido a existência de janelas de tempo, deve-se considerar também a orientação da tora. Também deve-se checar as violações de janelas de tempo quando mais de uma rota é combinada. Ela de forma igual a heurística das Economias original possuem complexidade \(O^2 log n^2\).
 Nesta heurística toda rota é inicializada encontrando o cliente mais próximo ao depósito que ainda não pertença a nenhuma rota. A cada iteração subsequente o cliente mais próximo ao último adicionado à rota é considerado para inserção ao final da rota que está sendo gerado. Quando a busca falha, uma nova rota é inicializada.
 
+As heurísticas de \cite{VANLANDEGHEM} e \cite{Solomon} de forma geral conseguem encontrar uma solução rapidamente. Porem as soluções que suas heurísticas encontram são geralmente de baixa qualidade. Geralmente a mais de 10\% da ótima ~\cite{Sherbeny}.
+
+Criar uma rota por vez  traz uma desvantagem, usualmente as rotas geradas por ultimo são de baixa qualidade uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
+
+É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon.  Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir de desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
+
+Antes  e  Derigs \cite{Derigs} evoluem as ideias clássicas de inserção. No seu trabalho, todo cliente sem rota designada recebe um custo de inserção de cada uma das rotas. A definição
+desse custo é semelhante ao adotado nas heurísticas de Solomon.  Cada cliente sem rota
+envia uma proposta a rota com melhor oferta, cada rota aceita a melhor proposta dos
+clientes com menor número de alternativas.  Vale observar que mais clientes podem ser
+inseridos em cada iteração.  Se houver alguma violação nas rotas,  um certo numero de
+veículos é removido e o processo é reiniciado. 
+
+Os resultados do trabalhos de Antes e Derigs \cite{Derigs} são comparados aqueles apresentados por Potvin e Rousseau~\cite{Rousseau}. Segundo os autores, construir rotas paralelamente produz soluções de maior qualidade que construir rotas uma a uma.
 
 
 \subsubsection{Aprimoramento de rotas}

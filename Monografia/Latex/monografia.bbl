@@ -13,6 +13,12 @@ Universidade Federal de Minas Gerais, 2005.
 Dispon{\'\i}vel em:
   \url{http://www.bibliotecadigital.ufmg.br/dspace/bitstream/handle/1843/RVMR-6EAKH8/guilherme\_bastos.pdf?sequence=1}.}
 
+\bibitem[Antes e Derigs 1997]{Derigs}
+\abntrefinfo{Antes e Derigs}{ANTES; DERIGS}{1997}
+{ANTES, J.; DERIGS, U. A new parallel tour construction algorithm for the
+  vehicle routing problem with time windows.
+12 1997.}
+
 \bibitem[Baker e Schaffer 1986]{Baker}
 \abntrefinfo{Baker e Schaffer}{BAKER; SCHAFFER}{1986}
 {BAKER, E.~K.; SCHAFFER, J.~R. Solution improvement heuristics for the vehicle
@@ -50,6 +56,16 @@ Dispon{\'\i}vel em:
 {DIAS, M. A.~P. \emph{Administração de materiais: uma abordagem logística.}
   [S.l.: s.n.], 2010.}
 
+\bibitem[El-Sherbeny 2010]{Sherbeny}
+\abntrefinfo{El-Sherbeny}{EL-SHERBENY}{2010}
+{EL-SHERBENY, N.~A. Vehicle routing with time windows: An overview of exact,
+  heuristic and metaheuristic methods.
+\emph{Journal of King Saud University - Science}, v.~22, n.~3, p. 123 -- 131,
+  2010.
+ISSN 1018-3647.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/S1018364710000297}.}
+
 \bibitem[Holland 1975]{Holland1975}
 \abntrefinfo{Holland}{HOLLAND}{1975}
 {HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
@@ -85,6 +101,16 @@ Dispon{\'\i}vel em:
 Universidade Federal do Rio Grande do Sul, 2002.
 Dispon{\'\i}vel em:
   \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
+
+\bibitem[Potvin e Rousseau 1993]{Rousseau}
+\abntrefinfo{Potvin e Rousseau}{POTVIN; ROUSSEAU}{1993}
+{POTVIN, J.-Y.; ROUSSEAU, J.-M. A parallel route building algorithm for the
+  vehicle routing and scheduling problem with time windows.
+\emph{European Journal of Operational Research}, v.~66, n.~3, p. 331 -- 340,
+  1993.
+ISSN 0377-2217.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/0377221793902218}.}
 
 \bibitem[Rodrigues 2007]{RODRIGUES}
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
