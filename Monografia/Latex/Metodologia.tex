@@ -1,15 +1,15 @@
 \chapter{Metodologia}
-Um software sera desenvolvido com objetivo de demostrar que serve para a solução do problema proposto, que é definir caminhos viaveis entre diferentes rotas em situações onde é possível encontrar o caminho, e caso nao seja possivel encontrar um caminho viavel dentro das restrições impostas sera comunicado ao usuario a impossibilidade de encontrar uma solução viavel.
+Um software sera desenvolvido com objetivo de demostrar que serve para a solução do problema proposto, que é definir caminhos viáveis entre diferentes rotas em situações onde é possível encontrar o caminho, e caso não seja possível encontrar um caminho viável dentro das restrições impostas sera comunicado ao usuário a impossibilidade de encontrar uma solução viável.
 
 Utilizando a API do Google Maps como fonte de dados, informações reais de distância, tempo médio e localização são utilizadas para uma simulação mais próxima de uma situação real.
 
 Por se tratar de entregas de pequenos porte, os testes foram criados com coordenadas a nível de cidade, São Paulo é a cidade para os testes, por se tratar de uma cidade com um alto índice de transito segundo o TomTom Traffic Index \cite{TomTom}, a menor rota pode não ser a melhor escolha para aquele horário do dia.
 
-Todos os entregadores partem de uma única origem que chamamos de deposito, antes de começar as entregas, é calculado uma rota geral, ela é dividida de forma a encontrar rotas possível para cada entrega, e dividir para um proximo entregador caso nao seja possivel realizar as entregas com a atual quantidade, se o limite definido pelo usuario de entregadores for ultrapassado, um aviso será emitido recomendando que deixe para o próximo dia as entregas mais distantes.
+Todos os entregadores partem de uma única origem que chamamos de deposito, antes de começar as entregas, é calculado uma rota geral, ela é dividida de forma a encontrar rotas possível para cada entrega, e dividir para um próximo entregador caso não seja possível realizar as entregas com a atual quantidade, se o limite definido pelo usuário de entregadores for ultrapassado, um aviso será emitido recomendando que deixe para o próximo dia as entregas mais distantes.
 
 Cada destino tem um período permitido para entrega, e cada entrega demorar no máximo 5 minutos para ser descarregada. Depois que uma entrega é feita, o software recalcula o próximo destino com base no transito atual e o período para entregar.
 
-Se caso não for mais possível entregar no horário por motivos de piora de transito, um alerta será emitido. Depois que o entregador terminar todas suas entregas, o software continua auxiliando os outros entregadores que também nao tenham terminado duas entregas, até que todas as entregas sejam concluidas.
+Se caso não for mais possível entregar no horário por motivos de piora de transito, um alerta será emitido. Depois que o entregador terminar todas suas entregas, o software continua auxiliando os outros entregadores que também não tenham terminado duas entregas, até que todas as entregas sejam concluídas.
 
 O fluxograma a baixo demostra o funcionamento do software.
 
@@ -50,7 +50,7 @@ O \textbf{PathFinder.GeneticAlgorithm} nesse projeto estão as implementações 
 O \textbf{PathFinder} projeto principal para inicialização do software e utiliza os dois outros projetos em sua implementação.
 
 \section{Organização}
-Os projetos são organizados utilizando o padrão do visual studio chamado de Solution.
+Os projetos são organizados utilizando o padrão do Visual Studio chamado de Solution.
 
 \subsection{PathFinder}
 Projeto de inicialização no modo console, todo progresso do software é exibido em texto.
@@ -113,7 +113,6 @@ Nesta pasta estão todos os arquivos a nível de abstração das etapas do algor
 
 Nesta pasta estão todas as implementações dos algoritmos de seleção.
 
-\textbf{SelectionRandom}: Implementação de seleção de indivíduos aleatório.
 \textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
 
 \subsection{Crossover}
@@ -147,8 +146,6 @@ Nesta pasta estão todas as implementações dos algoritmos de mutação.
 \subsection{Fitness}
 
 Nesta pasta estão todas as implementações dos algoritmos de fitness.
-
-\textbf{FitnessSmallPath}: Implementação do fitness que considera o menor caminho como a melhor solução.
 
 \textbf{FitnessTimePath}: Implementação do fitness que considera o menor caminho e o tempo, para chegar no destino dentro da janela de tempo como a melhor solução.
 
