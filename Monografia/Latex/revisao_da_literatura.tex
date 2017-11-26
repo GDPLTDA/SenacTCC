@@ -113,6 +113,12 @@ Os resultados do trabalhos de Antes e Derigs \cite{Derigs} são comparados aquel
 
 
 \subsubsection{Aprimoramento de rotas}
+
+Quase todas as heurísticas de melhoria de rotas tem a noção de vizinhança. A vizinhança de uma solução S é um conjunto de soluções N(s) que podem ser geradas pela aplicação de uma única alteração denominada \textit{movimento} na solução S.
+
+Checar algumas ou todas as soluções de uma vizinhança pode revelar soluções melhores em relação a uma determinada função objetivo. Esta ideia pode ser repetida partindo-se da melhor solução obtida até o momento. Se em algum momento nenhuma solução melhor for encontrada em uma vizinhança, um ótimo local foi obtido.  Trata-se definitivamente de um ótimo local, por em este pode eventualmente ser um ótimo global.  A este algoritmo da-se o nome de Hill Climbing.~\cite{Gendreau}.
+Na próxima seção serão introduzidas varias estruturas de vizinhança empregadas na literatura para melhorar soluções do PRVJT. Em seguida serão descritos alguns dos algoritmos que as utilizam.
+
 \subsubsection{Estruturas de vizinhança}
 
 \subsection{Metaheurísticas}
