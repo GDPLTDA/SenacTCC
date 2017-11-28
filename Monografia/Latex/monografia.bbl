@@ -27,6 +27,14 @@ Dispon{\'\i}vel em:
   p. 261--300, 1986.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1080/01966324.1986.10737197}.}
 
+\bibitem[Bräysy e Gendreau 2005]{Gendreau}
+\abntrefinfo{Bräysy e Gendreau}{BRäYSY; GENDREAU}{2005}
+{BRäYSY, O.; GENDREAU, M. Vehicle routing problem with time windows, part i:
+  Route construction and local search algorithms.
+\emph{Transportation Science}, v.~39, n.~1, p. 104--118, 2005.
+Dispon{\'\i}vel em:
+  \url{https://pubsonline.informs.org/doi/abs/10.1287/trsc.1030.0056}.}
+
 \bibitem[Chabrier 2006]{Chabrier}
 \abntrefinfo{Chabrier}{CHABRIER}{2006}
 {CHABRIER, A. Vehicle routing problem with elementary shortest path based

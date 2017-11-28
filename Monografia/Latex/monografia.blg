@@ -2,28 +2,8 @@ This is BibTeX, Version 0.99dThe top-level auxiliary file: monografia.aux
 The style file: abntex2-alf.bst
 Database file #1: abntex2-options.bib
 Database file #2: mono.bib
-I was expecting an "="---line 2 of file mono.bib
- : 
- : /*     title={}, */
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting an "="---line 10 of file mono.bib
- : 
- : /*     title={}, */
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting an "="---line 19 of file mono.bib
- : 
- : /*     organization = "", */
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
-I was expecting an "="---line 26 of file mono.bib
- : 
- : /*     author = "{}", */
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--entry type for "TomTom" isn't style-file defined
---line 169 of file mono.bib
+--line 138 of file mono.bib
 Warning--I didn't find a database entry for "Washington"
 Warning--campo year vazio ou faltando em CORDEAU
 +---------------------------------------------------------+
@@ -31,4 +11,4 @@ Warning--campo year vazio ou faltando em CORDEAU
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-(There were 4 error messages)
+(There were 3 warnings)
