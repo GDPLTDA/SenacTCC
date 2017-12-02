@@ -1,9 +1,17 @@
 \chapter{Conclusão}
+Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, futuras melhorias e os resultados encontrados.
 
 \section{Testes}
+Os testes foram gerados de forma automatizada para todos os parâmetros possíveis. A primeira etapa para a definição do que precisa ser testado foi a identificação de possíveis situações que o software não teria como dar uma resposta, ou seja, suas limitações. Identificamos 3 possíveis limitações ao rodar o software:  
+
+\textbf{Não é possível entregar a tempo}: Quando as rotas são distribuídas aos entregadores, é possível aparecer uma situação onde a distribuição de rotas encontra uma rota que não é possível entregar no horário limite, então a roteiro não é possível com o numero de entregadores ou o tempo de locomoção passa do horário limite.
+
+\textbf{Limite de Entregadores:} Um dos parâmetros iniciais é o numero de entregadores para realizar o roteiro, na distribuição de rotas se esse numero for excedido o rodeiro não é possível.
+
+\textbf{Tempo limite de entrega excedido:} Depois que as rotas estão distribuídas entre os entregadores, a rota de cada entregador é recalcula, é possível que o transito fique pior depois que o entregador começou a entregar, fazendo com que o tempo limite seja excedido.
 
 \subsection{Roteiros dos Testes}
-
+Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. As listas de endereços podem ser vista a baixo:
 
 \begin{table}[h]
 	\centering
@@ -23,7 +31,7 @@
 	\end{tabular}
 \end{table}
 
-\begin{table}[]
+\begin{table}[h]
 	\centering
 	\caption{Roteiro 2}
 	\label{Roteiro2}
@@ -44,5 +52,6 @@
 	\end{tabular}
 \end{table}
 
+\subsection{Resultados}
 
 \section{Trabalhos futuros}
