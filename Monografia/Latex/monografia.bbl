@@ -110,6 +110,16 @@ Universidade Federal do Rio Grande do Sul, 2002.
 Dispon{\'\i}vel em:
   \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
 
+\bibitem[Potvin e Robillard 1995]{Potvin}
+\abntrefinfo{Potvin e Robillard}{POTVIN; ROBILLARD}{1995}
+{POTVIN, J.-Y.; ROBILLARD, C. Clustering for vehicle routing with a competitive
+  neural network.
+\emph{Neurocomputing}, v.~8, n.~2, p. 125 -- 139, 1995.
+ISSN 0925-2312.
+Optimization and Combinatorics, Part II.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/092523129400012H}.}
+
 \bibitem[Potvin e Rousseau 1993]{Rousseau}
 \abntrefinfo{Potvin e Rousseau}{POTVIN; ROUSSEAU}{1993}
 {POTVIN, J.-Y.; ROUSSEAU, J.-M. A parallel route building algorithm for the
