@@ -44,6 +44,14 @@ Dispon{\'\i}vel em:
 ISSN 0305-0548.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1016/j.cor.2005.02.029}.}
 
+\bibitem[Christofides e Beasley 1984]{Christofides}
+\abntrefinfo{Christofides e Beasley}{CHRISTOFIDES; BEASLEY}{1984}
+{CHRISTOFIDES, N.; BEASLEY, J.~E. The period routing problem.
+\emph{Networks}, Wiley Subscription Services, Inc., A Wiley Company, v.~14,
+  n.~2, p. 237--256, 1984.
+ISSN 1097-0037.
+Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1002/net.3230140205}.}
+
 \bibitem[Clarke e Wright 1964]{Clarke}
 \abntrefinfo{Clarke e Wright}{CLARKE; WRIGHT}{1964}
 {CLARKE, G.; WRIGHT, J.~W. Scheduling of vehicles from a central depot to a
@@ -110,6 +118,14 @@ Universidade Federal do Rio Grande do Sul, 2002.
 Dispon{\'\i}vel em:
   \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
 
+\bibitem[Osman 1993]{Osman}
+\abntrefinfo{Osman}{OSMAN}{1993}
+{OSMAN, I.~H. Metastrategy simulated annealing and tabu search algorithms for
+  the vehicle routing problem.
+\emph{Annals of Operations Research}, v.~41, n.~4, p. 421--451, Dec 1993.
+ISSN 1572-9338.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1007/BF02023004}.}
+
 \bibitem[Potvin e Robillard 1995]{Potvin}
 \abntrefinfo{Potvin e Robillard}{POTVIN; ROBILLARD}{1995}
 {POTVIN, J.-Y.; ROBILLARD, C. Clustering for vehicle routing with a competitive
@@ -134,6 +150,14 @@ Dispon{\'\i}vel em:
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
 {RODRIGUES, P. R.~A. \emph{Introdução aos sistemas de transporte do Brasil e
   à logística internacional}. [S.l.: s.n.], 2007.}
+
+\bibitem[Schulze e Fahle 1999]{Schulze}
+\abntrefinfo{Schulze e Fahle}{SCHULZE; FAHLE}{1999}
+{SCHULZE, J.; FAHLE, T. A parallel algorithm for the vehicle routing problem
+  with time window constraints.
+\emph{Annals of Operations Research}, v.~86, n.~0, p. 585--607, Jan 1999.
+ISSN 1572-9338.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1023/A:1018948011707}.}
 
 \bibitem[Solomon 1987]{Solomon}
 \abntrefinfo{Solomon}{SOLOMON}{1987}
