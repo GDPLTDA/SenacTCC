@@ -131,33 +131,29 @@ Para comparativo foi utilizado os diferentes tipos de mutação e cruzamentos, d
 
 \begin{table}[h]
 	\centering
-	\caption{Pontos Turísticos de São Paulo}
-	\label{Resultados}
-	\begin{tabular}{C{3cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
-		\rowcolor[HTML]{C0C0C0} 
-		\textbf{Extras.txt}         & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
-		\cellcolor[HTML]{EFEFEF}OBX & 109560      & 109560        & 109560      & 109560      & 109560       & 109560      \\
-		\cellcolor[HTML]{EFEFEF}PBX & 109560      & 109560        & 109560      & 109560      & 109560       & 109560      \\
-		&             &               &             &             &              &             \\
-		\rowcolor[HTML]{C0C0C0} 
-		\textbf{MacDonalts.txt}     & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
-		\cellcolor[HTML]{EFEFEF}OBX & 43320       & 43320         & 43320       & 43320       & 43320        & 43320       \\
-		\cellcolor[HTML]{EFEFEF}PBX & 43320       & 43320         & 43320       & 43320       & 43320        & 43320       \\
-		&             &               &             &             &              &             \\
-		\rowcolor[HTML]{C0C0C0} 
-		\textbf{Senacs.txt}         & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
-		\cellcolor[HTML]{EFEFEF}OBX & 311876      & 311876        & 311876      & 311876      & 311876       & 311876      \\
-		\cellcolor[HTML]{EFEFEF}PBX & 311876      & 311876        & 311876      & 311876      & 311876       & 311876      \\
-		&             &               &             &             &              &             \\
-		\rowcolor[HTML]{C0C0C0} 
-		\textbf{Uninoves.txt}       & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
-		\cellcolor[HTML]{EFEFEF}OBX & 190656      & 190656        & 190656      & 190656      & 190656       & 190656      \\
-		\cellcolor[HTML]{EFEFEF}PBX & 190656      & 190656        & 190656      & 190656      & 190656       & 190656      \\
-		&             &               &             &             &              &             \\
-		\rowcolor[HTML]{C0C0C0} 
-		\textbf{Turisticos.txt}     & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
-		\cellcolor[HTML]{EFEFEF}OBX & 84573       & 84573         & 84573       & 84573       & 84573        & 84573       \\
-		\cellcolor[HTML]{EFEFEF}PBX & 84573       & 84573         & 84573       & 84573       & 84573        & 84573      
+	\caption{Comparação dos Cruzamentos e Mutações}
+	\label{Comparacao}
+	\begin{tabular}{C{2.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}C{1.5cm}}
+		\hline
+		\textbf{Extras.txt}               & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \multicolumn{1}{l|}{\textbf{SM}} \\ \hline
+		\multicolumn{1}{l|}{\textbf{OBX}} & 109560      & 109560        & 109560      & 109560      & 109560       & 109560                           \\
+		\multicolumn{1}{l|}{\textbf{PBX}} & 109560      & 109560        & 109560      & 109560      & 109560       & 109560                           \\
+		&             &               &             &             &              &                                  \\ \hline
+		\textbf{MacDonalts.txt}           & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM}                      \\ \hline
+		\multicolumn{1}{l|}{\textbf{OBX}} & 43320       & 43320         & 43320       & 43320       & 43320        & 43320                            \\
+		\multicolumn{1}{l|}{\textbf{PBX}} & 43320       & 43320         & 43320       & 43320       & 43320        & 43320                            \\
+		&             &               &             &             &              &                                  \\ \hline
+		\textbf{Senacs.txt}               & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM}                      \\ \hline
+		\multicolumn{1}{l|}{\textbf{OBX}} & 311876      & 311876        & 311876      & 311876      & 311876       & 311876                           \\
+		\multicolumn{1}{l|}{\textbf{PBX}} & 311876      & 311876        & 311876      & 311876      & 311876       & 311876                           \\
+		\textbf{}                         &             &               &             &             &              &                                  \\ \hline
+		\textbf{Uninoves.txt}             & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM}                      \\ \hline
+		\multicolumn{1}{l|}{\textbf{OBX}} & 190656      & 190656        & 190656      & 190656      & 190656       & 190656                           \\
+		\multicolumn{1}{l|}{\textbf{PBX}} & 190656      & 190656        & 190656      & 190656      & 190656       & 190656                           \\
+		\textbf{}                         &             &               &             &             &              &                                  \\ \hline
+		\textbf{Turisticos.txt}           & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM}                      \\ \hline
+		\multicolumn{1}{l|}{\textbf{OBX}} & 84573       & 84573         & 84573       & 84573       & 84573        & 84573                            \\
+		\multicolumn{1}{l|}{\textbf{PBX}} & 84573       & 84573         & 84573       & 84573       & 84573        & 84573                           
 	\end{tabular}
 \end{table}
 
