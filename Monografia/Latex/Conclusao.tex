@@ -123,15 +123,16 @@ O teste da Tabela \ref{Roteiro3} simula a situação de 1 turista hospedado no H
 
 \section{Resultados}
 
-O software se mostrou eficiente na organização do roteiro, identificando padrões não muito visíveis entre todos os destinos. O Google Maps ajuda na definição da rota por entregar o transito médio da rota fazendo com que o caminho escolhido pelo software fique mais próximo de uma situação real.
+O software se mostrou eficiente na organização do roteiro, identificando padrões não muito visíveis entre todos os destinos. O Google Maps ajuda na definição da rota por entregar o transito médio da rota fazendo com que o caminho escolhido pelo software fique mais próximo de uma situação real. O GA ajuda na escolhas das rotas por exemplo tentar minimizar o tempo e a distância, mesmo podendo demorar para encontrar uma solução ótima se o numero de gerações for muito alto, o tamanho da população ou numero de rotas. 
 
-Para comparativo foi utilizado os diferentes tipo de mutação e cruzamentos de forma a identificar uma melhor combinação para ser utilizada no problema. A tabela abaixo estão os resultados encontrados:
+Utilizando um numero baixo de destinos o processo de recalculo de rotas para cada vez que chegar em um  destino, se mostra útil para identificar mudanças no transito e ainda chegar no horário proposto. Em casos que é preciso calcular para muitos destinos,é mais recomendado somente utilizar para uma divisão de tarefas ou pré-analise do roteiro, por tornar a analise muito demora, o tamanho da população e numero de gerações precisa ser mais altos para melhor precisão dos resultados.
 
+Para comparativo foi utilizado os diferentes tipos de mutação e cruzamentos, de forma, a identificar uma melhor combinação para ser utilizada no problema. A tabela abaixo estão os resultados encontrados:
 
 \begin{table}[h]
 	\centering
 	\caption{Pontos Turísticos de São Paulo}
-	\label{Roteiro5}
+	\label{Resultados}
 	\begin{tabular}{C{3cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}C{1cm}}
 		\rowcolor[HTML]{C0C0C0} 
 		\textbf{Extras.txt}         & \textbf{EM} & \textbf{DIVM} & \textbf{DM} & \textbf{IM} & \textbf{IVM} & \textbf{SM} \\
@@ -160,11 +161,7 @@ Para comparativo foi utilizado os diferentes tipo de mutação e cruzamentos de 
 	\end{tabular}
 \end{table}
 
-
 Como mostrado na tabela, a mutação ou cruzamento escolhida não influencia no resultado, apresentando o mesmo valor de aptidão para todas as combinações em nos diferentes roteiros.
 
-
-
- 
 
 \section{Trabalhos futuros}
