@@ -125,7 +125,9 @@ Uma estrutura de vizinhança mais utilizada em roteamento é a \textit{k-opt}, o
 
 Para todas as possíveis trocas \textit{2-opt} e algumas das permutações da vizinhança \textit{3-opt}, parte da rota é invertida. Isto comumente acarreta violações nas janelas de tempo. No trabalho de \cite{Potvin} são apresentadas duas variantes, a \textit{2-opt*}  e a \textit{Or-opt}, que mantêm a direção da rota.
 
-Na vizinhança \textit{Or-opt}, um conjunto contíguo de até 3 clientes é realocado para outra posição na mesma rota. Uma vez que nessa vizinhança três arcos são trocados por outros três, é fácil observar que ela é um subconjunto da vizinhança \textit{3-opt}. Desta forma, o tamanho da vizinhança é reduzido de O(\(n_3\)) para O(\(n_2\). de forma geral, o tamanho da vizinhança \textit{k-opt}  é da ordem de O(\(n_k\)). A vizinhança \textit{3-opt}. Desta forma, o tamanho da 
+Na vizinhança \textit{Or-opt}, um conjunto contíguo de até 3 clientes é realocado para outra posição na mesma rota. Uma vez que nessa vizinhança três arcos são trocados por outros três, é fácil observar que ela é um subconjunto da vizinhança \textit{3-opt}. Desta forma, o tamanho da vizinhança é reduzido de O(\(n_3\)) para O(\(n_2\). De forma geral, o tamanho da vizinhança \textit{k-opt}  é da ordem de O(\(n_k\)). A vizinhança 2-opt* consiste na troca de um
+segmento de uma rota por um segmento de outra rota. Esses operadores de vizinhança são muitas vezes denotados na literatura por \textit{crossover} ou simplesmente \textit{cross}.
+
 
 
 \subsection{Metaheurísticas}
