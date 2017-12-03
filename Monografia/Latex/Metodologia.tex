@@ -17,7 +17,16 @@ O fluxograma a baixo demostra o funcionamento do software.
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/Fluxograma.png}}
     \captionof{figure}{Fluxograma macro do funcionamento do software.  }
-    \label{fig:FluxoSoftare}
+    \label{fig:FluxoSoftware}
+\end{minipage}
+
+O fluxograma a baixo demostra o funcionamento do software utilizando o GA.
+
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/GA.png}}
+	\captionof{figure}{Fluxograma macro da integração com o GA.}
+	\label{fig:FluxoGA}
 \end{minipage}
 
 O GA considera como um individuo um percurso inteiro, ponto do estoque, e todos os destinos.Uma rota aleatória é calculada para cada individuo como população inicial.
@@ -153,3 +162,6 @@ Nesta pasta estão todas as implementações dos algoritmos de fitness.
 O software é composto por funcionalidade individuais que podem ser utilizadas separadamente se necessário e também entender cada uma, ajuda a entender o software por completo.
 
 \textbf{Integração com a API do Google Maps:} Usando a classe SearchRoute do projeto PathFinder.Routes é possível procurar rotas e endereços do Google Maps e obter informação de coordenadas geográficas de um ponto usando o endereço, calcular rota entre dos dois usando o endereço ou com as coordenadas geográficas, obter um mapa estático de um ou vários pontos.
+
+
+\textbf{Algoritmos Genéticos} O modulo de GA poderia ser utilizado separadamente, porém é preciso o desenvolvimento da função de aptidão para o caso que ele será utilizado, o resto da estrutura funcionaria.
