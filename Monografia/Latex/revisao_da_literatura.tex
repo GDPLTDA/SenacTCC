@@ -134,7 +134,8 @@ de dois clientes. A vizinhança k-node, proposta no trabalho de \cite{Christofid
 Outra vizinhança explorada na literatura é a \(\lambda-interchange\) desenvolvida em \cite{Osman}, originalmente para o PRV. Trata-se de uma generalização do operador \textit{relocate}. Nesta estrutura, um subconjunto de clientes de uma mesma rota é trocado por outro conjunto de outra rota. O mecanismo de geração \(\lambda-interchange\) pode ser descrito como segue. Dada uma solução para o problema, representada pelo conjunto de rotas \(S = \{r_1, \cdots,r_p, \cdots,r_q,\cdots,r_k\}\), um \(\lambda-interchange\) entre um par de rotas \((r_p, r_q)\) consiste na troca dos clientes \(S_1\bigcup r_p\) de tamanho \(|S_1|\leq\lambda\) por outro subconjunto \(S_2\bigcup r_q\) de tamanho \(|S_2|\leq\lambda\) para gerar novas rotas \(r^\ast_p = (r_p-S_1)\bigcup S_2, r^\ast_p = (r_q - S_2) \bigcup S_1 \) e uma nova solução  \(S' = \{r_1, \cdots,r^\ast_p, \cdots,r^\ast_q,\cdots,r_k\}\).
 A vizinhança \(N_\lambda(S)\) de uma dada solução S é o conjunto de todos os vizinhos S' gerados para um dado valor de \(\lambda\).
 
-A vizinhança denotada por \textit{shift-sequence} é proposta em \cite{Schulze}.  Nesta, um cliente é movido de uma rota para outra checando-se todas as possibilidades de inserção. Caso uma inserção possa se tornar viável pela remoção de outro cliente j, este é removido e inserido em outra rota. Este procedimento é repetido até que a viabilidade seja restabelecida.
+A vizinhança denotada por \textit{shift-sequence} é proposta em \cite{Schulze}.  Nesta, um cliente é movido de uma rota para outra checando-se todas as possibilidades de inserção. Caso uma inserção possa se tornar viável pela remoção de outro cliente j, este é removido e inserido em outra rota. Este procedimento é repetido até que a viabilidade seja restabelecida.
+
 
 A Tabela \ref{table:vizinhanca} apresenta uma breve descrição das estruturas de vizinhança comumente
 utilizadas na literatura por algoritmos de busca local para a resolução do PRVJT. Observa-se
@@ -163,7 +164,8 @@ que algumas dessas são também utilizadas neste trabalho
 		\textit{k-node} & Os clientes \(i\), seu sucessor \(j\) e os dois clientes mais próximos que não estão na mesma rota são removidos. Tenta-se então inserir os quatro vértices em todas as possíveis localizações. Como trata-se de uma vizinhança de dimensões muito elevadas, apenas os k candidatos mais promissores são considerados.\\
 		\hline
 		\(\lambda-interchange\) & Um subconjunto \(S_1\) de clientes de tamanho \(|S_1|\leq \lambda\) de uma rota é
-		trocado por um subconjunto \(S_2\) de tamanho \(|S_2| \leq \lambda\) de outra rota.  \\
+		trocado por um subconjunto \(S_2\) de tamanho \(|S_2| \leq \lambda\) de outra rota.
+  \\
 		\hline		
 		\textit{Shift-sequence} & Um cliente é movido de uma rota para outra checando-se todas as possibilidades de inserção. Caso uma inserção se torne viável pela remoção de um consumidor \(j\), este é removido e inserido em alguma outra rota. Este procedimento é repetido até que a viabilidade seja restabelecida. \\
 		\hline
@@ -173,6 +175,27 @@ que algumas dessas são também utilizadas neste trabalho
 
 
 \subsection{Metaheurísticas}
+
+Metaheurísticas são procedimentos destinados a encontrar uma boa solução, eventualmente a ótima, consistindo na aplicação, em cada passo, de uma heurística subordinada, a qual tem que ser modelada para cada problema específico \cite{Ribeiro} Contrariamente às heurísticas convencionais, as metaheurísticas são de caráter geral e providas de mecanismos para tentar escapar de ótimos locais. \cite{Souza}
+
+Algoritmos geneticos e evolutivos são metaheuristica com boas aplicações no problema de PRV e PRVJT, \cite{Homberger} que propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. A mutação é feita pelas heurísticas de refinamento \textit{Or-opt}, \({2-opt\ast}\) e \(\lambda-Interchange\). No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
+
+Foi desenvolvido por \cite{Jung} um algoritmo genético híbrido, no qual a função objetivo é baseada na distância. O algoritmo começa com a aplicação da heurística de inserção de \cite{Solomon} para a determinação de uma solução inicial. O primeiro cliente de cada rota é escolhido de forma aleatória entre o cliente mais distante do depósito, o cliente com o menor instante final da janela de tempo e um cliente também determinado aleatoriamente. 
+
+ Em seu algoritmo a seleção é feita pelo torneio. Para o cruzamento, o grafo que contém o depósito, os clientes e as arestas utilizadas para formar as rotas de cada veículo são mapeados e a escolha dos pontos de corte é feita por meio de curvas ou figuras geométricas de diferentes tipos A figura \ref{fig:jung} exemplifica o procedimento de cruzamento. As regiões formadas pela sobreposição das figuras geométricas definem conjuntos de nós. Cada conjunto pertence a um único pai. Primeiramente, definimos as rotas dentro desses conjuntos. Como essa divisão de nós é arbitrária, restarão várias rotas desconexas, de modo que é preciso utilizar algoritmos de reparação para reconstruir uma solução factível. Essa reconstrução é feita seguindo a regra do vizinho mais próximo.
+ 
+ Na mutação, são feitas mudanças de nós entre, no máximo, 3 rotas. As heurísticas de refinamento \textit{or-opt}, \textit{relocate} são aplicadas ao final da iteração para melhorar a solução.  
+ 
+ Algoritmos evolucionários para o problema com janela de tempo foram analisados e comparados por Braysy \cite{Braysy}.
+ 
+
+\begin{minipage}{\linewidth}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/jung.png}}
+	\captionof{figure}{O crossoover utilizado por Jung e Moon. As Figuras a e b representam, respectivamente, os pais 1 e 2. A Figura c mostra a divisão dos clientes com base em figuras geométricas.  A Figura d mostra as ligações feitas nas regiões referentes ao primeiro pai, enquanto a Figura e mostra as rotas internas à região referente ao segundo pai. Finalmente, a Figura f mostra as rotas após a aplicação do algoritmo de reparação.
+	 }
+	\label{fig:jung}
+\end{minipage}
 
 % https://en.wikibooks.org/wiki/LaTeX/Mathematics
 \section{Algoritmos genéticos}

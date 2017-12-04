@@ -27,6 +27,15 @@ Dispon{\'\i}vel em:
   p. 261--300, 1986.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1080/01966324.1986.10737197}.}
 
+\bibitem[Br{\"a}ysy, Dullaert e Gendreau 2004]{Braysy}
+\abntrefinfo{Br{\"a}ysy, Dullaert e Gendreau}{BR{\"A}YSY; DULLAERT;
+  GENDREAU}{2004}
+{BR{\"A}YSY, O.; DULLAERT, W.; GENDREAU, M. Evolutionary algorithms for the
+  vehicle routing problem with time windows.
+\emph{Journal of Heuristics}, v.~10, n.~6, p. 587--611, Dec 2004.
+ISSN 1572-9397.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1007/s10732-005-5431-6}.}
+
 \bibitem[Bräysy e Gendreau 2005]{Gendreau}
 \abntrefinfo{Bräysy e Gendreau}{BRäYSY; GENDREAU}{2005}
 {BRäYSY, O.; GENDREAU, M. Vehicle routing problem with time windows, part i:
@@ -88,11 +97,29 @@ Dispon{\'\i}vel em:
   MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
   \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
 
+\bibitem[Homberger e Gehring 2005]{Homberger}
+\abntrefinfo{Homberger e Gehring}{HOMBERGER; GEHRING}{2005}
+{HOMBERGER, J.; GEHRING, H. A two-phase hybrid metaheuristic for the vehicle
+  routing problem with time windows.
+\emph{European Journal of Operational Research}, v.~162, n.~1, p. 220--238,
+  2005.
+Dispon{\'\i}vel em:
+  \url{https://EconPapers.repec.org/RePEc:eee:ejores:v:162:y:2005:i:1:p:220-238}.}
+
 \bibitem[Jepsen e Spoorendonk 2006]{Jepsen}
 \abntrefinfo{Jepsen e Spoorendonk}{JEPSEN; SPOORENDONK}{2006}
 {JEPSEN, M.; SPOORENDONK, S. A non-robust branch-and-cut-and-price algorithm
   for the vehicle routing problem with time windows.
 01 2006.}
+
+\bibitem[Jung e Moon 2002]{Jung}
+\abntrefinfo{Jung e Moon}{JUNG; MOON}{2002}
+{JUNG, S.; MOON, B.-R. A hybrid genetic algorithm for the vehicle routing
+  problem with time windows. In:  \emph{Proceedings of the 4th Annual
+  Conference on Genetic and Evolutionary Computation}. San Francisco, CA, USA:
+  Morgan Kaufmann Publishers Inc., 2002.  (GECCO'02), p. 1309--1316.
+ISBN 1-55860-878-8. Dispon{\'\i}vel em:
+  \url{http://dl.acm.org/citation.cfm?id=2955491.2955733}.}
 
 \bibitem[Kohl 1995]{Kohl}
 \abntrefinfo{Kohl}{KOHL}{1995}
@@ -146,6 +173,12 @@ ISSN 0377-2217.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0377221793902218}.}
 
+\bibitem[Ribeiro 1996]{Ribeiro}
+\abntrefinfo{Ribeiro}{RIBEIRO}{1996}
+{RIBEIRO, C.~C. Metaheuristics and applications.
+In:  \underline{\ \ \ \ \ \ \ \ }. \emph{Advanced School on Artificial
+  Intelligence}. [S.l.: s.n.], 1996.}
+
 \bibitem[Rodrigues 2007]{RODRIGUES}
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
 {RODRIGUES, P. R.~A. \emph{Introdução aos sistemas de transporte do Brasil e
@@ -165,6 +198,13 @@ Dispon{\'\i}vel em: \url{https://doi.org/10.1023/A:1018948011707}.}
   time window constraints.
 \emph{Operations Research}, v.~35, n.~2, p. 254--265, 1987.
 Dispon{\'\i}vel em: \url{https://doi.org/10.1287/opre.35.2.254}.}
+
+\bibitem[Souza, M. J. F. 2011]{Souza}
+\abntrefinfo{Souza, M. J. F.}{SOUZA, M. J. F.}{2011}
+{SOUZA, M. J. F. 2011.
+Dispon{\'\i}vel em:
+  \url{http://www.decom.ufop.br/marcone/Disciplinas/InteligenciaComputacional/InteligenciaComputacional.htm}.
+  Acesso em: 01/12/2017.}
 
 \bibitem[TomTom International BV 2017]{TomTom}
 \abntrefinfo{TomTom International BV}{TOMTOM INTERNATIONAL BV}{2017}
