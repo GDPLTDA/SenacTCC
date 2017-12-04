@@ -27,7 +27,7 @@ Dispon{\'\i}vel em:
   p. 261--300, 1986.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1080/01966324.1986.10737197}.}
 
-\bibitem[Br{\"a}ysy, Dullaert e Gendreau 2004]{Braysy}
+\bibitem[Br{\"a}ysy, Dullaert e Gendreau 2004]{BraysyAG}
 \abntrefinfo{Br{\"a}ysy, Dullaert e Gendreau}{BR{\"A}YSY; DULLAERT;
   GENDREAU}{2004}
 {BR{\"A}YSY, O.; DULLAERT, W.; GENDREAU, M. Evolutionary algorithms for the
@@ -44,6 +44,14 @@ Dispon{\'\i}vel em: \url{https://doi.org/10.1007/s10732-005-5431-6}.}
 Dispon{\'\i}vel em:
   \url{https://pubsonline.informs.org/doi/abs/10.1287/trsc.1030.0056}.}
 
+\bibitem[Bräysy, Hasle e Dullaert 2004]{Dullaert}
+\abntrefinfo{Bräysy, Hasle e Dullaert}{BRäYSY; HASLE; DULLAERT}{2004}
+{BRäYSY, O.; HASLE, G.; DULLAERT, W. A multi-start local search algorithm for
+  the vehicle routing problem with time windows.
+\emph{European Journal of Operational Research}, Elsevier, v.~159, n.~3, p.
+  586--605, 12 2004.
+ISSN 0377-2217.}
+
 \bibitem[Chabrier 2006]{Chabrier}
 \abntrefinfo{Chabrier}{CHABRIER}{2006}
 {CHABRIER, A. Vehicle routing problem with elementary shortest path based
@@ -52,6 +60,14 @@ Dispon{\'\i}vel em:
   p. 2972--2990, out. 2006.
 ISSN 0305-0548.
 Dispon{\'\i}vel em: \url{http://dx.doi.org/10.1016/j.cor.2005.02.029}.}
+
+\bibitem[Chiang e Russell 1996]{Russell}
+\abntrefinfo{Chiang e Russell}{CHIANG; RUSSELL}{1996}
+{CHIANG, W.-C.; RUSSELL, R.~A. Simulated annealing metaheuristics for the
+  vehicle routing problem with time windows.
+\emph{Annals of Operations Research}, v.~63, n.~1, p. 3--27, Feb 1996.
+ISSN 1572-9338.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1007/BF02601637}.}
 
 \bibitem[Christofides e Beasley 1984]{Christofides}
 \abntrefinfo{Christofides e Beasley}{CHRISTOFIDES; BEASLEY}{1984}
@@ -90,6 +106,26 @@ Dispon{\'\i}vel em:
 ISSN 1018-3647.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/S1018364710000297}.}
+
+\bibitem[Garcia, Potvin e Rousseau 1994]{Garcia}
+\abntrefinfo{Garcia, Potvin e Rousseau}{GARCIA; POTVIN; ROUSSEAU}{1994}
+{GARCIA, B.-L.; POTVIN, J.-Y.; ROUSSEAU, J.-M. A parallel implementation of the
+  tabu search heuristic for vehicle routing problems with time window
+  constraints.
+\emph{Computers \& Operations Research}, v.~21, n.~9, p. 1025 -- 1033, 1994.
+ISSN 0305-0548.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/0305054894900736}.}
+
+\bibitem[Glover 1986]{Glover}
+\abntrefinfo{Glover}{GLOVER}{1986}
+{GLOVER, F. Future paths for integer programming and links to artificial
+  intelligence.
+\emph{Computers \& Operations Research}, v.~13, n.~5, p. 533 -- 549, 1986.
+ISSN 0305-0548.
+Applications of Integer Programming.
+Dispon{\'\i}vel em:
+  \url{http://www.sciencedirect.com/science/article/pii/0305054886900481}.}
 
 \bibitem[Holland 1975]{Holland1975}
 \abntrefinfo{Holland}{HOLLAND}{1975}
@@ -210,7 +246,7 @@ Dispon{\'\i}vel em:
 \abntrefinfo{TomTom International BV}{TOMTOM INTERNATIONAL BV}{2017}
 {TOMTOM INTERNATIONAL BV. 2017.
 Dispon{\'\i}vel em:
-  \url{https://www.tomtom.com/en\_gb/trafficindex/list?citySize=LARGE&continent=ALL&country=BR}.
+  \url{https://www.tomtom.com/en\_gb/trafficindex/list?citySize=LARGEcontinent=ALL&country=BR}.
   Acesso em: 12/11/2017.}
 
 \bibitem[Tsuda 2007]{TSUDA}
