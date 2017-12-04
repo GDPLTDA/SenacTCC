@@ -100,14 +100,9 @@ As heurísticas de \cite{VANLANDEGHEM} e \cite{Solomon} de forma geral conseguem
 
 Criar uma rota por vez  traz uma desvantagem, usualmente as rotas geradas por ultimo são de baixa qualidade uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
 
-É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon.  Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir de desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
+É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon. Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir de desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
 
-Antes  e  Derigs \cite{Derigs} evoluem as ideias clássicas de inserção. No seu trabalho, todo cliente sem rota designada recebe um custo de inserção de cada uma das rotas. A definição
-desse custo é semelhante ao adotado nas heurísticas de Solomon.  Cada cliente sem rota
-envia uma proposta a rota com melhor oferta, cada rota aceita a melhor proposta dos
-clientes com menor número de alternativas.  Vale observar que mais clientes podem ser
-inseridos em cada iteração.  Se houver alguma violação nas rotas,  um certo numero de
-veículos é removido e o processo é reiniciado. 
+Antes e Derigs \cite{Derigs} evoluem as ideias clássicas de inserção. No seu trabalho, todo cliente sem rota designada recebe um custo de inserção de cada uma das rotas. A definição desse custo é semelhante ao adotado nas  heurísticas de Solomon.  Cada cliente sem rota envia uma proposta a rota com melhor oferta, cada rota aceita a melhor proposta dos clientes com menor número de alternativas.  Vale observar que mais clientes podem ser inseridos em cada iteração.  Se houver alguma violação nas rotas,  um certo numero de veículos é removido e o processo é reiniciado. 
 
 Os resultados do trabalhos de Antes e Derigs \cite{Derigs} são comparados aqueles apresentados por Potvin e Rousseau~\cite{Rousseau}. Segundo os autores, construir rotas paralelamente produz soluções de maior qualidade que construir rotas uma a uma.
 
@@ -128,7 +123,7 @@ Para todas as possíveis trocas \textit{2-opt} e algumas das permutações da vi
 Na vizinhança \textit{Or-opt}, um conjunto contíguo de até 3 clientes é realocado para outra posição na mesma rota. Uma vez que nessa vizinhança três arcos são trocados por outros três, é fácil observar que ela é um subconjunto da vizinhança \textit{3-opt}. Desta forma, o tamanho da vizinhança é reduzido de O(\(n^3\)) para O(\(n^2\). De forma geral, o tamanho da vizinhança \textit{k-opt}  é da ordem de O(\(n^k\)). A vizinhança 2-opt* consiste na troca de um
 segmento de uma rota por um segmento de outra rota. Esses operadores de vizinhança são muitas vezes denotados na literatura por \textit{crossover} ou simplesmente \textit{cross}.
 
-Movimentos da vizinhança exchange alteram diferentes rotas através da troca simultânea
+Movimentos da vizinhança \textit{exchange} alteram diferentes rotas através da troca simultânea
 de dois clientes. A vizinhança k-node, proposta no trabalho de \cite{Christofides} tem sido adaptada por alguns autores para que este leve em consideração aspectos referentes às janelas de tempo. Nesta estrutura, cada cliente i é considerado e os conjuntos M1 e M2 são identificados. Em M1 são alocados o cliente i e seu sucessor j. O conjunto M2 é formado pelos clientes mais próximos aos clientes i e j que não estejam na mesma rota que i e j (encontrados pela minimização do custo de inserção considerando distância euclidiana). A vizinhança é então definida pela remoção dos elementos desses conjuntos e posterior inserção em qualquer outra possível localização. Como trata-se de uma vizinhança de dimensões muito elevadas, apenas os k candidatos mais promissores são considerados. 
 
 Outra vizinhança explorada na literatura é a \(\lambda-interchange\) desenvolvida em \cite{Osman}, originalmente para o PRV. Trata-se de uma generalização do operador \textit{relocate}. Nesta estrutura, um subconjunto de clientes de uma mesma rota é trocado por outro conjunto de outra rota. O mecanismo de geração \(\lambda-interchange\) pode ser descrito como segue. Dada uma solução para o problema, representada pelo conjunto de rotas \(S = \{r_1, \cdots,r_p, \cdots,r_q,\cdots,r_k\}\), um \(\lambda-interchange\) entre um par de rotas \((r_p, r_q)\) consiste na troca dos clientes \(S_1\bigcup r_p\) de tamanho \(|S_1|\leq\lambda\) por outro subconjunto \(S_2\bigcup r_q\) de tamanho \(|S_2|\leq\lambda\) para gerar novas rotas \(r^\ast_p = (r_p-S_1)\bigcup S_2, r^\ast_p = (r_q - S_2) \bigcup S_1 \) e uma nova solução  \(S' = \{r_1, \cdots,r^\ast_p, \cdots,r^\ast_q,\cdots,r_k\}\).
@@ -136,11 +131,9 @@ A vizinhança \(N_\lambda(S)\) de uma dada solução S é o conjunto de todos os
 
 A vizinhança denotada por \textit{shift-sequence} é proposta em \cite{Schulze}.  Nesta, um cliente é movido de uma rota para outra checando-se todas as possibilidades de inserção. Caso uma inserção possa se tornar viável pela remoção de outro cliente j, este é removido e inserido em outra rota. Este procedimento é repetido até que a viabilidade seja restabelecida.
 
-
 A Tabela \ref{table:vizinhanca} apresenta uma breve descrição das estruturas de vizinhança comumente
 utilizadas na literatura por algoritmos de busca local para a resolução do PRVJT. Observa-se
 que algumas dessas são também utilizadas neste trabalho
-
 
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \begin{table}[h] 
@@ -172,8 +165,6 @@ que algumas dessas são também utilizadas neste trabalho
 	\end{tabular}
 \end{table} 
 
-
-
 \subsection{Meta-heurísticas}
 
 Meta-heurísticas são procedimentos destinados a encontrar uma boa solução, eventualmente a ótima, consistindo na aplicação, em cada passo, de uma heurística subordinada, a qual tem que ser modelada para cada problema específico \cite{Ribeiro} Contrariamente às heurísticas convencionais, as metaheurísticas são de caráter geral e providas de mecanismos para tentar escapar de ótimos locais. \cite{Souza}
@@ -185,7 +176,6 @@ Essa meta-heurística foi introduzida por \cite{Glover}, mas foi \cite{Garcia} p
 \subsubsection{Têmpera Simulada (Simulated Annealing)}
 
 A têmpera simulada (TS) é uma técnica de relaxação estocástica baseada no processo térmico utilizado na metalurgia para obtenção de estados de baixa energia num sólido.  No algoritmo da TS,  uma nova solução \(x_t\) é aceita sempre que \(f(xt) < f(x)\), onde x é a solução corrente. Para fugir dos mínimos locais, soluções com \(f(x_t) \geq f(x)\) também são aceitas com uma probabilidade \(e^{\delta/T}\), onde \(\delta = f(x_t) - f(x)\) e T é um parâmetro (chamado temperatura) que varia ao longo das iterações, partindo de um número grande e terminando próximo de zero. A queda na temperatura ocorre gradativamente e costuma ser feita através da regra  \(T_k = \alpha T_(k-1)\) para \(0 \leq \alpha \leq 1\). \cite{Russell}
-
 
 \subsubsection{Busca Local com Múltiplos Pontos Iniciais (Multi-Start Local Search)}
 
@@ -203,7 +193,6 @@ Foi desenvolvido por \cite{Jung} um algoritmo genético híbrido, no qual a fun�
  
  Algoritmos evolucionários para o problema com janela de tempo foram analisados e comparados por Braysy \cite{BraysyAG}.
  
-
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/jung.png}}
