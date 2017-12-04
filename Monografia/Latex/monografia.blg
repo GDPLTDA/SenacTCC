@@ -3,14 +3,13 @@ The style file: abntex2-alf.bst
 Database file #1: abntex2-options.bib
 Database file #2: mono.bib
 Warning--entry type for "TomTom" isn't style-file defined
---line 138 of file mono.bib
+--line 147 of file mono.bib
 Warning--entry type for "Souza" isn't style-file defined
---line 321 of file mono.bib
-Warning--I didn't find a database entry for "Washington"
+--line 330 of file mono.bib
 Warning--campo year vazio ou faltando em CORDEAU
 +---------------------------------------------------------+
 | Estilo bibliográfico abntex2-alf.bst versão v-1.9.6           |
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-(There were 4 warnings)
+(There were 3 warnings)
