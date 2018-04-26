@@ -381,4 +381,12 @@ Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem do
 
 A conclusão de \cite{Washington} é que a utilização de algoritmos genéticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
+\cite{HOMBERGER} propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. 
+A mutação é feita pelas heurísticas de refinamento Or-opt, 2-opt\* e $\lambda$ -Interchange. No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
+
+O trabalho de Sabir Ribas na universidade federal de fluminense utilizou uma abordagem híbrida para resolver o Problema de Roteamento de Veículos, usando Algoritmos Genéticos com a metaheurística Iterated Local Search e o metodo Variable Neighborhood Descent. Chama de IILS-SP, desenvolvido em C++. O algoritmo foi submetido a 56 problemas teste de 100 clientes, para cada problema, executado 5 vezes em intervalos de 10min. Teve resultados melhores do que os encontrados pelo autor em sua pesquisa na literatura. \cite{SABIRRIBAS}.
+
+Humberto,Germano e Guilherme também tentaram resolver o PRVJT utilizando GA, para a criação da população inicial utilizar a heurística Push-Forward Insertion Heuristic. Utilizando 56 problemas de teste e 100 clientes, chamadas instâncias de Solomon de 1987, mesma base de teste utilizadas em sua revisão de literatura para comparação de resultados, utiliza a mesma metodologia de teste do Sabir Ribas. \cite{HGGUILHERME}
+
+No trabalho de Glaydston da UniAracruz e Luiz Antonio da Instituto Nacional de Pesquisas Espaciais utilizaram algoritmos genéticos para resolver Problemas de Roteamento de Veículos Dinâmico com Janelas de Tempo, em casos reais, podem existir mudanças que podem afetar as rotas, pensando nisso, o algoritmo recalcula a rota de todos os veículos. O GA deve um resultado equivalente ou superior em alguns casos se comparados com as heurísticas. \cite{GLAYDSTON}
 

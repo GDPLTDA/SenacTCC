@@ -1,48 +1,62 @@
 \chapter[Introdução]{Introdução}
 
-No meio empresarial é essencial pensar na área logística, essa é a área que gerência os recursos, matérias-primas, componentes, equipamentos, serviços e informações necessárias para execução e controle das atividades da empresa. 
-Ela tem como foco orquestrar estes itens de forma a encontrar melhores condições de operação no menor tempo possível \cite{DIAS}.
+No meio empresarial é essencial pensar na área logística, essa é a área que gerencia os recursos, matérias-primas, componentes, equipamentos, serviços e informações necessárias para execução e controle das atividades da empresa. Ela tem como foco orquestrar esses itens de forma a encontrar melhores condições de operação no menor tempo possível \cite{DIAS}. 
 
 \section{Motivação}
 
-Um dos principais pontos dentro da logística é o transporte, onde chega a custar até 60\% de seu custo total \cite{RODRIGUES}.
-Logo é de interesse das empresas conseguir minimizar este custo de escoamento de seus produtos. Graças essa importância no processo produtivo, a logística se tornou um grande fator competitivo entre empresas.
-Isso se deve ao fato que a cadeia de suprimento está relacionada com agregação de valores e disponibilidade dos seus bens e serviços para os clientes, fornecedores da empresa e os demais interessados.
+Independe do lugar que o interessado esteja, um serviço ou produto apenas tem
+valor quando ele está disponível para ser consumido \cite{TSUDA}. O grande crescimento populacional, a descentralização dos pontos de venda e o aumento da variedade de produtos tem provocado o crescimento e o aumento da complexidade da rede de distribuição de bens e serviços.
 
-Independe do lugar que o interessado esteja um serviço ou produto apenas tem valor quando ele está disponível para ser consumido \cite{TSUDA}.
-O grande crescimento populacional, a descentralização dos pontos de venda e o aumento da variedade de produtos tem provocado o crescimento e o aumento da complexidade da rede de distribuição de bens e serviços.
+Um dos principais pontos dentro da logística é o transporte, onde chega a custar até
+60\% de seu custo total \cite{RODRIGUES}. Logo é de interesse das empresas conseguir minimizar este custo de escoamento de seus produtos. Graças essa importância no processo produtivo, a logística se tornou um grande fator competitivo entre empresas. Isso se deve ao fato que a cadeia de suprimento está relacionada com agregação de valores e disponibilidade dos seus bens e serviços para os clientes, fornecedores da empresa e os demais interessados. 
 
-No planejamento estratégico de logística o principal problema esta relacionado a roteirização de veículos \cite{TSUDA} também conhecido como PRV\@.
-O PRV é baseado em definir um conjunto de rotas que será percorrido por veículos obedecendo que cada rota começa e termina no depósito, todo consumidor é visitado somente uma vez e a demanda total de qualquer rota não pode ultrapassar capacidade dos veículos para encontrar a rota menos custosa, é necessário calcular as possíveis combinações de um determinado problema , contudo, dependendo do numero de combinações pode requerer um processamento muito elevado, levando muito tempo para encontrar a solução ótima.
+No planejamento estratégico de logística um dos problemas está relacionado a roteirização de veículos \cite{TSUDA} também conhecido como PRV. 
+A idéia do PRV baseia-se em um conjunto de rotas que será percorrido por veículos obedecendo que cada rota começa e termina no depósito, todos os endereços são visitados somente uma vez e a demanda total de qualquer rota não pode ultrapassar capacidade dos veículos para encontrar a rota de menor tempo e distância. A identificação da ordem dos destinos, quando há um número elevado de endereços, se torna complexa por se tratar de um problema combinatório, onde é preciso avaliar todas as combinações para encontrar uma rota de menor tempo e distância \cite{RMKarp}.
+
+O PRV exige um alto esforço computacional, pertencendo a classe dos problemas NP-difíceis, não pode ser solucioná-lo em tempo polinomial, sendo uma forma de combinação da solução do problema do Caixeiro Viajante e do Problema da Mochila \cite{HUMBERTO}, por isso torna-se importante uma boa escolha do método a ser usado para sua solução.
+
+Temos um especialização do PRV é o problema de roteamento de veículos com
+janela de tempo , o PRVJT, assim como o PRV também pertence a classe NP-difíceis, por que a usa solução em tempo polinomial resulta na solução do PRV, ,nele deve-se considerar um intervalo de tempo para as entregas serem realizadas, se aproximando mais do mundo real onde existem janelas de tempo válidas para entregas de mercadorias. 
+
 
 Como exemplo de aplicações podemos citar:
 \begin{itemize}
 	\item Entrega postal;
-	\item Entrega em domicilio, de produtos comprados nas lojas de varejo ou pela internet;
+	\item Entrega em domicílio de produtos comprados nas lojas de varejo ou pela internet;
 	\item Distribuição de produtos dos centros de distribuição (CD) de atacadistas para lojas do varejo;
 	\item Escolha de rotas para ônibus escolares ou de empresas;
 \end{itemize}
 
-Temos um especialização do PRV é o problema de roteamento de veículos com janela de tempo , o PRVJT, nele deve-se considerar um intervalo de tempo para as entregas serem realizadas. Se aproximando mais do mundo real onde existem janelas de tempo validas para entregas de mercadorias.
-O PRVJT exige um alto esforço computacional, pois pertence a classe dos problemas NP-difíceis, torna-se importante uma boa escolha do método usado para sua solução que consiga resolvê-lo em tempo polinomial.
-Desde então, o problema vem sendo muito estudado, principalmente por sua alta complexidade e pela grande variedade de problemas reais a ele associados.
+Para se aproximar de uma situação mais real, deve-se levar em consideração que o trânsito das grandes cidades muda constantemente, e o tempo de percorrer uma certa distância dependendo do dia e horário da semana também muda, assim como acidentes, obras em vias e etc, tornando o trânsito uma variável importante para o cálculo da rota de entrega. Tendo destinos com horários de funcionamento delimitados, pode não existir uma rota que satisfaça as restrições de horário, tornando impossível de ser encontrado uma rota que passe por todos os destinos com apenas um entregador, somando o problema de se identificar a quantidade de entregadores necessária para realizar todas as entregas respeitando todas as restrições de horários partindo do depósito. 
+
+O custo da logística em empresas que precisam realizar entregas é significativo \cite{RODRIGUES}, logo é importante avaliar formas de minimizar esse custo e consequentemente aumentar o lucro das empresas que tenham de lidar com entregas.
+
+Os atuais resultados encontrados na literatura referentes ao PRV e PRVJT comprovam que os algoritmos exatos restringem-se à resolução de problemas-teste com tamanho reduzido e janelas de tempo apertadas. Embora hoje podemos resolver problemas com um tamanho que seja ligeiramente maior que os de alguns anos atrás, o crescimento da capacidade dos computadores e da eficiência dos algoritmos está muito distante da curva exponencial representada por este problema. Pode-se dizer que os métodos exatos não são uma alternativa viável para situações onde a um número maior de consumidores, como ocorre na maioria dos casos reais \cite{Chabrier}.
+
+Por isso a utilização de algoritmos genéticos, é uma meta-heurística que pode conseguir resultados satisfatórios sem a necessidade de calcular todas as combinações  possíveis de rotas.
+
 
 \section{Objetivos}
 
-O trabalho tem objetivo de desenvolver uma solução que resolva o problema de PRVJV utilizando a meta-heurística algoritmos genéticos. 
-O sistema será capaz de calcular uma rota entre vários destinos levando em consideração restrições de tempo e notificando a quantidade de motoristas necessários para realizar todas as entregas até uma data/hora limite estipulada, levando em consideração o tempo de transito entre estes pontos, permitindo que um motorista possa recalcular a sua rota para otimizar o tempo a qualquer momento.
-Será calculada uma rota minimizando a distancia entre os pontos, o tempo do percurso e se é possível chegar no horário.
-Não sendo possível cumprir o horário,o caminho dividido para mais entregadores, se o objetivo for impossível, é emitido um aviso sempre que acontecer.
+Desenvolver uma solução computacional utilizando algoritmos genéticos para calcular rotas de entregas, que respeite os horários de janela de tempo pré-determinados para realizar cada entrega no endereço, sem considerar a capacidade de cada entregador.
+
+Rotas com muitos destinos e com um curto período de tempo para serem realizadas, serão separadas em rotas menores, cada rota deve ser realizada por um entregador diferente, todas as rotas menores tem como endereço inicial o depósito e avançam até o máximo de endereços possíveis no horário limite determinado. 
+
+Sendo possível determinar o número máximo de entregadores e horário de saída do depósito e horário máximo para realizar todas as entregas, caso a rota não seja possível com esse número limite entregados até o horário limite, o usuário será sinalizado.
+
+O trânsito é considerado como alterador de tempo entre os endereços, fazendo com que a responde de rota mude dependendo do dia da semana e horário. Todas as rotas são organizadas considerando o trânsito médio.
+
+Neste trabalho tem como objetivo a minimização da distância total percorrida e tempo para realizar o percurso, os mais comuns na literatura.
+
 
 \subsection{Objetivos Específicos}
 
 \begin{itemize}
-	\item Utilizar API do Google Maps para adquirir informações sobre endereços e pontos no mapas.
-	\item Desenvolver um algorítimo genético capas de minimizar a rota entre todos os pontos considerando tempo e distância.
-	\item Introduzir janelas de tempo nas entregas e adaptar algoritmo genético para levar janelas de tempo em consideração.
-	\item Definir dia/hora limite e dividir entrega em mais de um entregador para respeitar essa hora/data limite. 
-	\item Identificar quando não é possível calcular a rota respeitando a dia/hora limite.
-	\item Criar um site para a interface de recalculo por entregador e visualização das rotas.
+	\item Realizar a integração com o Google Maps, considerando o trânsito utilizando o tempo médio entre os endereços.
+	\item Organizar os destinos em rotas utilizando Algoritmos Genéticos.
+	\item Dividir a rota principal, em rotas menos partindo do depósito sem que ultrapassa o tempo limite.
+	\item O número de rotas é o número de entregadores necessário para realizar a todas as entregas da rota principal. 
+	\item Criação de uma interface web para definição dos destinos, indicação do depósito, exibição em tabelas das rotas calculadas e exibição de cada rota em um mapa interativo do Google Maps.
 \end{itemize}
 
 

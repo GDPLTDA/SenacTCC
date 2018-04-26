@@ -127,20 +127,17 @@ Applications of Integer Programming.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0305054886900481}.}
 
+\bibitem[HermannGehring 2004]{Homberger}
+\abntrefinfo{HermannGehring}{HERMANNGEHRING}{2004}
+{HERMANNGEHRING, J. e. A two-phase hybrid metaheuristic for the vehicle routing
+  problem with time windows.
+2004.}
+
 \bibitem[Holland 1975]{Holland1975}
 \abntrefinfo{Holland}{HOLLAND}{1975}
 {HOLLAND, J. \emph{Adaptation in Natural and Artificial Systems}. Ann Arbor,
   MI, USA: University of Michigan Press, 1975. Dispon{\'\i}vel em:
   \url{http://books.google.com/books?id=YE5RAAAAMAAJ}.}
-
-\bibitem[Homberger e Gehring 2005]{Homberger}
-\abntrefinfo{Homberger e Gehring}{HOMBERGER; GEHRING}{2005}
-{HOMBERGER, J.; GEHRING, H. A two-phase hybrid metaheuristic for the vehicle
-  routing problem with time windows.
-\emph{European Journal of Operational Research}, v.~162, n.~1, p. 220--238,
-  2005.
-Dispon{\'\i}vel em:
-  \url{https://EconPapers.repec.org/RePEc:eee:ejores:v:162:y:2005:i:1:p:220-238}.}
 
 \bibitem[Jepsen e Spoorendonk 2006]{Jepsen}
 \abntrefinfo{Jepsen e Spoorendonk}{JEPSEN; SPOORENDONK}{2006}
@@ -156,6 +153,11 @@ Dispon{\'\i}vel em:
   Morgan Kaufmann Publishers Inc., 2002.  (GECCO'02), p. 1309--1316.
 ISBN 1-55860-878-8. Dispon{\'\i}vel em:
   \url{http://dl.acm.org/citation.cfm?id=2955491.2955733}.}
+
+\bibitem[Karp 1975]{RMKarp}
+\abntrefinfo{Karp}{KARP}{1975}
+{KARP, R.~M. On the computational complexity of combinatorial problems.
+1975.}
 
 \bibitem[Kohl 1995]{Kohl}
 \abntrefinfo{Kohl}{KOHL}{1995}
@@ -174,12 +176,30 @@ ISSN 0377-2217.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0377221788904286}.}
 
+\bibitem[Lorena]{GLAYDSTON}
+\abntrefinfo{Lorena}{LORENA}{}
+{LORENA, G. M.~R. e L. A.~N. Roteamento de veículos dinâmico usando
+  algoritmos genéticos.}
+
 \bibitem[Lucas 2002]{DiogoCLucas}
 \abntrefinfo{Lucas}{LUCAS}{2002}
 {LUCAS, D.~C. Algoritmos genéticos: uma introdução.
 Universidade Federal do Rio Grande do Sul, 2002.
 Dispon{\'\i}vel em:
   \url{http://www.inf.ufrgs.br/~alvares/INF01048IA/ApostilaAlgoritmosGeneticos.pdf}.}
+
+\bibitem[Oliveira 2005]{HGGUILHERME}
+\abntrefinfo{Oliveira}{OLIVEIRA}{2005a}
+{OLIVEIRA, G. C. V. e. G. B.~A. Humberto César Brandão~de. Uma abordagem
+  evolucionária para o problema de roteamento de veículos com janela de
+  tempo.
+2005.}
+
+\bibitem[Oliveira 2005]{HUMBERTO}
+\abntrefinfo{Oliveira}{OLIVEIRA}{2005b}
+{OLIVEIRA, H. C.~B. de. Algoritmo evolutivo no tratamento do problema de
+  roteamento de veículos com janela de tempo.
+2005.}
 
 \bibitem[Oliveira 2009]{Washington}
 \abntrefinfo{Oliveira}{OLIVEIRA}{2009}
@@ -214,6 +234,12 @@ Dispon{\'\i}vel em:
 ISSN 0377-2217.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0377221793902218}.}
+
+\bibitem[Ribas 2011]{SABIRRIBAS}
+\abntrefinfo{Ribas}{RIBAS}{2011}
+{RIBAS, S. Um algoritmo híbrido para o problema de roteamento de veículos com
+  janelas de tempo.
+2011.}
 
 \bibitem[Ribeiro 1996]{Ribeiro}
 \abntrefinfo{Ribeiro}{RIBEIRO}{1996}
