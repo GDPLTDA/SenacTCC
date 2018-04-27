@@ -2,19 +2,20 @@
 O software desenvolvido tem como objetivo demonstrar o problema, definindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas no período limitado, caminhos são impossíveis de ser entregues a tempo e caminhos que serão necessários mais de um entregador para ser realizado. Alertas de não possibilidade de realizar a entrega será comunicadona interface do usuário.
 
 Utilizando a API do Google Maps como fonte de dados, informações reais de distância, tempo médio e localizações são utilizadas para uma simulação mais próxima de uma situação real.
-Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metropolis do mundo, também tem um dos maiores índices de transito também segundo o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
+Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metrópoles do mundo, também tem um dos maiores índices de transito também segundo o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
 
 Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem que chamamos de deposito,mas antes de começar a calcular as entregas, é calculada uma rota geral que passa por todos os endereços com apenas um entregador, essa rota é divida sempre que o horário de chega a um endereço, ultrapassar o horário limite para realizar todas as entregas. Quando uma rota é divida, primeiro entregador fica com a parte até o endereço que é possível realizar a entrega e é calculada uma nova rota geral com os endereços que sobraram, sendo passado para um novo entregador e partindo do deposito. Todas as vezes que não for possível entregador esse processo será repetido até que seja possível.
 
-Existem situações onde não é possível entregar, mesmo com um numero alto de entregadores, essas situação podem depender da distancia, se for muito longe não tem como chegar no horário, do horário de abertura e fechamento, se forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um numero infinito, muitos endereços para poucos entregadores pode ser impossível de se realizar a entrega.
+Existem situações onde não é possível entregar, mesmo com um numero alto de entregadores, essas situação podem depender da distancia, se for muito longe não tem como chegar no horário, do horário de abertura e fechamento, se forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível de se realizar a entrega.
 
 Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe nos produtos na madrugada, por que receber em seu horário normal de abertura irá atrapalhar as compras dos clientes, então esse horário deve ser considerado para a escolha do próximo endereço. 
 Depois que chega ao endereço se verifica o horário de abertura, se chegar antes, deve-se esperar até abrir, se chegar no horário ou depois do horário, antes do fechamento, o tempo de descarga que é considerado.
 Cada entrega também tem um tempo médio que demora para realizar a descarga do produto, produtos pequenos podem demorar minutos, muitos produtos demora mais para retirar do veiculo e produtos grande podem precisar ser levamos com mais demora.
 
-Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será feito para verificar sem o transito não afetou a ordem dos destinos.
+Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será refeito para verificar se o transito ou possível atrasos não afetaram a ordem dos próximos destinos, depois do recalculo o entregador deve seria o próximo destino indicado.
 
-Se caso não for mais possível entregar no horário por motivos de piora de transito, um alerta será emitido. Depois que o entregador terminar todas suas entregas, o software continua auxiliando os outros entregadores que também não tenham terminado duas entregas, até que todas as entregas sejam concluídas.
+Se caso não for mais possível entregar no horário por motivos de piora de transito ou um grande tempo de atraso para descarregar, um alerta será emitido indicando que todos os destinos não podem ser visitados a tempo.
+Cada entregador tem seu próprio recalculo de rota, sendo que se um entregador concluir todos os destinos, os outros continuam pedindo novas rotas até que todos terminem suas entregas.
 
 O fluxograma a baixo demostra o funcionamento do software.
 
@@ -25,6 +26,21 @@ O fluxograma a baixo demostra o funcionamento do software.
     \label{fig:FluxoSoftware}
 \end{minipage}
 
+O GA considera como um individuo um percurso inteiro, ponto do estoque, e todos os destinos.Uma rota aleatória é calculada para cada individuo como população inicial.
+
+A mutação e o cruzamento alterna os pontos de destino, mantendo o estoque sempre fixo.
+A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entra os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
+
+O GA foi configurado com o Numero de Gerações em 200, tamanho da População em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
+
+Os Testes foram configurados com um numero de 5 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 3 tipos de cruzamento, sendo Simples, PBX e OBX.
+Considerando o transito médio enviado pelo Google Maps, para poder demostrar o impacto do transito nos caminhos calculados.
+
+Tudo será rodado 10 vezes e será retirada uma média do valor de aptidão, por que, cada vez que roda o GA a resposta da solução pode mudar, por ele não ser determinístico.
+
+E uma base pré-definidas rotas, para prevenir possíveis problemas sera ignorado o transito atual. Ja que o mesmo altera dependendo das condições do clima ou horário do dia. Então utilizando o Google Maps, um cache inicial foi preparado e o software utiliza simulando uma buscar ao Google Maps, com isso, a informação é obtida mais rapidamente e sempre fixa para garantir a resposta pré-determinada do teste.
+Os parâmetros utilizados são
+
 O fluxograma a baixo demostra o funcionamento do software utilizando o GA.
 
 \begin{minipage}{\linewidth}
@@ -33,22 +49,6 @@ O fluxograma a baixo demostra o funcionamento do software utilizando o GA.
 	\captionof{figure}{Fluxograma macro da integração com o GA.}
 	\label{fig:FluxoGA}
 \end{minipage}
-
-O GA considera como um individuo um percurso inteiro, ponto do estoque, e todos os destinos.Uma rota aleatória é calculada para cada individuo como população inicial.
-
-A mutação e o cruzamento alterna os pontos de destino, mantendo o estoque sempre fixo.
-A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entra os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
-
-O GA foi configurado com o Numero de Gerações em 200, tamanho da População em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
-
-Os Testes foram configurados com um numero de 5 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 3 tipos de cruzamento, sendo Simples,PBX e OBX.
-Considerando o transito médio enviado pelo Google Mapas, para poder demostrar o impacto do transito nos caminhos calculados.
-
-Tudo será rodado 10 vezes e será retirada uma média do valor de aptidão, por que, cada vez que roda o GA a resposta da solução pode mudar, por ele não ser determinístico.
-
-E uma base pré-definidas rotas, para prevenir possíveis problemas sera ignorado o transito atual. Ja que o mesmo altera dependendo das condições do clima ou horário do dia. Então utilizando o Google Maps, um cache inicial foi preparado e o software utiliza simulando uma buscar ao Google Maps, com isso, a informação é obtida mais rapidamente e sempre fixa para garantir a resposta pré-determinada do teste.
-Os parâmetros utilizados são
-
 
 \chapter{Implementação}
  
