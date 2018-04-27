@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99dThe top-level auxiliary file: monografia.aux
 Case mismatch error between cite keys HOMBERGER and Homberger
----line 221 of file monografia.aux
+---line 216 of file monografia.aux
  : \citation{HOMBERGER
  :                    }
 I'm skipping whatever remains of this command
@@ -8,17 +8,13 @@ The style file: abntex2-alf.bst
 Database file #1: abntex2-options.bib
 Database file #2: mono.bib
 Warning--entry type for "TomTom" isn't style-file defined
---line 200 of file mono.bib
+--line 204 of file mono.bib
 Warning--entry type for "Souza" isn't style-file defined
---line 383 of file mono.bib
-Repeated entry---line 410 of file mono.bib
- : @article{Homberger
- :                   ,
-I'm skipping whatever remains of this entry
+--line 387 of file mono.bib
 Warning--campo year vazio ou faltando em CORDEAU
 +---------------------------------------------------------+
 | Estilo bibliográfico abntex2-alf.bst versão v-1.9.6           |
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-(There were 2 error messages)
+(There was 1 error message)

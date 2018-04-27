@@ -65,7 +65,7 @@ x_{ijk} \in \{0,1\},\forall k \in K,\forall (i,j) \in A
 A variável binária \(x_{ijk}\) assume valor 1 se o veículo \(k\) passa pelo arco (i,j) e 0, caso contrário.
 
 A função objetivo \ref{eq:prvjt1} expressa o custo total a ser minimizado. 
-As restrições \ref{eq:prvjt2} asseguram que somente um veículo \(k\) parte de cada cliente \(i\). 
+As restrições \ref{eq:prvjt2} asseguram que somente um veículo \(k\) sai de cada cliente \(i\). 
 As restrições \ref{eq:prvjt3}, \ref{eq:prvjt4}, \ref{eq:prvjt5} garantem a continuidade do caminho a ser percorrido pelo veículo \(k\), ou seja, cada veículo parte do depósito, visita os clientes e em seguida retorna ao depósito. 
 As restrições \ref{eq:prvjt6} fazem com que cada veículo \(k\) somente possa atender a um conjunto de clientes cuja demanda total não ultrapasse sua capacidade Q. 
 As restrições \ref{eq:prvjt7}, \ref{eq:prvjt8} asseguram a viabilidade das rotas no que diz respeito as restrições de janelas de tempo, em que \(b_{ik}\) representa o tempo em que o veículo \(k\) começa a atender o cliente \(i\) e \(M_{ij}\) são constantes de valor suficientemente grande.  As restrições \ref{eq:prvjt9} definem o domínio das variáveis de decisão.~\cite{CORDEAU}
@@ -89,18 +89,18 @@ Heurísticas são procedimentos de busca que visam a obtenção de soluções co
 
 \subsubsection{Construção de rotas}
 
-Um dos trabalhos mais antigos sobre heurística para construção de rotas para PRVJT proposto por Baker \cite{Baker} em 1989, Foi criada a partir da ideia da heurística das economias de Clarke e Write \cite{Clarke} que foi proposta para criação de soluções para o PRV. O algoritmo funciona primeiramente criando uma rota partindo do depósito para cada cliente \textit{i}, para em seguida varias iterações ocorrerem, para cada o algoritmo calcula quais duas rotas que podem ser combinadas de forma a gerar a maior economia possível.
+Um dos trabalhos mais antigos sobre heurística para construção de rotas para PRVJT proposto por Baker \cite{Baker} em 1989, Foi criada a partir da ideia da heurística das economias de Clarke e Write \cite{Clarke} que foi proposta para criação de soluções para o PRV. O algoritmo funciona primeiramente criando uma rota partindo do depósito para cada cliente \textit{i}, para em seguida, executar varias iterações, em cada interação, o algoritmo calcula quais duas rotas que podem ser combinadas de forma a gerar a maior economia possível.
 
 Outra heurística proposta por \cite{VANLANDEGHEM} também baseada na heurística das economias é uma heurística de dois critérios, nesta as janelas de tempo são utilizadas para mensurar o quanto uma ligação entre dois clientes é boa em termos de tempo.
 
-De forma semelhante \cite{Solomon} desenvolveu um algoritmo baseado na ideia na heurística das economias para resolução do PRVJT. Devido a existência de janelas de tempo, deve-se considerar também a orientação da tora. Também deve-se checar as violações de janelas de tempo quando mais de uma rota é combinada. Ela de forma igual a heurística das Economias original possuem complexidade \(O^2 log n^2\).
+De forma semelhante \cite{Solomon} desenvolveu um algoritmo baseado na ideia na heurística das economias para resolução do PRVJT. Devido a existência de janelas de tempo, deve-se considerar também a orientação da rora. Também deve-se checar as violações de janelas de tempo quando mais de uma rota é combinada. Ela de forma igual a heurística das Economias original possuem complexidade \(O^2 log n^2\).
 Nesta heurística toda rota é inicializada encontrando o cliente mais próximo ao depósito que ainda não pertença a nenhuma rota. A cada iteração subsequente o cliente mais próximo ao último adicionado à rota é considerado para inserção ao final da rota que está sendo gerado. Quando a busca falha, uma nova rota é inicializada.
 
-As heurísticas de \cite{VANLANDEGHEM} e \cite{Solomon} de forma geral conseguem encontrar uma solução rapidamente. Porem as soluções que suas heurísticas encontram são geralmente de baixa qualidade. Geralmente a mais de 10\% da ótima ~\cite{Sherbeny}.
+As heurísticas de \cite{VANLANDEGHEM} e \cite{Solomon} de forma geral conseguem encontrar uma solução rapidamente. Porém as soluções que suas heurísticas encontram são geralmente de baixa qualidade. Geralmente pouco a mais de 10\% do ótimo ~\cite{Sherbeny}.
 
-Criar uma rota por vez  traz uma desvantagem, usualmente as rotas geradas por ultimo são de baixa qualidade uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
+Criar uma rota por vez traz uma desvantagem, usualmente as rotas geradas por ultimo são de baixa qualidade, uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
 
-É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon. Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir de desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
+É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon. Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
 
 Antes e Derigs \cite{Derigs} evoluem as ideias clássicas de inserção. No seu trabalho, todo cliente sem rota designada recebe um custo de inserção de cada uma das rotas. A definição desse custo é semelhante ao adotado nas  heurísticas de Solomon.  Cada cliente sem rota envia uma proposta a rota com melhor oferta, cada rota aceita a melhor proposta dos clientes com menor número de alternativas.  Vale observar que mais clientes podem ser inseridos em cada iteração.  Se houver alguma violação nas rotas,  um certo numero de veículos é removido e o processo é reiniciado. 
 
@@ -232,20 +232,13 @@ Ela é a responsável pela perpetuação de boas características na espécie.
 Neste estágio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
 O grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
 
-\textbf{Selection Random}: Gera um numero aleatório entre 0 e o tamanho total da população e retorna o indivíduo do índice escolhido.
-
-\textbf{Selection Roulette Wheel}: Faz a soma de todos os valores da função de aptidão da população, depois calcula a porcentagem de cada indivíduo referente ao total 
-e guarda em um vetor. Então é gerado um valor A aleatório entre 0 e 1 e multiplicado pelo valor total dos pesos. Para selecionar o indivíduo é feito um loop 
-nos pesos e seus valores somados até que o valor A seja igual ou menor que zero, o índice do peso que fez a condição acontecer, se o índice do indivíduo selecionado.
-Desta forma aumentando a possibilidade de selecionar um indivíduo com maior aptidão.
+\textbf{Selection Roulette Wheel}: Faz a soma de todos os valores da função de aptidão da população, depois calcula a porcentagem de cada indivíduo referente ao total e guarda em um vetor. 
+Então é gerado um valor X aleatório entre 0 a 1, e multiplicado pelo valor total dos pesos. 
+Para selecionar o indivíduo é feito um loop no vetor de pesos e seus valores somados até que seja menor ou igual ao valor X aleatório calculado antes, a posição atual no vetor deste valor, será o utilizada para selecionar o individuo no vector de indivíduos.
+Desta forma aumentando a possibilidade de selecionar um indivíduo com melhor aptidão.
 
 \subsection{Cruzamento}
 Características das soluções escolhidas na seleção são recombinadas, gerando novos indivíduos.
-
-\textbf{CrossOver Simple}: Utiliza dois indivíduos selecionados,  define dois números aleatórios de 0 até menor tamanho da lista de cromossomos entre os dois, 
-sendo que o primeiro índice tem que ser menor que o segundo índice e os mesmos não podem ser iguais. 
-Esse tamanho é utilizado para trocar cromossomos entre os dois indivíduos, ou seja, adicionar todos os cromossomos do primeiro indivíduo do índice 
-igual ao primeiro numero, até o índice segundo numeSAro, e repete o processo contrario.
 
 \textbf{Crossover OBX (Order-Based Crossover)}: Utiliza dois indivíduos escolhidos na seleção, então define dois números aleatórios, de 0 até menor tamanho da lista de cromossomos entre os dois, sendo que o primeiro tem que ser menor que o segundo e não podem ser iguais. O primeiro numero até o segundo numero, são definidas posições aleatórias e são salvas em uma lista. Faz um loop na lista e troca o cromossomo da posição do primeiro indivíduo para o segundo e do segundo para o primeiro.
 
@@ -271,18 +264,10 @@ A mutação opera sobre os indivíduos resultantes do processo de cruzamento e c
 
 \textbf{MutateDIVM (Displaced Inversion Mutation)}:Define duas das posições aleatórias distintas do segundo cromossomo até o ultimo, e remove todos os cromossomo entre essa posições e recoloca a partir de uma posição aleatória de forma invertida.
 
-\subsection{Atualização}
-Os indivíduos criados no processo de reprodução e mutação são inseridos na população.
-
-Na forma mais tradicional deste a população mantém um tamanho fixo e os indivíduos são criados em mesmo número que seus antecessores e os substituem por completo. 
-
-Existem, porém, algumas alternativas, o número de indivíduos gerados pode ser menor ou o tamanho da população pode sofrer variações e o critério de inserção pode variar, por exemplo, nos casos em que os filhos substituem os pais, ou em que estes só são inseridos se possuírem maior aptidão que o cromossomo que sera substituído, ou o manter sempre o conjunto dos n melhores indivíduos. 
-
 \subsection{Finalização}
 É testado se as condições de encerramento da evolução foram atingidas, retornando para a etapa de avaliação em caso negativo e encerrando a execução em caso positivo.
 
 Os critérios para a parada podem ser vários, desde o número de gerações criadas até o grau de convergência da população atual.
-
 
 Toda base dos AG se fundamenta nos indivíduos, eles são a unidade básica em qual o algoritmo se baseia, sua função é codificar as possíveis soluções do problema a ser tratado e partir de sua manipulação no processo evolutivo, a partir daí que são encontradas as respostas.
 
@@ -334,12 +319,11 @@ Também é calculado o grau de adaptação do indivíduo relativo aos outros mem
  
  \textbf{Geração:} É o número de vezes em que a população passou pelo processo de seleção, reprodução, mutação e atualização.
 
-\textbf{Média de adaptação:} É a taxa média que ao indivíduos se adaptaram ao problema, é definida pela formula \ref{eq:solve2}. 
+\textbf{Média de adaptação:} É a taxa média que os indivíduos se adaptaram ao problema, é definida pela formula \ref{eq:solve2}. 
 
 \begin{equation} \label{eq:solve2}
 M_A = \frac{ \sum_{i=1}^{n} f_O(i) }{n}
 \end{equation}
-
 
 \textbf{Grau de convergência:} define o qual próxima esta a media de adaptação desta população relativo as anteriores. O objetivo dos AG é fazer a população convergir para uma valor de adaptação ótimo.
 Um estado negativo que pode ocorrer relativo a esta medida é a \textit{convergência prematura}, a mesma ocorre quando a população converge em uma média de adaptação sub-ótima, e dela não consegue sair por causa de sua baixa diversidade.
@@ -352,7 +336,7 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligência artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
-O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, para encontrar uma boa distribuição de viaturas para patrulhamento urbano usado por departamentos de segurando como a policia, guardas municipais ou segurança privada \?cite{Washington}. 
+O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, encontrando uma boa distribuição de viaturas para patrulhamento urbano, que pode ser utilizado por departamentos segurança, como a policia, guardas municipais ou segurança privada \?cite{Washington}. 
 O Modelo é definido como um grafo não direcionado \ref{eq:solve3}. 
 
 \begin{equation} \label{eq:solve3}
@@ -379,14 +363,13 @@ O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as
 
 Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solução; O AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
 
-A conclusão de \cite{Washington} é que a utilização de algoritmos genéticos para a resolução de de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
+A conclusão de \cite{Washington} é que a utilização de algoritmos genéticos para a resolução de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
-\cite{HOMBERGER} propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. 
-A mutação é feita pelas heurísticas de refinamento Or-opt, 2-opt\* e $\lambda$ -Interchange. No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
+Homberger, Jorg, Gehring e Hermann propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. 
+A mutação é feita pelas heurísticas de refinamento Or-opt, 2-opt\* e $\lambda$ -Interchange. No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme. \cite{HOMBERGER}
 
 O trabalho de Sabir Ribas na universidade federal de fluminense utilizou uma abordagem híbrida para resolver o Problema de Roteamento de Veículos, usando Algoritmos Genéticos com a metaheurística Iterated Local Search e o metodo Variable Neighborhood Descent. Chama de IILS-SP, desenvolvido em C++. O algoritmo foi submetido a 56 problemas teste de 100 clientes, para cada problema, executado 5 vezes em intervalos de 10min. Teve resultados melhores do que os encontrados pelo autor em sua pesquisa na literatura. \cite{SABIRRIBAS}.
 
 Humberto,Germano e Guilherme também tentaram resolver o PRVJT utilizando GA, para a criação da população inicial utilizar a heurística Push-Forward Insertion Heuristic. Utilizando 56 problemas de teste e 100 clientes, chamadas instâncias de Solomon de 1987, mesma base de teste utilizadas em sua revisão de literatura para comparação de resultados, utiliza a mesma metodologia de teste do Sabir Ribas. \cite{HGGUILHERME}
 
 No trabalho de Glaydston da UniAracruz e Luiz Antonio da Instituto Nacional de Pesquisas Espaciais utilizaram algoritmos genéticos para resolver Problemas de Roteamento de Veículos Dinâmico com Janelas de Tempo, em casos reais, podem existir mudanças que podem afetar as rotas, pensando nisso, o algoritmo recalcula a rota de todos os veículos. O GA deve um resultado equivalente ou superior em alguns casos se comparados com as heurísticas. \cite{GLAYDSTON}
-
