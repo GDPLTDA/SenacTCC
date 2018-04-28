@@ -97,7 +97,7 @@ Projeto de integração com o Google Mapas e classes de apoio do software.
 
 \textbf{Route:} Classe para definição da origem e destino de uma rota, contendo o tempo e a distância entra os pontos.
 
-\textbf{RouteMap:} Classe para a definição da rota completo e o armazém. A definição de cada caminho completo é controlado nessa classe. 
+\textbf{RouteMap:} Classe para a definição da rota completa e o deposito. A definição de cada caminho completo é controlado nessa classe. 
 
 \textbf{SearchRoute:} Classe para a integração com a API do Google maps.
 
@@ -108,17 +108,17 @@ Neste projeto são definidos todas as implementações referentes ao algoritmo g
 
 Nesta pasta estão todos os arquivos a nível de abstração das etapas do algoritmo genético.
 
-\textbf{ISelection}: Interface é responsável por abstrair os algoritmos de seleção.
+\textbf{ISelection}: Interface responsável por abstrair os algoritmos de seleção.
 
-\textbf{IGenome}: Interface tem como funcionalidade abstrair a definição de genoma.
+\textbf{IGenome}: Interface que tem como funcionalidade abstrair a definição de genoma.
 
-\textbf{IFitness}: Interface tem como objetivo abstrair o calculo de fitness.
+\textbf{IFitness}: Interface que tem como objetivo abstrair o calculo de fitness.
 
-\textbf{IMutate}: Interface tem como objetivo abstrair os operadores de mutação.
+\textbf{IMutate}: Interface que tem como objetivo abstrair os operadores de mutação.
 
-\textbf{ICrossover}:  Interface tem como objetivo abstrair os operadores de cruzamento.
+\textbf{ICrossover}:  Interface que tem como objetivo abstrair os operadores de cruzamento.
 
-\textbf{IRandom}: Interface tem como objetivo abstrair a implementação de geração de números aleatórios.
+\textbf{IRandom}: Interface que tem como objetivo abstrair a implementação de geração de números aleatórios.
 
 \textbf{AbstractMutate}: Implementação base para operador de mutação.
 
@@ -178,6 +178,5 @@ Nesta pasta estão todas as implementações dos algoritmos de fitness.
 O software é composto por funcionalidade individuais que podem ser utilizadas separadamente se necessário e também entender cada uma, ajuda a entender o software por completo.
 
 \textbf{Integração com a API do Google Maps:} Usando a classe SearchRoute do projeto PathFinder.Routes é possível procurar rotas e endereços do Google Maps e obter informação de coordenadas geográficas de um ponto usando o endereço, calcular rota entre dos dois usando o endereço ou com as coordenadas geográficas, obter um mapa estático de um ou vários pontos.
-
 
 \textbf{Algoritmos Genéticos} O modulo de GA poderia ser utilizado separadamente, porém é preciso o desenvolvimento da função de aptidão para o caso que ele será utilizado, o resto da estrutura funcionaria.
