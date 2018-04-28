@@ -26,10 +26,13 @@ O fluxograma a baixo demostra o funcionamento do software.
     \label{fig:FluxoSoftware}
 \end{minipage}
 
-O GA considera como um individuo um percurso inteiro, ponto do estoque, e todos os destinos.Uma rota aleatória é calculada para cada individuo como população inicial.
+Sempre que é necessário calcular a rota, o modulo de GA é chamado. Considerando que um individuo é uma rota completa, gera uma população de varias rotas, onde a ordem da rota é aleatória somente mantendo o deposito fixo como primeiro endereço para criar a população inicial.
+Para cada rota da população de indivíduos a seleção determina dois para a realização do cruzamento, onde endereços das duas rotas são trocados de forma a criar duas novas rotas mantendo o deposito sempre como inicial. A mutação é executada individual em cada rota, mudando de posição um ou mais endereços da rota, mas sempre 
+mantendo o deposito como ponto inicial.
 
-A mutação e o cruzamento alterna os pontos de destino, mantendo o estoque sempre fixo.
-A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entra os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
+Depois que todas as rotas dos indivíduos da população foram modificados, agora é hora de verificar quais são os melhores, o que define isso é a função de aptidão, todos os parâmetros da rota são agrupados em um único numero e a rota que tem o menor numero é a melhor rota da população. O valor de aptidão é definido com a soma da distância entre todos os endereços da rota, mais o tempo de cada um dos trajetos com o tempo de espera e descarga.
+
+A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entre os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
 
 O GA foi configurado com o Numero de Gerações em 200, tamanho da População em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
 
@@ -52,16 +55,24 @@ O fluxograma a baixo demostra o funcionamento do software utilizando o GA.
 
 \chapter{Implementação}
  
-Nesse capitulo será apresentado mais aprofundadamente as ferramentas e métodos que foram utilizados para a implementação do algoritmo genético para busca de rota com janela de tempo.
- 
-\section{O Projeto}
-O software é separado em três projetos, todos utilizando .Net Core 2.0 com a linguagem C\# no Visual Studio 2017 para plataforma Windows ou \**nix.
+Nesse capitulo será apresentado mais aprofundadamente as tecnologias, ferramentas e métodos que foram utilizados para a implementação do algoritmo genético para busca de rota com janela de tempo.
 
-O \textbf{PathFinder.Routes} nesse projeto estão os algoritmos de comunicação com o Google Maps e organização de rotas.
+\section{Tecnologias}
 
-O \textbf{PathFinder.GeneticAlgorithm} nesse projeto estão as implementações para a utilização do algoritmo genético.
+O software foi desenvolvido na linguagem C\# com Visual Studio 2017 com o Framework  .Net Core 2.2 compatível com Windows, Linux e MacOs para o Back-End e ReactJs para a interface de utilização.
+Toda comunicação da interface com o calculador de rotas é por WebAPi Rest, onde são trocados dados em formato de Json.
 
-O \textbf{PathFinder} projeto principal para inicialização do software e utiliza os dois outros projetos em sua implementação.
+\section{Estrutura do Projeto}
+
+Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Solution do Visual Studio é divida em 4 projetos, onde eles são:
+
+O \textbf{PathFinder.Routes} nesse projeto estão os algoritmos de comunicação com a  API Google Maps, classes para serialização dos retornos da API e classes para o agrupamento dos dados das rotas. Esse projeto é utilizado pelo genoma do GA para o recalculo das rotas
+
+O \textbf{PathFinder.GeneticAlgorithm} nesse projeto estão as implementações para a utilização do algoritmo genético, algoritmos de seleção, cruzamento, mutação e a função de aptidão podem ser encontrados. 
+
+O \textbf{PathFinder} projeto com função de utilização do software em geral, agrupamento informações de dados iniciais e organizando o retorno para a exibição.
+
+O \textbf{RouteGA} projeto de WebApi para a comunicação com a interface, seu objetivo é converter os dados recebidos pelo interface e chamar metodos do projeto \textbf{PathFinder}, convertendo o retorno para uma melhor estrutura que será exibida na interface.
 
 \section{Organização}
 Os projetos são organizados utilizando o padrão do Visual Studio chamado de Solution.
