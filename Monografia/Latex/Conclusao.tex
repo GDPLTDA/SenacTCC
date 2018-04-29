@@ -1,14 +1,16 @@
 \chapter{Conclusão}
 Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, futuras melhorias e os resultados encontrados.
 
-\section{Testes}
-Os testes foram gerados de forma automatizada para todos os parâmetros possíveis. A primeira etapa para a definição do que precisa ser testado foi a identificação de possíveis situações que o software não teria como dar uma resposta, ou seja, suas limitações. Identificamos 3 possíveis limitações ao rodar o software:  
+\section{Limitações}
+Na criação do software os testes nos iniciais já possível identificar possíveis situações que o software não tem como dar uma resposta, ou seja, suas limitações.
+Identificamos 3 possíveis limitações nos testes iniciais:  
 
-\textbf{Não é possível entregar a tempo}: Quando as rotas são distribuídas aos entregadores, é possível aparecer uma situação onde a distribuição de rotas encontra uma rota que não é possível entregar no horário limite, então a roteiro não é possível com o numero de entregadores ou o tempo de locomoção passa do horário limite.
+\textbf{Não é possível entregar a tempo}: Levando em consideração o horário de saída e o horário limite para realizar todas as entregas, é possível que um percurso entre os endereços tem seu tempo de trajeto mais demorado que o tempo disponível para a realização de todas as entregas, com isso seria impossível entregar, mesmo com mais entregadores, com isso, o software não consegue definir uma rota por considerar a velocidade média das vias por onde ele passará.
 
-\textbf{Limite de Entregadores:} Um dos parâmetros iniciais é o numero de entregadores para realizar o roteiro, na distribuição de rotas se esse numero for excedido o rodeiro não é possível.
+\textbf{Limite de Entregadores:} Para pedir a definição de uma rota é preciso indicar quantos entregadores estão disponível para realizar as entregas, em algumas situações é possível que mesmo dividindo para todos os entregadores, mais entregadores seriam precisos para chegar a tempo em todos os endereços, com isso, o software não consegue definir uma rota.
 
-\textbf{Tempo limite de entrega excedido:} Depois que as rotas estão distribuídas entre os entregadores, a rota de cada entregador é recalcula, é possível que o transito fique pior depois que o entregador começou a entregar, fazendo com que o tempo limite seja excedido.
+\textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
+É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
 
 \subsection{Roteiros dos Testes}
 Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. As listas de endereços podem ser vista a baixo:

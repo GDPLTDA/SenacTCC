@@ -34,15 +34,13 @@ Depois que todas as rotas dos indivíduos da população foram modificados, agor
 
 A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entre os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
 
-O GA foi configurado com o Numero de Gerações em 200, tamanho da População em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
+O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
 
-Os Testes foram configurados com um numero de 5 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 3 tipos de cruzamento, sendo Simples, PBX e OBX.
+Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 2 tipos de cruzamento, sendo PBX e OBX.
 Considerando o transito médio enviado pelo Google Maps, para poder demostrar o impacto do transito nos caminhos calculados.
-
 Tudo será rodado 10 vezes e será retirada uma média do valor de aptidão, por que, cada vez que roda o GA a resposta da solução pode mudar, por ele não ser determinístico.
 
 E uma base pré-definidas rotas, para prevenir possíveis problemas sera ignorado o transito atual. Ja que o mesmo altera dependendo das condições do clima ou horário do dia. Então utilizando o Google Maps, um cache inicial foi preparado e o software utiliza simulando uma buscar ao Google Maps, com isso, a informação é obtida mais rapidamente e sempre fixa para garantir a resposta pré-determinada do teste.
-Os parâmetros utilizados são
 
 O fluxograma a baixo demostra o funcionamento do software utilizando o GA.
 
@@ -66,28 +64,30 @@ Toda comunicação da interface com o calculador de rotas é por WebAPi Rest, on
 
 Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Solution do Visual Studio é divida em 4 projetos, onde eles são:
 
-O \textbf{PathFinder.Routes} nesse projeto estão os algoritmos de comunicação com a  API Google Maps, classes para serialização dos retornos da API e classes para o agrupamento dos dados das rotas. Esse projeto é utilizado pelo genoma do GA para o recalculo das rotas
-
-O \textbf{PathFinder.GeneticAlgorithm} nesse projeto estão as implementações para a utilização do algoritmo genético, algoritmos de seleção, cruzamento, mutação e a função de aptidão podem ser encontrados. 
-
-O \textbf{PathFinder} projeto com função de utilização do software em geral, agrupamento informações de dados iniciais e organizando o retorno para a exibição.
-
-O \textbf{RouteGA} projeto de WebApi para a comunicação com a interface, seu objetivo é converter os dados recebidos pelo interface e chamar metodos do projeto \textbf{PathFinder}, convertendo o retorno para uma melhor estrutura que será exibida na interface.
-
-\section{Organização}
-Os projetos são organizados utilizando o padrão do Visual Studio chamado de Solution.
-
 \subsection{PathFinder}
-Projeto de inicialização no modo console, todo progresso do software é exibido em texto.
+Projeto com função de utilização do software em geral, agrupamento informações de dados iniciais e organizando o retorno para a exibição.
 
 \textbf{Program:} Implementação das união de todas as classes, executa a separação dos entregadores.
 
 \textbf{Entregador:} Informação individual, armazena a rota completa do entregar e o genoma representante.
 
 \textbf{TimeMeasure:} Configuração de registro/exibição do tempo de processamento.
-\subsection{PathFinder.Routes}
 
-Projeto de integração com o Google Mapas e classes de apoio do software.
+\subsection{RouteGA}
+Projeto de WebApi para a comunicação com a interface, seu objetivo é converter os dados recebidos pelo interface e chamar métodos do projeto \textbf{PathFinder}, convertendo o retorno para uma melhor estrutura que será exibida na interface.
+
+\textbf{RouteController:} Implementação da comunicação da Api, recebe a requisição da interface, executa métodos do PathFinder e retorna uma lista da classe EntregadorViewModel para a interface.
+
+\textbf{EntregadorViewModel:} Classe de retorno para a interface agrupando todas as informações da rota do entregador.
+
+\textbf{LocalViewModel:} Classe de retorno para a interface agrupando todas as informações de um endereço.
+
+\textbf{RotaViewModel:} Classe de retorno para a interface agrupando todas as informações de uma rota.
+
+\textbf{RoteiroViewModel:} Classe de recebimento da interface agrupando todas as informações configuradas na interface para o calculo da rota.
+
+\subsection{PathFinder.Routes}
+Nesse projeto estão os algoritmos de comunicação com a  API Google Maps, classes para serialização dos retornos da API e classes para o agrupamento dos dados das rotas. Esse projeto é utilizado pelo genoma do GA para o recalculo das rotas
 
 \textbf{GoogleMaps:} Classes de estrutura para serialização do Json de retorno da API do Google Maps.
 
@@ -102,7 +102,7 @@ Projeto de integração com o Google Mapas e classes de apoio do software.
 \textbf{SearchRoute:} Classe para a integração com a API do Google maps.
 
 \subsection{PathFinder.GeneticAlgorithm}
-Neste projeto são definidos todas as implementações referentes ao algoritmo genético, pela complexidade do algoritmo ele possui uma estrutura própria de pastas para definições e configurações de injeção de dependência.
+Neste projeto são definidos todas as implementações referentes ao algoritmo genético, pela complexidade do algoritmo ele possui uma estrutura própria de pastas com algoritmos de seleção, cruzamento, mutação e a função de aptidão para definições e configurações de injeção de dependência.
 
 \subsection{Abstraction}
 
@@ -147,8 +147,6 @@ Nesta pasta estão todas as implementações dos algoritmos de cruzamento.
 \textbf{CrossoverOBX}: Implementação do operador de cruzamento OBX.
 
 \textbf{CrossoverPBX}: Implementação do operador de cruzamento PBX.
-
-\textbf{CrossoverSimple}:  Implementação do operador de cruzamento simples.
 
 \subsection{Mutation}
 
