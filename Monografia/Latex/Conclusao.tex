@@ -12,31 +12,55 @@ Identificamos 3 possíveis limitações nos testes iniciais:
 \textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
 É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
 
-\subsection{Roteiros dos Testes}
-Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. As listas de endereços podem ser vista a baixo:
+\section{Roteiros dos Testes}
+Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. As listas de endereços e as rotas encontrada podem ser vista a baixo:
 
 \pagebreak
+O teste da tabela abaixo \ref{Roteiro1} começa o roteiro em Senac Nacões Unidas, endereço Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, horário de saída 09:00, horário de volta 20:00, com 3 entregadores disponíveis e um tempo de espera médio em cada ponto 20 minutos.
+
 \begin{table}[h]
 	\centering
 	\caption{Senac}
 	\label{Roteiro1}
-	\begin{tabular}{C{3cm}C{8cm}C{2cm}C{2cm}}
+	\begin{tabular}{C{1cm}C{3cm}C{7cm}C{2cm}C{2cm}}
 		\toprule
-		Nome                     & Endereço                                                         & Aber. & Fech. \\ \midrule
-		Senac Largo Treze        & R. Dr. Antônio Bento, 393 - Santo Amaro                          & 09:00    & 12:00      \\
-		Senac Taboão da Serra    & Rua Salvador Branco de Andrade, 182 - Jardim Sao Miguel          & 09:00    & 18:00      \\
-		Senac Jabaquara          & Av. do Café, 298 - Jabaquara                                     & 09:00    & 11:00      \\
-		Senac Osasco             & R. Dante Batiston, 248 - Centro                                  & 12:00    & 15:00      \\
-		Senac Santana            & R. Voluntários da Pátria, 3167 - Santana                         & 10:00    & 19:00      \\
-		Senac Tatuapé            & R. Cel. Luís Americano, 130 - Tatuapé                            & 15:00    & 19:00      \\
-		Senac Vila Prudente      & Rua do Orfanato, 316 - Vila Prudente                             & 09:00    & 17:00      \\
-		Senac - Campos do Jordão & Av. Frei Orestes Girardi, 3549 - Capivari, Campos do Jordão - SP & 09:00    & 17:00      \\ \bottomrule
+		\#&Nome&Endereço&Aber.&Fech.\\ \midrule
+		1&Senac Largo Treze        & R. Dr. Antônio Bento, 393 - Santo Amaro                          & 09:00    & 12:00      \\
+		2&Senac Taboão da Serra    & Rua Salvador Branco de Andrade, 182 - Jardim Sao Miguel          & 09:00    & 18:00      \\
+		3&Senac Jabaquara          & Av. do Café, 298 - Jabaquara                                     & 09:00    & 11:00      \\
+		4&Senac Osasco             & R. Dante Batiston, 248 - Centro                                  & 12:00    & 15:00      \\
+		5&Senac Santana            & R. Voluntários da Pátria, 3167 - Santana                         & 10:00    & 19:00      \\
+		6&Senac Tatuapé            & R. Cel. Luís Americano, 130 - Tatuapé                            & 15:00    & 19:00      \\
+		7&Senac Vila Prudente      & Rua do Orfanato, 316 - Vila Prudente                             & 09:00    & 17:00      \\
+		8&Senac - Campos do Jordão & Av. Frei Orestes Girardi, 3549 - Capivari, Campos do Jordão - SP & 09:00    & 17:00      \\ \bottomrule
 	\end{tabular}
 \end{table}
 
-O teste da Tabela \ref{Roteiro1} começa o roteiro no Senac Nacões Unidas, endereço Av. Eng. Eusébio Stevaux, 823 - Santo Amaro, horário de saída 09:00, horário de volta 20:00:00, com 3 entregadores disponíveis e um tempo de espera médio em cada ponto 20 minutos.
+O calculo da rota dividiu o roteiro para os 3 entregadores, de forma que, o percurso mais distante deve ser feito por apenas um entregador e os outros dois realizam as entregas dentro e proximidades da cidade. Os resultados completos estão nas tabelas abaixo.
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Senac-Entregador1.png}}
+	\captionof{figure}{Resultado do Entregador 1}
+	\label{fig:Senac-Entregador1}
+\end{center}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Senac-Entregador2.png}}
+	\captionof{figure}{Resultado do Entregador 2}
+	\label{fig:Senac-Entregador2}
+\end{center}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Senac-Entregador3.png}}
+	\captionof{figure}{Resultado do Entregador 3}
+	\label{fig:Senac-Entregador3}
+\end{center}
 
 \pagebreak
+O teste da Tabela \ref{Roteiro2} começa o roteiro no Extra Morumbi, endereço Av. das Nações Unidas, 16741 - Santo Amaro, horário de saída 06:00, horário de volta 22:00:00, com 4 entregadores disponíveis e um tempo de espera médio em cada ponto 60 minutos.
 \begin{table}[h]
 	\centering
 	\caption{Extra}
@@ -58,9 +82,26 @@ O teste da Tabela \ref{Roteiro1} começa o roteiro no Senac Nacões Unidas, ende
 	\end{tabular}
 \end{table}
 
-O teste da Tabela \ref{Roteiro2} começa o roteiro no Extra Morumbi, endereço Av. das Nações Unidas, 16741 - Santo Amaro, horário de saída 06:00, horário de volta 22:00:00, com 10 entregadores disponíveis e um tempo de espera médio em cada ponto 60 minutos.
+O calculo da rota dividiu o roteiro para 2 entregadores, de forma que, 
+não foi preciso utilizar todos os disponíveis, um entregador ficou com o único endereço que o primeiro não iria consegui fazer, sendo necessário utilizar pouco tempo dele e com o roteiro quase inteiro utilizando apenas um entregador. Os resultados completos estão nas tabelas abaixo.
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Extra-Entregador1.png}}
+	\captionof{figure}{Resultado do Entregador 1}
+	\label{fig:Extra-Entregador1}
+\end{center}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/Extra-Entregador2.png}}
+	\captionof{figure}{Resultado do Entregador 2}
+	\label{fig:Extra-Entregador2}
+\end{center}
 
 \pagebreak
+O teste da Tabela \ref{Roteiro3} começa o roteiro no McDonald's Jardim Paulista, endereço R. Pamplona, 734 - Jardim Paulista, São Paulo - SP, horário de saída 09:00, horário de volta 23:00, com 3 entregadores disponíveis e um tempo de espera médio em cada ponto 40 minutos.
+
 \begin{table}[h]
 	\centering
 	\caption{MacDonald's}
@@ -78,8 +119,14 @@ O teste da Tabela \ref{Roteiro2} começa o roteiro no Extra Morumbi, endereço A
 		McDonald's Santo Antônio      & Av. Roque Petroni Júnior, 1089 - Chácara Santo Antônio (Zona Sul), São Paulo - SP & 09:00    & 23:00 \\ \bottomrule
 	\end{tabular}
 \end{table}
+O calculo da rota dividiu o roteiro para apenas um entregador, de forma que, não foi preciso utilizar todos os 3 disponíveis. Os resultados completos estão na tabela abaixo.
 
-O teste da Tabela \ref{Roteiro3} começa o roteiro no McDonald's Jardim Paulista, endereço R. Pamplona, 734 - Jardim Paulista, São Paulo - SP, horário de saída 09:00, horário de volta 23:00:00, com 3 entregadores disponíveis e um tempo de espera médio em cada ponto 40 minutos.
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{ibagens/MacDonalts-Entregador1.png}}
+	\captionof{figure}{Resultado do Entregador 1}
+	\label{fig:MacDonalts-Entregador1}
+\end{center}
 
 \pagebreak
 \begin{table}[h]
@@ -103,6 +150,8 @@ O teste da Tabela \ref{Roteiro3} começa o roteiro no McDonald's Jardim Paulista
 O teste da Tabela \ref{Roteiro4} começa o roteiro no Uninove Vergueiro, endereço Rua Vergueiro, 235/249 - Liberdade, São Paulo - SP, horário de saída 08:00, horário de volta 23:00:00, com 5 entregadores disponíveis e um tempo de espera médio em cada ponto 90 minutos.
 
 \pagebreak
+O teste da Tabela \ref{Roteiro5} simula a situação de 1 turista hospedado no Hotel Ibis São Paulo Paulista no endereço Av. Paulista, 2355 - Bela Vista, São Paulo - SP, em seu plano é conheço os endereços, permanecendo 30 minutos em cada, saindo do hotel 09:00 e voltando 23:00.
+
 \begin{table}[h]
 	\centering
 	\caption{Pontos Turísticos de São Paulo}
@@ -126,10 +175,10 @@ O teste da Tabela \ref{Roteiro4} começa o roteiro no Uninove Vergueiro, endere�
 	\end{tabular}
 \end{table}
 
-O teste da Tabela \ref{Roteiro5} simula a situação de 1 turista hospedado no Hotel Ibis São Paulo Paulista no endereço Av. Paulista, 2355 - Bela Vista, São Paulo - SP, em seu plano é conheço os endereços, permanecendo 60 minutos em cada, saindo do hotel 09:00 e voltando 23:00.
+Mesmo com varias tentativas, o calculador de rotas não encontrou um rota onde seria possível com apenas uma pessoa em um dia, visitar todos os endereços do roteiro. Alterando para 2 turistas torna possível realizar todas as visitas, porém como não se trata de entregas, é inviável o conseguir um resultado.
 
 \pagebreak
-\section{Resultados}
+\section{Comparativo}
 
 A implementação se mostrou eficiente na organização do roteiro, identificando padrões não muito visíveis entre todos os destinos. O Google Maps ajuda na definição da rota por entregar o transito médio da rota fazendo com que o caminho escolhido pelo software fique mais próximo de uma situação real. O GA ajuda na escolhas das rotas por exemplo tentar minimizar o tempo e a distância, mesmo podendo demorar para encontrar uma solução ótima se o numero de gerações for muito alto, o tamanho da população ou numero de rotas. 
 
