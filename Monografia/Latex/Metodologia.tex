@@ -1,15 +1,17 @@
 \chapter{Metodologia}
-O software desenvolvido tem como objetivo demonstrar o problema, definindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas no período limitado, caminhos são impossíveis de ser entregues a tempo e caminhos que serão necessários mais de um entregador para ser realizado. Alertas de não possibilidade de realizar a entrega será comunicadona interface do usuário.
+O software desenvolvido tem como objetivo demonstrar uma solução para o problema de PRVJT, descobrindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas no período limitado, também identificar roteiros que são impossíveis de serem realizados a tempo, e caminhos que serão necessários mais de um entregador para ser realizado. Alertas de não possibilidade de realizar a entrega será comunicado na interface do usuário.
 
-Utilizando a API do Google Maps como fonte de dados, informações reais de distância, tempo médio e localizações são utilizadas para uma simulação mais próxima de uma situação real.
+Utilizando a API do Google Maps\cite{GoogleMatrix} como fonte de informações reais de distância, tempo médio e localizações. Utilizadas para uma simulação próxima de uma situação real de locomoção geográfica.
+
 Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metrópoles do mundo, também tem um dos maiores índices de transito também segundo o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
 
-Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem que chamamos de deposito,mas antes de começar a calcular as entregas, é calculada uma rota geral que passa por todos os endereços com apenas um entregador, essa rota é divida sempre que o horário de chega a um endereço, ultrapassar o horário limite para realizar todas as entregas. Quando uma rota é divida, primeiro entregador fica com a parte até o endereço que é possível realizar a entrega e é calculada uma nova rota geral com os endereços que sobraram, sendo passado para um novo entregador e partindo do deposito. Todas as vezes que não for possível entregador esse processo será repetido até que seja possível.
+Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem que chamamos de deposito, a quantidade de entregadores é predefinida, e o sistema ira devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
 
-Existem situações onde não é possível entregar, mesmo com um numero alto de entregadores, essas situação podem depender da distancia, se for muito longe não tem como chegar no horário, do horário de abertura e fechamento, se forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível de se realizar a entrega.
+Existem situações onde não é possível entregar com numero de entregadores definido, essas situação podem depender da distancia, se for muito longe do deposito pode nao ter como chegar até o horário máximo do ponto de entrega, caso forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível encontrar uma definição de roteiro para realizar todas as entregas.
 
-Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe nos produtos na madrugada, por que receber em seu horário normal de abertura irá atrapalhar as compras dos clientes, então esse horário deve ser considerado para a escolha do próximo endereço. 
-Depois que chega ao endereço se verifica o horário de abertura, se chegar antes, deve-se esperar até abrir, se chegar no horário ou depois do horário, antes do fechamento, o tempo de descarga que é considerado.
+Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe nos produtos na madrugada, já que receber em seu horário normal de abertura irá atrapalhar as compras dos clientes, então esse horário deve ser considerado para a escolha do próximo endereço. 
+Depois que chega ao endereço se verifica o horário de abertura, se chegar antes, deve-se esperar até abrir, caso chegue antes do fechamento é considerado um tempo descarga. Caso algum entregador chegue depois de algum horário de fechamento é considerado que não foi encontrado uma solução viável para as restrições definidas.
+
 Cada entrega também tem um tempo médio que demora para realizar a descarga do produto, produtos pequenos podem demorar minutos, muitos produtos demora mais para retirar do veiculo e produtos grande podem precisar ser levamos com mais demora.
 
 Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será refeito para verificar se o transito ou possível atrasos não afetaram a ordem dos próximos destinos, depois do recalculo o entregador deve seria o próximo destino indicado.
@@ -32,9 +34,25 @@ mantendo o deposito como ponto inicial.
 
 Depois que todas as rotas dos indivíduos da população foram modificados, agora é hora de verificar quais são os melhores, o que define isso é a função de aptidão, todos os parâmetros da rota são agrupados em um único numero e a rota que tem o menor numero é a melhor rota da população. O valor de aptidão é definido com a soma da distância entre todos os endereços da rota, mais o tempo de cada um dos trajetos com o tempo de espera e descarga.
 
-A função de aptidão do GA considera o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entre os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia. Sempre que não chegar em um horário entra a janela de tempo, a penalidade é o tempo de espera, fazendo o tempo total ganhe mais peso no valor de aptidão. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos.
+A função de aptidão do GA considera para uma frota homogênea de \textit{m} veículos o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entre os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera e uma penalidade por chegar antes. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia mais uma penalidade pela diferença. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos com as penalidades de chegar antes ou depois das janelas de tempo.
 
-O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 50\% e probabilidade de Mutação em 0,1\%.
+A função de aptidão é definida como:
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true]{ibagens/aptidao.png}}
+	\captionof{figure}{Formula de aptidão baseado em \cite{Gendreau2} }
+	\label{fig:MetodoAptidao}
+\end{center}
+
+Onde para cada ponto de entrega \textit{i} temos um \(e_i\)
+e um \(li\)  que representam, respectivamente, a abertura e o fechamento
+da janela de tempo do ponto \textit{i}, O \(tc_i\) é o tempo de chegada do veículo no ponto \(i\), \(te_i\) calculado como \(e_i - tc_i\). 
+\(dk\) é a distância total percorrida na rota k para todo k=1,...,m, \(\alpha_i\)
+é um coeficiente de penalidade associado à chegada do veículo no vértice i após o fechamento da janela de tempo.
+
+
+O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e probabilidade de Mutação em 0,5\%.
 
 Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 2 tipos de cruzamento, sendo PBX e OBX.
 Considerando o transito médio enviado pelo Google Maps, para poder demostrar o impacto do transito nos caminhos calculados.

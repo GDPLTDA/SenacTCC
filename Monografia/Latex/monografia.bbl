@@ -117,6 +117,13 @@ ISSN 0305-0548.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0305054894900736}.}
 
+\bibitem[Gendreau et al. 1999]{Gendreau2}
+\abntrefinfo{Gendreau et al.}{GENDREAU et al.}{1999}
+{GENDREAU, M. et al. Parallel tabu search for real-time vehicle routing and
+  dispatching.
+\emph{Transportation Science}, v.~33, n.~4, p. 381--390, 1999.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1287/trsc.33.4.381}.}
+
 \bibitem[Glover 1986]{Glover}
 \abntrefinfo{Glover}{GLOVER}{1986}
 {GLOVER, F. Future paths for integer programming and links to artificial
@@ -126,6 +133,13 @@ ISSN 0305-0548.
 Applications of Integer Programming.
 Dispon{\'\i}vel em:
   \url{http://www.sciencedirect.com/science/article/pii/0305054886900481}.}
+
+\bibitem[{Google Inc.} 2018]{GoogleMatrix}
+\abntrefinfo{{Google Inc.}}{{Google Inc.}}{2018}
+{{Google Inc.} \emph{Google Distance Matrix API}. 2018.
+[Online; accessed Maio 01, 2018].
+Dispon{\'\i}vel em:
+  \url{https://developers.google.com/maps/documentation/distance-matrix/?hl=pt-br}.}
 
 \bibitem[Holland 1975]{Holland1975}
 \abntrefinfo{Holland}{HOLLAND}{1975}
