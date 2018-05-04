@@ -47,14 +47,15 @@ A função de aptidão é definida como:
 
 Onde para cada ponto de entrega \textit{i} temos um \(e_i\)
 e um \(li\)  que representam, respectivamente, a abertura e o fechamento
-da janela de tempo do ponto \textit{i}, O \(tc_i\) é o tempo de chegada do veículo no ponto \(i\), \(te_i\) calculado como \(e_i - tc_i\). 
+da janela de tempo do ponto \textit{i}, O \(tc_i\) é o tempo de chegada do veículo no ponto \(i\), \(te_i\) calculado como \(e_i - tc_i\). 
+
 \(dk\) é a distância total percorrida na rota k para todo k=1,...,m, \(\alpha_i\)
 é um coeficiente de penalidade associado à chegada do veículo no vértice i após o fechamento da janela de tempo.
 
-
 O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e probabilidade de Mutação em 0,5\%.
 
-Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 6 tipos de mutação, sendo SM, IVM, IM, EM, DM e DIVM, e 2 tipos de cruzamento, sendo PBX e OBX.
+Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 4 tipos de mutação, sendo DisplacementMutation, InsertionMutation, InversionMutation e SwapMutation e um tipo de cruzamento, o SubRouteInsertionCrossover.
+
 Considerando o transito médio enviado pelo Google Maps, para poder demostrar o impacto do transito nos caminhos calculados.
 Tudo será rodado 10 vezes e será retirada uma média do valor de aptidão, por que, cada vez que roda o GA a resposta da solução pode mudar, por ele não ser determinístico.
 
@@ -80,124 +81,16 @@ Toda comunicação da interface com o calculador de rotas é por WebAPi Rest, on
 
 \section{Estrutura do Projeto}
 
-Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Solution do Visual Studio é divida em 4 projetos, onde eles são:
+Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Software é divido em 4 projetos principais, sendo um projeto feito em ReactJs e 3 em C\#, onde eles são:
 
-\subsection{PathFinder}
-Projeto com função de utilização do software em geral, agrupamento informações de dados iniciais e organizando o retorno para a exibição.
+\subsection{Calculador de Rotas- CalcRoute}
 
-\textbf{Program:} Implementação das união de todas as classes, executa a separação dos entregadores.
+\subsection{Gerador de Dados - CalcRoute.RouteGenerate}
 
-\textbf{Entregador:} Informação individual, armazena a rota completa do entregar e o genoma representante.
+\subsection{API de Calculo de Rotas - CalcRoute.API}
 
-\textbf{TimeMeasure:} Configuração de registro/exibição do tempo de processamento.
+\subsection{Interface para comunicação com a API - CalcRoute.Interface}
 
-\subsection{RouteGA}
-Projeto de WebApi para a comunicação com a interface, seu objetivo é converter os dados recebidos pelo interface e chamar métodos do projeto \textbf{PathFinder}, convertendo o retorno para uma melhor estrutura que será exibida na interface.
-
-\textbf{RouteController:} Implementação da comunicação da Api, recebe a requisição da interface, executa métodos do PathFinder e retorna uma lista da classe EntregadorViewModel para a interface.
-
-\textbf{EntregadorViewModel:} Classe de retorno para a interface agrupando todas as informações da rota do entregador.
-
-\textbf{LocalViewModel:} Classe de retorno para a interface agrupando todas as informações de um endereço.
-
-\textbf{RotaViewModel:} Classe de retorno para a interface agrupando todas as informações de uma rota.
-
-\textbf{RoteiroViewModel:} Classe de recebimento da interface agrupando todas as informações configuradas na interface para o calculo da rota.
-
-\subsection{PathFinder.Routes}
-Nesse projeto estão os algoritmos de comunicação com a  API Google Maps, classes para serialização dos retornos da API e classes para o agrupamento dos dados das rotas. Esse projeto é utilizado pelo genoma do GA para o recalculo das rotas
-
-\textbf{GoogleMaps:} Classes de estrutura para serialização do Json de retorno da API do Google Maps.
-
-\textbf{MapPoint:} Classe com informações do ponto de destino com latitude, longitude e janela de tempo para a entrega.
-
-\textbf{Period:} Classe para a definição da janela de tempo.
-
-\textbf{Route:} Classe para definição da origem e destino de uma rota, contendo o tempo e a distância entra os pontos.
-
-\textbf{RouteMap:} Classe para a definição da rota completa e o deposito. A definição de cada caminho completo é controlado nessa classe. 
-
-\textbf{SearchRoute:} Classe para a integração com a API do Google maps.
-
-\subsection{PathFinder.GeneticAlgorithm}
-Neste projeto são definidos todas as implementações referentes ao algoritmo genético, pela complexidade do algoritmo ele possui uma estrutura própria de pastas com algoritmos de seleção, cruzamento, mutação e a função de aptidão para definições e configurações de injeção de dependência.
-
-\subsection{Abstraction}
-
-Nesta pasta estão todos os arquivos a nível de abstração das etapas do algoritmo genético.
-
-\textbf{ISelection}: Interface responsável por abstrair os algoritmos de seleção.
-
-\textbf{IGenome}: Interface que tem como funcionalidade abstrair a definição de genoma.
-
-\textbf{IFitness}: Interface que tem como objetivo abstrair o calculo de fitness.
-
-\textbf{IMutate}: Interface que tem como objetivo abstrair os operadores de mutação.
-
-\textbf{ICrossover}:  Interface que tem como objetivo abstrair os operadores de cruzamento.
-
-\textbf{IRandom}: Interface que tem como objetivo abstrair a implementação de geração de números aleatórios.
-
-\textbf{AbstractMutate}: Implementação base para operador de mutação.
-
-\textbf{AbstractCrossover}: Implementação base para operador de cruzamento.
-
-\subsection{Core}
-
-\textbf{Enumerators}: Contem as definições de enumerações, usados para usar nomes bem definidos ao invés de números avulsos no código.
-
-\textbf{RandomAdapter}: Implementação responsável por gerar números aleatórios, implementa IRandom.
-
-\textbf{GASettings}: Arquivo responsável por carregar configuração estática de GA.
-
-\textbf{Genome}: Classe responsável por representar o genoma no algoritmo de GA, implementa a IGenome.
-
-\subsection{Selection}
-
-Nesta pasta estão todas as implementações dos algoritmos de seleção.
-
-\textbf{SelectionRouletteWheel}: Implementação de seleção roleta.
-
-\subsection{Crossover}
-
-Nesta pasta estão todas as implementações dos algoritmos de cruzamento.
-
-\textbf{CrossoverOBX}: Implementação do operador de cruzamento OBX.
-
-\textbf{CrossoverPBX}: Implementação do operador de cruzamento PBX.
-
-\subsection{Mutation}
-
-Nesta pasta estão todas as implementações dos algoritmos de mutação.
-
-\textbf{MutateBitwise}: Implementação do operador de cruzamento Bitwise.
-
-\textbf{MutateDIVM}: Implementação do operador de cruzamento DIVM.
-
-\textbf{MutateDM}: Implementação do operador de cruzamento DM.
-
-\textbf{MutateEM}: Implementação do operador de cruzamento EM.
-
-\textbf{MutateIM}: Implementação do operador de cruzamento IM.
-
-\textbf{MutateIVM}: Implementação do operador de cruzamento IVM.
-
-\textbf{MutateSM}: Implementação do operador de cruzamento SM.
-
-\subsection{Fitness}
-
-Nesta pasta estão todas as implementações dos algoritmos de fitness.
-
-\textbf{FitnessTimePath}: Implementação do fitness que considera o menor caminho e o tempo, para chegar no destino dentro da janela de tempo como a melhor solução.
-
-\section{Funcionalidades}
-O software é composto por funcionalidade individuais que podem ser utilizadas separadamente se necessário e também entender cada uma, ajuda a entender o software por completo.
-
-\textbf{Integração com a API do Google Maps:} Usando a classe SearchRoute do projeto PathFinder.Routes é possível procurar rotas e endereços do Google Maps e obter informação de coordenadas geográficas de um ponto usando o endereço, calcular rota entre dos dois usando o endereço ou com as coordenadas geográficas, obter um mapa estático de um ou vários pontos.
-
-\textbf{Algoritmos Genéticos} O modulo de GA poderia ser utilizado separadamente, porém é preciso o desenvolvimento da função de aptidão para o caso que ele será utilizado, o resto da estrutura funcionaria.
-
-\section{Interface}
 A interface é utilizada para interagir com o calculador de rotas de uma forma mais simples, podendo procurar por endereços, adicionar a lista, definir o deposito, os horários de cada endereço, numero de entregadores e tempo de descarga de cada endereço. Para melhor visualização dos testes, é possível encontrar todos os roteiros de teste para fácil execução e verifica os resultados.
 
 \begin{center}
@@ -239,4 +132,4 @@ A tabela tem 8 colunas com informações de cada percurso, essa colunas são:
 	\item Entrada: Horário que o entregador consegui entrar para começar a realizar a descarga da entrega.
 	\item Descarga: Tempo Médio para descarregador toda a encomenda.
 \end{itemize}
-Depois de finalizar a entrega o campo saída deve ser preenchido com o horário que está tudo pronto para fazer a próxima entrega e clicar no botão Próxima Rota, uma nova chamada para a Api será feita somente com o entregador pedido.
+Depois de finalizar a entrega o campo saída deve ser preenchido com o horário que está tudo pronto para fazer a próxima entrega e clicar no botão Próxima Rota, uma nova chamada para a Api será feita somente com o entregador pedido, esse processo pode ser repetido até que todas os endereços sejam visitados.
