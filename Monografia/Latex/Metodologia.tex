@@ -3,16 +3,16 @@ O software desenvolvido tem como objetivo demonstrar uma solução para o proble
 
 Utilizando a API do Google Maps\cite{GoogleMatrix} como fonte de informações reais de distância, tempo médio e localizações. Utilizadas para uma simulação próxima de uma situação real de locomoção geográfica.
 
-Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metrópoles do mundo, também tem um dos maiores índices de transito também segundo o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
+Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metrópoles do mundo e tem um dos maiores índices de transito de acordo com o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
 
 Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem que chamamos de deposito, a quantidade de entregadores é predefinida, e o sistema ira devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
 
-Existem situações onde não é possível entregar com numero de entregadores definido, essas situação podem depender da distancia, se for muito longe do deposito pode nao ter como chegar até o horário máximo do ponto de entrega, caso forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível encontrar uma definição de roteiro para realizar todas as entregas.
+Existem situações onde não é possível entregar com numero de entregadores definido, essas situação podem depender da distancia, se for muito longe do deposito pode não ter como chegar até o horário máximo do ponto de entrega, caso forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível encontrar uma definição de roteiro para realizar todas as entregas.
 
 Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe nos produtos na madrugada, já que receber em seu horário normal de abertura irá atrapalhar as compras dos clientes, então esse horário deve ser considerado para a escolha do próximo endereço. 
 Depois que chega ao endereço se verifica o horário de abertura, se chegar antes, deve-se esperar até abrir, caso chegue antes do fechamento é considerado um tempo descarga. Caso algum entregador chegue depois de algum horário de fechamento é considerado que não foi encontrado uma solução viável para as restrições definidas.
 
-Cada entrega também tem um tempo médio que demora para realizar a descarga do produto, produtos pequenos podem demorar minutos, muitos produtos demora mais para retirar do veiculo e produtos grande podem precisar ser levamos com mais demora.
+Cada entrega também tem um tempo médio que demora para realizar a descarga do produto, produtos pequenos podem demorar minutos, muitos produtos demoram mais para a retirar do veiculo e produtos grande podem precisar ser levamos com mais cuidado.
 
 Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será refeito para verificar se o transito ou possível atrasos não afetaram a ordem dos próximos destinos, depois do recalculo o entregador deve seria o próximo destino indicado.
 
@@ -32,7 +32,7 @@ Sempre que é necessário calcular a rota, o modulo de GA é chamado. Consideran
 Para cada rota da população de indivíduos a seleção determina dois para a realização do cruzamento, onde endereços das duas rotas são trocados de forma a criar duas novas rotas mantendo o deposito sempre como inicial. A mutação é executada individual em cada rota, mudando de posição um ou mais endereços da rota, mas sempre 
 mantendo o deposito como ponto inicial.
 
-Depois que todas as rotas dos indivíduos da população foram modificados, agora é hora de verificar quais são os melhores, o que define isso é a função de aptidão, todos os parâmetros da rota são agrupados em um único numero e a rota que tem o menor numero é a melhor rota da população. O valor de aptidão é definido com a soma da distância entre todos os endereços da rota, mais o tempo de cada um dos trajetos com o tempo de espera e descarga.
+Depois que todas as rotas dos indivíduos da população foram modificados, agora é hora de verificar quais são os melhores, o que define isso é a função de aptidão, todos os parâmetros da rota são agrupados em um único numero e a rota que tem o menor número é a melhor rota da população. O valor de aptidão é definido com a soma da distância entre todos os endereços da rota, mais o tempo de cada um dos trajetos com o tempo de espera e descarga.
 
 A função de aptidão do GA considera para uma frota homogênea de \textit{m} veículos o horário de saída como parâmetros inicial, com isso, utiliza o tempo dado pelo Google Maps entre os pontos e soma ao horário verificando se está dentro da janela de tempo do destino. Se o horário calculo for menor que o de abertura, é somado o tempo restante de espera e uma penalidade por chegar antes. Se o horário for maior que o tempo de fechamento, é somado o tempo restante de espera até a abertura no próximo dia mais uma penalidade pela diferença. O Valor de aptidão final é a soma da distancia em metros do percurso passando por todos os pontos, com o tempo total em minutos com as penalidades de chegar antes ou depois das janelas de tempo.
 
@@ -52,7 +52,7 @@ da janela de tempo do ponto \textit{i}, O \(tc_i\) é o tempo de chegada do veí
 \(dk\) é a distância total percorrida na rota k para todo k=1,...,m, \(\alpha_i\)
 é um coeficiente de penalidade associado à chegada do veículo no vértice i após o fechamento da janela de tempo.
 
-O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e probabilidade de Mutação em 0,5\%.
+O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e de Mutação em 0,5\%.
 
 Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 4 tipos de mutação, sendo DisplacementMutation, InsertionMutation, InversionMutation e SwapMutation e um tipo de cruzamento, o SubRouteInsertionCrossover.
 
@@ -81,25 +81,39 @@ Toda comunicação da interface com o calculador de rotas é por WebAPi Rest, on
 
 \section{Estrutura do Projeto}
 
-Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Software é divido em 4 projetos principais, sendo um projeto feito em ReactJs e 3 em C\#, onde eles são:
+Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Software é divido em 4 projetos principais, sendo um projeto feito em ReactJs e 3  projetos em C\#, onde eles são:
 
-\subsection{Calculador de Rotas- CalcRoute}
+\subsection{Calculador de Rotas - CalcRoute}
+
+Projeto principal que tem toda a logica de preparação das rotas, recebendo parâmetros e utilizando o GA para gerar a resposta.
+A classe PRVJTFinder que é responsável por essa tarefa, podendo carrega as configurações por arquivo ou recendo os parâmetros diretamente. Os endereços podem vim sem a coordenadas, por que existe uma preparação dos endereços antes de começar o calculo das rotas. Os projetos CalcRoute.GeneticAlgorithm e CalcRoute.Routes são auxiliares para o calculo da rota.
 
 \subsection{Gerador de Dados - CalcRoute.RouteGenerate}
 
+Para ajudar na identificação dos melhores parâmetros a ser utilizado, esse projeto é configurado para utilizar todos os cruzamentos e mutação do GA, com isso, diferentes configurações de população, numero de gerações,taxa de cruzamento e taxa de mutação, podem ser testados e os resultados são agrupados em um arquivo CSV com o valor do melhor valor de aptidão encontrado para cada parâmetro para facilitar a analise dos dados.
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/DataGenerate.png}}
+	\captionof{figure}{Tela da geração de dados de comparação}
+	\label{fig:DataGenerate}
+\end{center}
+
 \subsection{API de Calculo de Rotas - CalcRoute.API}
 
-\subsection{Interface para comunicação com a API - CalcRoute.Interface}
+Projeto de comunicação com a interface usando POST, recebendo parâmetros da interface e organiza para serem calculados no CalcRoute. 
+O retorno é organizado e os campos formatados para melhor apresentação na tabela da interface.
+
+\subsection{Interface para comunicação com a API}
 
 A interface é utilizada para interagir com o calculador de rotas de uma forma mais simples, podendo procurar por endereços, adicionar a lista, definir o deposito, os horários de cada endereço, numero de entregadores e tempo de descarga de cada endereço. Para melhor visualização dos testes, é possível encontrar todos os roteiros de teste para fácil execução e verifica os resultados.
 
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/Interface.png}}
-	\captionof{figure}{Aparência da interface}
+	\captionof{figure}{Aparência da interface, configuração das rotas}
 	\label{fig:Interface}
 \end{center}
-
 
 \begin{itemize}
 	\item No campo procurar é preciso digitar o endereço para ser localizado no Google Maps, uma lista de possíveis escolhas aparece a baixo assim que começa a digitar, encontra o endereço e selecione.
