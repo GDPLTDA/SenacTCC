@@ -230,10 +230,6 @@ Ela é a responsável pela perpetuação de boas características na espécie.
 Neste estágio que os indivíduos são escolhidos para posterior cruzamento, fazendo uso do grau de adaptação de cada um é realizado um sorteio, onde os indivíduos com maior grau de adaptação tem maior probabilidade de se reproduzirem.
 O grau adaptação é calculado a partir da função de avaliação para cada individuo, determina o quão apto ele esta para reprodução relativo a sua população. 
 
-\textbf{Selection Roulette Wheel}: Faz a soma de todos os valores da função de aptidão da população, depois calcula a porcentagem de cada indivíduo referente ao total e guarda em um vetor. 
-Então é gerado um valor X aleatório entre 0 a 1, e multiplicado pelo valor total dos pesos. 
-Para selecionar o indivíduo é feito um loop no vetor de pesos e seus valores somados até que seja menor ou igual ao valor X aleatório calculado antes, a posição atual no vetor deste valor, será o utilizada para selecionar o individuo no vector de indivíduos.
-Desta forma aumentando a possibilidade de selecionar um indivíduo com melhor aptidão.
 
 \subsection{Cruzamento}
 Após alguns indivíduos serem selecionados, normalmente pares, estes são usados como base para novos descendentes, combinando as suas características para gerar um novo genoma.
@@ -352,3 +348,5 @@ O trabalho de Sabir Ribas na universidade federal de fluminense utilizou uma abo
 Humberto,Germano e Guilherme também tentaram resolver o PRVJT utilizando GA, para a criação da população inicial utilizar a heurística Push-Forward Insertion Heuristic. Utilizando 56 problemas de teste e 100 clientes, chamadas instâncias de Solomon de 1987, mesma base de teste utilizadas em sua revisão de literatura para comparação de resultados, utiliza a mesma metodologia de teste do Sabir Ribas. \cite{HGGUILHERME}
 
 No trabalho de Glaydston da UniAracruz e Luiz Antonio da Instituto Nacional de Pesquisas Espaciais utilizaram algoritmos genéticos para resolver Problemas de Roteamento de Veículos Dinâmico com Janelas de Tempo, em casos reais, podem existir mudanças que podem afetar as rotas, pensando nisso, o algoritmo recalcula a rota de todos os veículos. O GA deve um resultado equivalente ou superior em alguns casos se comparados com as heurísticas. \cite{GLAYDSTON}
+
+O trabalho de \cite{Pereira_Tavares} com uma proposta de operador de cruzamento conseguiu resultados satisfatórios no uso de GA para PRV, e propões como trabalho futuro o uso de seu modelo para problemas especializados como o PRVJT.

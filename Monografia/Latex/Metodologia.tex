@@ -51,10 +51,92 @@ Onde para cada ponto de entrega \textit{i} temos um \(e_i\)
 e um \(li\)  que representam, respectivamente, a abertura e o fechamento
 da janela de tempo do ponto \textit{i}, O \(tc_i\) é o tempo de chegada do veículo no ponto \(i\), \(te_i\) calculado como \(e_i - tc_i\). 
 
-\(dk\) é a distância total percorrida na rota k para todo k=1,...,m, \(\alpha_i\)
-é um coeficiente de penalidade associado à chegada do veículo no vértice i após o fechamento da janela de tempo.
+\(dk\) é a distância total percorrida na rota $k$ para todo $k=1,...,m$, \(\alpha_i\) é o coeficiente de penalidade associado à chegada do veículo no vértice $i$ após o fechamento da janela de tempo.
 
-O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e de Mutação em 0,5\%.
+Para seção utilizamos o operador \textbf{Selection Roulette Wheel}, onde é feita uma soma de todos os valores da função de aptidão da população, depois calculado a porcentagem de cada indivíduo referente ao total e guardada em um vetor. Então é gerado um valor $X$ aleatório entre 0 e 1, e multiplicado pelo valor total dos pesos. 
+Para selecionar o indivíduo é feito um loop no vetor de pesos e seus valores somados até que seja menor ou igual ao valor $X$, a posição atual no vetor deste valor será o utilizada para selecionar o individuo no vector de indivíduos. 
+Desta forma aumentando a possibilidade de selecionar um indivíduo com melhor aptidão.
+
+O cromossomo deve especificar a quantidade de veículos/entregadores necessários, como as demandas são particionadas entre esses veículos e qual rota cada veiculo deve fazer. Adotamos uma representação onde o material genético de um individual contém várias rotas, cada uma delas composta por um subconjunto ordenado de clientes \ref{fig:genoma}. Todas as demandas pertencentes ao problema a ser resolvido devem estar presentes na combinação dessas rotas. Aonde cada uma inicia e finaliza no deposito \ref{fig{genoma_rotas}}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true]{ibagens/genoma.png}}
+	\captionof{figure}{Representação geral do genoman}
+	\label{fig:genoma}
+\end{center}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true]{ibagens/genoma-rotas.png}}
+	\captionof{figure}{Representação do genoma separando rotas}
+	\label{fig:genoma_rotas}
+\end{center}
+
+Para cruzamento foi escolhido o operador proposto por \cite{Pereira_Tavares} que teve resultados positivos para o PRV puro, o operador por si só não promove uma troca mútua de material genético entre dois pais. Em vez disso, quando submetidos a essa operação, um indivíduo recebe um fragmento de material genético (mais precisamente, uma sub-rota) de outro pai e insere-o em uma de suas próprias rotas. O doador não é modificado. A localização geográfica dos clientes é usada para determinar a posição onde a sub-rota é inserida, de forma a ser inserida no ponto mais próximo ao primeiro ponto da sub-rota e que não pertença a ela. A definição do algoritmo pode ser verificada em \ref{algcx_alg}.
+
+\begin{algorithm}
+	\SetKwInOut{Input}{Entrada}
+	\SetKwInOut{Output}{Saida}
+	   
+	\underline{function Cruzamento} $(I_1,I_2)$\;
+	\Input{Dois individuos da população $I_1$ e $I_2$}
+	\Output{Um descendente $I_d$}
+	\BlankLine
+	$SR \leftarrow $ Do material genético de $I_2$, selecione  aleatoriamente uma sub-rota \{$a_1, a_2,…, a_n$\}
+	
+	$C \leftarrow $ Encontre o cliente geograficamente mais próximo de $a_1$ não pertencente a $SR$
+		
+	Insira $SR$ no material genético de $I_1$ de maneira que $a_1$ seja
+	colocado imediatamente após $C$
+
+	
+	Do material genético original de $I_1$, remover todos os 
+	clientes duplicados que também aparecem em $SR$, obtendo um descendente $I_d$ 
+	
+	\nl\KwRet{$I_d$}
+
+	\caption{Algoritmo de cruzamento aplicado a PRV}\label{algcx_alg}
+\end{algorithm}
+
+O exemplo da figura \ref{fig:cx_alg} ajuda a ilustrar como o cruzamento atua. Assume-se que o cliente 6 é o que está geograficamente mais próximo do cliente 9. Desta forma, a sub-rota
+\{9, 1, 10\} é selecionado de $I_2$ e é inserido em uma das rotas de $I_1$, imediatamente após o 6. O operador de cruzamento possibilita que um fragmento de informação que faz parte de um indivíduo possa ser incorporado em outra solução. Dada a seu comportamento, ele não pode adicionar novos veículos à solução. Por outro lado, pode acabar por remove-los.
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true]{ibagens/cx_alg.png}}
+	\captionof{figure}{Exemplo de Cruzamento, adaptado de \cite{Pereira_Tavares}}
+	\label{fig:cx_alg}
+\end{center}
+
+
+Porem no caso de nossa implementação ao fazer a seleção de um par de de indivíduos \textit{(a,b)} para o cruzamento, geramos um par de descendentes \textit{({x,y})}, de forma que \(x = a \rightarrow b\) e \(y = b \rightarrow a\) aonde $x \rightarrow y$ implica na operação de cruzamento aplicado de $x$ em $y$.
+
+
+Descendentes resultantes do cruzamento podem estar sujeitos a mutação. Nós consideramos 4 operadores de mutação comuns de serem aplicados em representações \textit{Baseadas em ordem}. \cite{Rocha}. Estes são:
+
+\textbf{Swap}: Seleciona dois clientes de forma aleatória e os troca. Os clientes selecionados podem pertencer a mesma ou não.
+
+\textbf{Inversion}: Seleciona uma sub-rota de forma aleatória e inverte a ordem de visita aos clientes pertencentes a ela.
+
+\textbf{Insertion}: Seleciona aleatoriamente um cliente e o insere em outro lugar. A rota onde este será inserido é escolhida aleatoriamente. É possível criar uma nova rota com novo entregador para este cliente. Nos experimentos deste trabalho, a probabilidade de criar um novo rota é $1 / (2 \times V)$, onde $V$ representa o número de veículos da solução atual. Desta forma, a probabilidade de criar uma nova rota é inversamente proporcional à número de veículos já utilizados. 
+
+Na figura \ref{fig:mt_alg}, mostramos um exemplo dessa operação.
+
+\textbf{Displacement}: Seleciona aleatoriamente uma sub-rota e a insere em outro lugar. Este operador pode realizar intra ou inter deslocamento (se a sub-rota selecionada é inserida na
+mesma ou em outra rota). Assim como no operador anterior, também é possível criar uma nova rota com a sub-rota (a probabilidade desta ocorrência é calculada da mesma forma).
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true]{ibagens/mt_alg.png}}
+	\captionof{figure}{Exemplo de mutação, adaptado de \cite{Pereira_Tavares}}
+	\label{fig:mt_alg}
+\end{center}
+
+
+\textit{Swap} e \textit{Inversion} não alteram o número de rotas de um indivíduo. Já \textit{Insertion} e \textit{Displacement} têm a capacidade de remover e adicionar veículos nos indivíduos.
+
+O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e de Mutação em 5\%.
 
 Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas. Utilizando 4 tipos de mutação, sendo DisplacementMutation, InsertionMutation, InversionMutation e SwapMutation e um tipo de cruzamento, o SubRouteInsertionCrossover.
 

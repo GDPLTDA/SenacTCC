@@ -2,7 +2,7 @@ This is BibTeX, Version 0.99d (TeX Live 2017/W32TeX)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: monografia.aux
 Case mismatch error between cite keys HOMBERGER and Homberger
----line 216 of file monografia.aux
+---line 219 of file monografia.aux
  : \citation{HOMBERGER
  :                    }
 I'm skipping whatever remains of this command
@@ -21,7 +21,7 @@ Database file #2: mono.bib
 Warning--entry type for "TomTom" isn't style-file defined
 --line 407 of file mono.bib
 Warning--entry type for "Souza" isn't style-file defined
---line 845 of file mono.bib
+--line 887 of file mono.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
 while executing---line 2091 of file abntex2-alf.bst
@@ -48,45 +48,45 @@ Warning--campo year vazio ou faltando em CORDEAU
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 43 entries,
+You've used 45 entries,
             6714 wiz_defined-function locations,
-            1500 strings with 17226 characters,
-and the built_in function-call counts, 61801 in all, are:
-= -- 7213
-> -- 966
-< -- 1653
-+ -- 1972
-- -- 299
-* -- 3776
-:= -- 7556
-add.period$ -- 179
-call.type$ -- 43
-change.case$ -- 373
-chr.to.int$ -- 99
-cite$ -- 43
-duplicate$ -- 6343
-empty$ -- 2480
-format.name$ -- 1401
-if$ -- 12332
+            1516 strings with 17869 characters,
+and the built_in function-call counts, 64647 in all, are:
+= -- 7501
+> -- 1058
+< -- 1702
++ -- 2056
+- -- 326
+* -- 3981
+:= -- 7908
+add.period$ -- 189
+call.type$ -- 45
+change.case$ -- 402
+chr.to.int$ -- 101
+cite$ -- 45
+duplicate$ -- 6569
+empty$ -- 2612
+format.name$ -- 1532
+if$ -- 12938
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 736
-newline$ -- 253
-num.names$ -- 200
-pop$ -- 928
+missing$ -- 773
+newline$ -- 263
+num.names$ -- 210
+pop$ -- 981
 preamble$ -- 1
-purify$ -- 150
+purify$ -- 160
 quote$ -- 0
-skip$ -- 6391
+skip$ -- 6626
 stack$ -- 1
-substring$ -- 2948
-swap$ -- 2363
-text.length$ -- 87
+substring$ -- 3063
+swap$ -- 2451
+text.length$ -- 89
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 3
+type$ -- 4
 warning$ -- 1
-while$ -- 312
+while$ -- 328
 width$ -- 0
-write$ -- 698
+write$ -- 730
 (There were 9 error messages)

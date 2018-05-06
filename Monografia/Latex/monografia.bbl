@@ -239,6 +239,12 @@ Dispon{\'\i}vel em:
 ISSN 1572-9338.
 Dispon{\'\i}vel em: \url{https://doi.org/10.1007/BF02023004}.}
 
+\bibitem[Pereira et al. 2002]{Pereira_Tavares}
+\abntrefinfo{Pereira et al.}{PEREIRA et al.}{2002}
+{PEREIRA, F. et al. Gvr: A new genetic representation for the vehicle routing
+  problem.
+2002.}
+
 \bibitem[Potvin e Robillard 1995]{Potvin}
 \abntrefinfo{Potvin e Robillard}{POTVIN; ROBILLARD}{1995}
 {POTVIN, J.-Y.; ROBILLARD, C. Clustering for vehicle routing with a competitive
@@ -270,6 +276,17 @@ Dispon{\'\i}vel em:
 {RIBEIRO, C.~C. Metaheuristics and applications.
 In:  \underline{\ \ \ \ \ \ \ \ }. \emph{Advanced School on Artificial
   Intelligence}. [S.l.: s.n.], 1996.}
+
+\bibitem[Rocha, Vilela e Neves 2000]{Rocha}
+\abntrefinfo{Rocha, Vilela e Neves}{ROCHA; VILELA; NEVES}{2000}
+{ROCHA, M.; VILELA, C.; NEVES, J. A study of order based genetic and
+  evolutionary algorithms in combinatorial optimization problems. In:
+  \emph{Proceedings of the 13th International Conference on Industrial and
+  Engineering Applications of Artificial Intelligence and Expert Systems:
+  Intelligent Problem Solving: Methodologies and Approaches}. Berlin,
+  Heidelberg: Springer-Verlag, 2000.  (IEA/AIE '00), p. 601--610.
+ISBN 3-540-67689-9. Dispon{\'\i}vel em:
+  \url{http://dl.acm.org/citation.cfm?id=352552.353562}.}
 
 \bibitem[Rodrigues 2007]{RODRIGUES}
 \abntrefinfo{Rodrigues}{RODRIGUES}{2007}
