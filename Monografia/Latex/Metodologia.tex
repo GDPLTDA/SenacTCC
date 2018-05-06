@@ -160,12 +160,17 @@ Nesse capitulo será apresentado mais aprofundadamente as tecnologias, ferrament
 
 \section{Tecnologias}
 
-O software foi desenvolvido na linguagem C\# com Visual Studio 2017 com o Framework  .Net Core 2.2 compatível com Windows, Linux e MacOs para o Back-End e ReactJs para a interface de utilização.
-Toda comunicação da interface com o calculador de rotas é por WebAPi Rest, onde são trocados dados em formato de Json.
+O software foi desenvolvido na linguagem C\# com Visual Studio 2017 com o Framework  .Net Core 2.2 compatível com Windows, Linux e MacOs.
+Foi desenvolvido uma WeApi em ASP.NET para consumo de uma pagina desenvolvida utilizando  ReactJS. Toda comunicação entre frontend e backend foi desenvolvida utilizando os conceitos de REST.
+
+Também foi desenvolvido uma ferramenta para gravar os resultados obtidos pelo GA, porem este obtém as configurações de busca a partir de arquivos que contém os endereços e quantidade de entregadores.
+
+Todos os testes presentes nesse trabalho foram obtidos rodando os testes em um computador I7 2600 de 3.4Ghz com 12GB de ram.
+
 
 \section{Estrutura do Projeto}
 
-Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Software é divido em 4 projetos principais, sendo um projeto feito em ReactJs e 3  projetos em C\#, onde eles são:
+Para facilitar o entendimento inicial do projeto, é importante ter uma orientação de onde está cada parte de seu comportamento. A Software é divido em 4 projetos principais, sendo um projeto feito em ReactJS e 3  projetos em C\#, onde eles são:
 
 \subsection{Calculador de Rotas - CalcRoute}
 
