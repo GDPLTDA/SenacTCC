@@ -21,56 +21,72 @@ Database file #2: mono.bib
 Warning--entry type for "TomTom" isn't style-file defined
 --line 407 of file mono.bib
 Warning--entry type for "Souza" isn't style-file defined
---line 815 of file mono.bib
+--line 845 of file mono.bib
 Reallocated singl_function (elt_size=4) to 100 items from 50.
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2091 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2091 of file abntex2-alf.bst
 Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
 Reallocated global_strs (elt_size=20001) to 20 items from 10.
 Reallocated glb_str_end (elt_size=4) to 20 items from 10.
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2146 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2146 of file abntex2-alf.bst
+Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
+while executing---line 2146 of file abntex2-alf.bst
 Warning--campo year vazio ou faltando em CORDEAU
 +---------------------------------------------------------+
 | Estilo bibliográfico abntex2-alf.bst versão v-1.9.6           |
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-You've used 42 entries,
+You've used 43 entries,
             6714 wiz_defined-function locations,
-            1491 strings with 17080 characters,
-and the built_in function-call counts, 61131 in all, are:
-= -- 7159
-> -- 951
+            1500 strings with 17226 characters,
+and the built_in function-call counts, 61801 in all, are:
+= -- 7213
+> -- 966
 < -- 1653
-+ -- 1967
-- -- 294
-* -- 3735
-:= -- 7460
-add.period$ -- 173
-call.type$ -- 42
-change.case$ -- 367
-chr.to.int$ -- 98
-cite$ -- 42
-duplicate$ -- 6302
-empty$ -- 2413
-format.name$ -- 1378
-if$ -- 12168
++ -- 1972
+- -- 299
+* -- 3776
+:= -- 7556
+add.period$ -- 179
+call.type$ -- 43
+change.case$ -- 373
+chr.to.int$ -- 99
+cite$ -- 43
+duplicate$ -- 6343
+empty$ -- 2480
+format.name$ -- 1401
+if$ -- 12332
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 717
-newline$ -- 247
-num.names$ -- 195
-pop$ -- 909
+missing$ -- 736
+newline$ -- 253
+num.names$ -- 200
+pop$ -- 928
 preamble$ -- 1
-purify$ -- 147
+purify$ -- 150
 quote$ -- 0
-skip$ -- 6358
+skip$ -- 6391
 stack$ -- 1
-substring$ -- 2931
-swap$ -- 2344
+substring$ -- 2948
+swap$ -- 2363
 text.length$ -- 87
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 3
 warning$ -- 1
-while$ -- 306
+while$ -- 312
 width$ -- 0
-write$ -- 681
-(There was 1 error message)
+write$ -- 698
+(There were 9 error messages)

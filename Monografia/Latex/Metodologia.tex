@@ -1,25 +1,27 @@
 \chapter{Metodologia}
-O software desenvolvido tem como objetivo demonstrar uma solução para o problema de PRVJT, descobrindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas no período limitado, também identificar roteiros que são impossíveis de serem realizados a tempo, e caminhos que serão necessários mais de um entregador para ser realizado. Alertas de não possibilidade de realizar a entrega será comunicado na interface do usuário.
+O software desenvolvido tem como objetivo demonstrar uma solução para o problema de PRVJT, descobrindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas em um período pre determinado, também identificar roteiros que são impossíveis de serem realizados a tempo. 
 
-Utilizando a API do Google Maps\cite{GoogleMatrix} como fonte de informações reais de distância, tempo médio e localizações. Utilizadas para uma simulação próxima de uma situação real de locomoção geográfica.
+Para adquirir informações próximas as reais de distancia e locomoção entre endereços esta sendo utilizado a API do Google Maps\cite{GoogleMatrix}.
 
-Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro ou nas proximidades da cidade de São Paulo, um das maiores metrópoles do mundo e tem um dos maiores índices de transito de acordo com o TomTom Traffic Index \cite{TomTom}, a menor distância de rota pode não ser a melhor escolha para certos horários do dia, as vezes escolher uma rota com maior distância que evita transito primeiro é a melhor escolha para economizar tempo.
+Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro das proximidades da cidade de São Paulo, uma grande metrópoles com um dos maiores índices de transito \cite{TomTom}, por esse motivo a menor distância de rota pode não ser a melhor escolha para certos horários do dia, podendo uma rota com maior distância que evita transito ser uma melhor escolha.
 
-Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem que chamamos de deposito, a quantidade de entregadores é predefinida, e o sistema ira devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
+Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem chamada deposito, a quantidade de entregadores é predefinida, o sistema ira devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
 
-Existem situações onde não é possível entregar com numero de entregadores definido, essas situação podem depender da distancia, se for muito longe do deposito pode não ter como chegar até o horário máximo do ponto de entrega, caso forem muito próximos qualquer mudança no transito torna impossível realizar a entrega, também a situação do numero limitado de entregadores, que não pode ser um número infinito, muitos endereços para poucos entregadores pode ser impossível encontrar uma definição de roteiro para realizar todas as entregas.
+Cada entrega tem um tempo médio de descarga, produtos pequenos podem demorar minutos, muitos produtos demoram mais para a retirar do veiculo e produtos grande podem precisar ser levamos com mais cuidado.
 
-Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe nos produtos na madrugada, já que receber em seu horário normal de abertura irá atrapalhar as compras dos clientes, então esse horário deve ser considerado para a escolha do próximo endereço. 
-Depois que chega ao endereço se verifica o horário de abertura, se chegar antes, deve-se esperar até abrir, caso chegue antes do fechamento é considerado um tempo descarga. Caso algum entregador chegue depois de algum horário de fechamento é considerado que não foi encontrado uma solução viável para as restrições definidas.
+Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe produtos na madrugada, já que receber em seu horário normal de abertura provavelmente irá atrapalhar as compras dos clientes, então esse horário deve ser considerado como restrição de tempo.
 
-Cada entrega também tem um tempo médio que demora para realizar a descarga do produto, produtos pequenos podem demorar minutos, muitos produtos demoram mais para a retirar do veiculo e produtos grande podem precisar ser levamos com mais cuidado.
+Por causa das restrições de tempo, quando um entregador chega a um endereço deve ser avaliado com penalidade caso o mesmo chegue antes ou depois da janela de tempo, se chegar antes o mesmo deve esperar até o horário de abertura do endereço, somar o tempo de descarga e sair para o próximo endereço,  caso chegue depois é considerado que não é uma solução de rota viável para as restrições definidas. 
+
+É importante avaliar situações onde não é possível realizar as entregas, essas situação podem depender de distancia, por exemplo, caso o deposito esteja longe a ponto de um entregador não ter como chegar no endereço dentro de sua janela de tempo, ou caso mesmo sendo próximos ocorrer uma mudança no transito tornando impossível realizar a entrega á tempo, ou ainda pelo fato de ser definido um numero finito de entregadores, que podem não ser suficientes para realizar todas as entregas do roteiro.
 
 Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será refeito para verificar se o transito ou possível atrasos não afetaram a ordem dos próximos destinos, depois do recalculo o entregador deve seria o próximo destino indicado.
 
 Se caso não for mais possível entregar no horário por motivos de piora de transito ou um grande tempo de atraso para descarregar, um alerta será emitido indicando que todos os destinos não podem ser visitados a tempo.
+
 Cada entregador tem seu próprio recalculo de rota, sendo que se um entregador concluir todos os destinos, os outros continuam pedindo novas rotas até que todos terminem suas entregas.
 
-O fluxograma a baixo demostra o funcionamento do software.
+O fluxograma a baixo demostra o fluxo da solução.
 
 \begin{center}
     \makebox[\linewidth]{
@@ -28,9 +30,9 @@ O fluxograma a baixo demostra o funcionamento do software.
     \label{fig:FluxoSoftware}
 \end{center}
 
-Sempre que é necessário calcular a rota, o modulo de GA é chamado. Considerando que um individuo é uma rota completa, gera uma população de varias rotas, onde a ordem da rota é aleatória somente mantendo o deposito fixo como primeiro endereço para criar a população inicial.
-Para cada rota da população de indivíduos a seleção determina dois para a realização do cruzamento, onde endereços das duas rotas são trocados de forma a criar duas novas rotas mantendo o deposito sempre como inicial. A mutação é executada individual em cada rota, mudando de posição um ou mais endereços da rota, mas sempre 
-mantendo o deposito como ponto inicial.
+Sempre que é necessário calcular a rota, o modulo de GA é chamado. Considerando que um individuo é uma solução completa, gera uma população de varias soluções, onde a ordem da rota é aleatória somente mantendo o deposito fixo como primeiro endereço para criar a população inicial.
+
+Para cada rota da população de indivíduos a seleção determina dois para a realização do cruzamento, onde endereços das duas rotas são trocados de forma a criar duas novas rotas mantendo o deposito sempre como inicial. A mutação é executada individual em cada rota, mudando de posição um ou mais endereços da rota, sempre mantendo o deposito como ponto inicial.
 
 Depois que todas as rotas dos indivíduos da população foram modificados, agora é hora de verificar quais são os melhores, o que define isso é a função de aptidão, todos os parâmetros da rota são agrupados em um único numero e a rota que tem o menor número é a melhor rota da população. O valor de aptidão é definido com a soma da distância entre todos os endereços da rota, mais o tempo de cada um dos trajetos com o tempo de espera e descarga.
 
@@ -41,7 +43,7 @@ A função de aptidão é definida como:
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true]{ibagens/aptidao.png}}
-	\captionof{figure}{Formula de aptidão baseado em \cite{Gendreau2} }
+	\captionof{figure}{Formula de avaliação de solução de rota \cite{Gendreau2} }
 	\label{fig:MetodoAptidao}
 \end{center}
 
