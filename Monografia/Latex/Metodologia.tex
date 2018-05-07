@@ -136,7 +136,9 @@ mesma ou em outra rota). Assim como no operador anterior, também é possível c
 
 \textit{Swap} e \textit{Inversion} não alteram o número de rotas de um indivíduo. Já \textit{Insertion} e \textit{Displacement} têm a capacidade de remover e adicionar veículos nos indivíduos.
 
-O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, probabilidade de cruzamento em 70\% e de Mutação em 5\%.
+Foi implementada  uma logica de elitismo simples, aonde uma próxima geração leva junto $N$ mais bem avaliados indivíduos da ultima geração.
+
+O GA foi configurado com o numero de gerações em 200, tamanho da população em 1000, melhores indivíduos por geração em 20, com elitismo em 2 indivíduos, probabilidade de cruzamento em 70\% e de Mutação em 5\%.
 
 Os testes foram configurados com um numero de 6 roteiros diferentes, endereços dentro da cidade de São Paulo e cidades próximas.
 
