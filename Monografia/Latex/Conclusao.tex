@@ -1,15 +1,15 @@
-\chapter{Conclusão}
+\chapter{Resultados}
 Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, os resultados encontrados e futuras melhorias.
 
 \section{Limitações}
-Na criação do software os testes nos iniciais já possível identificar possíveis situações que o software não tem como dar uma resposta, ou seja, suas limitações.
-Identificamos 3 possíveis limitações nos testes iniciais:  
+Foi possível identificar possíveis situações em que o software não foi capaz de dar uma resposta, estes sendo:
 
 \textbf{Não é possível entregar a tempo}: Levando em consideração o horário de saída e o horário limite para realizar todas as entregas, é possível que um percurso entre os endereços tem seu tempo de trajeto mais demorado que o tempo disponível para a realização de todas as entregas, com isso seria impossível entregar, mesmo com mais entregadores, com isso, o software não consegue definir uma rota por considerar a velocidade média das vias por onde ele passará.
 
 \textbf{Limite de Entregadores:} Para pedir a definição de uma rota é preciso indicar quantos entregadores estão disponível para realizar as entregas, em algumas situações é possível que mesmo dividindo para todos os entregadores, mais entregadores seriam precisos para chegar a tempo em todos os endereços, com isso, o software não consegue definir uma rota.
 
 \textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
+
 É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
 
 \pagebreak
@@ -229,12 +229,22 @@ Para comparativo foi utilizado os diferentes tipos de mutação e cruzamentos, d
 Como mostrado na tabela \ref{Comparacao}, a mutação ou cruzamento escolhida não influencia no resultado, apresentando o mesmo valor de aptidão para todas as combinações em nos diferentes roteiros.
 
 
+\section{Conclusão}
+
+Neste trabalho, apresentamos a aplicação de uma abordagem evolutiva genérica para o PRVJT. A solução provou ser extremamente eficaz, uma vez que fomos capazes de encontrar rotas otimizadas para varias combinações de endereço de entrega. Além disso, os resultados mostram que este método é robusto e escalável. 
+Fomos capazes de criar uma aplicação Web, com interface simples, para realizar os cálculos em tempo real, o que significa que o sistema consegue encontrar uma solução com uma velocidade relativamente alta, ja que existe um tempo limite \textit{timeout} em requisições HTTP.
+
+
 \section{Trabalhos futuros}
 
-Devido a média de tempo para se encontrar as rotas, avaliar a possível paralelização da rotina de algoritmos genéticos para tornar o projeto viável para uso em uma aplicação web.
-Avaliar a aplicação de heurísticas  \(\lambda-interchange\), \textit{k-node}, \textit{Or-opt} no calculo do \textit{Fitness}.
+Devido a média de tempo para se encontrar as rotas, avaliar a possível paralelização da rotina de algoritmos genéticos.
+
+Aplicar mais uma restrição, como uma quantidade máxima de carga por entregador.
+
+Desenvolver um aplicativo mobile para avançar as próximas rotas para cada entregador.
+
 Utilizar uma base de dados maior para os testes, baseada em casos reais de logística.
-Criar uma aplicação web para utilização em um caso real de entregas.
+
 
 
 
