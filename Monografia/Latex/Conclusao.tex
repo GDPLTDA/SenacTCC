@@ -1,20 +1,10 @@
 \chapter{Resultados}
 Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, os resultados encontrados e futuras melhorias.
 
-\section{Limitações}
-Foi possível identificar possíveis situações em que o software não foi capaz de dar uma resposta, estes sendo:
 
-\textbf{Não é possível entregar a tempo}: Levando em consideração o horário de saída e o horário limite para realizar todas as entregas, é possível que um percurso entre os endereços tem seu tempo de trajeto mais demorado que o tempo disponível para a realização de todas as entregas, com isso seria impossível entregar, mesmo com mais entregadores, com isso, o software não consegue definir uma rota por considerar a velocidade média das vias por onde ele passará.
-
-\textbf{Limite de Entregadores:} Para pedir a definição de uma rota é preciso indicar quantos entregadores estão disponível para realizar as entregas, em algumas situações é possível que mesmo dividindo para todos os entregadores, mais entregadores seriam precisos para chegar a tempo em todos os endereços, com isso, o software não consegue definir uma rota.
-
-\textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
-
-É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
-
-
-\section{Comparativo}
-Com diferentes tipos de mutação, foi preciso escolher apenas um para rodar todos os roteiros, para comparação foi utilizado os diferentes tipos de mutação e apenas um cruzamento, de forma, a identificar uma melhor combinação para ser utilizada no software, 10 vezes para cada combinação utilizando a média do valor de aptidão para evitar o efeito probabilístico do GA. Utilizando o projeto Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo csv e organizado na tabela a baixo. 
+\section{Mutações}
+Implementamos para comparação 4 tipos de mutação, com definições de quantidade de gerações e tamanho de população de 1000 e 100 respectivamente, cada configuração foi rodada 10 vezes, e depois calculado a média do valor de aptidão para evitar o efeito probabilístico do GA. PAra isso implementamos um projeto que extrai essas informações, o Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo CSV e organizados na tabela abaixo. 
+Para garantir que os valores de distancia e tempo entre dois pontos seja o mesmo para todos os testes, um cache das distancias entre os todos os pontos é reutilizado para cada um dos testes.
 
 \begin{center}
 	\makebox[\linewidth]{
@@ -23,11 +13,14 @@ Com diferentes tipos de mutação, foi preciso escolher apenas um para rodar tod
 	\label{fig:MutacaoComparacao}
 \end{center}
 
-Como mostrado na tabela \ref{fig:MutacaoComparacao}, o Inversion e o Swap não conseguiram a menor média em todos os arquivos, parecendo não recomendado o uso para a criação das rotas. O Displacement e o Insertion encontraram a mesma média de aptião para todas os arquivos, mostrando serem as melhores escolhas para a busca de rotas.
+A figura \ref{fig:MutacaoComparacao} demonstra a comparação entre as mutações, \textit{Inversion} e o \textit{Swap} não se demonstraram menos eficazes, Não sendo as melhores escolhas para criação das rotas. O \textit{Displacement} e o \textit{Insertion} conseguiram chegar em uma mesma média de aptidão para todas os arquivos, provando serem prováveis melhores escolhas para a busca de rotas.
+
 
 \pagebreak
 \section{Roteiros dos Testes}
-Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. As listas de endereços e as rotas encontrada podem ser vista a baixo:
+Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próximos da cidade de São Paulo. Para garantir consistência entre os resultados para cada roteiro foi salvo um cache entre as distancias entre todos os pontos, de forma  ser utilizado o mesmo fator de distancia e tempo para todos os testes.
+
+As listas de endereços e as rotas encontrada podem ser vista a baixo:
 
 \subsection{Roteiro 1}
 \begin{center}
@@ -470,6 +463,19 @@ Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próxi
 	\captionof{figure}{Roteiro Não é possível entregar com apenas 1}
 	\label{fig:RoteiroNaoepossivelentregarcomapenas1}
 \end{center}
+
+
+\section{Limitações}
+Foi possível identificar possíveis situações em que o software não foi capaz de dar uma resposta, estes sendo:
+
+\textbf{Não é possível entregar a tempo}: Levando em consideração o horário de saída e o horário limite para realizar todas as entregas, é possível que um percurso entre os endereços tem seu tempo de trajeto mais demorado que o tempo disponível para a realização de todas as entregas, com isso seria impossível entregar, mesmo com mais entregadores, com isso, o software não consegue definir uma rota por considerar a velocidade média das vias por onde ele passará.
+
+\textbf{Limite de Entregadores:} Para pedir a definição de uma rota é preciso indicar quantos entregadores estão disponível para realizar as entregas, em algumas situações é possível que mesmo dividindo para todos os entregadores, mais entregadores seriam precisos para chegar a tempo em todos os endereços, com isso, o software não consegue definir uma rota.
+
+\textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
+
+É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
+
 
 \section{Conclusão}
 
