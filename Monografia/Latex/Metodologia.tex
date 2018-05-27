@@ -177,7 +177,14 @@ Para facilitar o entendimento inicial do projeto, é importante ter uma orienta�
 \subsection{Calculador de Rotas - CalcRoute}
 
 Projeto principal que tem toda a logica de preparação das rotas, recebendo parâmetros e utilizando o GA para gerar a resposta.
-A classe PRVJTFinder que é responsável por essa tarefa, podendo carrega as configurações por arquivo ou recendo os parâmetros diretamente. Os endereços podem vim sem a coordenadas, por que existe uma preparação dos endereços antes de começar o calculo das rotas. Os projetos CalcRoute.GeneticAlgorithm e CalcRoute.Routes são auxiliares para o calculo da rota.
+A classe PRVJTFinder que é responsável por essa tarefa, podendo carrega as configurações por arquivo ou recendo os parâmetros diretamente. Os endereços não precisam vim com as coordenadas, e sim apenas o nome, por que existe uma preparação dos endereços antes de começar o calculo das rotas que busca as coordenadas de cada endereço. Os projetos CalcRoute.GeneticAlgorithm e CalcRoute.Routes são auxiliares para o calculo da rota.
+
+A interação com a API do Google Mapas é encontrada no projeto CalcRoute.Routes, ela permite 3 tipos de transito possíveis para o calculo de tempo entre as rotas, esses são:
+\begin{itemize}
+	\item Média considera a média historia entre os endereços.
+	\item Otimista considera o melhor resultado histórico entre os endereços.
+	\item Pessimista considera o pior resultado histórico entre os endereços.
+\end{itemize}
 
 \subsection{Gerador de Dados - CalcRoute.RouteGenerate}
 
@@ -216,6 +223,16 @@ A interface é utilizada para interagir com o calculador de rotas de uma forma m
 	\item Adicionar Agrupa os campos do endereço, abertura, fechamento e descarga para a lista.
 	\item Lista de endereços reúne todos os endereços escolhidos para enviar para o calculador de rotas, o primeiro da lista é sempre o deposito
 	\item Calcular Rota faz a chama da Api de calculo e envia a lista.
+\end{itemize}
+
+\subsubsection{Configurações Avançadas}
+As Configurações Avançadas ajudam no teste, podem definir configurações e fazer comparações de uma maneira mais ágil.
+\begin{itemize}
+	\item Usar Cache guarda as rotas carregar do google mapas para a primeira chamada e utiliza para as próximas consultas iguais.
+	\item Tráfego configura a maneira que o Google Mapas trabalha com o trânsito, com as opção média, Otimista e Pessimista.
+	\item Mutação define qual mutação deve ser utilizada no GA.
+	\item Gerações define o numero de gerações que o GA deve rodar antes de retornar o melhor resultado encontrado.
+	\item População define o tamanho população que o GA vai utilizar para calcular as rotas.
 \end{itemize}
 
 \begin{center}
