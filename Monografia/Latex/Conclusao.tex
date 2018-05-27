@@ -2,14 +2,19 @@
 Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, os resultados encontrados e futuras melhorias.
 
 
-\section{Mutações}
-Implementamos para comparação 4 tipos de mutação, com definições de quantidade de gerações e tamanho de população de 1000 e 100 respectivamente, cada configuração foi rodada 10 vezes, e depois calculado a média do valor de aptidão para evitar o efeito probabilístico do GA. PAra isso implementamos um projeto que extrai essas informações, o Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo CSV e organizados na tabela abaixo. 
+\section{Comparações}
+
+Implementamos para comparação 4 tipos de mutação, com duas definições de quantidade de gerações e tamanho de população, essas sendo, 1 - com uma população de 100 indivíduos e uma quantidade de 1000 gerações. e 2 - com uma população de 50 indivíduos e uma quantidade de 500 gerações.
+ 
+ Assim avaliando se é possível adquirir um resultado viável em menor tempo. 
+
+Cada configuração foi executada 10 vezes, e depois calculado a média do valor de aptidão para evitar o efeito probabilístico do GA. PAra isso implementamos um projeto que extrai essas informações, o Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo CSV e organizados na tabela abaixo. 
 Para garantir que os valores de distancia e tempo entre dois pontos seja o mesmo para todos os testes, um cache das distancias entre os todos os pontos é reutilizado para cada um dos testes.
 
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=1.4]{ibagens/MutacaoComparacao.png}}
-	\captionof{figure}{Comparação das Mutações}
+	\captionof{figure}{Comparação das Mutações, Menor é melhor}
 	\label{fig:MutacaoComparacao}
 \end{center}
 
@@ -23,12 +28,16 @@ Os roteiros foram escolhidos de forma arbitraria com endereços dentro ou próxi
 As listas de endereços e as rotas encontrada podem ser vista a baixo:
 
 \subsection{Roteiro 1}
+
+O primeiro roteiro (figura: \ref{fig:Roteiro1}) foi definido de forma que consiga ser realizado com apenas um entregador, o mesmo tem o seu deposito localizado em Jardim Paulista e realiza as entregas aos arredores da região da Vila Olímpia como pode ser observado na figura \ref{fig:Roteiro1-Mapa1}.
+ 
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro1/Tabela.png}}
 	\captionof{figure}{Roteiro de um entregador}
 	\label{fig:Roteiro1}
 \end{center}
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{../../Analise/Roteiro1/Mapa1.png}}
@@ -36,33 +45,12 @@ As listas de endereços e as rotas encontrada podem ser vista a baixo:
 	\label{fig:Roteiro1-Mapa1}
 \end{center}
 
-\subsubsection{500 Gerações e 50 População}
-\begin{center}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/DisplacementMutation.png}}
-	\captionof{figure}{Mutação DisplacementMutation}
-	\label{fig:Roteiro1-G500P50-DisplacementMutation}
-\end{center}
-\begin{center}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/InsertionMutation.png}}
-	\captionof{figure}{Mutação InsertionMutation}
-	\label{fig:Roteiro1-G500P50-InsertionMutation}
-\end{center}
-\begin{center}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/InversionMutation.png}}
-	\captionof{figure}{Mutação InversionMutation}
-	\label{fig:Roteiro1-G500P50-InversionMutation}
-\end{center}
-\begin{center}
-	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/SwapMutation.png}}
-	\captionof{figure}{Mutação SwapMutation}
-	\label{fig:Roteiro1-G500P50-SwapMutation}
-\end{center}
 
-\subsubsection{1000 Gerações e 100 População}
+
+\subsubsection{500 Gerações e 50 População}
+
+Como pode ser observado nas figuras (\ref{fig:Roteiro1-G1000P100-SwapMutation}, \ref{fig:Roteiro1-G1000P100-InversionMutation}, \ref{fig:Roteiro1-G1000P100-InsertionMutation}, \ref{fig:Roteiro1-G1000P100-DisplacementMutation}), tivemos resultados extremamente próximos, o que indica que com uma quantidade grande o suficiente de gerações os resultados convergem.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G1000P100/DisplacementMutation.png}}
@@ -88,8 +76,42 @@ As listas de endereços e as rotas encontrada podem ser vista a baixo:
 	\label{fig:Roteiro1-G1000P100-SwapMutation}
 \end{center}
 
+\subsubsection{1000 Gerações e 100 População}
+
+Dobrando a quantidade de gerações e população é possível de observar uma pequena melhoria no resultado (\ref{fig:Roteiro1-G500P50-SwapMutation}, \ref{fig:Roteiro1-G500P50-InversionMutation}, \ref{fig:Roteiro1-G500P50-InsertionMutation}, \ref{fig:Roteiro1-G500P50-DisplacementMutation}). Que provavelmente não justifique o tempo e processamento necessário parar se adquirir a resposta.
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/DisplacementMutation.png}}
+	\captionof{figure}{Mutação DisplacementMutation}
+	\label{fig:Roteiro1-G500P50-DisplacementMutation}
+\end{center}
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/InsertionMutation.png}}
+	\captionof{figure}{Mutação InsertionMutation}
+	\label{fig:Roteiro1-G500P50-InsertionMutation}
+\end{center}
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/InversionMutation.png}}
+	\captionof{figure}{Mutação InversionMutation}
+	\label{fig:Roteiro1-G500P50-InversionMutation}
+\end{center}
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro1/G500P50/SwapMutation.png}}
+	\captionof{figure}{Mutação SwapMutation}
+	\label{fig:Roteiro1-G500P50-SwapMutation}
+\end{center}
+
 
 \subsection{Roteiro 2}
+
+O segundo roteiro (figura: \ref{fig:Roteiro2}) foi pensado de forma a ser necessário um minimo de 2 entregadores, de forma a um conjunto de pontos de entrega próximos a São Paulo e um ponto de entrega em Campos de Jordão.
+
+Desta forma, pelo tempo necessário para se realizar esta entrega mais longe e voltar ao depósito, é obrigatório que seja demandado o uso de um entregador a mais. Como pode ser visualizado nos mapas que representam um resultado de rota (\ref{fig:Roteiro2-Mapa1},\ref{fig:Roteiro2-Mapa2}).
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro2/Tabela.png}}
@@ -111,6 +133,11 @@ As listas de endereços e as rotas encontrada podem ser vista a baixo:
 
 
 \subsubsection{500 Gerações e 50 População}
+
+Para cada mutação os resultados convergiram da mesma forma que o primeiro, de forma a não ser possível identificar uma mudança significativa em sua aplicação.
+
+Pode ser verificado nas figuras \ref{fig:Roteiro2-G500P50-SwapMutation}, \ref{fig:Roteiro2-G500P50-InversionMutation}, \ref{fig:Roteiro2-G500P50-InsertionMutation} e \ref{fig:Roteiro2-G500P50-DisplacementMutation} que o resultado divide de forma quase parcial a quantidade de pontos de entrega entre ambos os entregadores,  mesmo que o Entregador 1 volte ao depósito na metade do dia e o Entregador 2 chegue ao final, pois o segundo tem sua entrega distante configurada no meio de seu roteiro, tendo assim entregas para serem realizados em seu caminho de ida e volta ao destino mais longe.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro2/G500P50/DisplacementMutation/Rota1.png}}
@@ -144,7 +171,11 @@ As listas de endereços e as rotas encontrada podem ser vista a baixo:
 	\label{fig:Roteiro2-G500P50-SwapMutation}
 \end{center}
 
+
 \subsubsection{1000 Gerações e 100 População}
+
+No caso do roteiro de 2 entregadores aplicar mais força computacional, com mais populações não trouxe nenhum ganho. O algorítimo se demonstra convergindo be rápido para uma solução viável (figuras: \ref{fig:Roteiro2-G1000P100-InversionMutation}, \ref{fig:Roteiro2-G1000P100-DisplacementMutation}, \ref{fig:Roteiro2-G1000P100-InsertionMutation}, \ref{fig:Roteiro2-G1000P100-SwapMutation}).
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro2/G1000P100/DisplacementMutation/Rota1.png}}
@@ -180,6 +211,9 @@ As listas de endereços e as rotas encontrada podem ser vista a baixo:
 
 
 \subsection{Roteiro 3}
+
+
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro3/Tabela.png}}
