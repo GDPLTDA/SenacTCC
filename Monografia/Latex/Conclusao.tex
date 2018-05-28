@@ -136,7 +136,7 @@ Desta forma, pelo tempo necessário para se realizar esta entrega mais longe e v
 
 Para cada mutação os resultados convergiram da mesma forma que o primeiro, de forma a não ser possível identificar uma mudança significativa em sua aplicação.
 
-Pode ser verificado nas figuras \ref{fig:Roteiro2-G500P50-SwapMutation}, \ref{fig:Roteiro2-G500P50-InversionMutation}, \ref{fig:Roteiro2-G500P50-InsertionMutation} e \ref{fig:Roteiro2-G500P50-DisplacementMutation} que o resultado divide de forma quase parcial a quantidade de pontos de entrega entre ambos os entregadores,  mesmo que o Entregador 1 volte ao depósito na metade do dia e o Entregador 2 chegue ao final, pois o segundo tem sua entrega distante configurada no meio de seu roteiro, tendo assim entregas para serem realizados em seu caminho de ida e volta ao destino mais longe.
+Pode ser verificado nas figuras \ref{fig:Roteiro2-G500P50-SwapMutation}, \ref{fig:Roteiro2-G500P50-InversionMutation}, \ref{fig:Roteiro2-G500P50-InsertionMutation} e \ref{fig:Roteiro2-G500P50-DisplacementMutation} que o resultado divide de forma quase parcial a quantidade de pontos de entrega entre ambos os entregadores,  mesmo que um  entregador volte ao depósito na metade do dia e o outro entregador chegue ao final, pois o segundo tem sua entrega distante configurada no meio de seu roteiro, tendo assim entregas para serem realizados em seu caminho de ida e volta ao destino mais longe.
 
 \begin{center}
 	\makebox[\linewidth]{
@@ -337,6 +337,12 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 
 
 \subsection{Roteiro 4}
+
+O quarto roteiro (figura: \ref{fig:Roteiro4}) foi pensado de forma a ser necessário um minimo de 4 entregadores, todos os pontos de entrega ficam fora da cidade de São Paulo, de forma bem espaçada.
+
+O ponto mais distante em Olímpia, acabou sendo passado para apenas um entregador, por ser muito longe e ter um tempo de descarga relativamentre alto, apenas seria possível que um entregador conseguisse realizar essa entrega e voltar a tempo. Os outros pontos por mais que distantes foram distribuídos entre os demais entregadores de forma quase uniforme, respeitando de forma que o mesmo entregador entregue entre pontos mais próximos ou que façam parte de seu caminho ate um terceiro ponto mais distante. (\ref{fig:Roteiro4-Mapa1},\ref{fig:Roteiro4-Mapa2}, \ref{fig:Roteiro4-Mapa3},\ref{fig:Roteiro4-Mapa4}).
+
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro4/Tabela.png}}
@@ -369,6 +375,9 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 \end{center}
 
 \subsubsection{500 Gerações e 50 População}
+
+Todas as mutações convergiram para o mesmo valor neste caso, por mais que sejam rotas muito espaçadas em distancia, a quantidade de combinações validas para realizar todas as entregas a tempo não é alta (figuras: \ref{fig:Roteiro4-G500P50-InversionMutation}, \ref{fig:Roteiro4-G500P50-DisplacementMutation}, \ref{fig:Roteiro4-G500P50-InsertionMutation}, \ref{fig:Roteiro4-G500P50-SwapMutation}).
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro4/G500P50/DisplacementMutation/Rota1.png}}
@@ -419,6 +428,11 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 \end{center}
 
 \subsubsection{1000 Gerações e 100 População}
+
+Todas as mutações convergiram para o mesmo valor assim como as rotas anteriores, em comparação com resultado de menos gerações e indivíduos tivemos resultados ligeiramente melhores, aonde a rota de um dos entregador 1 da figura \ref{fig:Roteiro4-G500P50-DisplacementMutation} teve seu segundo roteiro alternado com entregador 4, ficando como mostra a figura \ref{fig:Roteiro4-G1000P100-DisplacementMutation}.
+
+Isso demonstra que com mais tempo é possível adquirir melhores resultados, porem o tempo gasto tende a ser inversamente proporcional a melhoria de rota, de forma que tivemos que dobrar os recursos do sistema para adquirir um resultado otimizado em $6.3\%$.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Roteiro4/G1000P100/DisplacementMutation/Rota1.png}}
@@ -469,7 +483,15 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 \end{center}
 
 \subsection{Alteração do tempo com base no transito}
+
+A solução desenvolvida leva em consideração a densidade do trafego, utilizando de recursos do google maps para escolher qual nível de gravidade do transito devera ser utilizado na simulação. Estas são três, \textbf{Média}, \textbf{Otimista} e \textbf{Pessimista}.
+
+
 \subsubsection{Média}
+
+Esta configuração utiliza o que a API do google chama de \textit{Melhor Sugestão}, tentando encontrar a situação média melhor de transito com base no horário de entrega. 
+Um exemplo pode ser visualizado na figura \ref{fig:RoteiroMedia}.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Situacoes/Media.png}}
@@ -477,6 +499,10 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 	\label{fig:RoteiroMedia}
 \end{center}
 \subsubsection{Otimista}
+
+Esta configuração de trafego implica em testar o tempo de entrega com o minimo de tempo de transição entre dois pontos. Com o palpite mais otimista de transito possível. 
+Em comparação com o resultado da figura \ref{fig:RoteiroMedia} o resultado otimista da figura \ref{fig:RoteiroOtimista} volta ao deposito no final 20 minutos antes.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Situacoes/Otimista.png}}
@@ -484,6 +510,10 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 	\label{fig:RoteiroOtimista}
 \end{center}
 \subsubsection{Pessimista}
+
+Esta configuração de trafego implica em testar o tempo de entrega com o máximo de tempo de transição entre dois pontos. Ou seja, com pior trafego.
+Em comparação com o resultado da figura \ref{fig:RoteiroMedia} o resultado pessimista da figura \ref{fig:RoteiroPessimista} volta ao deposito no final do dia com 20 minutos a mais de tempo.
+
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.8]{../../Analise/Situacoes/Pessimista.png}}
@@ -491,24 +521,45 @@ De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações 
 	\label{fig:RoteiroPessimista}
 \end{center}
 
-\subsection{Roteiro não é possível entregar}
+
+
+\subsection{Limitação de entregadores}
+
+A figura \ref{fig:RoteiroNaoepossivelentregar} representa um roteiro que não é possível de ser atendido com apenas 1 entregador, já a solução desenvolvida pode receber como restrição a quantidade máxima de entregadores. Neste caso o resultado é conforme pode ser visto na figura \ref{fig:NaoPodeEntregar}.
+
 \begin{center}
 	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=1.0]{../../Analise/RoteiroNaoepossivelentregar.png}}
+		\includegraphics[keepaspectratio=true,scale=1.1]{../../Analise/RoteiroNaoepossivelentregarcomapenas1.png}}
+	\captionof{figure}{Roteiro Não é possível entregar com um entregador}
+	\label{fig:RoteiroNaoepossivelentregarcomapenas1}
+\end{center}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/NaoPodeEntregar.png}}
+	\captionof{figure}{Mensagem de impossibilidade de entrega}
+	\label{fig:NaoPodeEntregar}
+\end{center}
+
+
+\subsection{Impossibilidade de entregar}
+
+Em casos de entrega impossível como o roteiro da figura \ref{fig:RoteiroNaoepossivelentregar}, não importa a quantidade de entregadores ou configurações de GA, o resultado sempre sera "impossível entregar", como na figura \ref{fig:NaoPodeEntregar2}
+
+\begin{center}
+	\makebox[\linewidth]{
+		\includegraphics[keepaspectratio=true,scale=1.0]{../../Analise/RoteiroNaoepossivelentregar2.png}}
 	\captionof{figure}{Roteiro não é possível entregar}
 	\label{fig:RoteiroNaoepossivelentregar}
 \end{center}
 
-
-
-
-\subsection{Roteiro Não é possível entregar com apenas 1}
 \begin{center}
 	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=1.1]{../../Analise/RoteiroNaoepossivelentregarcomapenas1.png}}
-	\captionof{figure}{Roteiro Não é possível entregar com apenas 1}
-	\label{fig:RoteiroNaoepossivelentregarcomapenas1}
+		\includegraphics[keepaspectratio=true,scale=0.5]{ibagens/NaoPodeEntregar.png}}
+	\captionof{figure}{Mensagem de impossibilidade de entrega}
+	\label{fig:NaoPodeEntregar2}
 \end{center}
+
 
 
 \section{Limitações}
