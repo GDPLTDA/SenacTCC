@@ -1,14 +1,13 @@
 \chapter{Resultados}
 Nesse capítulo é apresentado como os testes foram organizados, as limitações do software, os resultados encontrados e futuras melhorias.
 
-
 \section{Comparações}
 
 Implementamos para comparação 4 tipos de mutação, com duas definições de quantidade de gerações e tamanho de população, essas sendo, 1 - com uma população de 100 indivíduos e uma quantidade de 1000 gerações. e 2 - com uma população de 50 indivíduos e uma quantidade de 500 gerações.
  
- Assim avaliando se é possível adquirir um resultado viável em menor tempo. 
+Assim avaliando se é possível adquirir um resultado viável em menor tempo. 
 
-Cada configuração foi executada 10 vezes, e depois calculado a média do valor de aptidão para evitar o efeito probabilístico do GA. PAra isso implementamos um projeto que extrai essas informações, o Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo CSV e organizados na tabela abaixo. 
+Cada configuração foi executada 10 vezes, e depois calculado a média do valor de aptidão para evitar o efeito probabilístico do GA. Para isso implementamos um projeto que extrai essas informações, o Route.DataGeneration, todas os dados das possibilidades foram armazenados em um arquivo CSV e organizados na tabela abaixo. 
 Para garantir que os valores de distancia e tempo entre dois pontos seja o mesmo para todos os testes, um cache das distancias entre os todos os pontos é reutilizado para cada um dos testes.
 
 \begin{center}
@@ -174,7 +173,7 @@ Pode ser verificado nas figuras \ref{fig:Roteiro2-G500P50-SwapMutation}, \ref{fi
 
 \subsubsection{1000 Gerações e 100 População}
 
-No caso do roteiro de 2 entregadores aplicar mais força computacional, com mais populações não trouxe nenhum ganho. O algorítimo se demonstra convergindo be rápido para uma solução viável (figuras: \ref{fig:Roteiro2-G1000P100-InversionMutation}, \ref{fig:Roteiro2-G1000P100-DisplacementMutation}, \ref{fig:Roteiro2-G1000P100-InsertionMutation}, \ref{fig:Roteiro2-G1000P100-SwapMutation}).
+No caso do roteiro de 2 entregadores aplicar mais força computacional, com mais populações não trouxe nenhum ganho. O algorítimo se demonstra convergindo bem rápido para uma solução viável (figuras: \ref{fig:Roteiro2-G1000P100-InversionMutation},  \ref{fig:Roteiro2-G1000P100-DisplacementMutation},  \ref{fig:Roteiro2-G1000P100-InsertionMutation},  \ref{fig:Roteiro2-G1000P100-SwapMutation}).
 
 \begin{center}
 	\makebox[\linewidth]{
@@ -214,38 +213,38 @@ No caso do roteiro de 2 entregadores aplicar mais força computacional, com mais
 
 O terceiro roteiro (figura: \ref{fig:Roteiro3}) foi pensado de forma a ser necessário um minimo de 3 entregadores, todos os pontos ficam em São Paulo, porem com uma quantidade maior de pontos de entrega e tempo de descarga que as rotas anteriores.
 
-Assim sendo, dois entregadores receberam de forma geral os pontos mais distantes do depósito e opostos entre si, e o terceiro  recebeu os ponto mais próximos do deposito   porem com tempo maior de descarga. (\ref{fig:Roteiro3-Mapa1},\ref{fig:Roteiro3-Mapa2}, \ref{fig:Roteiro3-Mapa3}).
+Assim sendo, dois entregadores receberam de forma geral os pontos mais distantes do depósito e opostos entre si, e o terceiro  recebeu os ponto mais próximos do deposito   porem com tempo maior de descarga. (\ref{fig:Roteiro3-Mapa1}, \ref{fig:Roteiro3-Mapa2}, \ref{fig:Roteiro3-Mapa3}).
 
 
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro3/Tabela.png}}
-	\captionof{figure}{Roteiro de tres entregadores}
+	\captionof{figure}{Roteiro de três entregadores}
 	\label{fig:Roteiro3}
 \end{center}
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{../../Analise/Roteiro3/Mapa1.png}}
-	\captionof{figure}{Mapa de um de tres entregadores}
+	\captionof{figure}{Mapa de um de três entregadores}
 	\label{fig:Roteiro3-Mapa1}
 \end{center}
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{../../Analise/Roteiro3/Mapa2.png}}
-	\captionof{figure}{Mapa de um de tres entregadores}
+	\captionof{figure}{Mapa de um de três entregadores}
 	\label{fig:Roteiro3-Mapa2}
 \end{center}
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.5]{../../Analise/Roteiro3/Mapa3.png}}
-	\captionof{figure}{Mapa de um de tres entregadores}
+	\captionof{figure}{Mapa de um de três entregadores}
 	\label{fig:Roteiro3-Mapa3}
 \end{center}
 
 
 \subsubsection{500 Gerações e 50 População}
 
-Para 3 entregadores ao contrario das rotas anterior é visível uma diferença entre a utilização da mutações, no caso as que alteram sub-rotas performaram pior (\ref{fig:Roteiro3-G500P50-InversionMutation}, \ref{fig:Roteiro3-G500P50-DisplacementMutation}) que as que fazem trocas simples entre pontos (\ref{fig:Roteiro3-G500P50-InsertionMutation}, \ref{fig:Roteiro3-G500P50-SwapMutation}). Isso se da pelo aumento de complexidade com mais entregadores, como a estrategia de cruzamento se guia pela distancia entre pontos, grandes alterações no genoma podem mais facilmente resultar em resultados piores.
+Para 3 entregadores ao contrario das rotas anterior é visível uma diferença entre a utilização da mutações, no caso as que alteram sub-rotas performaram pior (\ref{fig:Roteiro3-G500P50-InversionMutation}, \ref{fig:Roteiro3-G500P50-DisplacementMutation}) que as que fazem trocas simples entre pontos (\ref{fig:Roteiro3-G500P50-InsertionMutation}, \ref{fig:Roteiro3-G500P50-SwapMutation}). Isso se da pelo aumento de complexidade com mais entregadores, como a estrategia de cruzamento se guia pela distância entre pontos, grandes alterações no genoma podem mais facilmente resultar em resultados piores.
 
 \begin{center}
 	\makebox[\linewidth]{
@@ -290,7 +289,7 @@ Para 3 entregadores ao contrario das rotas anterior é visível uma diferença e
 
 \subsubsection{1000 Gerações e 100 População}
 
-Assim como nos casos anteriores aumentar as quantidades de gerações e população não resultou em um resultado melhor como pode ser visto em ( \ref{fig:Roteiro3-G1000P100-DisplacementMutation},  \ref{fig:Roteiro3-G1000P100-DisplacementMutation}, \ref{fig:Roteiro3-G1000P100-DisplacementMutation}, \ref{fig:Roteiro3-G1000P100-DisplacementMutation}).
+Assim como nos casos anteriores aumentar as quantidades de gerações e população não resultou em um resultado melhor como pode ser visto em ( \ref{fig:Roteiro3-G1000P100-DisplacementMutation},  \ref{fig:Roteiro3-G1000P100-InsertionMutation}, \ref{fig:Roteiro3-G1000P100-InversionMutation}, \ref{fig:Roteiro3-G1000P100-SwapMutation}).
 
 De forma equivalente a versão de 500 gerações e 50 indivíduos as mutações simples demonstraram melhor resultado.
 
@@ -484,12 +483,12 @@ Isso demonstra que com mais tempo é possível adquirir melhores resultados, por
 
 \subsection{Alteração do tempo com base no transito}
 
-A solução desenvolvida leva em consideração a densidade do trafego, utilizando de recursos do google maps para escolher qual nível de gravidade do transito devera ser utilizado na simulação. Estas são três, \textbf{Média}, \textbf{Otimista} e \textbf{Pessimista}.
+A solução desenvolvida leva em consideração a densidade do trafego, utilizando de recursos do Google Mapas para escolher qual nível de gravidade do transito devera ser utilizado na simulação. Estas são três, \textbf{Média}, \textbf{Otimista} e \textbf{Pessimista}.
 
 
 \subsubsection{Média}
 
-Esta configuração utiliza o que a API do google chama de \textit{Melhor Sugestão}, tentando encontrar a situação média melhor de transito com base no horário de entrega. 
+Esta configuração utiliza o que a API do Google chama de \textit{Melhor Sugestão}, tentando encontrar a situação média melhor de transito com base no horário de entrega. 
 Um exemplo pode ser visualizado na figura \ref{fig:RoteiroMedia}.
 
 \begin{center}
