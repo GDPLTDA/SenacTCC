@@ -169,7 +169,7 @@ Meta-heurísticas são procedimentos destinados a encontrar uma boa solução, e
 
 \subsubsection{Busca Tabu (Tabu Search)}
 
-Essa meta-heurística foi introduzida por \cite{Glover}, mas foi \cite{Garcia} proposa primeira aplicação para o problema de roteamento e programação de veículos com janela de tempo. O conceito básico da busca tabu (BT) é explorar o espaço solução, a cada iteração, movendo de uma dada solução para outra que pertença à sua vizinhança. Diferentemente dos métodos clássicos de descida, aceita-se soluções piores, o que pode gerar ciclos. Para evitar a ciclagem, as soluções já avaliadas são marcadas como proibidas e incluídas em uma lista tabu.
+Essa meta-heurística foi introduzida por \cite{Glover}, mas foi \cite{Garcia} propos a primeira aplicação para o problema de roteamento e programação de veículos com janela de tempo. O conceito básico da busca tabu (BT) é explorar o espaço solução, a cada iteração, movendo de uma dada solução para outra que pertença à sua vizinhança. Diferentemente dos métodos clássicos de descida, aceita-se soluções piores, o que pode gerar ciclos. Para evitar a ciclagem, as soluções já avaliadas são marcadas como proibidas e incluídas em uma lista tabu.
 
 \subsubsection{Têmpera Simulada (Simulated Annealing)}
 
@@ -181,7 +181,7 @@ Este método de busca local envolve a geração de um conjunto de soluções ini
 
 \subsubsection{Algoritmos Genéticos / Evolutivos}
 
-Algoritmos genéticos e evolutivos são metaheuristica com boas aplicações no problema de PRV e PRVJT, \cite{Homberger}  propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. A mutação é feita pelas heurísticas de refinamento \textit{Or-opt}, \({2-opt\ast}\) e \(\lambda-Interchange\). No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
+Algoritmos genéticos e evolutivos são meta-heurística com boas aplicações no problema de PRV e PRVJT, \cite{Homberger}  propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. A mutação é feita pelas heurísticas de refinamento \textit{Or-opt}, \({2-opt\ast}\) e \(\lambda-Interchange\). No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
 
 Foi desenvolvido por \cite{Jung} um algoritmo genético híbrido, no qual a função objetivo é baseada na distância. O algoritmo começa com a aplicação da heurística de inserção de \cite{Solomon} para a determinação de uma solução inicial. O primeiro cliente de cada rota é escolhido de forma aleatória entre o cliente mais distante do depósito, o cliente com o menor instante final da janela de tempo e um cliente também determinado aleatoriamente. 
 
@@ -311,7 +311,7 @@ Sua queda esta fortemente ligada ao fenômeno de \textit{Convergência prematura
 \subsection{Aplicações}
 Existem vários aplicações para os algoritmo genéticos, por serem uma inteligência artificial não supervisionada, de rápido aprendizado e podendo ser paralelizado.
 
-O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, encontrando uma boa distribuição de viaturas para patrulhamento urbano, que pode ser utilizado por departamentos segurança, como a policia, guardas municipais ou segurança privada \?cite{Washington}. 
+O modelo m-PRC(Problema de Rotas de Cobertura multi-veículo) é uma aplicação de algoritmos genéticos para construção de rotas em uma região mapeada, encontrando uma boa distribuição de viaturas para patrulhamento urbano, que pode ser utilizado por departamentos segurança, como a policia, guardas municipais ou segurança privada \cite{Washington}. 
 O Modelo é definido como um grafo não direcionado \ref{eq:solve3}. 
 
 \begin{equation} \label{eq:solve3}

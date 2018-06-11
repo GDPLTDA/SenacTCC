@@ -341,7 +341,6 @@ O quarto roteiro (figura: \ref{fig:Roteiro4}) foi pensado de forma a ser necess�
 
 O ponto mais distante em Olímpia, acabou sendo passado para apenas um entregador, por ser muito longe e ter um tempo de descarga relativamentre alto, apenas seria possível que um entregador conseguisse realizar essa entrega e voltar a tempo. Os outros pontos por mais que distantes foram distribuídos entre os demais entregadores de forma quase uniforme, respeitando de forma que o mesmo entregador entregue entre pontos mais próximos ou que façam parte de seu caminho ate um terceiro ponto mais distante. (\ref{fig:Roteiro4-Mapa1},\ref{fig:Roteiro4-Mapa2}, \ref{fig:Roteiro4-Mapa3},\ref{fig:Roteiro4-Mapa4}).
 
-
 \begin{center}
 	\makebox[\linewidth]{
 		\includegraphics[keepaspectratio=true,scale=0.9]{../../Analise/Roteiro4/Tabela.png}}
@@ -485,7 +484,6 @@ Isso demonstra que com mais tempo é possível adquirir melhores resultados, por
 
 A solução desenvolvida leva em consideração a densidade do trafego, utilizando de recursos do Google Mapas para escolher qual nível de gravidade do transito devera ser utilizado na simulação. Estas são três, \textbf{Média}, \textbf{Otimista} e \textbf{Pessimista}.
 
-
 \subsubsection{Média}
 
 Esta configuração utiliza o que a API do Google chama de \textit{Melhor Sugestão}, tentando encontrar a situação média melhor de transito com base no horário de entrega. 
@@ -571,7 +569,6 @@ Foi possível identificar possíveis situações em que o software não foi capa
 \textbf{Tempo limite de entrega excedido:} Se a rota não tiver nenhum percurso muito demorado e também for possível determinar a divisão da rota principal entre o numero de entregadores, podemos encontrar outro problema, sempre que um entregador chega a um destino, é possível sofre atrasos na descarga, um maior tempo de espera ou até o transito piorando por causa de um acidente em uma via principal, por exemplo, isso muda o tempo dos próximos percursos, podendo elevar muito o tempo do trajeto.
 
 É possível encontrar a situação que seria preciso mais entregadores para finalizar a entrega, que não é mais possível por que o entregador já está em transito, também pode encontrar um percurso completamente parado,  com isso, o software não consegue definir uma rota para finalizar as entregas.
-
 
 \section{Conclusão}
 
