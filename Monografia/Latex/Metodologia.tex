@@ -25,7 +25,7 @@ O fluxograma a baixo demostra o fluxo da solução.
 
 \begin{center}
     \makebox[\linewidth]{
-        \includegraphics[keepaspectratio=true]{ibagens/Fluxograma.png}}
+        \includegraphics[keepaspectratio=true,scale=0.6]{ibagens/Fluxograma.png}}
     \captionof{figure}{Fluxograma macro do funcionamento do software.  }
     \label{fig:FluxoSoftware}
 \end{center}
@@ -79,8 +79,8 @@ Para cruzamento foi escolhido o operador proposto por \cite{Pereira_Tavares} que
 	\SetKwInOut{Input}{Entrada}
 	\SetKwInOut{Output}{Saida}
 	   
-	\underline{function Cruzamento} $(I_1,I_2)$\;
-	\Input{Dois individuos da população $I_1$ e $I_2$}
+	\underline{Função Cruzamento} $(I_1,I_2)$\;
+	\Input{Dois indivíduos da população $I_1$ e $I_2$}
 	\Output{Um descendente $I_d$}
 	\BlankLine
 	$SR \leftarrow $ Do material genético de $I_2$, selecione  aleatoriamente uma sub-rota \{$a_1, a_2,…, a_n$\}
@@ -167,7 +167,7 @@ Foi desenvolvido uma WeApi em ASP.NET para consumo de uma pagina desenvolvida ut
 
 Também foi desenvolvido uma ferramenta para gravar os resultados obtidos pelo GA, porem este obtém as configurações de busca a partir de arquivos que contém os endereços e quantidade de entregadores.
 
-Todos os testes presentes nesse trabalho foram obtidos rodando os testes em um computador I7 2600 de 3.4Ghz com 12GB de ram.
+Todos os testes presentes nesse trabalho foram obtidos rodando os testes em um computador I7 2600 de 3.4Ghz com 12GB de memória RAM.
 
 
 \section{Estrutura do Projeto}
@@ -254,4 +254,4 @@ A tabela tem 8 colunas com informações de cada percurso, essa colunas são:
 	\item Entrada: Horário que o entregador consegui entrar para começar a realizar a descarga da entrega.
 	\item Descarga: Tempo Médio para descarregador toda a encomenda.
 \end{itemize}
-Depois de finalizar a entrega o campo saída deve ser preenchido com o horário que está tudo pronto para fazer a próxima entrega e clicar no botão Próxima Rota, uma nova chamada para a Api será feita somente com o entregador pedido, esse processo pode ser repetido até que todas os endereços sejam visitados.
+Depois de finalizar a entrega o campo saída deve ser preenchido com o horário que está tudo pronto para fazer a próxima entrega e clicar no botão Próxima Rota, uma nova chamada para a API será feita somente com o entregador pedido, esse processo pode ser repetido até que todas os endereços sejam visitados.
