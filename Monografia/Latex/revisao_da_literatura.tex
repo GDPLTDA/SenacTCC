@@ -26,7 +26,7 @@ A formulação matemática do PRVJT, é apresentada pelas expressões:
  \sum_{k \in K}\sum_{i \in V}\sum_{j \in V} c_{ij}x_{ijk}
 \end{equation}
 
-Sujeito as seguintes restrições:
+Sujeito às seguintes restrições:
 
 \begin{equation} \label{eq:prvjt2}
 \sum_{k \in K}\sum_{j \in V} x_{ijk} = 1, \forall i \in N
@@ -77,17 +77,17 @@ Os atuais resultados encontrados na literatura referentes ao PRVJT comprovam que
 
 Abordagens heurísticas e algoritmos aproximativos também tem sido utilizadas na resolução do PRVJT. As Heurísticas buscam obter uma solução em tempo hábil. Este fato torna as estratégias heurísticas muito poderosas se comparadas com abordagens exatas, que focam exclusivamente na obtenção da solução ótima. Uma boa heurística deve ser capaz de encontrar soluções próximas da ótima, em tempo bem inferior ao necessário pelos métodos exatos. A qualidade da solução não deve variar demasiadamente ao aplicá-la em diferentes ou ao mesmo problemas-teste. Até 2006, 45 do total de 56 problemas de Solomon tiveram uma solução ótima. Alguns casos foram gastos mais que cinco horas de processamento na resolução de algumas instancias, enquanto em outras puderam ser resolvidas em menos de um minuto. ~\cite{Jepsen}
 
-Os métodos aproximativos vem ao encontro destas características. Um método aproximativo é uma heurística com garantia de qualidade no resultado. A melhor solução encontrada por um algoritmo de aproximação esta sempre a uma distancia percentual previamente definida da solução ótima desconhecida. A "distancia do ótimo" é particular de cada algoritmo, podendo até não ser muito relevante em termos práticos. Um exemplo bem conhecido é o algoritmo PRIM, para árvore geradora mínima, que é capaz de oferecer uma solução viável para o PCV, que é no máximo duas vezes o ótimo em distancia total percorrida \cite{Alvarenga}.
+Os métodos aproximativos vem ao encontro destas características. Um método aproximativo é uma heurística com garantia de qualidade no resultado. A melhor solução encontrada por um algoritmo de aproximação esta sempre a uma distancia percentual previamente definida da solução ótima desconhecida. A "distancia do ótimo" é particular de cada algoritmo, podendo até não ser muito relevante em termos práticos. Um exemplo bem conhecido é o algoritmo PRIM, para árvore geradora mínima, que é capaz de oferecer uma solução viável para o PCV, que é no máximo duas vezes o ótimo em distância total percorrida \cite{Alvarenga}.
 
 Dado essa complexidade, resolver esse problema utilizando de abordagens puramente exatas é uma tarefa extremamente árdua, demandando tempo computacional muito elevado. Por isso é motivado o desenvolvimento de novos algoritmos heurísticos com tempos mais reduzidos para a solução do PRVJT, mesmo que esses não garantam uma solução ótima.
 
 \subsection{Heurísticas}
 
-Heurísticas são procedimentos de busca que visam a obtenção de soluções com uma qualidade satisfatória em um tempo computacional aceitável. Porem tais procedimentos não garantem encontrar a solução ótima nem são capazes de mensurar o quão próxima a solução obtida está da ótima. Sera enumerado as ideias centrais de algumas heurísticas construtivas e de refinamento disponíveis na literatura.
+Heurísticas são procedimentos de busca que visam a obtenção de soluções com uma qualidade satisfatória em um tempo computacional aceitável. Porem tais procedimentos não garantem encontrar a solução ótima nem são capazes de mensurar o quão próxima a solução obtida está da ótima. Será exemplificada as ideias centrais de algumas heurísticas construtivas e de refinamento disponíveis na literatura.
 
 \subsubsection{Construção de rotas}
 
-Um dos trabalhos mais antigos sobre heurística para construção de rotas para PRVJT proposto por Baker \cite{Baker} em 1989, Foi criada a partir da ideia da heurística das economias de Clarke e Write \cite{Clarke} que foi proposta para criação de soluções para o PRV. O algoritmo funciona primeiramente criando uma rota partindo do depósito para cada cliente \textit{i}, para em seguida, executar varias iterações, em cada interação, o algoritmo calcula quais duas rotas que podem ser combinadas de forma a gerar a maior economia possível.
+Um dos trabalhos mais antigos sobre heurística para construção de rotas para PRVJT proposto por Baker \cite{Baker} em 1989, Foi criada a partir da ideia da heurística das economias de Clarke e Write \cite{Clarke} que foi proposta para criação de soluções para o PRV. O algoritmo funciona primeiramente criando uma rota partindo do depósito para cada cliente \textit{i}, para em seguida, executar varias vezes, em cada vez, o algoritmo calcula quais duas rotas que podem ser combinadas de forma a gerar a maior economia possível.
 
 Outra heurística proposta por \cite{VANLANDEGHEM} também baseada na heurística das economias é uma heurística de dois critérios, nesta as janelas de tempo são utilizadas para mensurar o quanto uma ligação entre dois clientes é boa em termos de tempo.
 
@@ -96,7 +96,7 @@ Nesta heurística toda rota é inicializada encontrando o cliente mais próximo 
 
 As heurísticas de \cite{VANLANDEGHEM} e \cite{Solomon} de forma geral conseguem encontrar uma solução rapidamente. Porém as soluções que suas heurísticas encontram são geralmente de baixa qualidade. Geralmente pouco a mais de 10\% do ótimo ~\cite{Sherbeny}.
 
-Criar uma rota por vez traz uma desvantagem, usualmente as rotas geradas por ultimo são de baixa qualidade, uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
+Criar uma rota por vez traz uma desvantagem, usualmente as rotas geradas por último são de baixa qualidade, uma vez que os clientes sem rota tendem estar distantes geograficamente~\cite{Sherbeny}. 
 
 É possível encontrar uma tentativa de solução deste problema de inserção no trabalho de Rousseau~\cite{Rousseau} por meio de construção simultânea de varias rotas. A inicialização das rotas é feita usando a heurística de inserção de Solomon. Em cada rota o cliente mais distante do depósito é selecionado como semente.  A partir desse ponto, computa-se a melhor inserção viável para cada cliente que ainda não foi visitado. Este método é melhor que a heurística de Solomon, porem as soluções geradas continuam distantes das ótimas.
 
@@ -332,21 +332,21 @@ O m-PRC atribui o conjunto de m rotas de veículos com as restrições: todas as
 \begin{minipage}{\linewidth}
     \makebox[\linewidth]{
         \includegraphics[keepaspectratio=true,scale=0.5]{ibagens/grafoMPRC.png}}
-    \captionof{figure}{Exemplo de gráfo não direcionado para V U W. \cite{Washington} }
+    \captionof{figure}{Exemplo de grafo não direcionado para V U W. \cite{Washington} }
     \label{fig:GrafoVUW}
 \end{minipage}
 
-Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõem dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solução; O AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
+Para utilizar o algoritmos genéticos com o modelo m-PRC, o trabalho propõe dois modelos. O AGS (Algoritmo genético sequencial), que utiliza heurísticas GENIUS e 2-opt balanceada para ajustes finais para tentar melhor a solução; O AGH(Algoritmos genéticos H-1-PRC), que utiliza heurísticas H-1-PRC-MOD e 2-opt balanceada em todo o processo de resolução.
 
 A conclusão de \cite{Washington} é que a utilização de algoritmos genéticos para a resolução de uma adaptação do problema de rotas de cobertura de veículos como bastante relevantes e de fácil manipulação. O modelo AGS resolve o problema de forma rápida e tem uma fácil implementação dentro dos critérios de comparação adotadas. O modelo AGH é mais lento e não conseguiu encontrar a solução para alguns exemplos.
 
 Homberger, Jorg, Gehring e Hermann propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. 
-A mutação é feita pelas heurísticas de refinamento Or-opt, 2-opt\* e $\lambda$ -Interchange. No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme. \cite{HOMBERGER}
+A mutação é feita pelas heurísticas de refinamento Or-opt, 2-opt\* e $\lambda$ -Interchange. No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme. \cite{HOMBER}
 
-O trabalho de Sabir Ribas na universidade federal de fluminense utilizou uma abordagem híbrida para resolver o Problema de Roteamento de Veículos, usando Algoritmos Genéticos com a meta-heurística Iterated Local Search e o método Variable Neighborhood Descent. Chama de IILS-SP, desenvolvido em C++. O algoritmo foi submetido a 56 problemas teste de 100 clientes, para cada problema, executado 5 vezes em intervalos de 10min. Teve resultados melhores do que os encontrados pelo autor em sua pesquisa na literatura. \cite{SABIRRIBAS}.
+O trabalho de Sabir Ribas na universidade federal de fluminense utilizou uma abordagem híbrida para resolver o Problema de Roteamento de Veículos, usando Algoritmos Genéticos com a meta-heurística Iterated Local Search e o método Variable Neighborhood Descent. Chamo de IILS-SP, desenvolvido em C++. O algoritmo foi submetido a 56 problemas teste de 100 clientes, para cada problema, executado 5 vezes em intervalos de 10min. Teve resultados melhores do que os encontrados pelo autor em sua pesquisa na literatura. \cite{SABIRRIBAS}.
 
-Humberto,Germano e Guilherme também tentaram resolver o PRVJT utilizando GA, para a criação da população inicial utilizar a heurística Push-Forward Insertion Heuristic. Utilizando 56 problemas de teste e 100 clientes, chamadas instâncias de Solomon de 1987, mesma base de teste utilizadas em sua revisão de literatura para comparação de resultados, utiliza a mesma metodologia de teste do Sabir Ribas. \cite{HGGUILHERME}
+Humberto,Germano e Guilherme também tentaram resolver o PRVJT utilizando GA, para a criação da população inicial utilizaram a heurística Push-Forward Insertion Heuristic. Utilizando 56 problemas de teste e 100 clientes, chamadas instâncias de Solomon de 1987, mesma base de teste utilizadas em sua revisão de literatura para comparação de resultados, utiliza a mesma metodologia de teste do Sabir Ribas. \cite{HGGUILHERME}
 
-No trabalho de Glaydston da UniAracruz e Luiz Antônio da Instituto Nacional de Pesquisas Espaciais utilizaram algoritmos genéticos para resolver Problemas de Roteamento de Veículos Dinâmico com Janelas de Tempo, em casos reais, podem existir mudanças que podem afetar as rotas, pensando nisso, o algoritmo recalcula a rota de todos os veículos. O GA deve um resultado equivalente ou superior em alguns casos se comparados com as heurísticas. \cite{GLAYDSTON}
+No trabalho de Glaydston da UniAracruz e Luiz Antônio da Instituto Nacional de Pesquisas Espaciais utilizaram algoritmos genéticos para resolver Problemas de Roteamento de Veículos Dinâmico com Janelas de Tempo, em casos reais, podem existir mudanças que podem afetar as rotas, pensando nisso, o algoritmo recalcula a rota de todos os veículos. O GA teve um resultado equivalente ou superior em alguns casos se comparado com as heurísticas. \cite{GLAYDSTON}
 
-O trabalho de \cite{Pereira_Tavares} com uma proposta de operador de cruzamento conseguiu resultados satisfatórios no uso de GA para PRV, e propões como trabalho futuro o uso de seu modelo para problemas especializados como o PRVJT.
+O trabalho de \cite{Pereira_Tavares} com uma proposta de operador de cruzamento conseguiu resultados satisfatórios no uso de GA para PRV, e propôs como trabalho futuro o uso de seu modelo para problemas especializados como o PRVJT.
