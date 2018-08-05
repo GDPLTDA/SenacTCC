@@ -4,14 +4,6 @@ No meio empresarial é comum pensar em logística, essa é a área que gerencia 
 
 Uma atividade da logística que envolve grande valor de negócio é a distribuição eficiente de mercadorias ou serviços. Os custos de transporte representam uma parcela significativa do preço de muitos produtos. \cite{DIAS}
 
-
-\section{Motivação}
-
-Com o crescimento populacional, a descentralização dos pontos de venda e o aumento da variedade de produtos tem provocado o crescimento da complexidade da rede de distribuição de bens e serviços. O valor da logística se manifesta em termos de tempo e lugar, ou seja, disponibilidade. Sendo assim eles não terão valor, a menos que estejam em poder dos clientes quando (tempo) e onde (lugar) eles
-pretendem consumi-los \cite{TSUDA}.
-
-As decisões de transporte são parte fundamental da estratégia e planejamento logístico, com destaque para o problema de roteirização veículos (PRV), isso porque o transporte  pode representar de um a dois terços dos custos logísticos totais \cite{Ballou, RODRIGUES}.
-
 O PRV é definido de forma que a partir de um conjunto de rotas que será percorrido por uma quantidade \textit{N} veículos, onde cada rota começa e termina em um depósito, e todos os endereços serão visitados somente uma vez. 
 
 A identificação da ordem dos destinos, quando há um número elevado de endereços, se torna complexa por se tratar de um problema combinatório, onde é preciso avaliar todas as combinações para encontrar uma rota de menor tempo e distância \cite{RMKarp}.
@@ -29,6 +21,13 @@ Como exemplo de aplicações podemos citar:
 \end{itemize}
 
 Para se aproximar de uma situação mais real, deve-se levar em consideração que o trânsito das grandes cidades muda constantemente, e o tempo de percorrer uma certa distância dependendo do dia e horário da semana também muda, assim como acidentes, obras em vias e etc, tornando o trânsito uma variável importante para o cálculo da rota de entrega. Tendo destinos com horários de funcionamento delimitados, pode não existir uma rota que satisfaça as restrições de horário, tornando impossível de ser encontrado uma rota que passe por todos os destinos com apenas um entregador, somando o problema de se identificar a quantidade de entregadores necessária para realizar todas as entregas respeitando todas as restrições de horários partindo do depósito. 
+
+\section{Motivação}
+
+Com o crescimento populacional, a descentralização dos pontos de venda e o aumento da variedade de produtos tem provocado o crescimento da complexidade da rede de distribuição de bens e serviços. O valor da logística se manifesta em termos de tempo e lugar, ou seja, disponibilidade. Sendo assim eles não terão valor, a menos que estejam em poder dos clientes quando (tempo) e onde (lugar) eles
+pretendem consumi-los \cite{TSUDA}.
+
+As decisões de transporte são parte fundamental da estratégia e planejamento logístico, com destaque para o problema de roteirização veículos (PRV), isso porque o transporte  pode representar de um a dois terços dos custos logísticos totais \cite{Ballou, RODRIGUES}.
 
 Os atuais resultados encontrados na literatura referentes ao PRV e PRVJT comprovam que os algoritmos exatos restringem-se à resolução de problemas-teste com tamanho reduzido e janelas de tempo apertadas. Embora hoje possamos resolver problemas com um tamanho que seja ligeiramente maior que os de alguns anos atrás, o crescimento da capacidade dos computadores e da eficiência dos algoritmos está muito distante da curva exponencial representada por este problema. Pode-se dizer que os métodos exatos não são uma alternativa viável para situações onde a um número maior de consumidores, como ocorre na maioria dos casos reais \cite{Chabrier}.
 
