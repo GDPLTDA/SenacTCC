@@ -1,16 +1,24 @@
-This is BibTeX, Version 0.99dThe top-level auxiliary file: monografia.aux
-Case mismatch error between cite keys HOMBERGER and Homberger
----line 219 of file monografia.aux
- : \citation{HOMBERGER
- :                    }
-I'm skipping whatever remains of this command
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: monografia.aux
 The style file: abntex2-alf.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Database file #1: abntex2-options.bib
 Database file #2: mono.bib
 Warning--entry type for "TomTom" isn't style-file defined
---line 204 of file mono.bib
+--line 199 of file mono.bib
 Warning--entry type for "Souza" isn't style-file defined
---line 444 of file mono.bib
+--line 439 of file mono.bib
+Warning--I didn't find a database entry for "Homberger"
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
 while executing---line 2091 of file abntex2-alf.bst
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
@@ -21,6 +29,9 @@ Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
 while executing---line 2091 of file abntex2-alf.bst
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
 while executing---line 2091 of file abntex2-alf.bst
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=20001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
 while executing---line 2146 of file abntex2-alf.bst
 Name 1 in "Ballou, Ronald H.," has a comma at the end for entry Ballou
@@ -33,4 +44,45 @@ Warning--campo year vazio ou faltando em CORDEAU
 | Em caso de dúvidas ou problemas com este estilo procure |
 | http://www.abntex.net.br/                               |
 +---------------------------------------------------------+
-(There were 9 error messages)
+You've used 45 entries,
+            6714 wiz_defined-function locations,
+            1515 strings with 17799 characters,
+and the built_in function-call counts, 63009 in all, are:
+= -- 7251
+> -- 1057
+< -- 1625
++ -- 1983
+- -- 326
+* -- 3886
+:= -- 7737
+add.period$ -- 188
+call.type$ -- 45
+change.case$ -- 402
+chr.to.int$ -- 98
+cite$ -- 45
+duplicate$ -- 6337
+empty$ -- 2596
+format.name$ -- 1532
+if$ -- 12649
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 772
+newline$ -- 262
+num.names$ -- 210
+pop$ -- 985
+preamble$ -- 1
+purify$ -- 160
+quote$ -- 0
+skip$ -- 6399
+stack$ -- 1
+substring$ -- 2960
+swap$ -- 2361
+text.length$ -- 85
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 1
+while$ -- 325
+width$ -- 0
+write$ -- 725
+(There were 8 error messages)

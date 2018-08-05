@@ -1,19 +1,19 @@
 \chapter{Metodologia}
 O software desenvolvido tem como objetivo demonstrar uma solução para o problema de PRVJT, descobrindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas em um período pre determinado, também identificar roteiros que são impossíveis de serem realizados a tempo. 
 
-Para adquirir informações próximas as reais de distancia e locomoção entre endereços esta sendo utilizado a API do Google Maps\cite{GoogleMatrix}.
+Para adquirir informações próximas as reais de distância e locomoção entre endereços esta sendo utilizado a API do Google Maps\cite{GoogleMatrix}.
 
-Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro das proximidades da cidade de São Paulo, uma grande metrópoles com um dos maiores índices de transito \cite{TomTom}, por esse motivo a menor distância de rota pode não ser a melhor escolha para certos horários do dia, podendo uma rota com maior distância que evita transito ser uma melhor escolha.
+Por se tratar de entregas de pequenos porte, os testes foram criados com endereços dentro das proximidades da cidade de São Paulo, uma grande metrópole com um dos maiores índices de transito \cite{TomTom}, por esse motivo a menor distância de rota pode não ser a melhor escolha para certos horários do dia, podendo uma rota com maior distância que evita transito ser uma melhor escolha.
 
-Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem chamada deposito, a quantidade de entregadores é predefinida, o sistema ira devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
+Para preparar o calculo da rota, deve-se levar em consideração que todos os entregadores partem de uma única origem chamada deposito, a quantidade de entregadores é predefinida, o sistema irá devolver rotas para atender todos os pontos visando diminuir a quantidade necessária de entregadores e distancia percorrida sem desrespeitar as restrições de janelas de tempo.
 
-Cada entrega tem um tempo médio de descarga, produtos pequenos podem demorar minutos, muitos produtos demoram mais para a retirar do veiculo e produtos grande podem precisar ser levamos com mais cuidado.
+Cada entrega tem um tempo médio de descarga, produtos pequenos podem demorar minutos, outros podem demoram mais para a retirar do veiculo, por precisarem de mais cuidado para serem levados.
 
 Cada endereço tem um horário de abertura e fechamento para realizar entregas, por exemplo, um super mercado recebe produtos na madrugada, já que receber em seu horário normal de abertura provavelmente irá atrapalhar as compras dos clientes, então esse horário deve ser considerado como restrição de tempo.
 
 Por causa das restrições de tempo, quando um entregador chega a um endereço deve ser avaliado com penalidade caso o mesmo chegue antes ou depois da janela de tempo, se chegar antes o mesmo deve esperar até o horário de abertura do endereço, somar o tempo de descarga e sair para o próximo endereço,  caso chegue depois é considerado que não é uma solução de rota viável para as restrições definidas. 
 
-É importante avaliar situações onde não é possível realizar as entregas, essas situação podem depender de distancia, por exemplo, caso o deposito esteja longe a ponto de um entregador não ter como chegar no endereço dentro de sua janela de tempo, ou caso mesmo sendo próximos ocorrer uma mudança no transito tornando impossível realizar a entrega á tempo, ou ainda pelo fato de ser definido um numero finito de entregadores, que podem não ser suficientes para realizar todas as entregas do roteiro.
+É importante avaliar situações onde não é possível realizar as entregas, essas situação podem depender de distância, por exemplo, caso o deposito esteja longe a ponto de um entregador não ter como chegar no endereço dentro de sua janela de tempo, ou caso mesmo sendo próximos ocorrer uma mudança no transito tornando impossível realizar a entrega à tempo, ou ainda pelo fato de ser definido um numero finito de entregadores, que podem não ser suficientes para realizar todas as entregas do roteiro.
 
 Depois que uma entrega é feita, uma nova rota deve ser recalculada, agora como ponto inicial o endereço atual, todo o processo será refeito para verificar se o transito ou possível atrasos não afetaram a ordem dos próximos destinos, depois do recalculo o entregador deve seria o próximo destino indicado.
 
@@ -197,7 +197,7 @@ Para ajudar na identificação dos melhores parâmetros a ser utilizado, esse pr
 	\label{fig:DataGenerate}
 \end{center}
 
-\subsection{API de Calculo de Rotas - CalcRoute.API}
+\subsection{API de Cálculo de Rotas - CalcRoute.API}
 
 Projeto de comunicação com a interface usando POST, recebendo parâmetros da interface e organiza para serem calculados no CalcRoute. 
 O retorno é organizado e os campos formatados para melhor apresentação na tabela da interface.
@@ -216,13 +216,13 @@ A interface é utilizada para interagir com o calculador de rotas de uma forma m
 \begin{itemize}
 	\item No campo procurar é preciso digitar o endereço para ser localizado no Google Maps, uma lista de possíveis escolhas aparece a baixo assim que começa a digitar, encontra o endereço e selecione.
 	\item O mapa exibe o endereço selecionado.
-	\item Abertura é o horário que que é permitida a entrada no local, no caso do deposito é o horário que o entregador sai para realizar as entregas.
-	\item Fechamento é o horário limite para realizar a entrega, no caso do deposito, é o horário limite para terminar todas as entregas, horário que o deposito fecha.
-	\item Entregadores é o numero de entregados disponível para realizar as entregas.
-	\item Descarga o tempo médio para descarregar no endereço de entrega, no caso do deposito esse campo não é utilizado.
+	\item Abertura é o horário que que é permitida a entrada no local, no caso do depósito é o horário que o entregador sai para realizar as entregas.
+	\item Fechamento é o horário limite para realizar a entrega, no caso do depósito, é o horário limite para terminar todas as entregas, horário que o deposito fecha.
+	\item Entregadores é o número de entregados disponível para realizar as entregas.
+	\item Descarga o tempo médio para descarregar no endereço de entrega, no caso do depósito esse campo não é utilizado.
 	\item Adicionar Agrupa os campos do endereço, abertura, fechamento e descarga para a lista.
-	\item Lista de endereços reúne todos os endereços escolhidos para enviar para o calculador de rotas, o primeiro da lista é sempre o deposito
-	\item Calcular Rota faz a chama da Api de calculo e envia a lista.
+	\item Lista de endereços reúne todos os endereços escolhidos para enviar para o calculador de rotas, o primeiro da lista é sempre o depósito
+	\item Calcular Rota faz a chama da Api de cálculo e envia a lista.
 \end{itemize}
 
 \subsubsection{Configurações Avançadas}
