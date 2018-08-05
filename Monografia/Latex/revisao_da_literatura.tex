@@ -179,9 +179,12 @@ A têmpera simulada (TS) é uma técnica de relaxação estocástica baseada no 
 
 Este método de busca local envolve a geração de um conjunto de soluções iniciais, seguida da aplicação de um procedimento de refinamento a cada solução gerada. As diferentes soluções iniciais permitem uma diversificação do espaço de busca, o que evita ótimos locais. A heurística de inserção mais barata é usada para criar a solução inicial, que é refinada por uma extensão da heurística de cadeia de ejeções, com o objetivo de reduzir o número de veículos. Finalmente, uma modificação da troca cruzada é empregada para reduzir a distância total percorrida em cada solução. \cite{Dullaert}
 
-\subsubsection{Algoritmos Genéticos / Evolutivos}
+% https://en.wikibooks.org/wiki/LaTeX/Mathematics
+\section{Algoritmos genéticos}
 
-Algoritmos genéticos e evolutivos são meta-heurística com boas aplicações no problema de PRV e PRVJT, \cite{Homberger}  propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. A mutação é feita pelas heurísticas de refinamento \textit{Or-opt}, \({2-opt\ast}\) e \(\lambda-Interchange\). No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
+AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação. \cite{DiogoCLucas}
+
+São meta-heurística com boas aplicações no problema de PRV e PRVJT, \cite{Homberger}  propuseram duas estratégias evolucionárias diferentes. As duas estratégias utilizam uma aproximação estocástica baseada na heurística das economias, ou seja, os clientes pertencentes a lista das economias são escolhidos aleatoriamente para constituir a rota. A função objetivo pondera o número de rotas, a distância total e um critério que determina a facilidade de eliminação da menor rota. A mutação é feita pelas heurísticas de refinamento \textit{Or-opt}, \({2-opt\ast}\) e \(\lambda-Interchange\). No primeiro algoritmo, o cruzamento não é executado. No segundo, o cruzamento é feito através de um procedimento uniforme.
 
 Foi desenvolvido por \cite{Jung} um algoritmo genético híbrido, no qual a função objetivo é baseada na distância. O algoritmo começa com a aplicação da heurística de inserção de \cite{Solomon} para a determinação de uma solução inicial. O primeiro cliente de cada rota é escolhido de forma aleatória entre o cliente mais distante do depósito, o cliente com o menor instante final da janela de tempo e um cliente também determinado aleatoriamente. 
 
@@ -193,16 +196,11 @@ Foi desenvolvido por \cite{Jung} um algoritmo genético híbrido, no qual a fun�
  
 \begin{minipage}{\linewidth}
 	\makebox[\linewidth]{
-		\includegraphics[keepaspectratio=true,scale=0.45]{ibagens/jung.png}}
+		\includegraphics[keepaspectratio=true,scale=0.6]{ibagens/jung.png}}
 	\captionof{figure}{O crossover utilizado por Jung e Moon. As Figuras a e b representam, respectivamente, os pais 1 e 2. A Figura c mostra a divisão dos clientes com base em figuras geométricas.  A Figura d mostra as ligações feitas nas regiões referentes ao primeiro pai, enquanto a Figura e mostra as rotas internas à região referente ao segundo pai. Finalmente, a Figura f mostra as rotas após a aplicação do algoritmo de reparação.
 	 }
 	\label{fig:jung}
 \end{minipage}
-
-% https://en.wikibooks.org/wiki/LaTeX/Mathematics
-\section{Algoritmos genéticos}
-
-AG é uma técnica amplamente utilizada de IA, que utilizam conceitos provenientes do princípio de seleção natural para abordar uma  ampla série de problemas, geralmente de adaptação. \cite{DiogoCLucas}
 
 \subsection{Funcionamento}
  
