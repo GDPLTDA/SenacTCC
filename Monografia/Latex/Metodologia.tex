@@ -1,4 +1,4 @@
-\chapter{Metodologia}
+\chapter{Trajetória Metodológica}
 O software desenvolvido tem como objetivo demonstrar uma solução para o problema de PRVJT, descobrindo caminho viáveis entres diferentes endereços, onde é possível realizar as entregas em um período pre determinado, também identificar roteiros que são impossíveis de serem realizados a tempo. 
 
 Para adquirir informações próximas as reais de distância e locomoção entre endereços esta sendo utilizado a API do Google Maps\cite{GoogleMatrix}.
@@ -25,12 +25,12 @@ O fluxograma a baixo demostra o fluxo da solução.
 
 \begin{center}
     \makebox[\linewidth]{
-        \includegraphics[keepaspectratio=true,scale=0.75]{ibagens/Fluxograma.png}}
+        \includegraphics[keepaspectratio=true,scale=0.7]{ibagens/Fluxograma.png}}
     \captionof{figure}{Fluxograma macro do funcionamento do software.  }
     \label{fig:FluxoSoftware}
 \end{center}
 
-Sempre que é necessário calcular a rota, o modulo de GA é chamado. Considerando que um individuo é uma solução completa, gera uma população de varias soluções, onde a ordem da rota é aleatória somente mantendo o deposito fixo como primeiro endereço para criar a população inicial.
+Sempre que é necessário calcular a rota, o modulo de AG é chamado. Considerando que um individuo é uma solução completa, gera uma população de varias soluções, onde a ordem da rota é aleatória somente mantendo o deposito fixo como primeiro endereço para criar a população inicial.
 
 Para cada rota da população de indivíduos a seleção determina dois para a realização do cruzamento, onde endereços das duas rotas são trocados de forma a criar duas novas rotas mantendo o deposito sempre como inicial. A mutação é executada individual em cada rota, mudando de posição um ou mais endereços da rota, sempre mantendo o deposito como ponto inicial.
 

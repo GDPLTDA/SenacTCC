@@ -1,9 +1,9 @@
 \backcite {DIAS}{{5}{1}{chapter.1}}
-\backcite {TSUDA}{{5}{1.1}{section.1.1}}
-\backcite {Ballou, RODRIGUES}{{5}{1.1}{section.1.1}}
-\backcite {Ballou, RODRIGUES}{{5}{1.1}{section.1.1}}
-\backcite {RMKarp}{{5}{1.1}{section.1.1}}
-\backcite {HUMBERTO}{{5}{1.1}{section.1.1}}
+\backcite {RMKarp}{{5}{1}{chapter.1}}
+\backcite {HUMBERTO}{{5}{1}{chapter.1}}
+\backcite {TSUDA}{{6}{1.1}{section.1.1}}
+\backcite {Ballou, RODRIGUES}{{6}{1.1}{section.1.1}}
+\backcite {Ballou, RODRIGUES}{{6}{1.1}{section.1.1}}
 \backcite {Chabrier}{{6}{1.1}{section.1.1}}
 \backcite {BraysyAG}{{6}{1.1}{section.1.1}}
 \backcite {ROCHAT}{{9}{2.1.1}{subsection.2.1.1}}
@@ -53,8 +53,8 @@
 \backcite {Pereira_Tavares}{{24}{2.2.8}{figure.2.3}}
 \backcite {GoogleMatrix}{{25}{3}{chapter.3}}
 \backcite {TomTom}{{25}{3}{chapter.3}}
-\backcite {Gendreau2}{{28}{5}{figure.3.5}}
-\backcite {Pereira_Tavares}{{29}{3}{figure.3.7}}
-\backcite {Pereira_Tavares}{{30}{8}{figure.3.8}}
-\backcite {Rocha}{{30}{7}{figure.3.8}}
-\backcite {Pereira_Tavares}{{31}{9}{figure.3.9}}
+\backcite {Gendreau2}{{27}{5}{figure.3.5}}
+\backcite {Pereira_Tavares}{{28}{3}{figure.3.7}}
+\backcite {Pereira_Tavares}{{29}{8}{figure.3.8}}
+\backcite {Rocha}{{29}{7}{figure.3.8}}
+\backcite {Pereira_Tavares}{{30}{9}{figure.3.9}}
